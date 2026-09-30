@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" color="#6225D8" style="color:#6225D8"><defs>
+    <pattern id="halftone" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="2.1" fill="currentColor"/></pattern>
+    <radialGradient id="halftone-fade" cx="38%" cy="38%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <mask id="halftone-mask" maskContentUnits="objectBoundingBox"><rect width="1" height="1" fill="url(#halftone-fade)"/></mask>
+  </defs><path d="M50 4c3 0 5 2 6 5l9 22 24 3c6 1 8 8 3 12L74 62l5 24c1 6-5 10-10 7L50 81 31 93c-5 3-11-1-10-7l5-24L8 46c-5-4-3-11 3-12l24-3 9-22c1-3 3-5 6-5Z" fill="url(#halftone)" mask="url(#halftone-mask)"/></svg>

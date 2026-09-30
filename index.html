@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emilly Silva — Designer gráfica e UX/UI</title>
+  <meta name="description" content="Emilly Silva (EMS) é designer gráfica e UX/UI em Belo Horizonte. Identidade visual, web design e social media para marcas bonitas de perto e claras de longe.">
+  <meta name="theme-color" content="#6225D8">
+  <meta property="og:title" content="Emilly Silva — Designer gráfica e UX/UI">
+  <meta property="og:description" content="Marca bonita de perto e clara de longe. Identidade visual, web design e social media.">
+  <meta property="og:image" content="%BASE_URL%img/projetos/ems/capa.webp">
+  <link rel="icon" href="/src/assets/illustrations/selo-ems.svg" type="image/svg+xml">
+  <script type="module" src="/src/js/main.js"></script>
+</head>
+<body id="topo">
+<!-- @include partials/icons.html -->
+
+<div class="loader" data-loader aria-hidden="true">
+  <div class="loader__layer loader__layer--wine"></div>
+  <div class="loader__layer loader__layer--violeta"></div>
+  <div class="loader__layer loader__layer--ivory">
+    <div class="loader__content">
+      <img class="loader__mascote" src="/src/assets/illustrations/selo-ems.svg" alt="" width="160" height="192">
+      <p class="loader__count"><span data-loader-count>0</span>%</p>
+      <p class="loader__line">carregando ideias com <em>personalidade</em></p>
+    </div>
+    <svg class="loader__spin loader__spin--a"><use href="#i-espiral"/></svg>
+    <svg class="loader__spin loader__spin--b"><use href="#i-espiral"/></svg>
+  </div>
+</div>
+
+<!-- @include partials/header.html -->
+
+<main id="conteudo">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-titulo">
+    <div class="hero__bg" aria-hidden="true">
+      <svg class="hero__star hero__star--a" data-parallax="-0.15"><use href="#i-estrela-reticula"/></svg>
+      <svg class="hero__star hero__star--b" data-parallax="0.2"><use href="#i-estrela-reticula"/></svg>
+    </div>
+
+    <!-- logo gigante em caixas (no lugar do vídeo-logo da Pixel) -->
+    <div class="hero__logo" aria-hidden="true">
+      <span class="hero__box" data-hero-box><span>E</span></span><span class="hero__box" data-hero-box><span>M</span></span><span class="hero__box" data-hero-box><span>S</span></span>
+      <div class="hero__seal" data-hero-seal data-mascote>
+        <!-- @include src/assets/illustrations/selo-ems.svg -->
+      </div>
+    </div>
+
+    <div class="hero__title-wrap">
+      <h1 id="hero-titulo" class="hero__title">
+        <span class="hero__line" data-hero-line data-from="20">Faço marca bonita</span>
+        <span class="hero__line hero__line--serif" data-hero-line data-from="-15">de perto e clara</span>
+        <span class="hero__line" data-hero-line data-from="12">de longe.</span>
+      </h1>
+      <span class="hero__label hero__label--a sticker" data-sticker data-hero-pop data-cursor-text="me arrasta">identidade visual</span>
+      <span class="hero__label hero__label--b sticker" data-sticker data-hero-pop data-cursor-text="me arrasta">web design</span>
+      <div class="sticker hero__pop hero__pop--cereja" data-sticker data-hero-pop data-cursor-text="me arrasta"><svg><use href="#i-cereja"/></svg></div>
+      <div class="sticker hero__pop hero__pop--xoxo" data-sticker data-hero-pop data-cursor-text="me arrasta"><svg><use href="#i-xoxo"/></svg></div>
+      <svg class="sparkle sparkle--1" aria-hidden="true"><use href="#i-brilho"/></svg>
+      <svg class="sparkle sparkle--2" aria-hidden="true"><use href="#i-brilho"/></svg>
+    </div>
+
+    <div class="hero__foot" data-hero-item>
+      <p class="hero__who"><span class="chip chip--live"><span class="chip__dot"></span>Disponível para projetos</span> Emilly Silva · designer gráfica e UX/UI · Belo Horizonte</p>
+      <div class="hero__actions">
+        <a class="btn btn--ivory" href="#projetos">Ver projetos <svg><use href="#i-seta"/></svg></a>
+        <a class="btn btn--ghost" href="https://www.instagram.com/itsemsdesign/" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> Chamar no direct</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAIXAS -->
+  <div class="tapes" aria-hidden="true">
+    <div class="tape tape--wine"><div class="tape__track">
+      <span>Identidade visual</span><svg><use href="#i-brilho"/></svg><span>Web design</span><svg><use href="#i-brilho"/></svg><span>UX/UI</span><svg><use href="#i-brilho"/></svg><span>Social media</span><svg><use href="#i-brilho"/></svg><span>Design system</span><svg><use href="#i-brilho"/></svg>
+    </div></div>
+    <div class="tape tape--lavanda"><div class="tape__track tape__track--rev">
+      <span>bonita de perto</span><svg><use href="#i-coracao"/></svg><span>clara de longe</span><svg><use href="#i-coracao"/></svg><span>com personalidade</span><svg><use href="#i-coracao"/></svg><span>nada de blanding</span><svg><use href="#i-coracao"/></svg>
+    </div></div>
+  </div>
+
+  <!-- PROJETOS -->
+  <section class="projects" id="projetos" aria-labelledby="projetos-titulo">
+    <div class="section-head container">
+      <p class="eyebrow">(01) Projetos selecionados</p>
+      <h2 id="projetos-titulo" class="section-title">Trabalhos que têm <em>cara</em></h2>
+      <div class="view-toggle" role="group" aria-label="Modo de visualização">
+        <button type="button" aria-pressed="true" data-view="carrossel">Carrossel</button>
+        <button type="button" aria-pressed="false" data-view="lista">Lista</button>
+      </div>
+    </div>
+
+    <!-- Carrossel 3D movido pela rolagem: mesma lógica do pixel.melbourne (docs/referencia-pixel.md) -->
+    <div class="c3d" data-c3d>
+      <div class="c3d__track">
+        <div class="c3d__sticky">
+          <div class="c3d__wrap" data-c3d-wrap><div class="c3d__list" data-c3d-list></div></div>
+        </div>
+      </div>
+      <div class="c3d__panels" data-c3d-panels></div>
+      <div class="c3d__arrows">
+        <div class="c3d__arrows-sticky">
+          <button class="c3d__arrow" type="button" data-c3d-prev aria-label="Projeto anterior"><svg><use href="#i-seta"/></svg></button>
+          <button class="c3d__arrow c3d__arrow--next" type="button" data-c3d-next aria-label="Próximo projeto"><svg><use href="#i-seta"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-list container" data-project-list hidden></div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto" aria-label="Manifesto">
+    <div class="container">
+      <p class="eyebrow">(02) Como eu penso design</p>
+      <p class="manifesto__text" data-manifesto>Marca boa é a que as pessoas <em>reconhecem</em>. Por isso cada projeto começa em estratégia e termina num sistema visual consistente: logo, cores, tipografia e aplicações que funcionam do Instagram ao site.</p>
+      <span class="tag tag--violeta manifesto__tag"><svg><use href="#i-cursor"/></svg>a diferença é essa</span>
+      <svg class="manifesto__star" aria-hidden="true"><use href="#i-estrela-reticula"/></svg>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="services" id="servicos" aria-labelledby="servicos-titulo">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">(03) Serviços</p>
+        <h2 id="servicos-titulo" class="section-title">No que eu posso te <em>ajudar</em></h2>
+      </div>
+      <div class="services__grid">
+        <article class="service service--wine" data-reveal>
+          <svg class="service__icon" aria-hidden="true"><use href="#i-espiral"/></svg>
+          <h3 class="service__title">Identidade <em>visual</em></h3>
+          <p>Logo, paleta, tipografia e padrões pra sua marca ser reconhecida de longe e aplicada sem medo.</p>
+          <ul><li>Estratégia e conceito</li><li>Logo e variações</li><li>Paleta e tipografia</li><li>Padrões e ilustrações</li><li>Brand book</li></ul>
+          <a class="service__cta" href="#contato">Quero uma marca <svg><use href="#i-seta"/></svg></a>
+        </article>
+        <article class="service service--violeta" data-reveal>
+          <svg class="service__icon" aria-hidden="true"><use href="#i-cursor"/></svg>
+          <h3 class="service__title">Web &amp; <em>UX/UI</em></h3>
+          <p>Sites e interfaces bonitos e fáceis de usar, do wireframe ao protótipo navegável no Figma.</p>
+          <ul><li>Landing pages e portfólios</li><li>Redesign de apps</li><li>Design system</li><li>Protótipo navegável</li></ul>
+          <a class="service__cta" href="#contato">Quero um site <svg><use href="#i-seta"/></svg></a>
+        </article>
+        <article class="service service--pink" data-reveal>
+          <svg class="service__icon" aria-hidden="true"><use href="#i-cereja"/></svg>
+          <h3 class="service__title">Social &amp; <em>peças</em></h3>
+          <p>Posts, carrosséis, campanhas e impressos que seguem a marca e fazem a pessoa parar o scroll.</p>
+          <ul><li>Templates de feed e stories</li><li>Carrosséis</li><li>Campanhas</li><li>Papelaria e embalagem</li></ul>
+          <a class="service__cta" href="#contato">Quero conteúdo <svg><use href="#i-seta"/></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSO -->
+  <section class="process" aria-labelledby="processo-titulo">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">(04) Processo</p>
+        <h2 id="processo-titulo" class="section-title">Como a gente <em>trabalha junto</em></h2>
+      </div>
+      <ol class="process__list">
+        <li class="step" data-reveal><span class="step__n">01</span><h3>Conversa</h3><p>Entendo seu negócio, seu público e onde você quer chegar.</p></li>
+        <li class="step" data-reveal><span class="step__n">02</span><h3>Estratégia</h3><p>Pesquisa, referências e conceito antes de qualquer pixel.</p></li>
+        <li class="step" data-reveal><span class="step__n">03</span><h3>Criação</h3><p>Desenvolvo, apresento e ajusto com você até ficar com a sua cara.</p></li>
+        <li class="step" data-reveal><span class="step__n">04</span><h3>Entrega</h3><p>Arquivos organizados e um guia pra usar a marca no dia a dia.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="about" id="sobre" aria-labelledby="sobre-titulo">
+    <div class="container about__grid">
+      <figure class="about__photo" data-reveal>
+        <div class="frame frame--ink">
+          <span class="frame__h frame__h--tl"></span><span class="frame__h frame__h--tr"></span>
+          <span class="frame__h frame__h--bl"></span><span class="frame__h frame__h--br"></span>
+          <img src="%BASE_URL%img/emi/emi-livraria.webp" alt="Emilly Silva sorrindo numa livraria" width="880" height="1168" loading="lazy">
+        </div>
+        <span class="tag tag--violeta about__tag"><svg><use href="#i-cursor"/></svg>@itsemsdesign</span>
+      </figure>
+      <div class="about__text">
+        <p class="eyebrow">(05) Sobre</p>
+        <h2 id="sobre-titulo" class="section-title">Oi, eu sou a <em>Emi</em></h2>
+        <p>Designer gráfica e UX/UI de Belo Horizonte. Meu trabalho nasce no encontro entre design e arte: forma, cor e composição virando linguagem.</p>
+        <p>Hoje, formada, ajudo marcas e pessoas a terem uma identidade bonita de perto e clara de longe, do logo ao site.</p>
+
+        <div class="cpfcnpj" data-cpfcnpj>
+          <div class="cpfcnpj__switch" role="tablist" aria-label="O que a Emi faz">
+            <button role="tab" aria-selected="true" aria-controls="cnpj" id="tab-cnpj" data-tab="cnpj">cnpj <small>pra pagar as contas</small></button>
+            <span class="cpfcnpj__x" aria-hidden="true">×</span>
+            <button role="tab" aria-selected="false" aria-controls="cpf" id="tab-cpf" data-tab="cpf" tabindex="-1">cpf <small>fora das telas</small></button>
+          </div>
+          <ul class="cpfcnpj__chips" id="cnpj" role="tabpanel" aria-labelledby="tab-cnpj">
+            <li>💻 Identidade visual</li><li>📱 UX/UI</li><li>🧩 Design system</li><li>📲 Social media</li><li>🎨 Figma, Illustrator e Photoshop</li>
+          </ul>
+          <ul class="cpfcnpj__chips" id="cpf" role="tabpanel" aria-labelledby="tab-cpf" hidden>
+            <li>🐈‍⬛ Gatos</li><li>🎮 Games</li><li>🎸 Música</li><li>📚 Livros</li><li>🏀 Esporte</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="contact" id="contato" aria-labelledby="contato-titulo">
+    <svg class="contact__spiral" aria-hidden="true"><use href="#i-espiral"/></svg>
+    <div class="container contact__inner">
+      <img class="contact__mascote" src="/src/assets/illustrations/selo-ems.svg" alt="" width="200" height="240" loading="lazy">
+      <h2 id="contato-titulo" class="contact__title"><span class="display">Vamos criar</span> <span class="serif">juntos?</span></h2>
+      <p class="contact__lead">Me conta sobre a sua marca. Eu respondo rapidinho.</p>
+      <div class="contact__actions">
+        <a class="btn btn--ivory btn--big" href="https://www.instagram.com/itsemsdesign/" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> @itsemsdesign</a>
+        <a class="btn btn--ghost btn--big" href="mailto:contact.emsdesigner@gmail.com"><svg><use href="#i-email"/></svg> contact.emsdesigner@gmail.com</a>
+        <a class="btn btn--ghost btn--big" href="https://www.behance.net/emysilva7" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Behance</a>
+      </div>
+      <button class="nope" type="button" data-nope>não clica aqui 😱</button>
+    </div>
+  </section>
+</main>
+
+<!-- @include partials/footer.html -->
+</body>
+</html>

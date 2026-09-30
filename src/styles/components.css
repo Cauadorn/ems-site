@@ -1,0 +1,60 @@
+/* ---------- botões ---------- */
+.btn {
+  --bg: var(--ink); --fg: var(--ivory);
+  display: inline-flex; align-items: center; gap: .6em;
+  min-height: 52px; padding: 0 1.5em;
+  border-radius: 999px; border: 2px solid var(--bg);
+  background: var(--bg); color: var(--fg);
+  font-weight: 600; text-decoration: none; white-space: nowrap;
+  transition: transform .35s var(--ease-back), background .25s, color .25s, box-shadow .35s var(--ease);
+}
+.btn svg { width: 1.15em; height: 1.15em; flex: none; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 6px 0 rgba(42, 20, 51, .25); }
+.btn:active { transform: translateY(0); }
+.btn--ivory { --bg: var(--ivory); --fg: var(--violeta); }
+.btn--ink { --bg: var(--ink); --fg: var(--ivory); }
+.btn--ghost { background: transparent; color: currentColor; border-color: currentColor; }
+.btn--ghost:hover { background: var(--ivory); color: var(--violeta); border-color: var(--ivory); }
+.btn--small { min-height: 42px; padding: 0 1.2em; font-size: var(--t-small); }
+.btn--big { min-height: 60px; font-size: 1.05rem; }
+
+.round-btn {
+  display: grid; place-items: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--manteiga); color: var(--ink);
+  border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink);
+  transition: transform .3s var(--ease-back), box-shadow .3s;
+}
+.round-btn svg { width: 22px; height: 22px; }
+.round-btn:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+.round-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+
+/* ---------- chips e etiquetas ---------- */
+.chip { display: inline-flex; align-items: center; gap: .6em; padding: .5em 1em; border-radius: 999px; background: rgba(255, 251, 222, .14); border: 1px solid rgba(255, 251, 222, .35); font-size: var(--t-small); font-weight: 500; }
+.chip__dot { width: 8px; height: 8px; border-radius: 50%; background: #7CF29C; box-shadow: 0 0 0 0 rgba(124, 242, 156, .7); animation: ping 2s infinite; }
+@keyframes ping { 70% { box-shadow: 0 0 0 10px rgba(124, 242, 156, 0); } 100% { box-shadow: 0 0 0 0 rgba(124, 242, 156, 0); } }
+
+/* etiqueta @itsemsdesign com cursor, assinatura das artes dela */
+.tag { display: inline-flex; align-items: center; gap: .35em; padding: .3em .7em .3em .45em; border-radius: 4px; font-size: .8rem; font-weight: 600; white-space: nowrap; }
+.tag svg { width: 18px; height: 18px; margin-top: -14px; margin-left: -12px; }
+.tag--pink { background: var(--pink); color: var(--ivory); }
+.tag--pink svg { color: var(--pink); }
+.tag--violeta { background: var(--violeta); color: var(--ivory); }
+.tag--violeta svg { color: var(--violeta); }
+
+/* moldura de seleção do Figma */
+.frame { position: relative; border: 1.5px solid var(--ivory); padding: clamp(10px, 1.6vw, 18px); }
+.frame--ink { border-color: var(--violeta); }
+.frame__h { position: absolute; width: 11px; height: 11px; background: var(--ivory); border: 1.5px solid var(--violeta); z-index: 2; }
+.frame--ink .frame__h { background: var(--ivory); }
+.frame__h--tl { left: -6px; top: -6px; } .frame__h--tr { right: -6px; top: -6px; }
+.frame__h--bl { left: -6px; bottom: -6px; } .frame__h--br { right: -6px; bottom: -6px; }
+
+/* ---------- cursor personalizado ---------- */
+.cursor { position: fixed; left: 0; top: 0; z-index: 9500; pointer-events: none; display: none; }
+.has-cursor .cursor { display: block; }
+.has-cursor, .has-cursor a, .has-cursor button, .has-cursor [data-sticker] { cursor: none; }
+.cursor__arrow { width: 26px; height: 26px; color: var(--violeta); filter: drop-shadow(0 2px 3px rgba(42, 20, 51, .3)); transition: transform .25s var(--ease-back); }
+.cursor__label { position: absolute; left: 20px; top: 22px; padding: .25em .7em; border-radius: 4px; background: var(--pink); color: var(--ivory); font-size: .78rem; font-weight: 600; white-space: nowrap; transform: scale(0); transform-origin: 0 0; transition: transform .3s var(--ease-back); }
+.cursor.is-label .cursor__label { transform: scale(1); }
+.cursor.is-down .cursor__arrow { transform: scale(.8); }
