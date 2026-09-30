@@ -1,6 +1,12 @@
 # EMS — site da Emilly Silva
 
-Site portfólio da Emilly Silva (@itsemsdesign). Vite + HTML/CSS/JS puro + GSAP + Lenis. Deploy: Vercel (detecta Vite sozinho).
+Site portfólio da Emilly Silva (@itsemsdesign). Vite + HTML/CSS/JS puro + GSAP + Lenis.
+
+- **No ar:** https://cauadorn.github.io/ems-site/
+- **Repositório:** https://github.com/Cauadorn/ems-site
+- **Publicação:** cada push na `main` gera e publica o site sozinho (GitHub Actions → GitHub Pages,
+  `.github/workflows/deploy.yml`, com `BASE_PATH=/ems-site/`). Localmente o site roda na raiz `/`.
+  Imagem da pasta `public` no JS usa `import.meta.env.BASE_URL`; no HTML, `%BASE_URL%`.
 
 ## Rodar
 Na Vercel / no GitHub (ou em qualquer máquina fora do Drive):
