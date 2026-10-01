@@ -44,9 +44,9 @@ Zip para enviar: `Clientes\EMI\EMS-design-system.zip`.
 
 ## Onde mexer
 - Projetos: `src/data/projects.js` (o layout das páginas de case fica em `scripts/gerar-cases.mjs` e `src/styles/case.css`)
-- Contato (WhatsApp, Instagram, e-mail, Behance): `partials/contact.html` (vale para a home e para os cases);
-  WhatsApp e Instagram também no menu do celular (`partials/header.html`); os botões de contato (WhatsApp,
-  Instagram, e-mail e Behance) ficam no rodapé (`partials/footer.html`), em todas as páginas
+- Contato: o texto "Vamos criar juntos?" fica em `partials/contact.html` (home e cases); os botões (WhatsApp,
+  Instagram, e-mail e Behance) ficam no rodapé (`partials/footer.html`), em todas as páginas; WhatsApp e Instagram
+  também no menu do celular (`partials/header.html`)
 - Cores, fontes, espaçamentos: `src/styles/tokens.css`
 - Textos: `index.html`
 - Selo EMS: `src/assets/illustrations/selo-ems.svg` — arte ORIGINAL da Emilly, não redesenhar
