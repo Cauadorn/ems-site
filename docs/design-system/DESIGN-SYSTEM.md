@@ -51,7 +51,7 @@
 ### Logo tipográfico do hero
 - "EMS" em Anton, caixa alta, cada letra numa caixa: E e S em ameixa `#3D1C46`, M em rosa `#DD34A8`, texto marfim, sobre
   o fundo violeta do topo (01/10, pedido da Emilly: as caixas antigas `#6E36E6`/`#5A1FCB` quase sumiam no violeta).
-- Tamanho `clamp(7rem, 21vw, 21rem)`, `line-height .82`, espaço entre caixas `.06em`, padding da caixa `.04em .08em .05em`
+- Tamanho `--logo: clamp(7rem, min(21vw, 36vh), 21rem)` (encolhe em tela baixa), `line-height .82`, espaço entre caixas `.06em`, padding da caixa `.04em .08em .05em`
   (o respiro embaixo evita cortar a curva do S).
 - No celular (≤ 860 px): 30vw.
 - As caixas "respiram" em loop (sobe 6%, gira −2°/2°/−1,5°, 0,9 s, ida e volta, uma após a outra).
@@ -284,6 +284,12 @@ endereço, `?area=produtos`, e o botão voltar do navegador funciona). Uma seç�
 em Anton, categoria em serif manteiga, ano; hover sobe 6 px e a capa cresce 5%. Projeto `soon` mostra "em breve";
 área sem projeto mostra uma vaga tracejada com espiral rosa. Na home, botão "Ver todos os projetos" abaixo do
 carrossel; no case, "← Todos os projetos" leva para cá.
+
+### Galeria, vídeo e link do site nos cases
+- `galeria: true` (fotografia): as imagens em grade 4:5 (mín. 300 px), cantos 10 px, em vez da apresentação empilhada.
+- `video`: vídeo vertical no topo do case (até 420 px, 9:16, raio 20), mudo, em loop, com controles; sempre em WebM
+  (VP9) + MP4 (H.264, `faststart`) a 720 px, com `video-poster.webp`. Comprimir antes de subir (ffmpeg).
+- `site`: botão "Ver o site no ar" no fim do case (projetos de web).
 
 ### Página 404 (`404.html`)
 Hero violeta da home com "404" nas caixas do logo e o selo **reto**; título "ESSA PÁGINA / *sumiu*", uma linha de

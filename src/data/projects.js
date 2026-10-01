@@ -3,6 +3,8 @@
 //   capa  public/img/projetos/<slug>/capa.webp (1600x1000) e og.jpg: python scripts/nova-capa.py <imagem> <slug>
 //   apresentação  public/img/projetos/<slug>/slide-01.webp, slide-02.webp… (fatias de 1600 px de largura, na ordem)
 // behance: link do projeto no Behance (aparece no fim do case) ou null
+// video: (opcional) video.mp4 + video.webm (mesmo nome) e video-poster.webp em public/img/projetos/<slug>/, no topo do case
+// site: (opcional) endereço do site no ar, para projetos de web (botão "Ver o site no ar" no case)
 // soon: true = aparece no carrossel como "em breve" e ainda não tem página de case
 // resumo: (opcional) parágrafo da Emilly sobre o projeto, aparece no topo do case
 // galeria: true = as imagens aparecem em grade (bom para fotos verticais), em vez de empilhadas
@@ -45,6 +47,18 @@ export const projects = [
     year: '2026',
     color: '#6225D8',
     behance: null,
+  },
+  {
+    slug: 'idex-site',
+    area: 'web',
+    destaque: false,
+    title: 'IDex Brasil',
+    category: 'Web design',
+    detail: 'Site institucional para fintech de crédito',
+    year: '2026',
+    color: '#6225D8',
+    behance: null,
+    site: 'https://www.idexbrasil.com.br/',
   },
   {
     slug: 'banco-inter',
@@ -130,13 +144,14 @@ export const projects = [
     slug: 'almah-fotos',
     area: 'fotografia',
     destaque: false,
+    galeria: true,
     title: 'Almah',
-    category: 'Fotografia de produto',
+    category: 'Fotografia e vídeo de produto',
     detail: 'Velas artesanais · coleção Gênesis',
     year: '2026',
     color: '#492852',
     behance: null,
-    soon: true, // fotos das velas da ALMAH: "em breve" por enquanto (pedido da Emilly)
+    video: 'video.mp4', // vídeo vertical das velas: video.webm (1,5 MB) + video.mp4 (2,4 MB), do original de 90 MB
   },
   {
     slug: 'copo-24-da-bruninha',

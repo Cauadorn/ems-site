@@ -70,10 +70,10 @@ ${p.resumo ? `      <p class="case-hero__text" data-intro>${esc(p.resumo)}</p>
   </section>
 
   <section class="case-body" aria-label="Apresentação do projeto">
-    <div class="${p.galeria ? 'case-gallery' : 'case-slides'}">
+${p.video ? `    <figure class="case-video"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}    <div class="${p.galeria ? 'case-gallery' : 'case-slides'}">
 ${slides.list.map((s, k) => `      <img src="${img(s.file)}" alt="${t}: ${p.galeria ? 'foto' : 'apresentação, parte'} ${k + 1} de ${slides.list.length}" width="${s.w}" height="${s.h}"${k ? ' loading="lazy"' : ''} decoding="async">`).join('\n')}
     </div>
-${p.behance ? `    <p class="case-behance"><a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a></p>\n` : ''}  </section>
+${p.site || p.behance ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener">Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}</p>\n` : ''}  </section>
 
   <a class="case-next" href="%BASE_URL%projetos/${next.slug}.html" data-cursor-text="próximo">
     <span class="case-next__inner container">

@@ -14,10 +14,13 @@
 .case-body { padding: 0 0 var(--section); background: var(--ameixa); color: var(--ivory); }
 .case-slides { width: min(100% - 2 * var(--gutter), 1200px); margin-inline: auto; border-radius: var(--r-m); overflow: hidden; background: var(--ink); box-shadow: 0 30px 60px -30px rgba(42, 20, 51, .6); }
 .case-slides img { width: 100%; height: auto; }
+/* vídeo do projeto (vertical): centralizado, cantos arredondados; começa mudo e em loop */
+.case-video { width: min(100% - 2 * var(--gutter), 420px); margin: 0 auto clamp(24px, 3vw, 40px); }
+.case-video video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: var(--r-m); background: var(--ink); box-shadow: 0 30px 60px -30px rgba(42, 20, 51, .6); }
 /* galeria de fotos (projetos de fotografia): grade de fotos verticais, cantos arredondados */
 .case-gallery { width: min(100% - 2 * var(--gutter), 1200px); margin-inline: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
 .case-gallery img { width: 100%; height: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r-s); background: var(--ink); }
-.case-behance { display: flex; justify-content: center; margin-top: clamp(32px, 4vw, 48px); }
+.case-behance { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: clamp(32px, 4vw, 48px); }
 
 /* próximo projeto: o bloco inteiro é o link */
 .case-next { display: block; padding: clamp(64px, 9vw, 130px) 0; background: var(--lavanda-2); color: var(--ink); text-decoration: none; overflow: hidden; }
