@@ -35,6 +35,17 @@ export const projects = [
     behance: 'https://www.behance.net/gallery/243857007/Psicologa-Maria-Valentina-Branding-Design',
   },
   {
+    slug: 'idex',
+    area: 'identidade',
+    destaque: false, // só em "Todos os projetos" → Identidade visual (pedido da Emilly)
+    title: 'IDex',
+    category: 'Branding',
+    detail: 'Identidade visual para plataforma de crédito',
+    year: '2026',
+    color: '#6225D8',
+    behance: null,
+  },
+  {
     slug: 'banco-inter',
     area: 'web',
     destaque: true,
