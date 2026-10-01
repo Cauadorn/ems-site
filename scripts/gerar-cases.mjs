@@ -35,7 +35,7 @@ ${MARCA}
 <head>
 <!-- @include partials/head.html -->
   <title>${t} — ${esc(p.category)} | Emilly Silva</title>
-  <meta name="description" content="${t} — ${esc(p.detail)}. Projeto de ${esc(p.category.toLowerCase())} de Emilly Silva, designer gráfica e UX/UI que atende todo o Brasil.">
+  <meta name="description" content="${t} — ${esc(p.detail)}. Projeto de ${esc(p.category.toLowerCase())} de Emilly Silva, designer gráfico e UX/UI que atende todo o Brasil.">
   <link rel="canonical" href="${url}">
   <meta property="og:type" content="article">
   <meta property="og:url" content="${url}">

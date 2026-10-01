@@ -36,6 +36,9 @@
 
 /* ================= 404 ================= */
 .hero--404 .hero__seal { rotate: 0deg; } /* o selo só inclina no hero da home */
+/* a 404 mantém o título grande em Anton (a frase da home é que ficou menor e em itálico) */
+.hero--404 .hero__title { font-family: var(--f-display); font-style: normal; font-size: clamp(2.6rem, 6.6vw, 7rem); line-height: .98; letter-spacing: 0; text-transform: uppercase; }
+@media (max-width: 860px) { .hero--404 .hero__title { font-size: 10.5vw; } }
 .notfound__text { position: relative; z-index: 2; margin-top: 22px; font-size: var(--t-lead); }
 .hero--404 .hero__actions { position: relative; z-index: 2; justify-content: center; margin-top: 30px; }
 @media (max-width: 560px) { .hero--404 .hero__actions .btn { flex: 1 1 100%; justify-content: center; } }

@@ -7,10 +7,12 @@ import { initStickers } from './modules/stickers.js';
 import { initReveals, heroIntro } from './modules/reveal.js';
 import { initAbout } from './modules/about.js';
 import { initNope } from './modules/nope.js';
+import { initTapes } from './modules/tapes.js';
 
 const lenis = initSite();
 initMascote();
 initStickers();
+initTapes();
 initCarousel(document.querySelector('[data-c3d]'), lenis);
 initAbout();
 initNope();
