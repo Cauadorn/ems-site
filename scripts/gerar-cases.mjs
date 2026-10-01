@@ -73,7 +73,7 @@ ${p.resumo ? `      <p class="case-hero__text" data-intro>${esc(p.resumo)}</p>
     <div class="case-slides">
 ${slides.list.map((s, k) => `      <img src="${img(s.file)}" alt="${t}: apresentação, parte ${k + 1} de ${slides.list.length}" width="${s.w}" height="${s.h}"${k ? ' loading="lazy"' : ''} decoding="async">`).join('\n')}
     </div>
-${p.behance ? `    <p class="case-behance"><a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a></p>\n` : ''}  </section>
+${p.behance ? `    <p class="case-behance"><a class="btn btn--claro" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a></p>\n` : ''}  </section>
 
   <a class="case-next" href="%BASE_URL%projetos/${next.slug}.html" data-cursor-text="próximo">
     <span class="case-next__inner container">

@@ -148,15 +148,17 @@
 .c3d__count { font-weight: 600; font-size: var(--t-small); letter-spacing: .1em; margin-bottom: .6rem; padding: .3em .8em .25em; border-radius: 100vw; background: rgba(42, 20, 51, .62); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .c3d__name { font-family: var(--f-display); font-weight: 400; font-size: 8vw; line-height: 1; text-transform: uppercase; color: var(--ivory); text-shadow: 0 2px 8px rgba(42, 20, 51, .55), 0 4px 30px rgba(42, 20, 51, .45); }
 .c3d__cat { margin-top: .6rem; padding: .25em .9em .3em; border-radius: 100vw; background: rgba(42, 20, 51, .62); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-family: var(--f-serif); font-style: italic; font-size: clamp(1.1rem, 1.6vw, 1.5rem); text-wrap: balance; }
-.c3d__btn { pointer-events: auto; margin-top: 1.5rem; padding: .8rem 1.4rem .75rem; border-radius: 100vw; background: var(--pink); color: var(--ivory); font-weight: 700; font-size: 1.1rem; line-height: 1; text-decoration: none; transition: background .15s, color .15s, transform .3s var(--ease-back); }
-.c3d__btn:hover { background: var(--manteiga); color: var(--ink); transform: scale(1.05); }
-.c3d__btn--soon { background: rgba(42, 20, 51, .62); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+/* "ver case" no estilo etiqueta-adesivo dos botões */
+.c3d__btn { pointer-events: auto; display: inline-flex; align-items: center; min-height: 44px; margin-top: 1.5rem; padding: 0 1.3em; border-radius: 6px; background: var(--manteiga); color: var(--ink); box-shadow: 3px 3px 0 var(--pink); font-weight: 800; font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; line-height: 1; text-decoration: none; transition: translate .3s var(--ease-back), box-shadow .3s var(--ease-back); }
+.c3d__btn:hover { translate: -2px -2px; box-shadow: 5px 5px 0 var(--pink); }
+.c3d__btn--soon { background: rgba(42, 20, 51, .62); color: var(--ivory); box-shadow: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .c3d__arrows { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
 .c3d__arrows-sticky { position: absolute; inset: 0; display: flex; justify-content: center; align-items: flex-end; gap: .75rem; padding: 2.5rem; }
-.c3d__arrow { pointer-events: auto; display: grid; place-items: center; width: 4.2rem; height: 2rem; border-radius: 100vw; background: var(--manteiga); color: var(--ink); transition: opacity .3s, transform .3s var(--ease-back); }
+.c3d__arrow { pointer-events: auto; display: grid; place-items: center; width: 4.2rem; height: 2.4rem; border-radius: 6px; background: var(--manteiga); color: var(--ink); box-shadow: 3px 3px 0 var(--pink); transition: opacity .3s, translate .3s var(--ease-back), box-shadow .3s var(--ease-back); }
 .c3d__arrow svg { width: 18px; height: 18px; transform: scaleX(-1); }
 .c3d__arrow--next svg { transform: none; }
-.c3d__arrow:hover { transform: scale(1.08); }
+.c3d__arrow:hover { translate: -2px -2px; box-shadow: 5px 5px 0 var(--pink); }
+.c3d__arrow:active { translate: 2px 2px; box-shadow: 1px 1px 0 var(--pink); }
 .c3d__arrow[aria-disabled='true'] { opacity: .4; }
 @media (hover: none) { .c3d__arrow { width: 4.6rem; height: 2.75rem; } }
 @media (max-width: 991px) {
