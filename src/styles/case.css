@@ -63,6 +63,8 @@
 .c3d--posts .c3d__wrap { --c3d-item-width: min(24vw, 400px); --c3d-gap: 12vw; }
 .c3d--posts .c3d__ratio { padding-top: 125%; }
 .c3d--posts .c3d__face { border-radius: var(--r-s); }
+/* card de carrossel no anel (carrosselNoAnel): a imagem deitada inteira, deslocada para mostrar só aquele card */
+.c3d--posts .c3d__face img.c3d__faixa { position: absolute; top: 0; height: 100%; max-width: none; object-fit: fill; }
 /* contador "05 / 30" entre as setas, na mesma altura delas */
 .c3d--posts .c3d__count { display: flex; align-items: center; justify-content: center; height: 2.4rem; min-width: 5.5em; margin: 0; }
 @media (hover: none) { .c3d--posts .c3d__count { height: 2.75rem; } }

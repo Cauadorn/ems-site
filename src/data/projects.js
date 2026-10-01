@@ -8,6 +8,8 @@
 // site: (opcional) endereço do site no ar, para projetos de web (botão "Ver o site no ar" no case)
 // instagram: (opcional) Instagram do cliente, para projetos de social media (botão "Ver no Instagram" no case);
 //   instagramTexto muda o texto do botão (ex.: "Ver mais fotos" nas fotografias esportivas)
+// carrosselNoAnel: true = nos posts (galeria 'posts'), cada card dos carrosséis gira no anel 3D junto com os posts,
+//   em vez de os carrosséis ficarem numa parte separada embaixo
 // capaNoCase: false = a capa aparece só nos cards e no carrossel; o case começa direto pelo vídeo ou mockup
 // soon: true = aparece no carrossel como "em breve" e ainda não tem página de case
 // resumo: (opcional) parágrafo curto sobre o projeto, em primeira pessoa, no topo do case. Os de 01/10/2026 foram
@@ -89,6 +91,7 @@ export const projects = [
     area: 'social',
     destaque: false,
     galeria: 'posts', // 3 posts de feed, 7 carrosséis e 4 stories (slide-01 a 03, 04 a 10, 11 a 14)
+    carrosselNoAnel: true, // é quase só carrossel: os cards entram no anel 3D junto com os posts (pedido da Emilly)
     title: 'Dr. Pedro Caetano',
     category: 'Social media',
     detail: 'Posts, carrosséis e stories para cardiologista',
