@@ -287,7 +287,7 @@
 .site-footer__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 28px; max-width: var(--max); margin-inline: auto; }
 .site-footer__links { display: flex; flex-wrap: wrap; gap: 10px; }
 .site-footer__links .btn--ghost:hover { color: var(--ink); }
-.site-footer__copy { max-width: var(--max); margin: 24px auto 0; padding-top: 20px; border-top: 1px solid rgba(255, 251, 222, .12); font-size: var(--t-small); opacity: .75; }
+.site-footer__copy { max-width: var(--max); margin: 24px auto 0; padding-top: 20px; border-top: 1px solid rgba(255, 251, 222, .12); font-size: var(--t-small); text-align: center; opacity: .75; }
 /* voltar ao topo: botão redondo manteiga, sombra dura rosa; a seta sobe no hover */
 .site-footer__top { box-shadow: 3px 3px 0 var(--pink); border-color: var(--manteiga); }
 .site-footer__top:hover { box-shadow: 5px 5px 0 var(--pink); }
@@ -333,5 +333,4 @@
   .site-footer__row { flex-direction: column; }
   .site-footer__links { width: 100%; }
   .site-footer__links .btn { width: 100%; justify-content: center; font-size: .95rem; }
-  .site-footer__copy { text-align: center; }
 }
