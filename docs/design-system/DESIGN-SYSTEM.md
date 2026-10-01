@@ -242,7 +242,7 @@ diagonal; borda inferior 2 px; hover abre padding e mostra miniatura que segue o
 
 ### Faixas (`.tapes`)
 Duas fitas cruzadas que passam da tela, com o mesmo texto (os serviços, em Anton): vinho (−3°, marfim, separados
-por brilho) sobre lavanda (+2,5°, tinta, separados por coração). Rolam sem fim em sentidos opostos (45 e 36 px/s):
+por brilho) sobre lavanda (+2,5°, tinta, separados por coração). ("Custom products" para produtos personalizados.) Rolam sem fim em sentidos opostos (45 e 36 px/s):
 `src/js/modules/tapes.js` repete o texto até cobrir a faixa e duplica, para a emenda não aparecer.
 
 ### Cursor personalizado
