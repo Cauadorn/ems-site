@@ -80,51 +80,71 @@ export function initCarousel(root) {
   items.forEach((el, i) => { el.style.transform = `rotateY(${rotateAmount * i}deg) translateZ(${posTranslate}) scale(var(--s, 1))`; });
   gsap.to(wrap, { opacity: 1 });
 
-  // rotação atual do anel, em graus (0 = primeiro projeto; cada projeto à frente é −passo)
+  // posição do anel em "passos" (0 = primeiro projeto na frente; cada passo gira uma posição do anel).
+  // Não tem fim: depois do último projeto vêm as vagas e o anel volta ao primeiro, para os dois lados.
   const step = rotateAmount;
-  const rot = { v: 0 };
+  const rot = { v: 0 }; // graus
   const apply = () => wrap.style.setProperty('--c3d-rotate', `${rot.v}deg`);
-  const minRot = -step * (n - 1);
-  const clampRot = (v) => Math.max(minRot - step * .3, Math.min(step * .3, v)); // passa um pouco das pontas e volta
-  const pxPerStep = () => root.offsetWidth * .45; // quanto arrastar para andar um projeto
+  const pxPerStep = () => root.offsetWidth * .45; // quanto arrastar para andar uma posição
+  const mod = (a, m) => ((a % m) + m) % m;
+  const posNow = () => -rot.v / step;
+  // posição inteira mais perto de p que tem projeto na frente (vaga não conta); dir: só para frente (1) ou para trás (−1)
+  const snap = (p, dir = 0) => {
+    let best = null;
+    for (let k = Math.floor(p) - slots; k <= Math.ceil(p) + slots; k++) {
+      if (mod(k, slots) >= n || (dir > 0 && k < p - 1e-6) || (dir < 0 && k > p + 1e-6)) continue;
+      if (best === null || Math.abs(k - p) < Math.abs(best - p)) best = k;
+    }
+    return best;
+  };
 
-  // painel e setas do projeto mais à frente
+  // projeto da frente: mostra o painel dele e marca os cards vizinhos (esquerda e direita),
+  // que são os únicos clicáveis além do da frente; o resto do anel, lá atrás, é só paisagem
+  let cur = 0; // posição do projeto da frente
   let active = -1;
-  const setActive = (i) => {
+  const setActive = (pos) => {
+    const i = mod(pos, slots);
     if (i === active) return;
     active = i;
     panels.forEach((el, k) => { el.classList.toggle('is-active', k === i); el.inert = k !== i; });
+    const near = [mod(pos - 1, slots), mod(pos + 1, slots)];
     items.forEach((el, k) => {
       el.classList.toggle('is-active', k === i);
-      // o card da frente abre o case; os do lado trazem o projeto para a frente
+      el.classList.toggle('is-near', k !== i && k < n && near.includes(k));
       el.querySelector('a.c3d__face')?.setAttribute('data-cursor-text', k === i ? 'ver case' : 'ver este');
     });
-    prev.setAttribute('aria-disabled', String(i === 0));
-    next.setAttribute('aria-disabled', String(i === n - 1));
   };
-  const nearest = () => Math.max(0, Math.min(n - 1, Math.round(-rot.v / step)));
 
-  // encaixa num projeto: o anel gira até ele e o card cresce até a frente
-  const go = (i, animate = true) => {
-    i = Math.max(0, Math.min(n - 1, i));
-    setActive(i);
-    gsap.to(rot, { v: -step * i, duration: animate && !reduced ? .9 : 0, ease: 'expo.out', overwrite: true, onUpdate: apply });
+  // encaixa numa posição: o anel gira até ela e o card cresce até a frente
+  const go = (pos, animate = true) => {
+    cur = pos;
+    setActive(pos);
+    gsap.to(rot, { v: -step * pos, duration: animate && !reduced ? .9 : 0, ease: 'expo.out', overwrite: true, onUpdate: apply });
   };
   go(0, false);
 
-  // clicar num card do lado traz aquele projeto para a frente (o da frente segue o link do case)
-  items.forEach((el, k) => {
-    if (!projects[k]) return;
-    el.addEventListener('click', (e) => { if (k !== active) { e.preventDefault(); go(k); } });
-  });
+  // próximo/anterior sem fim: do último vai para o primeiro (e vice-versa), passando pelas vagas
+  const neighbor = (dir) => { let p = cur + dir; while (mod(p, slots) >= n) p += dir; return p; };
+  next.addEventListener('click', () => go(neighbor(1)));
+  prev.addEventListener('click', () => go(neighbor(-1)));
+  prev.setAttribute('aria-disabled', 'false');
+  next.setAttribute('aria-disabled', 'false');
 
-  next.addEventListener('click', () => go(active + 1));
-  prev.addEventListener('click', () => go(active - 1));
+  // clicar num card vizinho traz aquele projeto para a frente (o da frente segue o link do case)
+  items.forEach((el, k) => {
+    if (k >= n) return;
+    el.addEventListener('click', (e) => {
+      if (k === active) return;
+      e.preventDefault();
+      if (!el.classList.contains('is-near')) return;
+      go(cur + mod(k - mod(cur, slots) + slots / 2, slots) - slots / 2); // pelo caminho mais curto
+    });
+  });
 
   // setas do teclado com o foco dentro do carrossel
   root.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); go(active + 1); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); go(active - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); go(neighbor(1)); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(neighbor(-1)); }
   });
 
   // arrastar para o lado (mouse ou dedo): o anel acompanha e, ao soltar, encaixa no projeto mais próximo.
@@ -144,9 +164,9 @@ export function initCarousel(root) {
       gsap.killTweensOf(rot);
       root.classList.add('is-dragging');
     }
-    rot.v = clampRot(drag.start + (dx / pxPerStep()) * step);
+    rot.v = drag.start + (dx / pxPerStep()) * step;
     apply();
-    setActive(nearest());
+    setActive(snap(posNow()));
     const now = performance.now();
     drag.v = (e.clientX - drag.lastX) / Math.max(1, now - drag.t);
     drag.lastX = e.clientX; drag.t = now;
@@ -158,10 +178,9 @@ export function initCarousel(root) {
     root.classList.remove('is-dragging');
     if (!d.moved) return;
     dragged = true;
-    const pos = -rot.v / step;
     // um gesto rápido já passa para o vizinho, mesmo sem chegar na metade (se parou antes de soltar, não conta)
     const flick = performance.now() - d.t < 100 && Math.abs(d.v) > .4;
-    go(flick ? (d.v < 0 ? Math.ceil(pos) : Math.floor(pos)) : Math.round(pos));
+    go(snap(posNow(), flick ? (d.v < 0 ? 1 : -1) : 0));
   };
   addEventListener('pointerup', endDrag);
   addEventListener('pointercancel', endDrag);
@@ -174,11 +193,11 @@ export function initCarousel(root) {
     if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
     e.preventDefault();
     gsap.killTweensOf(rot);
-    rot.v = clampRot(rot.v - (e.deltaX / pxPerStep()) * step);
+    rot.v -= (e.deltaX / pxPerStep()) * step;
     apply();
-    setActive(nearest());
+    setActive(snap(posNow()));
     clearTimeout(wheelT);
-    wheelT = setTimeout(() => go(nearest()), 160);
+    wheelT = setTimeout(() => go(snap(posNow())), 160);
   }, { passive: false });
 
   initList(root.closest('section'), root);

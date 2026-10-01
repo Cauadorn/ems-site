@@ -49,8 +49,9 @@
   clique, entrada com escala 0 → 1. Nunca girar continuamente nem deformar.
 
 ### Logo tipográfico do hero
-- "EMS" em Anton, caixa alta, cada letra numa caixa: E e S em violeta-2 `#7B4DF2`, M em ameixa `#3D1C46`, texto marfim
-  (01/10, pedido da Emilly: as caixas antigas `#6E36E6`/`#5A1FCB` quase sumiam no fundo violeta).
+- "EMS" em Anton, caixa alta, cada letra numa caixa: E e S em violeta-2 `#7B4DF2`, M em violeta `#6225D8`, texto marfim,
+  sobre o fundo ameixa do topo (01/10, pedido da Emilly: o topo passou a ser roxo escuro para não cansar a vista, e as
+  caixas antigas `#6E36E6`/`#5A1FCB` quase sumiam).
 - Tamanho `clamp(7rem, 21vw, 21rem)`, `line-height .82`, espaço entre caixas `.06em`, padding da caixa `.04em .08em .05em`
   (o respiro embaixo evita cortar a curva do S).
 - No celular (≤ 860 px): 30vw.
@@ -65,8 +66,8 @@
 | `--ivory` | #FFFBDE | 255 251 222 | fundo claro principal; texto sobre escuro |
 | `--ivory-2` | #F4EDCB | 244 237 203 | fundo da seção Sobre |
 | `--ink` | #2A1433 | 42 20 51 | texto sobre claro, bordas, sombra dura |
-| `--ameixa` | #3D1C46 | 61 28 70 | fundo de Projetos e Serviços |
-| `--violeta` | #6225D8 | 98 37 216 | cor da marca: hero, contato, menu, links |
+| `--ameixa` | #3D1C46 | 61 28 70 | fundo do topo (hero), Serviços, cases e "Todos os projetos" |
+| `--violeta` | #6225D8 | 98 37 216 | cor da marca: Projetos da home, contato, menu, links |
 | `--violeta-2` | #7B4DF2 | 123 77 242 | estrelas/espirais sobre o violeta |
 | `--lavanda` | #C0A5C4 | 192 165 196 | faixa secundária, "ems" do rodapé |
 | `--lavanda-2` | #E4D6E6 | 228 214 230 | fundo de "Como eu penso design", hovers |
@@ -158,7 +159,7 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 | Elemento | Como é | Onde |
 |---|---|---|
 | Grão de papel | ruído fractal (feTurbulence .9, 2 oitavas) em tela cheia, opacidade 7% | todo o site (`body::after`) |
-| Estrela da Emilly | estrela cheia de 5 pontas com uma auréola em forma de estrela maior, de pontos em grade que diminuem para fora (`src/assets/illustrations/estrela-ems.svg`, usada como máscara: `.estrela`) | fundo do hero, do manifesto e da 404; cor por `color` (tinta) |
+| Estrela da Emilly | estrela cheia de 5 pontas com uma auréola em forma de estrela maior, de pontos em grade que diminuem para fora (`src/assets/illustrations/estrela-ems.svg`, usada como máscara: `.estrela`) | fundo do hero e da 404 (violeta) e do manifesto (tinta); cor por `color` |
 | Espiral | espiral de Arquimedes, traço 6, pontas redondas | ícone de Identidade visual, abertura, menu, contato |
 | Cereja | par de cerejas com cabo e folha em `#3D1C46`, frutas na cor do `color` | adesivo do hero, Social & peças |
 | XOXO | X e O desenhados em traço 8 | adesivo do hero |
@@ -234,8 +235,9 @@ diagonal; borda inferior 2 px; hover abre padding e mostra miniatura que segue o
   tela (até 780 px de altura, mínimo 540 px). Arrastando para o lado (mouse, dedo ou touchpad) o anel acompanha (45% da largura =
   um projeto) e o próximo card cresce até a frente; ao soltar, encaixa no mais próximo (gesto rápido já passa para o
   vizinho; GSAP .9 s `expo.out`). Setas da tela e ← → também giram. Arrastar para cima/baixo continua rolando a página.
-- Com mouse, o card de outro projeto cresce 12% ao passar por cima (etiqueta "ver este"); o clique traz ele para a frente.
-  O card da frente abre o case ("ver case").
+- **Sem fim:** depois do último projeto vem o primeiro (passando pelas vagas), nos dois sentidos; as setas nunca desativam.
+- Só o card da frente e os dois vizinhos (esquerda e direita) recebem o mouse; o resto do anel, lá atrás e espelhado, é
+  paisagem. O vizinho cresce 12% ao passar por cima ("ver este") e o clique traz ele para a frente; o da frente abre o case.
 - Largura do card 50vw / espaço 30vw (≤ 991: 70vw / 40vw); proporção 60% (≤ 991: 120%, ≤ 479: 140%).
 - **Mínimo 8 posições.** Posições sem projeto viram vagas "próximo projeto / vaga aberta" (fundo `#2F1535`,
   tracejado marfim 30%, espiral rosa). A partir do 9º projeto o anel cresce.
@@ -243,8 +245,7 @@ diagonal; borda inferior 2 px; hover abre padding e mostra miniatura que segue o
 - Painel: contador "01 / 06" em pílula escura, nome Anton marfim com sombra
   `0 2px 8px rgba(42,20,51,.55), 0 4px 30px rgba(42,20,51,.45)`, categoria serif em pílula escura com desfoque,
   botão rosa "ver case" (ou "em breve" em pílula escura).
-- Só o painel do projeto ativo aparece (os outros somem com opacidade e ficam `inert`); setas desativadas nas pontas
-  (opacidade .4 + `aria-disabled`).
+- Só o painel do projeto ativo aparece (os outros somem com opacidade e ficam `inert`).
 - **Adicionar projeto:** capa 1600 × 1000 (`python scripts/nova-capa.py <imagem> <slug>`) + um bloco em
   `src/data/projects.js`.
 
@@ -333,10 +334,10 @@ aparece no lugar.
 ## 10. Estrutura da home (ordem e fundos)
 
 1. **Abertura** (marfim + cortinas violeta/vinho)
-2. **Hero** — violeta; logo EMS + selo; frase em 2 linhas corridas, serif itálico marfim com destaque manteiga:
+2. **Hero** — ameixa (roxo escuro); logo EMS + selo; frase em 2 linhas corridas, serif itálico marfim com destaque manteiga:
    "Faço marca bonita *de perto* / e clara *de longe*."; etiquetas; CTA
-3. **Faixas** cruzadas (vinho sobre lavanda)
-4. **Projetos** — ameixa; "(01) Trabalhos que têm *cara*"; carrossel 3D ou lista
+3. **Faixas** cruzadas (vinho sobre lavanda); em volta, ameixa em cima e violeta embaixo
+4. **Projetos** — violeta; "(01) Trabalhos que têm *cara*"; carrossel 3D ou lista + botão "Ver todos os projetos"
 5. **Como eu penso design** — lavanda-2; título igual aos outros ("Marca boa é a que as pessoas *reconhecem*", palavra em
    violeta) + parágrafo menor que acende no scroll
 6. **Serviços** — ameixa; quatro cartões coloridos
