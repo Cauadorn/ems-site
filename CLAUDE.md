@@ -4,7 +4,7 @@ Este arquivo é lido sozinho quando o Claude abre esta pasta. Ele guarda o que f
 para qualquer computador continuar de onde parou. **Responda sempre em português do Brasil, simples e direto.**
 
 ## Contato e dados confirmados pela Emilly (01/10/2026)
-WhatsApp (31) 99271-8754 · e-mail contatoemilyss@gmail.com · Instagram @itsemsdesign · Behance emysilva7 ·
+WhatsApp (31) 99271-8754 · e-mail contatoemillyss@gmail.com · Instagram @itsemsdesign · Behance emysilva7 ·
 formada em Design Gráfico pela UNA (Belo Horizonte).
 
 ## Quem usa

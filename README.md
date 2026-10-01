@@ -79,4 +79,4 @@ Fontes: Anton (títulos), Instrument Serif itálico (voz), Inter (texto) — sel
   fotos das velas e um vídeo). Até lá fica "em breve" (`soon: true`).
 - Página de brand book (`brandbook.html`): definir o que entra.
 
-Resolvido em 01/10: WhatsApp (31) 99271-8754, e-mail contatoemilyss@gmail.com, formação em Design Gráfico pela UNA.
+Resolvido em 01/10: WhatsApp (31) 99271-8754, e-mail contatoemillyss@gmail.com, formação em Design Gráfico pela UNA.
