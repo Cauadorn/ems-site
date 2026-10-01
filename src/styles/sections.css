@@ -250,7 +250,8 @@
 .site-footer__word { display: flex; align-items: flex-start; justify-content: center; font-family: var(--f-serif); font-style: italic; font-size: clamp(8rem, 32vw, 26rem); line-height: .8; letter-spacing: -.04em; color: var(--lavanda); }
 .site-footer__word svg { width: .18em; height: .18em; color: var(--manteiga); margin-top: .1em; }
 .site-footer__row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; max-width: var(--max); margin: 40px auto 0; font-size: var(--t-small); opacity: .85; }
-.site-footer__links { display: flex; gap: 20px; }
+.site-footer__links { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+.site-footer__links a { white-space: nowrap; }
 
 /* ================= RESPONSIVO ================= */
 @media (max-width: 1000px) {

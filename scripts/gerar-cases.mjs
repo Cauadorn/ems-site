@@ -57,7 +57,8 @@ ${MARCA}
       <p class="eyebrow" data-intro>(${nn(i + 1)}/${nn(total)}) ${esc(p.category)} · ${esc(p.year)}</p>
       <h1 id="case-titulo" class="case-hero__title" data-intro>${t}</h1>
       <p class="case-hero__lead" data-intro>${esc(p.detail)}</p>
-    </div>
+${p.resumo ? `      <p class="case-hero__text" data-intro>${esc(p.resumo)}</p>
+` : ''}    </div>
     <figure class="case-cover" data-intro>
       <div class="frame">
         <span class="frame__h frame__h--tl"></span><span class="frame__h frame__h--tr"></span>

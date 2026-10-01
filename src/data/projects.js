@@ -4,6 +4,7 @@
 //   apresentação  public/img/projetos/<slug>/slide-01.webp, slide-02.webp… (fatias de 1600 px de largura, na ordem)
 // behance: link do projeto no Behance (aparece no fim do case) ou null
 // soon: true = aparece no carrossel como "em breve" e ainda não tem página de case
+// resumo: (opcional) parágrafo da Emilly sobre o projeto, aparece no topo do case
 export const projects = [
   {
     slug: 'maria-valentina',
@@ -49,7 +50,7 @@ export const projects = [
     year: '2026',
     color: '#492852',
     behance: null,
-    soon: true, // TODO: confirmar com a Emilly se ALMAH entra no portfólio
+    soon: true, // entra no portfólio; o case sai quando o brand book da ALMAH ficar pronto
   },
   {
     slug: 'ems',

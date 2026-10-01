@@ -3,6 +3,10 @@
 Este arquivo é lido sozinho quando o Claude abre esta pasta. Ele guarda o que foi decidido na construção do site,
 para qualquer computador continuar de onde parou. **Responda sempre em português do Brasil, simples e direto.**
 
+## Contato e dados confirmados pela Emilly (01/10/2026)
+WhatsApp (31) 99271-8754 · e-mail contatoemilyss@gmail.com · Instagram @itsemsdesign · Behance emysilva7 ·
+formada em Design Gráfico pela UNA (Belo Horizonte).
+
 ## Quem usa
 - **Emilly Silva** (@itsemsdesign): designer gráfica e UX/UI, dona da marca EMS e do site. Não é programadora:
   explique o que mudou em palavras comuns, sem jargão, e mostre o resultado no navegador.
@@ -77,9 +81,10 @@ O site é publicado dentro de `/ems-site/`: nunca escrever caminho de imagem com
 HTML; usar a base como na tabela acima, senão a imagem quebra no ar e funciona só no computador.
 
 ## Pendências (perguntar à Emilly)
-- ALMAH entra no portfólio? (hoje aparece como "em breve")
-- WhatsApp para o contato; e-mail atual (o site usa contact.emsdesigner@gmail.com, do Behance).
-- Formação (curso e instituição) para a seção Sobre.
-- Texto de cada case (hoje o case mostra a apresentação do Behance) e página de brand book (o que entra?).
+- **Lembrar a Emilly no começo de cada conversa (ela pediu para ser cobrada):** o resumo curto de cada projeto.
+  Quando ela mandar, vai no campo `resumo` do projeto em `src/data/projects.js` (aparece no topo do case).
+- ALMAH entra no portfólio, mas o case espera o brand book da ALMAH (hoje: logo, rótulos, fotos das velas, um vídeo).
+  Até lá fica "em breve" (`soon: true`).
+- Página de brand book do site: o que entra?
 - Domínio próprio (ex.: emsdesign.com.br) em vez de cauadorn.github.io/ems-site: se mudar, trocar `SITE_URL` em `vite.config.js`.
 - Prancheta de revisão com os prints do site: https://claude.ai/artifact/W3FVwhEdbnUmFAh2U1niwW

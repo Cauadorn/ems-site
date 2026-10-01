@@ -40,7 +40,8 @@ Zip para enviar: `Clientes\EMI\EMS-design-system.zip`.
 
 ## Onde mexer
 - Projetos: `src/data/projects.js` (o layout das páginas de case fica em `scripts/gerar-cases.mjs` e `src/styles/case.css`)
-- Contato (Instagram, e-mail, Behance): `partials/contact.html` (vale para a home e para os cases)
+- Contato (WhatsApp, Instagram, e-mail, Behance): `partials/contact.html` (vale para a home e para os cases);
+  WhatsApp e Instagram também no menu do celular (`partials/header.html`) e no rodapé (`partials/footer.html`)
 - Cores, fontes, espaçamentos: `src/styles/tokens.css`
 - Textos: `index.html`
 - Selo EMS: `src/assets/illustrations/selo-ems.svg` — arte ORIGINAL da Emilly, não redesenhar
@@ -70,5 +71,10 @@ Cores: Ivory #FFFBDE · Ameixa #3D1C46 · Violeta #6225D8 (selo: #6125D9) · Lav
 Fontes: Anton (títulos), Instrument Serif itálico (voz), Inter (texto) — self-hosted via @fontsource.
 
 ## Pendências com a cliente
-- Confirmar se ALMAH entra no portfólio; WhatsApp; e-mail atual (Behance mostra contact.emsdesigner@gmail.com);
-  formação para o "sobre".
+- **Cobrar da Emilly (ela pediu):** um resumo curto de cada projeto. Quando ela mandar, entra no campo `resumo` de
+  cada projeto em `src/data/projects.js` e aparece no topo do case.
+- ALMAH entra no portfólio, mas o case só sai quando o brand book da ALMAH ficar pronto (hoje: logo, rótulos,
+  fotos das velas e um vídeo). Até lá fica "em breve" (`soon: true`).
+- Página de brand book (`brandbook.html`): definir o que entra.
+
+Resolvido em 01/10: WhatsApp (31) 99271-8754, e-mail contatoemilyss@gmail.com, formação em Design Gráfico pela UNA.

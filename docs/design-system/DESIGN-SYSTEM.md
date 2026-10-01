@@ -320,7 +320,7 @@ aparece no lugar.
 6. **Serviços** — ameixa; três cartões coloridos
 7. **Processo** — marfim; 4 cartões em escada
 8. **Sobre** — ivory-2; foto em moldura de seleção + CPF × CNPJ
-9. **Contato** — violeta; selo balançando + "VAMOS CRIAR *juntos?*" + Instagram, e-mail, Behance
+9. **Contato** — violeta; selo balançando + "VAMOS CRIAR *juntos?*" + "Chamar no WhatsApp" (botão principal), Instagram, e-mail, Behance
 10. **Rodapé** — tinta; "ems" gigante em serif lavanda + brilho manteiga
 
 Os botões "ver case" do carrossel e da lista abrem a página de case do projeto, na mesma aba.
@@ -373,5 +373,5 @@ Os botões "ver case" do carrossel e da lista abrem a página de case do projeto
 | Referência técnica da Pixel | `docs/referencia-pixel.md` |
 
 ## Pendências da marca
-- ALMAH entra no portfólio? WhatsApp e formação da Emilly para o "Sobre" (a confirmar com ela).
+- ALMAH: entra no portfólio; o case espera o brand book da ALMAH (até lá, "em breve").
 - Contraste do texto pequeno sobre rosa (seção 3).
