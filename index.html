@@ -39,8 +39,8 @@
   <!-- HERO -->
   <section class="hero" aria-labelledby="hero-titulo">
     <div class="hero__bg" aria-hidden="true">
-      <svg class="hero__star hero__star--a" data-parallax="-0.15"><use href="#i-estrela-reticula"/></svg>
-      <svg class="hero__star hero__star--b" data-parallax="0.2"><use href="#i-estrela-reticula"/></svg>
+      <span class="estrela hero__star hero__star--a" data-parallax="-0.15"></span>
+      <span class="estrela hero__star hero__star--b" data-parallax="0.2"></span>
     </div>
 
     <!-- logo gigante em caixas (no lugar do vídeo-logo da Pixel) -->
@@ -95,7 +95,7 @@
     </div>
 
     <!-- Carrossel 3D movido pela rolagem: mesma lógica do pixel.melbourne (docs/referencia-pixel.md) -->
-    <div class="c3d" data-c3d>
+    <div class="c3d" data-c3d data-cursor-text="arrasta pro lado">
       <div class="c3d__track">
         <div class="c3d__sticky">
           <div class="c3d__wrap" data-c3d-wrap><div class="c3d__list" data-c3d-list></div></div>
@@ -114,12 +114,15 @@
   </section>
 
   <!-- MANIFESTO -->
-  <section class="manifesto" aria-label="Manifesto">
+  <section class="manifesto" aria-labelledby="manifesto-titulo">
     <div class="container">
-      <p class="eyebrow">(02) Como eu penso design</p>
-      <p class="manifesto__text" data-manifesto>Marca boa é a que as pessoas <em>reconhecem</em>. Por isso cada projeto começa em estratégia e termina num sistema visual consistente: logo, cores, tipografia e aplicações que funcionam do Instagram ao site.</p>
+      <div class="section-head">
+        <p class="eyebrow">(02) Como eu penso design</p>
+        <h2 id="manifesto-titulo" class="section-title">Marca boa é a que as pessoas <em>reconhecem</em></h2>
+      </div>
+      <p class="manifesto__text" data-manifesto>Por isso cada projeto começa em estratégia e termina num sistema visual consistente: logo, cores, tipografia e aplicações que funcionam do Instagram ao site.</p>
       <span class="tag tag--violeta manifesto__tag"><svg><use href="#i-cursor"/></svg>a diferença é essa</span>
-      <svg class="manifesto__star" aria-hidden="true"><use href="#i-estrela-reticula"/></svg>
+      <span class="estrela manifesto__star" aria-hidden="true"></span>
     </div>
   </section>
 

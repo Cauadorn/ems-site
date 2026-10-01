@@ -27,7 +27,7 @@
 
   /* espaço e forma */
   --gutter: clamp(16px, 4vw, 56px);
-  --section: clamp(88px, 12vw, 180px);
+  --section: clamp(56px, 7vw, 112px);
   --max: 1320px;
   --r-s: 10px;
   --r-m: 20px;

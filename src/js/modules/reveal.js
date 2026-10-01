@@ -25,7 +25,7 @@ export function initReveals(reduced) {
     const words = m.querySelectorAll('.w');
     if (reduced) words.forEach((w) => w.classList.add('is-on'));
     else ScrollTrigger.create({
-      trigger: m, start: 'top 80%', end: 'bottom 45%', scrub: true,
+      trigger: m, start: 'top 90%', end: 'top 45%', scrub: true,
       onUpdate: (st) => {
         const on = Math.round(st.progress * words.length);
         words.forEach((w, i) => w.classList.toggle('is-on', i < on));
