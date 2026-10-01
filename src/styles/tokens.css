@@ -19,7 +19,7 @@
   --f-sans: 'Inter Variable', 'Inter', system-ui, sans-serif;
 
   --t-hero: clamp(3.4rem, 11vw, 10.5rem);
-  --t-h2: clamp(2.4rem, 6vw, 5.2rem);
+  --t-h2: clamp(2rem, 4vw, 3.6rem); /* títulos de seção (menores em 01/10, pedido da Emilly) */
   --t-h3: clamp(1.6rem, 2.6vw, 2.2rem);
   --t-lead: clamp(1.05rem, 1.3vw, 1.25rem);
   --t-body: 1rem;

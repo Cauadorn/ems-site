@@ -13,6 +13,17 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="EMS, Emilly Silva: faço marca bonita de perto e clara de longe">
+  <script>
+    // Abertura (contador 0 → 100): toca sempre que a home é aberta ou recarregada; pula quando a pessoa volta de outra
+    // página do próprio site ou pede menos movimento. Decidido aqui, antes de a tela aparecer, para o "0%" não piscar.
+    (function () {
+      var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      var tipo = nav ? nav.type : 'navigate';
+      var deDentro = document.referrer.indexOf(location.origin) === 0;
+      var calma = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (calma || tipo === 'back_forward' || (tipo === 'navigate' && deDentro)) document.documentElement.classList.add('is-loaded', 'sem-abertura');
+    })();
+  </script>
   <script type="module" src="/src/js/main.js"></script>
 </head>
 <body id="topo">

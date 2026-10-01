@@ -29,8 +29,8 @@
 .nav__brand img { width: 30px; height: auto; transition: transform .5s var(--ease-back); }
 .nav__brand:hover img { transform: rotate(-12deg) scale(1.1); }
 .nav__name { font-weight: 700; letter-spacing: -.01em; }
-/* 1.35em: o itálico fino ao lado do Inter negrito parecia menor (pedido da Emilly) */
-.nav__name em { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 1.35em; line-height: 1; color: var(--violeta); }
+/* 1.15em: o itálico fino fica com o mesmo tamanho visual do "Emilly Silva" em Inter negrito */
+.nav__name em { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 1.15em; line-height: 1; color: var(--violeta); }
 .nav__links { display: flex; gap: 6px; }
 .nav__links a { display: block; padding: .5em .9em; border-radius: 999px; text-decoration: none; font-weight: 500; font-size: .95rem; transition: background .25s; }
 .nav__links a:hover { background: var(--lavanda-2); }
@@ -52,17 +52,17 @@
   min-height: 100svh;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   padding: clamp(96px, 9vw, 130px) var(--gutter) 48px;
-  background: var(--ameixa); color: var(--ivory); text-align: center; /* roxo escuro: descansa a vista na chegada (pedido da Emilly) */
+  background: var(--violeta); color: var(--ivory); text-align: center;
 }
 .hero__bg { position: absolute; inset: 0; pointer-events: none; }
-.hero__star { position: absolute; color: var(--violeta); }
+.hero__star { position: absolute; color: var(--ink); }
 .hero__star--a { width: 46vw; height: 46vw; left: -14vw; bottom: -20vw; opacity: .55; }
 .hero__star--b { width: 30vw; height: 30vw; right: -8vw; top: -6vw; opacity: .3; }
 
 .hero__logo { position: relative; z-index: 1; display: flex; gap: .06em; font-family: var(--f-display); font-size: clamp(7rem, 21vw, 21rem); line-height: .82; text-transform: uppercase; }
 /* plaquinhas em tons da paleta que se destacam do fundo violeta; o respiro embaixo evita cortar a curva do S */
-.hero__box { display: block; padding: .04em .08em .05em; background: var(--violeta-2); overflow: hidden; }
-.hero__box:nth-child(2) { background: var(--violeta); }
+.hero__box { display: block; padding: .04em .08em .05em; background: var(--ameixa); overflow: hidden; }
+.hero__box:nth-child(2) { background: var(--pink); }
 .hero__box span { display: block; }
 .hero__seal { position: absolute; right: -.62em; top: -.22em; width: .62em; rotate: 12deg; cursor: pointer; filter: drop-shadow(0 18px 24px rgba(42, 20, 51, .45)); }
 .hero__seal svg { width: 100%; height: auto; overflow: visible; }
@@ -93,9 +93,9 @@
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* ================= FAIXAS ================= */
-/* sem fundo claro em volta das faixas: em cima continua o ameixa do topo, embaixo começa o violeta dos projetos.
+/* sem fundo claro em volta das faixas: em cima continua o violeta do topo, embaixo começa o ameixa dos projetos.
    A troca de cor (50%) fica sempre escondida atrás de uma das faixas; os 40px de cima são do próprio topo */
-.tapes { position: relative; height: clamp(120px, 16vw, 200px); margin-top: -40px; z-index: 5; overflow-x: clip; background: linear-gradient(to bottom, transparent 40px, var(--ameixa) 40px, var(--ameixa) 50%, var(--violeta) 50%); }
+.tapes { position: relative; height: clamp(120px, 16vw, 200px); margin-top: -40px; z-index: 5; overflow-x: clip; background: linear-gradient(to bottom, transparent 40px, var(--violeta) 40px, var(--violeta) 50%, var(--ameixa) 50%); }
 .tape { position: absolute; left: -5%; width: 110%; overflow: hidden; padding: 14px 0; box-shadow: 0 12px 24px -12px rgba(42, 20, 51, .5); }
 .tape--wine { top: 20%; background: var(--wine); color: var(--ivory); transform: rotate(-3deg); z-index: 2; }
 .tape--lavanda { top: 32%; background: var(--lavanda); color: var(--ink); transform: rotate(2.5deg); }
@@ -110,7 +110,7 @@
 
 /* ================= PROJETOS ================= */
 /* as faixas logo acima já dão o respiro: aqui o espaço até o título é menor que o das outras seções */
-.projects { padding: clamp(24px, 3vw, 48px) 0 0; background: var(--violeta); color: var(--ivory); }
+.projects { padding: clamp(24px, 3vw, 48px) 0 0; background: var(--ameixa); color: var(--ivory); }
 .projects .section-title em { color: var(--manteiga); }
 .projects .view-toggle { background: rgba(255, 251, 222, .12); }
 .projects .view-toggle button[aria-pressed='true'] { background: var(--ivory); color: var(--ameixa); }
@@ -236,9 +236,10 @@
 /* ================= PROCESSO ================= */
 .process { padding: var(--section) 0; }
 .process__list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: s; }
-.step { position: relative; padding: 26px; border: 2px solid var(--ink); border-radius: var(--r-m); background: var(--ivory); box-shadow: var(--shadow-hard); transition: transform .4s var(--ease-back), box-shadow .4s; }
-.step:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 var(--ink); }
-.step:nth-child(2) { margin-top: 36px; } .step:nth-child(3) { margin-top: 72px; } .step:nth-child(4) { margin-top: 108px; }
+/* o hover usa translate (não transform) para não brigar com a animação de entrada */
+.step { position: relative; padding: 26px; border: 2px solid var(--ink); border-radius: var(--r-m); background: var(--ivory); box-shadow: var(--shadow-hard); transition: translate .4s var(--ease-back), box-shadow .4s; }
+.step:hover { translate: -4px -4px; box-shadow: 10px 10px 0 var(--ink); }
+/* os quatro cartões alinhados e da mesma altura (antes desciam em escada) */
 .step__n { display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; font-family: var(--f-display); font-size: 1.3rem; background: var(--violeta); color: var(--ivory); }
 .step:nth-child(2) .step__n { background: var(--pink); } .step:nth-child(3) .step__n { background: var(--wine); } .step:nth-child(4) .step__n { background: var(--manteiga); color: var(--ink); }
 .step h3 { margin: 18px 0 8px; font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 2rem; line-height: 1; }

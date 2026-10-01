@@ -25,17 +25,18 @@
       <a class="case-back" href="%BASE_URL%#projetos" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Início</a>
       <p class="eyebrow" data-intro>Portfólio · 7 projetos</p>
       <h1 id="works-titulo" class="section-title">Todos os <em>projetos</em></h1>
-      <nav class="works__nav" aria-label="Áreas" data-intro>
-        <a href="#identidade">Identidade visual</a>
-        <a href="#web">Web &amp; UX/UI</a>
-        <a href="#social">Social &amp; peças</a>
-        <a href="#fotografia">Fotografia</a>
-        <a href="#produtos">Produtos personalizados</a>
+      <nav class="works__nav" aria-label="Filtrar por área" data-works-nav data-intro>
+        <a href="%BASE_URL%projetos/" data-area="" aria-current="page">Todos</a>
+        <a href="?area=identidade" data-area="identidade">Identidade visual</a>
+        <a href="?area=web" data-area="web">Web &amp; UX/UI</a>
+        <a href="?area=social" data-area="social">Social &amp; peças</a>
+        <a href="?area=fotografia" data-area="fotografia">Fotografia</a>
+        <a href="?area=produtos" data-area="produtos">Produtos personalizados</a>
       </nav>
     </div>
   </section>
 
-  <section class="works__area" id="identidade" aria-labelledby="area-identidade">
+  <section class="works__area" id="identidade" aria-labelledby="area-identidade" data-area-section>
     <div class="container">
       <div class="works__head">
         <p class="eyebrow">(01) 3 projetos</p>
@@ -49,7 +50,7 @@
     </div>
   </section>
 
-  <section class="works__area" id="web" aria-labelledby="area-web">
+  <section class="works__area" id="web" aria-labelledby="area-web" data-area-section>
     <div class="container">
       <div class="works__head">
         <p class="eyebrow">(02) 1 projeto</p>
@@ -61,7 +62,7 @@
     </div>
   </section>
 
-  <section class="works__area" id="social" aria-labelledby="area-social">
+  <section class="works__area" id="social" aria-labelledby="area-social" data-area-section>
     <div class="container">
       <div class="works__head">
         <p class="eyebrow">(03) 1 projeto</p>
@@ -73,7 +74,7 @@
     </div>
   </section>
 
-  <section class="works__area" id="fotografia" aria-labelledby="area-fotografia">
+  <section class="works__area" id="fotografia" aria-labelledby="area-fotografia" data-area-section>
     <div class="container">
       <div class="works__head">
         <p class="eyebrow">(04) 1 projeto</p>
@@ -86,7 +87,7 @@
     </div>
   </section>
 
-  <section class="works__area" id="produtos" aria-labelledby="area-produtos">
+  <section class="works__area" id="produtos" aria-labelledby="area-produtos" data-area-section>
     <div class="container">
       <div class="works__head">
         <p class="eyebrow">(05) 1 projeto</p>

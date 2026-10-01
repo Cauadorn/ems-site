@@ -65,7 +65,8 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
   (`docs/referencia-pixel.md` e `src/js/modules/carousel.js`). Em 01/10 a Emilly pediu para o anel NÃO girar com a
   rolagem (prendia a página): ele ocupa uma tela e gira pelas setas, arrastando para o lado ou pelas setas do teclado.
 - Seção "Como eu penso design": texto menor e objetivo.
-- Abertura (selo + contador + cortinas) só na 1ª visita da sessão.
+- Abertura (selo + contador 0 → 100 + cortinas): toca sempre que a home é aberta ou recarregada e pula quando a pessoa
+  volta de outra página do site (pedido da Emilly em 01/10; antes era só na 1ª visita da sessão e o "0%" piscava).
 
 ## Onde mexer
 | Quero mudar | Arquivo |

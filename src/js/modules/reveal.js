@@ -38,12 +38,14 @@ export function initReveals(reduced) {
   // blocos entram de baixo
   ScrollTrigger.batch('[data-reveal]', {
     start: 'top 88%', once: true,
-    onEnter: (els) => gsap.from(els, { y: 60, opacity: 0, rotate: 1.5, duration: 1, ease: 'expo.out', stagger: .1 }),
+    // fromTo com o fim explícito: se a entrada disparar de novo no meio, o bloco termina no lugar certo (antes os
+    // cartões do processo travavam mais baixos e girados, parecendo uma escadinha)
+    onEnter: (els) => gsap.fromTo(els, { y: 60, opacity: 0, rotate: 1.5 }, { y: 0, opacity: 1, rotate: 0, duration: 1, ease: 'expo.out', stagger: .1, overwrite: 'auto' }),
   });
 
   // títulos de seção
   gsap.utils.toArray('.section-title').forEach((t) => {
-    gsap.from(t, { y: 50, opacity: 0, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: t, start: 'top 88%', once: true } });
+    gsap.fromTo(t, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: t, start: 'top 88%', once: true } });
   });
 
   // estrelas e espirais com parallax leve
