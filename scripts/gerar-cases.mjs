@@ -113,7 +113,7 @@ function listing(projects, areas) {
   const secoes = areas.map((a, i) => {
     const lista = comProjetos(a);
     return `
-  <section class="works__area" id="${a.id}" aria-labelledby="area-${a.id}">
+  <section class="works__area" id="${a.id}" aria-labelledby="area-${a.id}" data-area-section>
     <div class="container">
       <div class="works__head">
         <p class="eyebrow">(${nn(i + 1)}) ${lista.length ? `${lista.length} ${lista.length === 1 ? 'projeto' : 'projetos'}` : 'em breve'}</p>
@@ -152,8 +152,9 @@ ${MARCA}
       <a class="case-back" href="%BASE_URL%#projetos" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Início</a>
       <p class="eyebrow" data-intro>Portfólio · ${projects.length} projetos</p>
       <h1 id="works-titulo" class="section-title">Todos os <em>projetos</em></h1>
-      <nav class="works__nav" aria-label="Áreas" data-intro>
-${areas.map((a) => `        <a href="#${a.id}">${a.titulo.replace(/<\/?em>/g, '')}</a>`).join('\n')}
+      <nav class="works__nav" aria-label="Filtrar por área" data-works-nav data-intro>
+        <a href="%BASE_URL%projetos/" data-area="" aria-current="page">Todos</a>
+${areas.map((a) => `        <a href="?area=${a.id}" data-area="${a.id}">${a.titulo.replace(/<\/?em>/g, '')}</a>`).join('\n')}
       </nav>
     </div>
   </section>

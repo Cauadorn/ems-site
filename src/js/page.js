@@ -5,15 +5,15 @@ import { initSite, reduced } from './modules/site.js';
 import { initMascote } from './modules/mascote.js';
 import { initReveals } from './modules/reveal.js';
 import { initNope } from './modules/nope.js';
+import { initWorks } from './modules/works.js';
 
-// Páginas internas (cases e 404): a mesma base da home, sem a abertura.
-// Quem chegou por aqui já está no site: a home abre direto, sem repetir a abertura.
-try { sessionStorage.setItem('ems-loader', '1'); } catch {}
+// Páginas internas (cases, todos os projetos e 404): a mesma base da home, sem a abertura.
 document.documentElement.classList.add('is-loaded');
 
 initSite();
 initMascote();
 initNope();
+initWorks();
 initReveals(reduced);
 
 // entrada do topo da página

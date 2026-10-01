@@ -49,9 +49,8 @@
   clique, entrada com escala 0 → 1. Nunca girar continuamente nem deformar.
 
 ### Logo tipográfico do hero
-- "EMS" em Anton, caixa alta, cada letra numa caixa: E e S em violeta-2 `#7B4DF2`, M em violeta `#6225D8`, texto marfim,
-  sobre o fundo ameixa do topo (01/10, pedido da Emilly: o topo passou a ser roxo escuro para não cansar a vista, e as
-  caixas antigas `#6E36E6`/`#5A1FCB` quase sumiam).
+- "EMS" em Anton, caixa alta, cada letra numa caixa: E e S em ameixa `#3D1C46`, M em rosa `#DD34A8`, texto marfim, sobre
+  o fundo violeta do topo (01/10, pedido da Emilly: as caixas antigas `#6E36E6`/`#5A1FCB` quase sumiam no violeta).
 - Tamanho `clamp(7rem, 21vw, 21rem)`, `line-height .82`, espaço entre caixas `.06em`, padding da caixa `.04em .08em .05em`
   (o respiro embaixo evita cortar a curva do S).
 - No celular (≤ 860 px): 30vw.
@@ -66,8 +65,8 @@
 | `--ivory` | #FFFBDE | 255 251 222 | fundo claro principal; texto sobre escuro |
 | `--ivory-2` | #F4EDCB | 244 237 203 | fundo da seção Sobre |
 | `--ink` | #2A1433 | 42 20 51 | texto sobre claro, bordas, sombra dura |
-| `--ameixa` | #3D1C46 | 61 28 70 | fundo do topo (hero), Serviços, cases e "Todos os projetos" |
-| `--violeta` | #6225D8 | 98 37 216 | cor da marca: Projetos da home, contato, menu, links |
+| `--ameixa` | #3D1C46 | 61 28 70 | fundo de Projetos, Serviços, cases e "Todos os projetos"; caixas E e S do logo |
+| `--violeta` | #6225D8 | 98 37 216 | cor da marca: hero, contato, menu, links |
 | `--violeta-2` | #7B4DF2 | 123 77 242 | estrelas/espirais sobre o violeta |
 | `--lavanda` | #C0A5C4 | 192 165 196 | faixa secundária, "ems" do rodapé |
 | `--lavanda-2` | #E4D6E6 | 228 214 230 | fundo de "Como eu penso design", hovers |
@@ -120,7 +119,7 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 | Token | Valor | Onde |
 |---|---|---|
 | `--t-hero` | clamp(3.4rem, 11vw, 10.5rem) | escala antiga do hero (hoje a frase do hero usa clamp(2rem, 4.2vw, 4rem) em serif itálico; celular 8.4vw) |
-| `--t-h2` | clamp(2.4rem, 6vw, 5.2rem) | títulos de seção |
+| `--t-h2` | clamp(2rem, 4vw, 3.6rem) | títulos de seção (reduzidos em 01/10) |
 | `--t-h3` | clamp(1.6rem, 2.6vw, 2.2rem) | título de cartão de serviço |
 | `--t-lead` | clamp(1.05rem, 1.3vw, 1.25rem) | parágrafo de abertura, "Sobre" |
 | `--t-body` | 1rem (16 px) | texto |
@@ -159,7 +158,7 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 | Elemento | Como é | Onde |
 |---|---|---|
 | Grão de papel | ruído fractal (feTurbulence .9, 2 oitavas) em tela cheia, opacidade 7% | todo o site (`body::after`) |
-| Estrela da Emilly | estrela cheia de 5 pontas com uma auréola em forma de estrela maior, de pontos em grade que diminuem para fora (`src/assets/illustrations/estrela-ems.svg`, usada como máscara: `.estrela`) | fundo do hero e da 404 (violeta) e do manifesto (tinta); cor por `color` |
+| Estrela da Emilly | estrela cheia de 5 pontas com uma auréola em forma de estrela maior, de pontos em grade que diminuem para fora (`src/assets/illustrations/estrela-ems.svg`, usada como máscara: `.estrela`) | fundo do hero, da 404 e do manifesto, na cor tinta; cor por `color` |
 | Espiral | espiral de Arquimedes, traço 6, pontas redondas | ícone de Identidade visual, abertura, menu, contato |
 | Cereja | par de cerejas com cabo e folha em `#3D1C46`, frutas na cor do `color` | adesivo do hero, Social & peças |
 | XOXO | X e O desenhados em traço 8 | adesivo do hero |
@@ -218,7 +217,7 @@ Hover: o cartão sobe 6 px. ≤ 1180 px: 2 colunas (o último ocupa a linha toda
 
 ### Cartões do processo (`.step`)
 Borda 2 px tinta, raio 20, fundo marfim, sombra dura 6 px; número em círculo de 52 px (violeta, rosa, vinho,
-manteiga); título serif itálico 2rem. Desktop: escada (cada um 36 px mais baixo). Hover: sobe na diagonal (sombra 10 px).
+manteiga); título serif itálico 2rem. Alinhados, todos da mesma altura (a escada foi tirada em 01/10). Hover: sobe na diagonal (sombra 10 px).
 
 ### CPF × CNPJ (`.cpfcnpj`)
 Bloco violeta raio 20; duas abas em serif itálico 2rem ("cnpj *pra pagar as contas*" × "cpf *fora das telas*"),
@@ -273,7 +272,8 @@ Uma por projeto, gerada sozinha a partir de `src/data/projects.js` (`scripts/ger
 
 ### Página "Todos os projetos" (`projetos/index.html`)
 Gerada de `src/data/projects.js`. Fundo ameixa. Topo: pílula "← Início", eyebrow "Portfólio · N projetos", título
-"Todos os *projetos*" e pílulas de atalho para cada área. Uma seção por área (`areas`: Identidade *visual*, Web &
+"Todos os *projetos*" e pílulas que FILTRAM por área ("Todos" + uma por área; a escolhida fica cheia; o filtro vai no
+endereço, `?area=produtos`, e o botão voltar do navegador funciona). Uma seção por área (`areas`: Identidade *visual*, Web &
 *UX/UI*, Social & *peças*, Foto*grafia*, Produtos *personalizados*), separadas por linha marfim 12%, com eyebrow
 "(01) 3 projetos", título Anton + serif (clamp(2rem, 4.4vw, 3.6rem)) e grade de cards (mín. 300 px): capa 16:10, nome
 em Anton, categoria em serif manteiga, ano; hover sobe 6 px e a capa cresce 5%. Projeto `soon` mostra "em breve";
@@ -301,8 +301,8 @@ texto e dois botões ("Ver projetos", "Ir pro início").
 | Pixel "main" | cubic-bezier(.65, .01, .05, .99) ≈ GSAP `expo.inOut` | entrada do hero |
 | rápido / base / lento | 250 / 350 / 700 ms | hover / botão / cartão |
 
-**Abertura (só 1ª visita da sessão; clique pula):** selo entra girando (escala 0 → 1, `back.out(2)`, .8 s) →
-contador 0 → 100% (1,5 s) → selo pisca → conteúdo sobe e some → três cortinas sobem em sequência (marfim, violeta,
+**Abertura (toca ao abrir ou recarregar a home; pula ao voltar de outra página do site; clique pula):** selo entra girando (escala 0 → 1, `back.out(2)`, .8 s) →
+contador 0 → 100% (2 s) → selo pisca → conteúdo sobe e some → três cortinas sobem em sequência (marfim, violeta,
 vinho; `expo.inOut`, .9 s, intervalo .12 s).
 
 **Hero:** letras do EMS sobem das caixas (intervalo .08 s) → selo carimba (escala 0, −40°) → as duas linhas entram
@@ -334,14 +334,14 @@ aparece no lugar.
 ## 10. Estrutura da home (ordem e fundos)
 
 1. **Abertura** (marfim + cortinas violeta/vinho)
-2. **Hero** — ameixa (roxo escuro); logo EMS + selo; frase em 2 linhas corridas, serif itálico marfim com destaque manteiga:
+2. **Hero** — violeta; logo EMS + selo; frase em 2 linhas corridas, serif itálico marfim com destaque manteiga:
    "Faço marca bonita *de perto* / e clara *de longe*."; etiquetas; CTA
-3. **Faixas** cruzadas (vinho sobre lavanda); em volta, ameixa em cima e violeta embaixo
-4. **Projetos** — violeta; "(01) Trabalhos que têm *cara*"; carrossel 3D ou lista + botão "Ver todos os projetos"
+3. **Faixas** cruzadas (vinho sobre lavanda); em volta, violeta em cima e ameixa embaixo
+4. **Projetos** — ameixa; "(01) Trabalhos que têm *cara*"; carrossel 3D ou lista + botão "Ver todos os projetos"
 5. **Como eu penso design** — lavanda-2; título igual aos outros ("Marca boa é a que as pessoas *reconhecem*", palavra em
    violeta) + parágrafo menor que acende no scroll
 6. **Serviços** — ameixa; quatro cartões coloridos
-7. **Processo** — marfim; 4 cartões em escada
+7. **Processo** — marfim; 4 cartões alinhados
 8. **Sobre** — ivory-2; foto em moldura de seleção + CPF × CNPJ
 9. **Contato** — violeta; selo balançando + "VAMOS CRIAR *juntos?*" (mesmo tamanho dos outros títulos de seção) + "Chamar no WhatsApp" (botão principal), Instagram, e-mail, Behance
 10. **Rodapé** — tinta, uma linha só: © + "atendo todo o Brasil", pílulas com ícone (WhatsApp, Instagram, Behance) e
