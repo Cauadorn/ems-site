@@ -244,7 +244,30 @@ Duas fitas cruzadas que passam da tela: vinho (−3°, Anton marfim, serviços s
 
 ### Cursor personalizado
 Só com mouse (`hover: hover` e `pointer: fine`): seta violeta 26 px + etiqueta rosa contextual ("ver case",
-"me arrasta", "oi!", "abre no Behance") que surge com mola. No toque, cursor normal.
+"me arrasta", "oi!", "próximo") que surge com mola. No toque, cursor normal.
+
+### Página de case (`projetos/<slug>.html`)
+Uma por projeto, gerada sozinha a partir de `src/data/projects.js` (`scripts/gerar-cases.mjs`, estilos em
+`src/styles/case.css`). Não tem texto inventado: só os dados do projeto e a apresentação do Behance.
+- **Topo (ameixa):** pílula "← Todos os projetos" (volta para `#projetos`), eyebrow "(01/05) Categoria · ano",
+  nome em Anton CAIXA ALTA `clamp(3.2rem, 10vw, 9rem)`, detalhe em serif itálico manteiga, capa 1600 × 1000 na
+  moldura de seleção (até 1200 px).
+- **Apresentação:** as fatias `slide-01.webp`, `slide-02.webp`… coladas (sem espaço) num bloco de até 1200 px,
+  raio 20, sombra de card 3D. Embaixo, "Ver também no Behance" (botão fantasma), se houver link.
+- **Próximo projeto (lavanda-2):** o bloco inteiro é link; nome em Anton com seta, categoria em serif violeta,
+  miniatura com borda tinta, sombra dura e giro de 3° (no hover gira −2° e o nome fica violeta; só com mouse).
+- **Contato e rodapé:** os mesmos da home (`partials/contact.html`, `partials/footer.html`).
+- Projeto com `soon: true` não tem case e aparece como "em breve".
+
+### Página 404 (`404.html`)
+Hero violeta da home com "404" nas caixas do logo e o selo **reto**; título "ESSA PÁGINA / *sumiu*", uma linha de
+texto e dois botões ("Ver projetos", "Ir pro início").
+
+### Prévia de link e ícones
+- `public/img/og.jpg` (1200 × 630): fundo violeta, logo EMS nas caixas + selo reto, frase da marca, assinatura.
+  É a imagem que aparece ao mandar o link no WhatsApp/Instagram. Cada case usa `img/projetos/<slug>/og.jpg`
+  (recorte da capa, gerado por `scripts/nova-capa.py`).
+- Favicon: selo em SVG + `favicon-32.png`; ícone da tela inicial do celular: `apple-touch-icon.png` (selo sobre marfim).
 
 ---
 
@@ -300,6 +323,8 @@ aparece no lugar.
 9. **Contato** — violeta; selo balançando + "VAMOS CRIAR *juntos?*" + Instagram, e-mail, Behance
 10. **Rodapé** — tinta; "ems" gigante em serif lavanda + brilho manteiga
 
+Os botões "ver case" do carrossel e da lista abrem a página de case do projeto, na mesma aba.
+
 ---
 
 ## 11. Acessibilidade (obrigatório)
@@ -339,8 +364,12 @@ aparece no lugar.
 | Ícones e ilustrações (sprite) | `partials/icons.html` |
 | Selo | `src/assets/illustrations/selo-ems.svg` |
 | Projetos do carrossel/lista | `src/data/projects.js` |
+| Páginas de case (layout) | `scripts/gerar-cases.mjs` + `src/styles/case.css` |
+| Página 404 | `404.html` |
+| Trechos repetidos (head, cabeçalho, contato, rodapé) | `partials/*.html` |
 | Carrossel 3D | `src/js/modules/carousel.js` |
 | Abertura, hero, reveals | `src/js/modules/loader.js`, `reveal.js` |
+| Base de todas as páginas (rolagem, cabeçalho, menu, cursor) | `src/js/modules/site.js` (home: `main.js`; cases e 404: `page.js`) |
 | Referência técnica da Pixel | `docs/referencia-pixel.md` |
 
 ## Pendências da marca

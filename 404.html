@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<!-- @include partials/head.html -->
+  <title>Página não encontrada | Emilly Silva</title>
+  <meta name="robots" content="noindex">
+  <script type="module" src="/src/js/page.js"></script>
+</head>
+<body id="topo">
+<!-- @include partials/icons.html -->
+<!-- @include partials/header.html -->
+
+<main id="conteudo">
+  <section class="hero hero--404" aria-labelledby="erro-titulo">
+    <div class="hero__bg" aria-hidden="true">
+      <svg class="hero__star hero__star--a"><use href="#i-estrela-reticula"/></svg>
+      <svg class="hero__star hero__star--b"><use href="#i-estrela-reticula"/></svg>
+    </div>
+
+    <div class="hero__logo" aria-hidden="true" data-intro>
+      <span class="hero__box"><span>4</span></span><span class="hero__box"><span>0</span></span><span class="hero__box"><span>4</span></span>
+      <div class="hero__seal" data-mascote>
+        <!-- @include src/assets/illustrations/selo-ems.svg -->
+      </div>
+    </div>
+
+    <div class="hero__title-wrap" data-intro>
+      <h1 id="erro-titulo" class="hero__title">
+        <span class="hero__line">Essa página</span>
+        <span class="hero__line hero__line--serif">sumiu</span>
+      </h1>
+    </div>
+    <p class="notfound__text" data-intro>O link pode estar errado ou a página mudou de lugar.</p>
+    <div class="hero__actions" data-intro>
+      <a class="btn btn--ivory" href="%BASE_URL%#projetos">Ver projetos <svg><use href="#i-seta"/></svg></a>
+      <a class="btn btn--ghost" href="%BASE_URL%">Ir pro início</a>
+    </div>
+  </section>
+</main>
+
+<!-- @include partials/footer.html -->
+</body>
+</html>

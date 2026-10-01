@@ -29,6 +29,10 @@ Portfólio da Emilly para trazer clientes. Vite + HTML/CSS/JS puro + GSAP + Leni
 
 ## Publicar
 Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
+- **Pelo Claude na nuvem (claude.ai/code, app do celular):** lá o Claude só pode enviar para um ramo próprio
+  (`claude/...`), e o site só publica o que entra na `main`. Depois do push, abrir um pull request para a `main` e
+  pedir para a pessoa aprovar ("Merge") no GitHub; em cerca de 1 minuto o site atualiza.
+- **No computador (Claude Code instalado):** os passos abaixo.
 1. `git add` + `git commit` com mensagem curta em português dizendo o que mudou.
 2. `git push` — em cerca de 1 minuto o GitHub gera e publica sozinho (`.github/workflows/deploy.yml`).
 3. Conferir https://cauadorn.github.io/ems-site/ e avisar que está no ar.
@@ -59,7 +63,8 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
 | Quero mudar | Arquivo |
 |---|---|
 | Projetos do carrossel e da lista | `src/data/projects.js` (capa: `python scripts/nova-capa.py <imagem> <slug>`) |
-| Textos | `index.html` |
+| Páginas de case | geradas sozinhas de `projects.js` + `public/img/projetos/<slug>/slide-*.webp`; layout em `scripts/gerar-cases.mjs` e `src/styles/case.css`. Não editar `projetos/*.html` à mão |
+| Textos | `index.html` (contato: `partials/contact.html`; 404: `404.html`) |
 | Cores, fontes, espaçamentos | `src/styles/tokens.css` |
 | Botões, etiquetas, chips | `src/styles/components.css` |
 | Layout das seções | `src/styles/sections.css` |
@@ -75,5 +80,6 @@ HTML; usar a base como na tabela acima, senão a imagem quebra no ar e funciona 
 - ALMAH entra no portfólio? (hoje aparece como "em breve")
 - WhatsApp para o contato; e-mail atual (o site usa contact.emsdesigner@gmail.com, do Behance).
 - Formação (curso e instituição) para a seção Sobre.
-- Páginas de case de cada projeto (hoje os botões abrem o Behance), página de brand book, página 404.
+- Texto de cada case (hoje o case mostra a apresentação do Behance) e página de brand book (o que entra?).
+- Domínio próprio (ex.: emsdesign.com.br) em vez de cauadorn.github.io/ems-site: se mudar, trocar `SITE_URL` em `vite.config.js`.
 - Prancheta de revisão com os prints do site: https://claude.ai/artifact/W3FVwhEdbnUmFAh2U1niwW

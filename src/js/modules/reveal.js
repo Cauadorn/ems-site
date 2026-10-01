@@ -50,7 +50,7 @@ export function initReveals(reduced) {
   gsap.utils.toArray('[data-parallax]').forEach((el) => {
     gsap.to(el, { yPercent: parseFloat(el.dataset.parallax) * 100, ease: 'none', scrollTrigger: { trigger: el.closest('section'), start: 'top top', end: 'bottom top', scrub: true } });
   });
-  gsap.to('.manifesto__star', { rotate: 90, ease: 'none', scrollTrigger: { trigger: '.manifesto', scrub: true } });
+  if (document.querySelector('.manifesto__star')) gsap.to('.manifesto__star', { rotate: 90, ease: 'none', scrollTrigger: { trigger: '.manifesto', scrub: true } });
 }
 
 // quebra o texto em palavras sem perder os <em>

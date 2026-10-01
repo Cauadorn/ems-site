@@ -19,11 +19,14 @@ Na Vercel / no GitHub (ou em qualquer máquina fora do Drive):
 `D:\Dev\ems-site` (node_modules + junção `site` → esta pasta). Rodar: `cd D:\Dev\ems-site && npx vite` (porta 5178).
 
 ## Como adicionar um projeto
-1. Gere a capa (1600×1000):
+1. Gere a capa (1600×1000) e a prévia de link (og.jpg):
    `python scripts/nova-capa.py "caminho/da/imagem.jpg" meu-projeto` (use `--topo` ou `--base` para escolher o recorte)
-2. Abra `src/data/projects.js` e copie um bloco `{ ... }`, trocando `slug` (o mesmo do passo 1), `title`,
-   `category`, `detail`, `year` e `link` (Behance, ou `null` para "em breve").
-3. Pronto: o projeto aparece no carrossel e na lista, na ordem da lista.
+2. Coloque a apresentação (a do Behance) em `public/img/projetos/meu-projeto/` como `slide-01.webp`, `slide-02.webp`…
+   (1600 px de largura; `scripts/prepare-images.py` fatia uma imagem comprida).
+3. Abra `src/data/projects.js` e copie um bloco `{ ... }`, trocando `slug` (o mesmo do passo 1), `title`,
+   `category`, `detail`, `year` e `behance` (link, ou `null`). Use `soon: true` para mostrar como "em breve".
+4. Pronto: o projeto aparece no carrossel e na lista, na ordem da lista, e ganha sozinho a página
+   `projetos/meu-projeto.html` (`scripts/gerar-cases.mjs`, roda junto com o site).
 
 O carrossel é um anel com **no mínimo 8 posições** (como o da Pixel). Enquanto houver menos de 8 projetos,
 as posições livres aparecem como cartões "próximo projeto / vaga aberta" do outro lado do anel.
@@ -36,23 +39,30 @@ Pacote em `docs/design-system/`: `DESIGN-SYSTEM.md` (regras), `tokens.json` (val
 Zip para enviar: `Clientes\EMI\EMS-design-system.zip`.
 
 ## Onde mexer
-- Projetos: `src/data/projects.js`
+- Projetos: `src/data/projects.js` (o layout das páginas de case fica em `scripts/gerar-cases.mjs` e `src/styles/case.css`)
+- Contato (Instagram, e-mail, Behance): `partials/contact.html` (vale para a home e para os cases)
 - Cores, fontes, espaçamentos: `src/styles/tokens.css`
 - Textos: `index.html`
 - Selo EMS: `src/assets/illustrations/selo-ems.svg` — arte ORIGINAL da Emilly, não redesenhar
 - Ícones da marca (espiral, cereja, XOXO, brilho, estrela em retícula, coração, cursor): `partials/icons.html`
 - Imagens: `public/img/` (WebP). Regerar as do Behance: `python scripts/prepare-images.py <pasta_behance>`
 
-## Estado (30/09/2026)
+## Estado (01/10/2026)
 Pronto:
 - Home: abertura (selo + contador + cortinas), hero no estilo Pixel (logo EMS em caixas, selo, frase entrando pelos
   lados, etiquetas arrastáveis), faixas, carrossel 3D igual ao da Pixel (anel circular girado pela rolagem, painéis
   de 100vh, setas que rolam) + modo lista, "como eu penso design", serviços, processo, sobre (CPF × CNPJ), contato
   com easter egg, rodapé. Referência técnica da Pixel em `docs/referencia-pixel.md`.
 - Build com várias páginas e trechos reaproveitados (`<!-- @include partials/x.html -->`) em `vite.config.js`.
+- Páginas de case `projetos/<slug>.html` (geradas de `src/data/projects.js` + slides; os cards do carrossel e da
+  lista abrem o case, e o case leva ao Behance), página `404.html`.
+- Prévia de link no WhatsApp/Instagram (`public/img/og.jpg` e `og.jpg` de cada projeto), favicon PNG e ícone da tela
+  inicial do celular. Endereço do site no ar para essas prévias: `SITE_URL` em `vite.config.js`.
+- Corrigido em 01/10: foto do "Sobre" esticada; botões e links com pelo menos 44 px de altura no celular.
 
 Falta:
-- Páginas de case `projetos/*.html` (hoje os cards abrem o Behance), `brandbook.html`, `404.html`.
+- Texto de cada case escrito pela Emilly (hoje o case mostra a apresentação do Behance, que já tem o texto).
+- `brandbook.html` (definir com a Emilly o que entra).
 - Gatinho (ilustração do Instagram) em SVG.
 
 ## Sistema visual (base Behance "EMS Personal Brand" + Instagram atual)

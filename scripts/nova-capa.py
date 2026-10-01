@@ -4,7 +4,7 @@ Uso:  python scripts/nova-capa.py <imagem> <slug> [--topo | --base]
   <imagem>  qualquer JPG/PNG/WebP (de preferência com 1600 px de largura ou mais)
   <slug>    o mesmo "slug" que vai em src/data/projects.js (ex.: studio-flor)
   --topo / --base  qual parte da imagem manter no recorte (padrão: centro)
-Saída: public/img/projetos/<slug>/capa.webp
+Saída: public/img/projetos/<slug>/capa.webp (carrossel) e og.jpg (prévia 1200x630 ao compartilhar o link do case)
 """
 import sys, pathlib
 from PIL import Image
@@ -28,7 +28,15 @@ def main():
 
     out = ROOT / 'public' / 'img' / 'projetos' / slug / 'capa.webp'
     out.parent.mkdir(parents=True, exist_ok=True)
-    im.crop((left, top, left + tw, top + th)).save(out, 'WEBP', quality=80, method=6)
+    capa = im.crop((left, top, left + tw, top + th))
+    capa.save(out, 'WEBP', quality=80, method=6)
+    print(f'ok: {out.relative_to(ROOT)}')
+    og(capa, out.with_name('og.jpg'))
+
+def og(capa, out):
+    # WhatsApp e Instagram não mostram WebP na prévia do link: vai em JPG, 1200x630, recortado da capa
+    im = capa.resize((1200, 750), Image.LANCZOS)
+    im.crop((0, 60, 1200, 690)).save(out, 'JPEG', quality=85, optimize=True, progressive=True)
     print(f'ok: {out.relative_to(ROOT)}')
 
 if __name__ == '__main__':

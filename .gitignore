@@ -5,3 +5,4 @@ dist/
 docs/design-system/pdf/_previa/
 docs/design-system/pdf/_build.html
 src/assets/illustrations/_mascote-redesenho-descartado.svg
+__pycache__/
