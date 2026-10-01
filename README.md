@@ -9,6 +9,8 @@ Site portfólio da Emilly Silva (@itsemsdesign). Vite + HTML/CSS/JS puro + GSAP 
   Imagem da pasta `public` no JS usa `import.meta.env.BASE_URL`; no HTML, `%BASE_URL%`.
 
 ## Rodar
+Computador novo: cole no Claude Code o texto de `docs/instalar-no-computador.md` (ele instala e abre tudo sozinho).
+
 Na Vercel / no GitHub (ou em qualquer máquina fora do Drive):
 
     npm install
