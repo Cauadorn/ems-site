@@ -291,7 +291,8 @@ carrossel; no case, "← Todos os projetos" leva para cá.
   (`src/js/modules/ring.js`): arrastar, setas manteiga e teclado; contador "05 / 11" entre as setas. Com menos de 5
   posts, eles ficam em grade. Embaixo, cada um na sua parte: **Carrosséis** (a imagem deitada com todos os cards, na
   largura toda; no celular fica com 420 px de altura e desliza para o lado) e **Stories** (9:16, grade de 4; 2 no
-  celular).
+  celular). Com `carrosselNoAnel: true` (Dr. Pedro Caetano, que é quase só carrossel), cada card dos carrosséis gira no
+  anel junto com os posts e só os stories ficam embaixo.
 - Topo do case: nome e resumo à esquerda e **miniatura da capa** à direita (400 px, borda tinta, sombra dura, inclinada
   3°); no celular a miniatura fica pequena (96 px) no canto, ao lado de "← Todos os projetos". A capa grande saiu:
   repetia o 1º slide da apresentação.

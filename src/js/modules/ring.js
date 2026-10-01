@@ -4,8 +4,9 @@ import { reduced } from './site.js';
 // Anel 3D das artes nas páginas de social media (pedido da Emilly em 01/10: descer a página até o fim para ver
 // todos os posts era maçante). É o mesmo anel do carrossel da home (ver carousel.js e docs/referencia-pixel.md):
 // cada post 4:5 vira um card do anel (o HTML vem pronto de scripts/gerar-cases.mjs); os carrosséis do Instagram e os
-// stories ficam fora do anel, embaixo, cada um na sua parte. Arrastar para o lado, as setas da tela e as do teclado giram; clicar num vizinho
-// traz ele para a frente. A rolagem da página nunca fica presa aqui.
+// stories ficam fora do anel, embaixo (com carrosselNoAnel, os cards dos carrosséis também entram no anel).
+// Arrastar para o lado, as setas da tela e as do teclado giram; clicar num vizinho traz ele para a frente.
+// A rolagem da página nunca fica presa aqui.
 
 // como no da home: com menos de 8 artes o anel completa com posições vazias (invisíveis)
 const MIN_SLOTS = 8;
