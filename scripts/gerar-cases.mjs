@@ -70,7 +70,7 @@ ${p.resumo ? `      <p class="case-hero__text" data-intro>${esc(p.resumo)}</p>
   </section>
 
   <section class="case-body" aria-label="Apresentação do projeto">
-${p.video ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}    <div class="${p.galeria ? `case-gallery${p.galeria === 'paginas' ? ' case-gallery--paginas' : ''}` : 'case-slides'}">
+${p.video ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}${slides.mockup ? `    <figure class="case-mockup"><img src="${img(p.mockup)}" alt="${t}: ${p.galeria === 'paginas' ? 'página impressa' : 'projeto aplicado'} sobre a mesa (mockup)" width="${slides.mockup.w}" height="${slides.mockup.h}" decoding="async"></figure>\n` : ''}    <div class="${p.galeria ? `case-gallery${p.galeria === 'paginas' ? ' case-gallery--paginas' : ''}` : 'case-slides'}">
 ${slides.list.map((s, k) => `      <img src="${img(s.file)}" alt="${t}: ${p.galeria === 'paginas' ? 'página' : p.galeria ? 'foto' : 'apresentação, parte'} ${k + 1} de ${slides.list.length}" width="${s.w}" height="${s.h}"${k ? ' loading="lazy"' : ''} decoding="async">`).join('\n')}
     </div>
 ${p.site || p.behance ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener">Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}</p>\n` : ''}  </section>
@@ -183,6 +183,7 @@ export function gerarCases(root, projects, areas = []) {
     // vídeo deitado (pelo poster) ocupa a largura da apresentação; o em pé fica estreito
     const poster = resolve(imgDir, 'video-poster.webp');
     if (p.video && existsSync(poster)) { const d = webpSize(poster); slides.wide = d.w > d.h; }
+    if (p.mockup && existsSync(resolve(imgDir, p.mockup))) slides.mockup = webpSize(resolve(imgDir, p.mockup));
     const html = page(p, i, cases.length, cases[(i + 1) % cases.length], slides);
     const out = resolve(dir, `${p.slug}.html`);
     // só grava se mudou: assim o servidor não recarrega à toa

@@ -290,6 +290,8 @@ carrossel; no case, "← Todos os projetos" leva para cá.
 - `video`: vídeo vertical no topo do case (até 420 px, 9:16, raio 20), mudo, em loop, com controles; sempre em WebM
   (VP9) + MP4 (H.264, `faststart`) a 720 px, com `video-poster.webp`. Comprimir antes de subir (ffmpeg).
 - `site`: botão "Ver o site no ar" no fim do case (projetos de web).
+- `mockup`: foto do projeto aplicado (ex.: cardápio impresso na mesa), em destaque antes das páginas: até 600 px,
+  raio 20, mesma sombra da apresentação. WebP de 1200 px de largura.
 
 ### Página 404 (`404.html`)
 Hero violeta da home com "404" nas caixas do logo e o selo **reto**; título "ESSA PÁGINA / *sumiu*", uma linha de
