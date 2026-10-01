@@ -50,8 +50,11 @@
 .hero {
   position: relative; overflow: hidden;
   min-height: 100svh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: clamp(96px, 9vw, 130px) var(--gutter) 48px;
+  display: flex; flex-direction: column; align-items: center; justify-content: safe center; /* safe: em tela baixa não vaza para cima */
+  /* --logo: tamanho do EMS; em tela baixa ele encolhe (36vh) para caber. O espaço de cima acompanha o logo,
+     porque o selo passa .22em acima das caixas e não pode encostar no menu */
+  --logo: clamp(7rem, min(21vw, 36vh), 21rem);
+  padding: calc(112px + .3 * var(--logo)) var(--gutter) 48px;
   background: var(--violeta); color: var(--ivory); text-align: center;
 }
 .hero__bg { position: absolute; inset: 0; pointer-events: none; }
@@ -59,7 +62,7 @@
 .hero__star--a { width: 46vw; height: 46vw; left: -14vw; bottom: -20vw; opacity: .55; }
 .hero__star--b { width: 30vw; height: 30vw; right: -8vw; top: -6vw; opacity: .3; }
 
-.hero__logo { position: relative; z-index: 1; display: flex; gap: .06em; font-family: var(--f-display); font-size: clamp(7rem, 21vw, 21rem); line-height: .82; text-transform: uppercase; }
+.hero__logo { position: relative; z-index: 1; display: flex; gap: .06em; font-family: var(--f-display); font-size: var(--logo); line-height: .82; text-transform: uppercase; }
 /* plaquinhas em tons da paleta que se destacam do fundo violeta; o respiro embaixo evita cortar a curva do S */
 .hero__box { display: block; padding: .04em .08em .05em; background: var(--ameixa); overflow: hidden; }
 .hero__box:nth-child(2) { background: var(--pink); }
@@ -302,7 +305,8 @@
 @media (max-width: 860px) {
   .nav__links, .nav__cta { display: none; }
   .nav__toggle { display: inline-flex; }
-  .hero__logo { font-size: 30vw; margin-right: 12vw; }
+  .hero { --logo: 30vw; }
+  .hero__logo { margin-right: 12vw; }
   .hero__title { font-size: 8.4vw; }
   .hero__title-wrap { margin-block: 44px 34px; }
   .hero__label--a { left: auto; right: 0; top: -34px; margin: 0; }
