@@ -27,6 +27,8 @@ Na Vercel / no GitHub (ou em qualquer máquina fora do Drive):
    (1600 px de largura; `scripts/prepare-images.py` fatia uma imagem comprida).
 3. Abra `src/data/projects.js` e copie um bloco `{ ... }`, trocando `slug` (o mesmo do passo 1), `title`,
    `category`, `detail`, `year` e `behance` (link, ou `null`). Use `soon: true` para mostrar como "em breve".
+   `area` diz em que seção da página "Todos os projetos" ele entra (`identidade`, `web`, `social`, `fotografia`,
+   `produtos`; a lista `areas` fica no mesmo arquivo) e `destaque: true` coloca ele também no carrossel da home.
 4. Pronto: o projeto aparece no carrossel e na lista, na ordem da lista, e ganha sozinho a página
    `projetos/meu-projeto.html` (`scripts/gerar-cases.mjs`, roda junto com o site).
 

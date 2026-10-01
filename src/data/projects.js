@@ -5,9 +5,23 @@
 // behance: link do projeto no Behance (aparece no fim do case) ou null
 // soon: true = aparece no carrossel como "em breve" e ainda não tem página de case
 // resumo: (opcional) parágrafo da Emilly sobre o projeto, aparece no topo do case
+// area: em qual seção da página "Todos os projetos" (projetos/index.html) ele aparece: um id de `areas` abaixo
+// destaque: true = também aparece no carrossel da home ("Trabalhos que têm cara"); false = só em "Todos os projetos"
+
+// Seções da página "Todos os projetos", na ordem. Área sem projeto mostra uma vaga "em breve".
+export const areas = [
+  { id: 'identidade', titulo: 'Identidade <em>visual</em>' },
+  { id: 'web', titulo: 'Web &amp; <em>UX/UI</em>' },
+  { id: 'social', titulo: 'Social &amp; <em>peças</em>' },
+  { id: 'fotografia', titulo: 'Foto<em>grafia</em>' },
+  { id: 'produtos', titulo: 'Produtos <em>personalizados</em>' },
+];
+
 export const projects = [
   {
     slug: 'maria-valentina',
+    area: 'identidade',
+    destaque: true,
     title: 'Maria Valentina',
     category: 'Branding',
     detail: 'Identidade visual para psicóloga',
@@ -17,6 +31,8 @@ export const projects = [
   },
   {
     slug: 'banco-inter',
+    area: 'web',
+    destaque: true,
     title: 'Banco Inter',
     category: 'UI/UX',
     detail: 'Redesign conceitual do app',
@@ -26,6 +42,8 @@ export const projects = [
   },
   {
     slug: 'setembro-amarelo',
+    area: 'social',
+    destaque: true,
     title: 'Setembro Amarelo',
     category: 'Campanha',
     detail: 'Endomarketing · Branding & UI',
@@ -35,6 +53,8 @@ export const projects = [
   },
   {
     slug: 'suddenly-30',
+    area: 'produtos',
+    destaque: true,
     title: 'Suddenly 30',
     category: 'Surface design',
     detail: 'Projeto autoral · estampas e copos',
@@ -44,6 +64,8 @@ export const projects = [
   },
   {
     slug: 'almah',
+    area: 'identidade',
+    destaque: true,
     title: 'Almah',
     category: 'Identidade & rótulos',
     detail: 'Velas artesanais · coleção Gênesis',
@@ -54,6 +76,8 @@ export const projects = [
   },
   {
     slug: 'ems',
+    area: 'identidade',
+    destaque: true,
     title: 'EMS',
     category: 'Marca pessoal',
     detail: 'A minha própria identidade',

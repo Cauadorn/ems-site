@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { projects } from './src/data/projects.js';
+import { projects, areas } from './src/data/projects.js';
 import { gerarCases } from './scripts/gerar-cases.mjs';
 
 const root = dirname(fileURLToPath(import.meta.url));
@@ -10,7 +10,7 @@ const root = dirname(fileURLToPath(import.meta.url));
 const SITE_URL = process.env.SITE_URL || 'https://cauadorn.github.io/ems-site/';
 
 // uma página de case por projeto (projetos/<slug>.html); mudou src/data/projects.js, o Vite reinicia e refaz
-gerarCases(root, projects);
+gerarCases(root, projects, areas);
 
 // Inclui trechos de HTML reaproveitados: <!-- @include partials/header.html -->
 function htmlPartials() {
@@ -24,18 +24,19 @@ function htmlPartials() {
     transformIndexHtml: { order: 'pre', handler: (html) => include(html).replaceAll('%SITE_URL%', SITE_URL) },
     handleHotUpdate({ file, server }) {
       if (file.includes('partials') || file.endsWith('.svg')) server.ws.send({ type: 'full-reload' });
-      if (file.includes('public/img/projetos')) { gerarCases(root, projects); server.ws.send({ type: 'full-reload' }); }
+      if (file.includes('public/img/projetos')) { gerarCases(root, projects, areas); server.ws.send({ type: 'full-reload' }); }
     },
   };
 }
 
-// Toda página .html na raiz (ex.: 404.html) e em /projetos vira uma entrada do build
+// Toda página .html na raiz (ex.: 404.html) e em /projetos (cases e a lista projetos/index.html) vira uma entrada do build
 const pages = { main: resolve(root, 'index.html') };
 for (const dir of ['', 'projetos']) {
   const abs = resolve(root, dir);
   if (!existsSync(abs)) continue;
   for (const f of readdirSync(abs)) {
-    if (f.endsWith('.html') && f !== 'index.html') pages[`${dir}${dir ? '/' : ''}${f.replace('.html', '')}`] = resolve(abs, f);
+    if (!f.endsWith('.html') || (!dir && f === 'index.html')) continue;
+    pages[`${dir}${dir ? '/' : ''}${f.replace('.html', '')}`] = resolve(abs, f);
   }
 }
 

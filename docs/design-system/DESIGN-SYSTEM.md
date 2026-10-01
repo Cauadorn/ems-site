@@ -270,6 +270,15 @@ Uma por projeto, gerada sozinha a partir de `src/data/projects.js` (`scripts/ger
 - **Contato e rodapé:** os mesmos da home (`partials/contact.html`, `partials/footer.html`).
 - Projeto com `soon: true` não tem case e aparece como "em breve".
 
+### Página "Todos os projetos" (`projetos/index.html`)
+Gerada de `src/data/projects.js`. Fundo ameixa. Topo: pílula "← Início", eyebrow "Portfólio · N projetos", título
+"Todos os *projetos*" e pílulas de atalho para cada área. Uma seção por área (`areas`: Identidade *visual*, Web &
+*UX/UI*, Social & *peças*, Foto*grafia*, Produtos *personalizados*), separadas por linha marfim 12%, com eyebrow
+"(01) 3 projetos", título Anton + serif (clamp(2rem, 4.4vw, 3.6rem)) e grade de cards (mín. 300 px): capa 16:10, nome
+em Anton, categoria em serif manteiga, ano; hover sobe 6 px e a capa cresce 5%. Projeto `soon` mostra "em breve";
+área sem projeto mostra uma vaga tracejada com espiral rosa. Na home, botão "Ver todos os projetos" abaixo do
+carrossel; no case, "← Todos os projetos" leva para cá.
+
 ### Página 404 (`404.html`)
 Hero violeta da home com "404" nas caixas do logo e o selo **reto**; título "ESSA PÁGINA / *sumiu*", uma linha de
 texto e dois botões ("Ver projetos", "Ir pro início").
