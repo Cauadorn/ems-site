@@ -5,7 +5,8 @@ para qualquer computador continuar de onde parou. **Responda sempre em portuguê
 
 ## Contato e dados confirmados pela Emilly (01/10/2026)
 WhatsApp (31) 99271-8754 · e-mail contatoemillyss@gmail.com · Instagram @itsemsdesign · Behance emysilva7 ·
-formada em Design Gráfico pela UNA (Belo Horizonte).
+formada em Design Gráfico pela UNA (Belo Horizonte). Mora entre São Paulo e Belo Horizonte e atende o Brasil todo,
+online: no site, nunca apresentar uma cidade só (afasta cliente de outro estado).
 
 ## Quem usa
 - **Emilly Silva** (@itsemsdesign): designer gráfica e UX/UI, dona da marca EMS e do site. Não é programadora:

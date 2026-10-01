@@ -1,6 +1,6 @@
 # EMS — Design System do site
 
-> Marca pessoal de **Emilly Silva** (@itsemsdesign), designer gráfica e UX/UI em Belo Horizonte.
+> Marca pessoal de **Emilly Silva** (@itsemsdesign), designer gráfica e UX/UI entre São Paulo e Belo Horizonte, atendendo todo o Brasil.
 > Versão 1.0 · 30/09/2026 · site em Vite + HTML/CSS/JS puro + GSAP + Lenis.
 >
 > **Para IA (Claude ou outra):** este arquivo é a regra. Os valores exatos estão em `tokens.json` (formato W3C
