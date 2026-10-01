@@ -7,7 +7,8 @@
 // site: (opcional) endereço do site no ar, para projetos de web (botão "Ver o site no ar" no case)
 // soon: true = aparece no carrossel como "em breve" e ainda não tem página de case
 // resumo: (opcional) parágrafo da Emilly sobre o projeto, aparece no topo do case
-// galeria: true = as imagens aparecem em grade (bom para fotos verticais), em vez de empilhadas
+// galeria: true = as imagens aparecem em grade (bom para fotos verticais), em vez de empilhadas;
+//   'paginas' = páginas inteiras, sem corte, em duas colunas (cardápios, revistas)
 // area: em qual seção da página "Todos os projetos" (projetos/index.html) ele aparece: um id de `areas` abaixo
 // destaque: true = também aparece no carrossel da home ("Trabalhos que têm cara"); false = só em "Todos os projetos"
 
@@ -81,6 +82,18 @@ export const projects = [
     year: '2026',
     color: '#F2C200',
     behance: 'https://www.behance.net/gallery/242659903/Yellow-September-Internal-Campaign-Branding-UI',
+  },
+  {
+    slug: 'cardapio-rinus',
+    area: 'social',
+    destaque: false,
+    galeria: 'paginas', // páginas inteiras, sem corte, em duas colunas (dá para ler)
+    title: "Rinu's",
+    category: 'Cardápio',
+    detail: 'Cardápio para bar e restaurante · 9 páginas',
+    year: '2026',
+    color: '#2A1E1E',
+    behance: null,
   },
   {
     slug: 'suddenly-30',
