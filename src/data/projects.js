@@ -37,6 +37,7 @@ export const projects = [
     year: '2026',
     color: '#455A75',
     behance: 'https://www.behance.net/gallery/243857007/Psicologa-Maria-Valentina-Branding-Design',
+    video: 'video.mp4', // motion do logo (5 s, sem som), horizontal
   },
   {
     slug: 'idex',
