@@ -287,9 +287,13 @@ carrossel; no case, "← Todos os projetos" leva para cá.
 
 ### Galeria, vídeo e link do site nos cases
 - `galeria: true` (fotografia): as imagens em grade 4:5 (mín. 260 px), cantos 10 px, em vez da apresentação empilhada.
-- `galeria: 'posts'` (social media): posts 4:5 inteiros, 4 por linha (2 até 860 px, 1 até 520 px), última linha
-  centralizada; imagem deitada (carrossel inteiro) ocupa a linha toda.
-- `instagram`: botão marfim "Ver no Instagram" (ícone do Instagram) no fim do case, para o perfil do cliente.
+- `galeria: 'posts'` (social media): separados sozinhos pelo formato em blocos com título pequeno (eyebrow):
+  **Feed** (4:5, 4 por linha; 2 até 860 px, 1 até 520 px; última linha centralizada), **Carrosséis** (a imagem deitada
+  com todos os cards, na largura toda; no celular fica com 420 px de altura e desliza para o lado) e **Stories** (9:16,
+  4 por linha; 2 no celular).
+- `instagram`: botão marfim com ícone do Instagram no fim do case ("Ver no Instagram"; `instagramTexto` muda o texto,
+  ex.: "Ver mais fotos" nas fotografias esportivas, que levam ao @itsemsfotografia).
+- `capaNoCase: false`: a capa fica só nos cards e no carrossel; o case abre direto no vídeo ou no mockup.
 - `video`: vídeo vertical no topo do case (até 420 px, 9:16, raio 20), mudo, em loop, com controles; sempre em WebM
   (VP9) + MP4 (H.264, `faststart`) a 720 px, com `video-poster.webp`. Comprimir antes de subir (ffmpeg).
 - `site`: botão "Ver o site no ar" no fim do case (projetos de web).
