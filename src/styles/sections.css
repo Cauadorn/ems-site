@@ -85,6 +85,7 @@
 
 .hero__foot { position: relative; z-index: 2; width: min(100%, var(--max)); margin-top: clamp(36px, 5vw, 64px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; text-align: left; }
 .hero__who { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: var(--t-small); opacity: .92; }
+.hero__role { text-wrap: balance; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* ================= FAIXAS ================= */
