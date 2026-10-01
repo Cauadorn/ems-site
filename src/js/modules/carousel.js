@@ -1,10 +1,13 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { projects } from '../../data/projects.js';
+import { projects as todos } from '../../data/projects.js';
 import { reduced } from './site.js';
 
 // raiz do site ("/" aqui, "/ems-site/" no GitHub Pages): toda imagem da pasta public passa por ela
 const BASE = import.meta.env.BASE_URL;
+
+// a home mostra só os projetos com destaque: true; a página "Todos os projetos" mostra todos
+const projects = todos.filter((p) => p.destaque);
 
 // Carrossel 3D dos projetos — o anel da pixel.melbourne (ver docs/referencia-pixel.md):
 // os cards formam um cilindro (rotateY + translateZ) e giram até o projeto escolhido.

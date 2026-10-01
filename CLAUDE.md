@@ -70,6 +70,7 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
 | Quero mudar | Arquivo |
 |---|---|
 | Projetos do carrossel e da lista | `src/data/projects.js` (capa: `python scripts/nova-capa.py <imagem> <slug>`) |
+| Página "Todos os projetos" (por área) | gerada sozinha em `projetos/index.html` a partir de `projects.js` (`area`, `destaque` e a lista `areas`); layout em `scripts/gerar-cases.mjs` e `src/styles/case.css` |
 | Páginas de case | geradas sozinhas de `projects.js` + `public/img/projetos/<slug>/slide-*.webp`; layout em `scripts/gerar-cases.mjs` e `src/styles/case.css`. Não editar `projetos/*.html` à mão |
 | Textos | `index.html` (contato: `partials/contact.html`; 404: `404.html`) |
 | Cores, fontes, espaçamentos | `src/styles/tokens.css` |
@@ -86,6 +87,8 @@ HTML; usar a base como na tabela acima, senão a imagem quebra no ar e funciona 
 ## Pendências (perguntar à Emilly)
 - **Lembrar a Emilly no começo de cada conversa (ela pediu para ser cobrada):** o resumo curto de cada projeto.
   Quando ela mandar, vai no campo `resumo` do projeto em `src/data/projects.js` (aparece no topo do case).
+- Mais projetos para "Todos os projetos": a Emilly vai mandar o resto do portfólio, separado por área (identidade,
+  web, social, fotografia, produtos). Fotografia ainda não tem nenhum projeto (aparece "em breve").
 - ALMAH entra no portfólio, mas o case espera o brand book da ALMAH (hoje: logo, rótulos, fotos das velas, um vídeo).
   Até lá fica "em breve" (`soon: true`).
 - Página de brand book do site: o que entra?

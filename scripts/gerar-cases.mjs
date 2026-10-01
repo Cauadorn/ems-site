@@ -1,4 +1,5 @@
-// Gera uma página de case por projeto de src/data/projects.js: projetos/<slug>.html.
+// Gera, a partir de src/data/projects.js, uma página de case por projeto (projetos/<slug>.html) e a página
+// "Todos os projetos" separada por área (projetos/index.html).
 // Roda sozinho toda vez que o site abre ou é publicado (vite.config.js), e também à mão: node scripts/gerar-cases.mjs
 // Para mudar o layout de TODAS as páginas de case, edite este arquivo (estilos em src/styles/case.css).
 // Não edite os projetos/*.html: eles são refeitos a cada vez.
@@ -53,7 +54,7 @@ ${MARCA}
 <main id="conteudo">
   <section class="case-hero" aria-labelledby="case-titulo">
     <div class="case-hero__inner container">
-      <a class="case-back" href="%BASE_URL%#projetos" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a>
+      <a class="case-back" href="%BASE_URL%projetos/" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a>
       <p class="eyebrow" data-intro>(${nn(i + 1)}/${nn(total)}) ${esc(p.category)} · ${esc(p.year)}</p>
       <h1 id="case-titulo" class="case-hero__title" data-intro>${t}</h1>
       <p class="case-hero__lead" data-intro>${esc(p.detail)}</p>
@@ -92,7 +93,77 @@ ${p.behance ? `    <p class="case-behance"><a class="btn btn--ghost" href="${esc
 `;
 }
 
-export function gerarCases(root, projects) {
+// card de projeto na página "Todos os projetos"
+function card(p) {
+  const img = `<span class="work-card__img"><img src="%BASE_URL%img/projetos/${p.slug}/capa.webp" alt="" width="1600" height="1000" loading="lazy"></span>`;
+  const body = `<span class="work-card__body"><span class="work-card__title">${esc(p.title)}</span><span class="work-card__cat">${esc(p.category)} · ${esc(p.detail)}</span><span class="work-card__year">${esc(p.year)}</span></span>`;
+  return p.soon
+    ? `<li><div class="work-card work-card--soon">${img}<span class="work-card__badge">em breve</span>${body}</div></li>`
+    : `<li><a class="work-card" href="%BASE_URL%projetos/${p.slug}.html" data-cursor-text="ver case">${img}${body}</a></li>`;
+}
+
+function listing(projects, areas) {
+  const comProjetos = (a) => projects.filter((p) => p.area === a.id);
+  const vaga = '<li><div class="work-card work-card--slot"><span class="work-card__img"><svg aria-hidden="true"><use href="#i-espiral"/></svg></span><span class="work-card__body"><span class="work-card__title">Em breve</span><span class="work-card__cat">próximo projeto</span></span></div></li>';
+  const secoes = areas.map((a, i) => {
+    const lista = comProjetos(a);
+    return `
+  <section class="works__area" id="${a.id}" aria-labelledby="area-${a.id}">
+    <div class="container">
+      <div class="works__head">
+        <p class="eyebrow">(${nn(i + 1)}) ${lista.length ? `${lista.length} ${lista.length === 1 ? 'projeto' : 'projetos'}` : 'em breve'}</p>
+        <h2 id="area-${a.id}" class="section-title">${a.titulo}</h2>
+      </div>
+      <ul class="works__grid">
+${(lista.length ? lista.map(card) : [vaga]).map((c) => `        ${c}`).join('\n')}
+      </ul>
+    </div>
+  </section>`;
+  }).join('\n');
+  return `<!doctype html>
+${MARCA}
+<html lang="pt-BR">
+<head>
+<!-- @include partials/head.html -->
+  <title>Todos os projetos | Emilly Silva</title>
+  <meta name="description" content="Portfólio completo de Emilly Silva, designer gráfico e UX/UI: identidade visual, web e UX/UI, social media, fotografia e produtos personalizados.">
+  <link rel="canonical" href="%SITE_URL%projetos/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="%SITE_URL%projetos/">
+  <meta property="og:title" content="Todos os projetos | Emilly Silva">
+  <meta property="og:description" content="Identidade visual, web e UX/UI, social media, fotografia e produtos personalizados.">
+  <meta property="og:image" content="%SITE_URL%img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <script type="module" src="/src/js/page.js"></script>
+</head>
+<body id="topo">
+<!-- @include partials/icons.html -->
+<!-- @include partials/header.html -->
+
+<main id="conteudo" class="works">
+  <section class="works__hero" aria-labelledby="works-titulo">
+    <div class="container">
+      <a class="case-back" href="%BASE_URL%#projetos" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Início</a>
+      <p class="eyebrow" data-intro>Portfólio · ${projects.length} projetos</p>
+      <h1 id="works-titulo" class="section-title">Todos os <em>projetos</em></h1>
+      <nav class="works__nav" aria-label="Áreas" data-intro>
+${areas.map((a) => `        <a href="#${a.id}">${a.titulo.replace(/<\/?em>/g, '')}</a>`).join('\n')}
+      </nav>
+    </div>
+  </section>
+${secoes}
+
+<!-- @include partials/contact.html -->
+</main>
+
+<!-- @include partials/footer.html -->
+</body>
+</html>
+`;
+}
+
+export function gerarCases(root, projects, areas = []) {
   const dir = resolve(root, 'projetos');
   mkdirSync(dir, { recursive: true });
   const cases = projects.filter((p) => !p.soon);
@@ -110,6 +181,14 @@ export function gerarCases(root, projects) {
     feitos.add(`${p.slug}.html`);
   });
 
+  // página "Todos os projetos", separada por área
+  if (areas.length) {
+    const html = listing(projects, areas);
+    const out = resolve(dir, 'index.html');
+    if (!existsSync(out) || readFileSync(out, 'utf-8') !== html) writeFileSync(out, html);
+    feitos.add('index.html');
+  }
+
   // projeto que saiu da lista (ou virou "em breve") perde a página; páginas feitas à mão ficam
   for (const f of readdirSync(dir)) {
     if (f.endsWith('.html') && !feitos.has(f) && readFileSync(resolve(dir, f), 'utf-8').includes(MARCA)) rmSync(resolve(dir, f));
@@ -120,8 +199,8 @@ export function gerarCases(root, projects) {
 if (import.meta.url === pathToFileURL(process.argv[1] || '').href) {
   const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
   // sem await no topo: este arquivo também é carregado pelo vite.config.js
-  import(pathToFileURL(resolve(root, 'src/data/projects.js')).href).then(({ projects }) => {
-    gerarCases(root, projects);
+  import(pathToFileURL(resolve(root, 'src/data/projects.js')).href).then(({ projects, areas }) => {
+    gerarCases(root, projects, areas);
     console.log('ok: páginas de case em projetos/');
   });
 }
