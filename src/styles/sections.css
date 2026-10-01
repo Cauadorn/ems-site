@@ -52,17 +52,17 @@
   min-height: 100svh;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   padding: clamp(96px, 9vw, 130px) var(--gutter) 48px;
-  background: var(--violeta); color: var(--ivory); text-align: center;
+  background: var(--ameixa); color: var(--ivory); text-align: center; /* roxo escuro: descansa a vista na chegada (pedido da Emilly) */
 }
 .hero__bg { position: absolute; inset: 0; pointer-events: none; }
-.hero__star { position: absolute; color: var(--ink); }
+.hero__star { position: absolute; color: var(--violeta); }
 .hero__star--a { width: 46vw; height: 46vw; left: -14vw; bottom: -20vw; opacity: .55; }
 .hero__star--b { width: 30vw; height: 30vw; right: -8vw; top: -6vw; opacity: .3; }
 
 .hero__logo { position: relative; z-index: 1; display: flex; gap: .06em; font-family: var(--f-display); font-size: clamp(7rem, 21vw, 21rem); line-height: .82; text-transform: uppercase; }
 /* plaquinhas em tons da paleta que se destacam do fundo violeta; o respiro embaixo evita cortar a curva do S */
 .hero__box { display: block; padding: .04em .08em .05em; background: var(--violeta-2); overflow: hidden; }
-.hero__box:nth-child(2) { background: var(--ameixa); }
+.hero__box:nth-child(2) { background: var(--violeta); }
 .hero__box span { display: block; }
 .hero__seal { position: absolute; right: -.62em; top: -.22em; width: .62em; rotate: 12deg; cursor: pointer; filter: drop-shadow(0 18px 24px rgba(42, 20, 51, .45)); }
 .hero__seal svg { width: 100%; height: auto; overflow: visible; }
@@ -93,9 +93,9 @@
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* ================= FAIXAS ================= */
-/* sem fundo claro em volta das faixas: em cima continua o violeta do topo, embaixo começa o ameixa dos projetos.
+/* sem fundo claro em volta das faixas: em cima continua o ameixa do topo, embaixo começa o violeta dos projetos.
    A troca de cor (50%) fica sempre escondida atrás de uma das faixas; os 40px de cima são do próprio topo */
-.tapes { position: relative; height: clamp(120px, 16vw, 200px); margin-top: -40px; z-index: 5; overflow-x: clip; background: linear-gradient(to bottom, transparent 40px, var(--violeta) 40px, var(--violeta) 50%, var(--ameixa) 50%); }
+.tapes { position: relative; height: clamp(120px, 16vw, 200px); margin-top: -40px; z-index: 5; overflow-x: clip; background: linear-gradient(to bottom, transparent 40px, var(--ameixa) 40px, var(--ameixa) 50%, var(--violeta) 50%); }
 .tape { position: absolute; left: -5%; width: 110%; overflow: hidden; padding: 14px 0; box-shadow: 0 12px 24px -12px rgba(42, 20, 51, .5); }
 .tape--wine { top: 20%; background: var(--wine); color: var(--ivory); transform: rotate(-3deg); z-index: 2; }
 .tape--lavanda { top: 32%; background: var(--lavanda); color: var(--ink); transform: rotate(2.5deg); }
@@ -110,7 +110,7 @@
 
 /* ================= PROJETOS ================= */
 /* as faixas logo acima já dão o respiro: aqui o espaço até o título é menor que o das outras seções */
-.projects { padding: clamp(24px, 3vw, 48px) 0 0; background: var(--ameixa); color: var(--ivory); }
+.projects { padding: clamp(24px, 3vw, 48px) 0 0; background: var(--violeta); color: var(--ivory); }
 .projects .section-title em { color: var(--manteiga); }
 .projects .view-toggle { background: rgba(255, 251, 222, .12); }
 .projects .view-toggle button[aria-pressed='true'] { background: var(--ivory); color: var(--ameixa); }
@@ -124,8 +124,11 @@
 .c3d__list { position: relative; display: flex; justify-content: center; align-items: center; transform-style: preserve-3d; transform: translate3d(0, 0, var(--c3d-z)) rotateX(0deg) rotateY(var(--c3d-rotate)); }
 /* o item só posiciona; quem corta e esconde o verso são as faces (overflow no item achataria o 3D) */
 .c3d__item { position: absolute; flex: none; width: var(--c3d-item-width); transform-style: preserve-3d; transition: transform .45s var(--ease-back); }
-/* card de outro projeto cresce quando o mouse passa: dá pra clicar e trazer ele pra frente */
-@media (hover: hover) { .c3d__item:not(.c3d__item--slot):not(.is-active):hover { --s: 1.12; cursor: pointer; } }
+/* só o card da frente e os dois vizinhos (esquerda e direita) recebem o mouse; o resto do anel, lá atrás, é paisagem.
+   O vizinho cresce quando o mouse passa: dá pra clicar e trazer ele pra frente */
+.c3d__item { pointer-events: none; }
+.c3d__item.is-active, .c3d__item.is-near { pointer-events: auto; }
+@media (hover: hover) { .c3d__item.is-near:hover { --s: 1.12; cursor: pointer; } }
 .c3d.is-dragging .c3d__item { transition: none; }
 .c3d__ratio { width: 100%; padding-top: 60%; }
 .c3d__face { position: absolute; inset: 0; display: block; border-radius: .5rem; overflow: hidden; background: var(--ink); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
