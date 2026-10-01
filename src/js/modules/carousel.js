@@ -55,10 +55,10 @@ export function initCarousel(root) {
     list.append(item);
   }
 
-  // painéis com o nome (o conteúdo acessível fica aqui); só o do projeto ativo aparece
-  panelsEl.innerHTML = projects.map((p, i) => `
+  // painéis com o nome (o conteúdo acessível fica aqui); só o do projeto ativo aparece.
+  // Sem o contador "01 / 06" na frente do card (pedido da Emilly em 01/10)
+  panelsEl.innerHTML = projects.map((p) => `
     <article class="c3d__panel" data-c3d-panel>
-      <p class="c3d__count">${String(i + 1).padStart(2, '0')} / ${String(n).padStart(2, '0')}</p>
       <h3 class="c3d__name">${p.title}</h3>
       <p class="c3d__cat">${p.category} · ${p.detail}</p>
       ${caseUrl(p)
