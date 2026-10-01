@@ -9,7 +9,7 @@ formada em Design Gráfico pela UNA (Belo Horizonte). Mora entre São Paulo e Be
 online: no site, nunca apresentar uma cidade só (afasta cliente de outro estado).
 
 ## Quem usa
-- **Emilly Silva** (@itsemsdesign): designer gráfica e UX/UI, dona da marca EMS e do site. Não é programadora:
+- **Emilly Silva** (@itsemsdesign): designer gráfico e UX/UI, dona da marca EMS e do site. Não é programadora:
   explique o que mudou em palavras comuns, sem jargão, e mostre o resultado no navegador.
 - **Cauã Dorn**: diretor de arte que construiu o site com o Claude. O repositório fica na conta dele no GitHub.
 
@@ -58,7 +58,8 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
   tem que achar os projetos e o contato em até 2 cliques.
 
 ## O que já foi aprovado ou pedido pelo Cauã (não desfazer sem perguntar)
-- Hero no estilo pixel.melbourne: logo "EMS" em caixas, selo carimbado, frase em 3 linhas, etiquetas arrastáveis.
+- Hero no estilo pixel.melbourne: logo "EMS" em caixas, selo carimbado, etiquetas arrastáveis. A frase da marca
+  ficou em 2 linhas corridas e menores, em itálico (pedido da Emilly em 01/10: a de 3 linhas era grande demais).
 - Carrossel 3D igual ao da pixel.melbourne: anel circular girado pela rolagem, mínimo de 8 posições, vagas
   "próximo projeto" (`docs/referencia-pixel.md` e `src/js/modules/carousel.js`).
 - Seção "Como eu penso design": texto menor e objetivo.

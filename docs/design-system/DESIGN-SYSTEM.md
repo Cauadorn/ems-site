@@ -1,6 +1,6 @@
 # EMS — Design System do site
 
-> Marca pessoal de **Emilly Silva** (@itsemsdesign), designer gráfica e UX/UI entre São Paulo e Belo Horizonte, atendendo todo o Brasil.
+> Marca pessoal de **Emilly Silva** (@itsemsdesign), designer gráfico e UX/UI entre São Paulo e Belo Horizonte, atendendo todo o Brasil.
 > Versão 1.0 · 30/09/2026 · site em Vite + HTML/CSS/JS puro + GSAP + Lenis.
 >
 > **Para IA (Claude ou outra):** este arquivo é a regra. Os valores exatos estão em `tokens.json` (formato W3C
@@ -12,7 +12,8 @@
 ## 1. Essência
 
 - **Frase da marca (da bio dela):** "faço marca bonita de perto e clara de longe".
-- **O que ela faz:** identidade visual · web design e UX/UI · social media e peças · produtos autorais.
+- **O que ela faz:** identidade visual · web design e UX/UI · social media e peças · produtos personalizados
+  (copos, ecobags, estampas: surface design) · fotografia.
 - **Objetivo do site:** trazer clientes. Portfólio claro e fácil de usar, com personalidade. Conceitual, mas usável
   (a referência de estilo é pixel.melbourne; a de usabilidade é um portfólio direto).
 - **Personalidade:** criativa, divertida sem ser infantil, profissional (ela é formada), feminina sem clichê,
@@ -106,7 +107,7 @@
 | Papel | Família | Uso | Regras |
 |---|---|---|---|
 | Display | **Anton** 400 | títulos de seção, logo, nomes do carrossel, faixas | sempre CAIXA ALTA, `line-height .9–.98`, `letter-spacing -.01em` |
-| Voz | **Instrument Serif** itálico | a palavra de destaque, subtítulos, rodapé "ems" | caixa baixa, `letter-spacing -.02em`, ~1,08–1,12× o tamanho do título ao lado |
+| Voz | **Instrument Serif** itálico | a palavra de destaque, subtítulos, frase do hero, rodapé "ems" | caixa baixa, `letter-spacing -.02em`; ao lado do Anton, 1,16× (o topo das letras altas fica na altura das maiúsculas do Anton) |
 | Texto | **Inter** (variável) | parágrafos, botões, rótulos, interface | 400 texto, 500–600 rótulo, 700 botão forte; `line-height 1.55` |
 
 Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic), `@fontsource-variable/inter`
@@ -115,7 +116,7 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 ### Escala
 | Token | Valor | Onde |
 |---|---|---|
-| `--t-hero` | clamp(3.4rem, 11vw, 10.5rem) | escala antiga do hero (hoje o hero usa clamp(2.6rem, 6.6vw, 7rem); celular 10.5vw) |
+| `--t-hero` | clamp(3.4rem, 11vw, 10.5rem) | escala antiga do hero (hoje a frase do hero usa clamp(2rem, 4.2vw, 4rem) em serif itálico; celular 8.4vw) |
 | `--t-h2` | clamp(2.4rem, 6vw, 5.2rem) | títulos de seção |
 | `--t-h3` | clamp(1.6rem, 2.6vw, 2.2rem) | título de cartão de serviço |
 | `--t-lead` | clamp(1.05rem, 1.3vw, 1.25rem) | parágrafo de abertura, "Sobre" |
@@ -130,7 +131,7 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 ```
 ```css
 .section-title { font-family: var(--f-display); font-size: var(--t-h2); line-height: .95; text-transform: uppercase; letter-spacing: -.01em; }
-.section-title em { font-family: var(--f-serif); font-style: italic; text-transform: none; letter-spacing: -.02em; font-size: 1.08em; color: var(--pink); }
+.section-title em { font-family: var(--f-serif); font-style: italic; text-transform: none; letter-spacing: -.02em; font-size: 1.16em; color: var(--pink); }
 /* em fundo escuro a palavra em itálico fica manteiga */
 ```
 
@@ -206,7 +207,8 @@ volta ao subir. ≤ 860 px: vira botão violeta "Menu +" que abre menu em tela c
 partir do botão, .7 s), links em Anton 17vw.
 
 ### Cartões de serviço (`.service`)
-Três colunas: vinho (Identidade *visual*), violeta (Web & *UX/UI*), rosa (Social & *peças*). Raio 32, padding
+Quatro colunas: vinho (Identidade *visual*), violeta (Web & *UX/UI*), rosa (Social & *peças*), lavanda com texto
+tinta (Produtos *personalizados*, ícone estrela ameixa, pílulas com borda tinta 35%). Raio 32, padding
 clamp(24px, 3vw, 40px), ícone 64 px, título Anton + palavra serif, lista de entregas em pílulas com borda marfim 45%,
 link "Quero … →". Desktop com mouse: o cartão sob o mouse cresce (flex 1,6; os outros 0,8; .7 s). ≤ 1000 px: empilhados.
 
@@ -239,8 +241,9 @@ diagonal; borda inferior 2 px; hover abre padding e mostra miniatura que segue o
   `src/data/projects.js`.
 
 ### Faixas (`.tapes`)
-Duas fitas cruzadas que passam da tela: vinho (−3°, Anton marfim, serviços separados por brilho) sobre lavanda
-(+2,5°, serif itálico tinta, frases separadas por coração). Rolam em loop (32 s e 40 s, sentidos opostos).
+Duas fitas cruzadas que passam da tela, com o mesmo texto (os serviços, em Anton): vinho (−3°, marfim, separados
+por brilho) sobre lavanda (+2,5°, tinta, separados por coração). ("Custom products" para produtos personalizados.) Rolam sem fim em sentidos opostos (45 e 36 px/s):
+`src/js/modules/tapes.js` repete o texto até cobrir a faixa e duplica, para a emenda não aparecer.
 
 ### Cursor personalizado
 Só com mouse (`hover: hover` e `pointer: fine`): seta violeta 26 px + etiqueta rosa contextual ("ver case",
@@ -284,7 +287,7 @@ texto e dois botões ("Ver projetos", "Ir pro início").
 contador 0 → 100% (1,5 s) → selo pisca → conteúdo sobe e some → três cortinas sobem em sequência (marfim, violeta,
 vinho; `expo.inOut`, .9 s, intervalo .12 s).
 
-**Hero:** letras do EMS sobem das caixas (intervalo .08 s) → selo carimba (escala 0, −40°) → as três linhas entram
+**Hero:** letras do EMS sobem das caixas (intervalo .08 s) → selo carimba (escala 0, −40°) → as duas linhas entram
 pelos lados (+20%, −15%, +12%, com opacidade) → etiquetas e adesivos pulam (escala 0 → 1, `back.out(3)`) → rodapé
 do hero sobe. Depois: logo respira em loop; adesivos flutuam (±12 px, 2,2–3,1 s); brilhos piscam.
 
@@ -313,11 +316,12 @@ aparece no lugar.
 ## 10. Estrutura da home (ordem e fundos)
 
 1. **Abertura** (marfim + cortinas violeta/vinho)
-2. **Hero** — violeta; logo EMS + selo; "Faço marca bonita / *de perto e clara* / de longe."; etiquetas; CTA
+2. **Hero** — violeta; logo EMS + selo; frase em 2 linhas corridas, serif itálico marfim com destaque manteiga:
+   "Faço marca bonita *de perto* / e clara *de longe*."; etiquetas; CTA
 3. **Faixas** cruzadas (vinho sobre lavanda)
 4. **Projetos** — ameixa; "(01) Trabalhos que têm *cara*"; carrossel 3D ou lista
 5. **Como eu penso design** — lavanda-2; texto que acende no scroll
-6. **Serviços** — ameixa; três cartões coloridos
+6. **Serviços** — ameixa; quatro cartões coloridos
 7. **Processo** — marfim; 4 cartões em escada
 8. **Sobre** — ivory-2; foto em moldura de seleção + CPF × CNPJ
 9. **Contato** — violeta; selo balançando + "VAMOS CRIAR *juntos?*" + "Chamar no WhatsApp" (botão principal), Instagram, e-mail, Behance
