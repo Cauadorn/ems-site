@@ -176,7 +176,7 @@ export const projects = [
     title: '24 da Bruninha',
     category: 'Copo personalizado',
     detail: 'Copo EcoLabel para aniversário',
-    year: '',
+    year: '2026',
     color: '#1FB57F',
     behance: null,
   },
