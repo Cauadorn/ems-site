@@ -9,11 +9,16 @@
 // destaque: true = também aparece no carrossel da home ("Trabalhos que têm cara"); false = só em "Todos os projetos"
 
 // Seções da página "Todos os projetos", na ordem. Área sem projeto mostra uma vaga "em breve".
+// link: (opcional) card extra no fim da seção, levando para fora do site (ex.: Instagram)
 export const areas = [
   { id: 'identidade', titulo: 'Identidade <em>visual</em>' },
   { id: 'web', titulo: 'Web &amp; <em>UX/UI</em>' },
   { id: 'social', titulo: 'Social &amp; <em>peças</em>' },
-  { id: 'fotografia', titulo: 'Foto<em>grafia</em>' },
+  {
+    id: 'fotografia', titulo: 'Foto<em>grafia</em>',
+    // card extra que leva ao Instagram de fotografia esportiva (a Emilly pediu para divulgar)
+    link: { href: 'https://www.instagram.com/itsemsfotografia/', titulo: '@itsemsfotografia', detalhe: 'Fotografia esportiva no Instagram' },
+  },
   { id: 'produtos', titulo: 'Produtos <em>personalizados</em>' },
 ];
 
@@ -84,5 +89,17 @@ export const projects = [
     year: '2025',
     color: '#6225D8',
     behance: 'https://www.behance.net/gallery/241318371/EMS-Personal-Brand',
+  },
+  {
+    slug: 'almah-fotos',
+    area: 'fotografia',
+    destaque: false,
+    title: 'Almah',
+    category: 'Fotografia de produto',
+    detail: 'Velas artesanais · coleção Gênesis',
+    year: '2026',
+    color: '#492852',
+    behance: null,
+    soon: true, // fotos das velas da ALMAH: "em breve" por enquanto (pedido da Emilly)
   },
 ];

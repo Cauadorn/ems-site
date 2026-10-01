@@ -102,6 +102,11 @@ function card(p) {
     : `<li><a class="work-card" href="%BASE_URL%projetos/${p.slug}.html" data-cursor-text="ver case">${img}${body}</a></li>`;
 }
 
+// card que leva para fora do site (ex.: Instagram de fotografia)
+function linkCard(l) {
+  return `<li><a class="work-card work-card--link" href="${esc(l.href)}" target="_blank" rel="noopener" data-cursor-text="abrir"><span class="work-card__img"><svg aria-hidden="true"><use href="#i-instagram"/></svg></span><span class="work-card__body"><span class="work-card__title">${esc(l.titulo)}</span><span class="work-card__cat">${esc(l.detalhe)}</span></span></a></li>`;
+}
+
 function listing(projects, areas) {
   const comProjetos = (a) => projects.filter((p) => p.area === a.id);
   const vaga = '<li><div class="work-card work-card--slot"><span class="work-card__img"><svg aria-hidden="true"><use href="#i-espiral"/></svg></span><span class="work-card__body"><span class="work-card__title">Em breve</span><span class="work-card__cat">próximo projeto</span></span></div></li>';
@@ -115,7 +120,7 @@ function listing(projects, areas) {
         <h2 id="area-${a.id}" class="section-title">${a.titulo}</h2>
       </div>
       <ul class="works__grid">
-${(lista.length ? lista.map(card) : [vaga]).map((c) => `        ${c}`).join('\n')}
+${[...(lista.length ? lista.map(card) : a.link ? [] : [vaga]), ...(a.link ? [linkCard(a.link)] : [])].map((c) => `        ${c}`).join('\n')}
       </ul>
     </div>
   </section>`;

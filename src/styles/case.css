@@ -69,6 +69,11 @@
   a.work-card:hover img { scale: 1.05; }
 }
 .work-card__badge { position: absolute; top: 12px; left: 12px; padding: .3em .8em; border-radius: 999px; background: rgba(42, 20, 51, .7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-size: var(--t-small); font-weight: 700; }
+/* card para fora do site (Instagram): violeta com o ícone grande */
+.work-card--link .work-card__img { display: grid; place-items: center; background: var(--violeta); }
+.work-card--link .work-card__img svg { width: 72px; height: 72px; color: var(--ivory); transition: scale .5s var(--ease-back); }
+@media (hover: hover) { a.work-card--link:hover .work-card__img svg { scale: 1.15; } }
+.work-card--link .work-card__title { text-transform: none; font-size: 1.4rem; }
 /* área ainda sem projeto: vaga "em breve", igual às do carrossel */
 .work-card--slot .work-card__img { display: grid; place-items: center; background: #2F1535; outline: 2px dashed rgba(255, 251, 222, .3); outline-offset: -12px; }
 .work-card--slot svg { width: 64px; height: 64px; color: var(--pink); }
