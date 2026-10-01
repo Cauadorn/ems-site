@@ -25,7 +25,7 @@ function webpSize(file) {
   throw new Error(`não consegui ler o tamanho de ${file}`);
 }
 
-// imagens do case: apresentação empilhada, galeria de fotos/páginas, ou posts de rede social (anel 3D + stories)
+// imagens do case: apresentação empilhada, galeria de fotos/páginas, ou posts de rede social (anel 3D + carrosséis + stories)
 function galeria(p, t, list, img) {
   const tag = (s, k, n, nome, cls = '') => `<img${cls ? ` class="${cls}"` : ''} src="${img(s.file)}" alt="${t}: ${nome} ${k + 1} de ${n}" width="${s.w}" height="${s.h}"${p.galeria === 'posts' || k ? ' loading="lazy"' : ''} decoding="async">`;
   if (p.galeria !== 'posts') {
@@ -33,39 +33,42 @@ function galeria(p, t, list, img) {
     const cls = p.galeria ? `case-gallery${p.galeria === 'paginas' ? ' case-gallery--paginas' : ''}` : 'case-slides';
     return `    <div class="${cls}">\n${list.map((s, k) => `      ${tag(s, k, list.length, nome, p.galeria && s.w > s.h * 1.5 ? 'is-wide' : '')}`).join('\n')}\n    </div>`;
   }
-  // posts: as artes 4:5 (os posts e cada card dos carrosséis, em sequência) giram num anel 3D igual ao da home
-  // (src/js/modules/ring.js); os stories (9:16) ficam embaixo, em grade
-  const artes = [], stories = [];
-  let np = 0, nc = 0;
-  list.forEach((s) => {
-    if (s.w < s.h * 0.7) return stories.push(s);
-    if (s.w <= s.h * 1.2) return artes.push({ s, nome: `post ${++np}` });
-    // carrossel: a imagem deitada tem k cards 4:5 lado a lado; cada card mostra só a sua parte
-    const k = Math.max(2, Math.round(s.w / s.h / 0.8));
-    nc++;
-    for (let c = 0; c < k; c++) artes.push({ s, k, c, nome: `carrossel ${nc}, card ${c + 1} de ${k}` });
-  });
-  const face = (a, alt) => `<img${a.k ? ` class="c3d__faixa" style="width:${a.k * 100}%;left:-${a.c * 100}%"` : ''} src="${img(a.s.file)}" alt="${alt}" loading="lazy" decoding="async" draggable="false">`;
-  const anel = artes.length ? `    <section class="case-ring" aria-label="Posts e carrosséis">
-      <h2 class="eyebrow case-posts__titulo">Posts e carrosséis · ${artes.length} artes</h2>
+  // posts: os posts 4:5 giram num anel 3D igual ao da home (src/js/modules/ring.js); com poucos posts (menos de 5)
+  // o anel ficaria vazio, então eles ficam em grade. Os carrosséis (a imagem deitada com todos os cards) e os
+  // stories (9:16) ficam embaixo, cada um na sua parte (pedido da Emilly em 01/10)
+  const posts = list.filter((s) => s.w >= s.h * 0.7 && s.w <= s.h * 1.2);
+  const carrosseis = list.filter((s) => s.w > s.h * 1.2);
+  const stories = list.filter((s) => s.w < s.h * 0.7);
+  const face = (s, alt) => `<img src="${img(s.file)}" alt="${alt}" loading="lazy" decoding="async" draggable="false">`;
+  const bloco = (titulo, n, corpo) => `    <section class="case-posts__grupo" aria-label="${titulo}">
+      <h2 class="eyebrow case-posts__titulo">${titulo} · ${n}</h2>
+${corpo}
+    </section>\n`;
+  let html = '';
+  if (posts.length >= 5) html += `    <section class="case-ring" aria-label="Posts">
+      <h2 class="eyebrow case-posts__titulo">Posts · ${posts.length}</h2>
       <div class="c3d c3d--posts" data-ring data-cursor-text="arrasta pro lado" tabindex="0">
         <div class="c3d__track"><div class="c3d__sticky"><div class="c3d__wrap" data-c3d-wrap><div class="c3d__list" data-c3d-list>
-${artes.map((a) => `          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face">${face(a, `${t}: ${a.nome}`)}</div><div class="c3d__face c3d__face--back" aria-hidden="true">${face(a, '')}</div></div>`).join('\n')}
+${posts.map((s, k) => `          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face">${face(s, `${t}: post ${k + 1} de ${posts.length}`)}</div><div class="c3d__face c3d__face--back" aria-hidden="true">${face(s, '')}</div></div>`).join('\n')}
         </div></div></div></div>
         <div class="c3d__arrows"><div class="c3d__arrows-sticky">
-          <button class="c3d__arrow" type="button" data-c3d-prev aria-label="Arte anterior"><svg><use href="#i-seta"/></svg></button>
-          <p class="c3d__count" data-ring-count aria-live="polite">01 / ${nn(artes.length)}</p>
-          <button class="c3d__arrow c3d__arrow--next" type="button" data-c3d-next aria-label="Próxima arte"><svg><use href="#i-seta"/></svg></button>
+          <button class="c3d__arrow" type="button" data-c3d-prev aria-label="Post anterior"><svg><use href="#i-seta"/></svg></button>
+          <p class="c3d__count" data-ring-count aria-live="polite">01 / ${nn(posts.length)}</p>
+          <button class="c3d__arrow c3d__arrow--next" type="button" data-c3d-next aria-label="Próximo post"><svg><use href="#i-seta"/></svg></button>
         </div></div>
       </div>
-    </section>\n` : '';
-  const grade = stories.length ? `    <section class="case-posts__grupo" aria-label="Stories">
-      <h2 class="eyebrow case-posts__titulo">Stories · ${stories.length}</h2>
-      <div class="case-gallery case-gallery--posts case-gallery--stories">
+    </section>\n`;
+  else if (posts.length) html += bloco('Posts', posts.length, `      <div class="case-gallery case-gallery--posts">
+${posts.map((s, k) => `        ${tag(s, k, posts.length, 'post')}`).join('\n')}
+      </div>`);
+  // no celular cada carrossel fica na altura de um post e desliza para o lado, como no Instagram
+  if (carrosseis.length) html += bloco('Carrosséis', carrosseis.length, `      <div class="case-carrosseis">
+${carrosseis.map((s, k) => `        <div class="case-carrossel">${tag(s, k, carrosseis.length, 'carrossel')}</div>`).join('\n')}
+      </div>`);
+  if (stories.length) html += bloco('Stories', stories.length, `      <div class="case-gallery case-gallery--posts case-gallery--stories">
 ${stories.map((s, k) => `        ${tag(s, k, stories.length, 'story')}`).join('\n')}
-      </div>
-    </section>\n` : '';
-  return (anel + grade).replace(/\n$/, '');
+      </div>`);
+  return html.replace(/\n$/, '');
 }
 
 // convite discreto no fim de cada case (pedido da Emilly): a bonequinha da EMS (o selo, sem girar nem recolorir)
