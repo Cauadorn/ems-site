@@ -287,9 +287,11 @@ carrossel; no case, "← Todos os projetos" leva para cá.
 
 ### Galeria, vídeo e link do site nos cases
 - `galeria: true` (fotografia): as imagens em grade 4:5 (mín. 260 px), cantos 10 px, em vez da apresentação empilhada.
-- `galeria: 'posts'` (social media): as artes 4:5 (cada post e cada card dos carrosséis, que são cortados da imagem
-  deitada) giram num **anel 3D igual ao carrossel da home** (`src/js/modules/ring.js`): arrastar, setas manteiga e
-  teclado; contador "05 / 30" entre as setas. Os **Stories** (9:16) ficam embaixo, em grade de 4 (2 no celular).
+- `galeria: 'posts'` (social media): os **Posts** 4:5 giram num **anel 3D igual ao carrossel da home**
+  (`src/js/modules/ring.js`): arrastar, setas manteiga e teclado; contador "05 / 11" entre as setas. Com menos de 5
+  posts, eles ficam em grade. Embaixo, cada um na sua parte: **Carrosséis** (a imagem deitada com todos os cards, na
+  largura toda; no celular fica com 420 px de altura e desliza para o lado) e **Stories** (9:16, grade de 4; 2 no
+  celular).
 - Topo do case: nome e resumo à esquerda e **miniatura da capa** à direita (400 px, borda tinta, sombra dura, inclinada
   3°); no celular a miniatura fica pequena (96 px) no canto, ao lado de "← Todos os projetos". A capa grande saiu:
   repetia o 1º slide da apresentação.
