@@ -99,9 +99,9 @@ export const projects = [
     destaque: true,
     title: 'Almah',
     category: 'Identidade & rótulos',
-    detail: 'Velas artesanais · coleção Gênesis',
+    detail: 'Minha marca de velas artesanais · coleção Gênesis',
     year: '2026',
-    color: '#492852',
+    color: '#503B69',
     behance: null,
     // case provisório com os rótulos, os cartões e as fotos (pedido da Emilly); trocar pelo brand book quando ficar pronto
   },
