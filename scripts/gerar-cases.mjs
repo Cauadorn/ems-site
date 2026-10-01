@@ -55,7 +55,7 @@ ${MARCA}
   <section class="case-hero" aria-labelledby="case-titulo">
     <div class="case-hero__inner container">
       <a class="case-back" href="%BASE_URL%projetos/" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a>
-      <p class="eyebrow" data-intro>(${nn(i + 1)}/${nn(total)}) ${esc(p.category)} · ${esc(p.year)}</p>
+      <p class="eyebrow" data-intro>(${nn(i + 1)}/${nn(total)}) ${esc(p.category)}${p.year ? ` · ${esc(p.year)}` : ''}</p>
       <h1 id="case-titulo" class="case-hero__title" data-intro>${t}</h1>
       <p class="case-hero__lead" data-intro>${esc(p.detail)}</p>
 ${p.resumo ? `      <p class="case-hero__text" data-intro>${esc(p.resumo)}</p>
@@ -70,8 +70,8 @@ ${p.resumo ? `      <p class="case-hero__text" data-intro>${esc(p.resumo)}</p>
   </section>
 
   <section class="case-body" aria-label="Apresentação do projeto">
-    <div class="case-slides">
-${slides.list.map((s, k) => `      <img src="${img(s.file)}" alt="${t}: apresentação, parte ${k + 1} de ${slides.list.length}" width="${s.w}" height="${s.h}"${k ? ' loading="lazy"' : ''} decoding="async">`).join('\n')}
+    <div class="${p.galeria ? 'case-gallery' : 'case-slides'}">
+${slides.list.map((s, k) => `      <img src="${img(s.file)}" alt="${t}: ${p.galeria ? 'foto' : 'apresentação, parte'} ${k + 1} de ${slides.list.length}" width="${s.w}" height="${s.h}"${k ? ' loading="lazy"' : ''} decoding="async">`).join('\n')}
     </div>
 ${p.behance ? `    <p class="case-behance"><a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a></p>\n` : ''}  </section>
 
@@ -96,7 +96,7 @@ ${p.behance ? `    <p class="case-behance"><a class="btn btn--ghost" href="${esc
 // card de projeto na página "Todos os projetos"
 function card(p) {
   const img = `<span class="work-card__img"><img src="%BASE_URL%img/projetos/${p.slug}/capa.webp" alt="" width="1600" height="1000" loading="lazy"></span>`;
-  const body = `<span class="work-card__body"><span class="work-card__title">${esc(p.title)}</span><span class="work-card__cat">${esc(p.category)} · ${esc(p.detail)}</span><span class="work-card__year">${esc(p.year)}</span></span>`;
+  const body = `<span class="work-card__body"><span class="work-card__title">${esc(p.title)}</span><span class="work-card__cat">${esc(p.category)} · ${esc(p.detail)}</span>${p.year ? `<span class="work-card__year">${esc(p.year)}</span>` : ''}</span>`;
   return p.soon
     ? `<li><div class="work-card work-card--soon">${img}<span class="work-card__badge">em breve</span>${body}</div></li>`
     : `<li><a class="work-card" href="%BASE_URL%projetos/${p.slug}.html" data-cursor-text="ver case">${img}${body}</a></li>`;

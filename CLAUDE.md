@@ -89,8 +89,8 @@ HTML; usar a base como na tabela acima, senão a imagem quebra no ar e funciona 
 ## Pendências (perguntar à Emilly)
 - **Lembrar a Emilly no começo de cada conversa (ela pediu para ser cobrada):** o resumo curto de cada projeto.
   Quando ela mandar, vai no campo `resumo` do projeto em `src/data/projects.js` (aparece no topo do case).
-- Fotografia: pedir à Emilly os ARQUIVOS das fotos esportivas do @itsemsfotografia e o vídeo da ALMAH (está no
-  @itsemsdesign): o Instagram é bloqueado na nuvem. O vídeo entra no projeto ALMAH (velas) quando chegar.
+- Vídeo da ALMAH (está no @itsemsdesign): entra no projeto ALMAH (velas) quando der para baixar. A rede do ambiente
+  da nuvem foi liberada (Full) em 01/10; o Instagram às vezes pede para esperar alguns minutos.
 - Mais projetos para "Todos os projetos": a Emilly vai mandar o resto do portfólio, separado por área (identidade,
   web, social, fotografia, produtos). Fotografia ainda não tem nenhum projeto (aparece "em breve").
 - ALMAH entra no portfólio, mas o case espera o brand book da ALMAH (hoje: logo, rótulos, fotos das velas, um vídeo).

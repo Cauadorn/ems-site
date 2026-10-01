@@ -14,6 +14,9 @@
 .case-body { padding: 0 0 var(--section); background: var(--ameixa); color: var(--ivory); }
 .case-slides { width: min(100% - 2 * var(--gutter), 1200px); margin-inline: auto; border-radius: var(--r-m); overflow: hidden; background: var(--ink); box-shadow: 0 30px 60px -30px rgba(42, 20, 51, .6); }
 .case-slides img { width: 100%; height: auto; }
+/* galeria de fotos (projetos de fotografia): grade de fotos verticais, cantos arredondados */
+.case-gallery { width: min(100% - 2 * var(--gutter), 1200px); margin-inline: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.case-gallery img { width: 100%; height: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r-s); background: var(--ink); }
 .case-behance { display: flex; justify-content: center; margin-top: clamp(32px, 4vw, 48px); }
 
 /* próximo projeto: o bloco inteiro é o link */
