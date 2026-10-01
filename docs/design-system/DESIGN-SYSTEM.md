@@ -287,10 +287,15 @@ carrossel; no case, "← Todos os projetos" leva para cá.
 
 ### Galeria, vídeo e link do site nos cases
 - `galeria: true` (fotografia): as imagens em grade 4:5 (mín. 260 px), cantos 10 px, em vez da apresentação empilhada.
-- `galeria: 'posts'` (social media): separados sozinhos pelo formato em blocos com título pequeno (eyebrow):
-  **Feed** (4:5, 4 por linha; 2 até 860 px, 1 até 520 px; última linha centralizada), **Carrosséis** (a imagem deitada
-  com todos os cards, na largura toda; no celular fica com 420 px de altura e desliza para o lado) e **Stories** (9:16,
-  4 por linha; 2 no celular).
+- `galeria: 'posts'` (social media): as artes 4:5 (cada post e cada card dos carrosséis, que são cortados da imagem
+  deitada) giram num **anel 3D igual ao carrossel da home** (`src/js/modules/ring.js`): arrastar, setas manteiga e
+  teclado; contador "05 / 30" entre as setas. Os **Stories** (9:16) ficam embaixo, em grade de 4 (2 no celular).
+- Topo do case: nome e resumo à esquerda e **miniatura da capa** à direita (400 px, borda tinta, sombra dura, inclinada
+  3°); no celular a miniatura fica pequena (96 px) no canto, ao lado de "← Todos os projetos". A capa grande saiu:
+  repetia o 1º slide da apresentação.
+- Fim do case: **convite discreto** (cartão marfim 5% com borda 18%): o selo da EMS (sem girar nem recolorir),
+  "Curtiu este *projeto?*" e botão "Me chama" (WhatsApp com o nome do projeto na mensagem); embaixo, de novo o botão
+  "← Todos os projetos".
 - `instagram`: botão marfim com ícone do Instagram no fim do case ("Ver no Instagram"; `instagramTexto` muda o texto,
   ex.: "Ver mais fotos" nas fotografias esportivas, que levam ao @itsemsfotografia).
 - `capaNoCase: false`: a capa fica só nos cards e no carrossel; o case abre direto no vídeo ou no mockup.

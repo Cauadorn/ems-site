@@ -20,21 +20,17 @@
 <!-- @include partials/header.html -->
 
 <main id="conteudo">
-  <section class="case-hero" aria-labelledby="case-titulo">
+  <section class="case-hero case-hero--thumb" aria-labelledby="case-titulo">
     <div class="case-hero__inner container">
-      <a class="case-back" href="%BASE_URL%projetos/" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a>
-      <p class="eyebrow" data-intro>(13/16) Fotografia esportiva · 2026</p>
-      <h1 id="case-titulo" class="case-hero__title" data-intro>Circuito GMT</h1>
-      <p class="case-hero__lead" data-intro>2ª etapa · cobertura de jiu-jitsu</p>
-      <p class="case-hero__text" data-intro>Cobertura da 2ª etapa do Circuito GMT de jiu-jitsu, com atletas de várias idades e faixas. Além das fotos, montei posts com tipografia por cima, como &quot;The mat doesn't lie&quot;.</p>
-    </div>
-    <figure class="case-cover" data-intro>
-      <div class="frame">
-        <span class="frame__h frame__h--tl"></span><span class="frame__h frame__h--tr"></span>
-        <span class="frame__h frame__h--bl"></span><span class="frame__h frame__h--br"></span>
-        <img src="%BASE_URL%img/projetos/foto-circuito-gmt/capa.webp" alt="Circuito GMT: capa do projeto" width="1600" height="1000">
+      <div class="case-hero__txt">
+        <a class="case-back" href="%BASE_URL%projetos/" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a>
+        <p class="eyebrow" data-intro>(13/16) Fotografia esportiva · 2026</p>
+        <h1 id="case-titulo" class="case-hero__title" data-intro>Circuito GMT</h1>
+        <p class="case-hero__lead" data-intro>2ª etapa · cobertura de jiu-jitsu</p>
+        <p class="case-hero__text" data-intro>Cobertura da 2ª etapa do Circuito GMT de jiu-jitsu, com atletas de várias idades e faixas. Além das fotos, montei posts com tipografia por cima, como &quot;The mat doesn't lie&quot;.</p>
       </div>
-    </figure>
+      <figure class="case-hero__thumb" data-intro><img src="%BASE_URL%img/projetos/foto-circuito-gmt/capa.webp" alt="Circuito GMT: capa do projeto" width="1600" height="1000" fetchpriority="high"></figure>
+    </div>
   </section>
 
   <section class="case-body" aria-label="Apresentação do projeto">
@@ -48,6 +44,15 @@
       <img src="%BASE_URL%img/projetos/foto-circuito-gmt/slide-07.webp" alt="Circuito GMT: foto 7 de 7" width="1080" height="1440" loading="lazy" decoding="async">
     </div>
     <p class="case-behance"><a class="btn btn--ivory" href="https://www.instagram.com/itsemsfotografia/" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> Ver mais fotos</a></p>
+    <aside class="case-cta" aria-label="Fale comigo">
+      <img class="case-cta__selo" src="/src/assets/illustrations/selo-ems.svg" alt="" width="200" height="240" loading="lazy">
+      <div class="case-cta__txt">
+        <p class="case-cta__titulo">Curtiu este <em>projeto?</em></p>
+        <p>Me chama no WhatsApp e a gente conversa sobre o seu.</p>
+      </div>
+      <a class="btn btn--ivory" href="https://wa.me/5531992718754?text=Oi%2C%20Emilly!%20Vi%20o%20projeto%20Circuito%20GMT%20no%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener"><svg><use href="#i-whatsapp"/></svg> Me chama</a>
+    </aside>
+    <p class="case-voltar"><a class="case-back" href="%BASE_URL%projetos/"><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a></p>
   </section>
 
   <a class="case-next" href="%BASE_URL%projetos/almah-fotos.html" data-cursor-text="próximo">

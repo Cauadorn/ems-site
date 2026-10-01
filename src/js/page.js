@@ -6,6 +6,7 @@ import { initMascote } from './modules/mascote.js';
 import { initReveals } from './modules/reveal.js';
 import { initNope } from './modules/nope.js';
 import { initWorks } from './modules/works.js';
+import { initRings } from './modules/ring.js';
 
 // Páginas internas (cases, todos os projetos e 404): a mesma base da home, sem a abertura.
 document.documentElement.classList.add('is-loaded');
@@ -14,6 +15,7 @@ initSite();
 initMascote();
 initNope();
 initWorks();
+initRings(); // anel 3D dos posts nas páginas de social media
 initReveals(reduced);
 
 // entrada do topo da página

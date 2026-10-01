@@ -25,7 +25,7 @@ function webpSize(file) {
   throw new Error(`não consegui ler o tamanho de ${file}`);
 }
 
-// imagens do case: apresentação empilhada, galeria de fotos/páginas, ou posts de rede social separados por formato
+// imagens do case: apresentação empilhada, galeria de fotos/páginas, ou posts de rede social (anel 3D + stories)
 function galeria(p, t, list, img) {
   const tag = (s, k, n, nome, cls = '') => `<img${cls ? ` class="${cls}"` : ''} src="${img(s.file)}" alt="${t}: ${nome} ${k + 1} de ${n}" width="${s.w}" height="${s.h}"${p.galeria === 'posts' || k ? ' loading="lazy"' : ''} decoding="async">`;
   if (p.galeria !== 'posts') {
@@ -33,21 +33,53 @@ function galeria(p, t, list, img) {
     const cls = p.galeria ? `case-gallery${p.galeria === 'paginas' ? ' case-gallery--paginas' : ''}` : 'case-slides';
     return `    <div class="${cls}">\n${list.map((s, k) => `      ${tag(s, k, list.length, nome, p.galeria && s.w > s.h * 1.5 ? 'is-wide' : '')}`).join('\n')}\n    </div>`;
   }
-  // posts: feed (4:5), carrosséis (a imagem deitada com todos os cards) e stories (9:16), cada um com seu título
-  const grupos = [
-    { titulo: 'Feed', nome: 'post', cls: 'case-gallery case-gallery--posts', itens: list.filter((s) => s.w <= s.h * 1.2 && s.w >= s.h * 0.7) },
-    { titulo: 'Carrosséis', nome: 'carrossel', cls: 'case-carrosseis', itens: list.filter((s) => s.w > s.h * 1.2) },
-    { titulo: 'Stories', nome: 'story', cls: 'case-gallery case-gallery--posts case-gallery--stories', itens: list.filter((s) => s.w < s.h * 0.7) },
-  ].filter((g) => g.itens.length);
-  return `    <div class="case-posts">\n${grupos.map((g) => `      <section class="case-posts__grupo" aria-label="${g.titulo}">
-        <h2 class="eyebrow case-posts__titulo">${g.titulo} · ${g.itens.length}</h2>
-        <div class="${g.cls}">
-${g.itens.map((s, k) => g.nome === 'carrossel'
-    // no celular o carrossel fica na altura de um post e desliza para o lado, como no Instagram
-    ? `          <div class="case-carrossel">${tag(s, k, g.itens.length, g.nome)}</div>`
-    : `          ${tag(s, k, g.itens.length, g.nome)}`).join('\n')}
-        </div>
-      </section>`).join('\n')}\n    </div>`;
+  // posts: as artes 4:5 (os posts e cada card dos carrosséis, em sequência) giram num anel 3D igual ao da home
+  // (src/js/modules/ring.js); os stories (9:16) ficam embaixo, em grade
+  const artes = [], stories = [];
+  let np = 0, nc = 0;
+  list.forEach((s) => {
+    if (s.w < s.h * 0.7) return stories.push(s);
+    if (s.w <= s.h * 1.2) return artes.push({ s, nome: `post ${++np}` });
+    // carrossel: a imagem deitada tem k cards 4:5 lado a lado; cada card mostra só a sua parte
+    const k = Math.max(2, Math.round(s.w / s.h / 0.8));
+    nc++;
+    for (let c = 0; c < k; c++) artes.push({ s, k, c, nome: `carrossel ${nc}, card ${c + 1} de ${k}` });
+  });
+  const face = (a, alt) => `<img${a.k ? ` class="c3d__faixa" style="width:${a.k * 100}%;left:-${a.c * 100}%"` : ''} src="${img(a.s.file)}" alt="${alt}" loading="lazy" decoding="async" draggable="false">`;
+  const anel = artes.length ? `    <section class="case-ring" aria-label="Posts e carrosséis">
+      <h2 class="eyebrow case-posts__titulo">Posts e carrosséis · ${artes.length} artes</h2>
+      <div class="c3d c3d--posts" data-ring data-cursor-text="arrasta pro lado" tabindex="0">
+        <div class="c3d__track"><div class="c3d__sticky"><div class="c3d__wrap" data-c3d-wrap><div class="c3d__list" data-c3d-list>
+${artes.map((a) => `          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face">${face(a, `${t}: ${a.nome}`)}</div><div class="c3d__face c3d__face--back" aria-hidden="true">${face(a, '')}</div></div>`).join('\n')}
+        </div></div></div></div>
+        <div class="c3d__arrows"><div class="c3d__arrows-sticky">
+          <button class="c3d__arrow" type="button" data-c3d-prev aria-label="Arte anterior"><svg><use href="#i-seta"/></svg></button>
+          <p class="c3d__count" data-ring-count aria-live="polite">01 / ${nn(artes.length)}</p>
+          <button class="c3d__arrow c3d__arrow--next" type="button" data-c3d-next aria-label="Próxima arte"><svg><use href="#i-seta"/></svg></button>
+        </div></div>
+      </div>
+    </section>\n` : '';
+  const grade = stories.length ? `    <section class="case-posts__grupo" aria-label="Stories">
+      <h2 class="eyebrow case-posts__titulo">Stories · ${stories.length}</h2>
+      <div class="case-gallery case-gallery--posts case-gallery--stories">
+${stories.map((s, k) => `        ${tag(s, k, stories.length, 'story')}`).join('\n')}
+      </div>
+    </section>\n` : '';
+  return (anel + grade).replace(/\n$/, '');
+}
+
+// convite discreto no fim de cada case (pedido da Emilly): a bonequinha da EMS (o selo, sem girar nem recolorir)
+// e o WhatsApp já com o nome do projeto na mensagem
+function cta(p) {
+  const msg = encodeURIComponent(`Oi, Emilly! Vi o projeto ${p.title} no seu site e quero conversar sobre um projeto.`);
+  return `    <aside class="case-cta" aria-label="Fale comigo">
+      <img class="case-cta__selo" src="/src/assets/illustrations/selo-ems.svg" alt="" width="200" height="240" loading="lazy">
+      <div class="case-cta__txt">
+        <p class="case-cta__titulo">Curtiu este <em>projeto?</em></p>
+        <p>Me chama no WhatsApp e a gente conversa sobre o seu.</p>
+      </div>
+      <a class="btn btn--ivory" href="https://wa.me/5531992718754?text=${msg}" target="_blank" rel="noopener"><svg><use href="#i-whatsapp"/></svg> Me chama</a>
+    </aside>`;
 }
 
 function page(p, i, total, next, slides) {
@@ -77,26 +109,24 @@ ${MARCA}
 <!-- @include partials/header.html -->
 
 <main id="conteudo">
-  <section class="case-hero" aria-labelledby="case-titulo">
+  <section class="case-hero${p.capaNoCase === false ? '' : ' case-hero--thumb'}" aria-labelledby="case-titulo">
     <div class="case-hero__inner container">
-      <a class="case-back" href="%BASE_URL%projetos/" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a>
-      <p class="eyebrow" data-intro>(${nn(i + 1)}/${nn(total)}) ${esc(p.category)}${p.year ? ` · ${esc(p.year)}` : ''}</p>
-      <h1 id="case-titulo" class="case-hero__title" data-intro>${t}</h1>
-      <p class="case-hero__lead" data-intro>${esc(p.detail)}</p>
-${p.resumo ? `      <p class="case-hero__text" data-intro>${esc(p.resumo)}</p>
-` : ''}    </div>
-${p.capaNoCase === false ? '' : `    <figure class="case-cover" data-intro>
-      <div class="frame">
-        <span class="frame__h frame__h--tl"></span><span class="frame__h frame__h--tr"></span>
-        <span class="frame__h frame__h--bl"></span><span class="frame__h frame__h--br"></span>
-        <img src="${img('capa.webp')}" alt="${t}: capa do projeto" width="1600" height="1000">
-      </div>
-    </figure>
-`}  </section>
+      <div class="case-hero__txt">
+        <a class="case-back" href="%BASE_URL%projetos/" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a>
+        <p class="eyebrow" data-intro>(${nn(i + 1)}/${nn(total)}) ${esc(p.category)}${p.year ? ` · ${esc(p.year)}` : ''}</p>
+        <h1 id="case-titulo" class="case-hero__title" data-intro>${t}</h1>
+        <p class="case-hero__lead" data-intro>${esc(p.detail)}</p>
+${p.resumo ? `        <p class="case-hero__text" data-intro>${esc(p.resumo)}</p>
+` : ''}      </div>
+${p.capaNoCase === false ? '' : `      <figure class="case-hero__thumb" data-intro><img src="${img('capa.webp')}" alt="${t}: capa do projeto" width="1600" height="1000" fetchpriority="high"></figure>
+`}    </div>
+  </section>
 
   <section class="case-body" aria-label="Apresentação do projeto">
 ${p.video ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}${slides.mockup ? `    <figure class="case-mockup"><img src="${img(p.mockup)}" alt="${t}: ${p.galeria === 'paginas' ? 'página impressa' : 'projeto aplicado'} sobre a mesa (mockup)" width="${slides.mockup.w}" height="${slides.mockup.h}"${p.capaNoCase === false ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></figure>\n` : ''}${galeria(p, t, slides.list, img)}
-${p.site || p.instagram || p.behance ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener">Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.instagram ? `<a class="btn btn--ivory" href="${esc(p.instagram)}" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> ${esc(p.instagramTexto || 'Ver no Instagram')}</a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}</p>\n` : ''}  </section>
+${p.site || p.instagram || p.behance ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener">Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.instagram ? `<a class="btn btn--ivory" href="${esc(p.instagram)}" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> ${esc(p.instagramTexto || 'Ver no Instagram')}</a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}</p>\n` : ''}${cta(p)}
+    <p class="case-voltar"><a class="case-back" href="%BASE_URL%projetos/"><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a></p>
+  </section>
 
   <a class="case-next" href="%BASE_URL%projetos/${next.slug}.html" data-cursor-text="próximo">
     <span class="case-next__inner container">

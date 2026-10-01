@@ -20,21 +20,17 @@
 <!-- @include partials/header.html -->
 
 <main id="conteudo">
-  <section class="case-hero" aria-labelledby="case-titulo">
+  <section class="case-hero case-hero--thumb" aria-labelledby="case-titulo">
     <div class="case-hero__inner container">
-      <a class="case-back" href="%BASE_URL%projetos/" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a>
-      <p class="eyebrow" data-intro>(07/16) Campanha · 2026</p>
-      <h1 id="case-titulo" class="case-hero__title" data-intro>Setembro Amarelo</h1>
-      <p class="case-hero__lead" data-intro>Endomarketing · Branding &amp; UI</p>
-      <p class="case-hero__text" data-intro>Campanha interna de Setembro Amarelo para uma empresa de cibersegurança. O desafio era falar de saúde mental com acolhimento sem sair da identidade escura e tecnológica da empresa. Criei o conceito &quot;Cuidado que se compartilha&quot;, cartões De/Para, tags para brindes, header de e-mail e banners para a intranet.</p>
-    </div>
-    <figure class="case-cover" data-intro>
-      <div class="frame">
-        <span class="frame__h frame__h--tl"></span><span class="frame__h frame__h--tr"></span>
-        <span class="frame__h frame__h--bl"></span><span class="frame__h frame__h--br"></span>
-        <img src="%BASE_URL%img/projetos/setembro-amarelo/capa.webp" alt="Setembro Amarelo: capa do projeto" width="1600" height="1000">
+      <div class="case-hero__txt">
+        <a class="case-back" href="%BASE_URL%projetos/" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a>
+        <p class="eyebrow" data-intro>(07/16) Campanha · 2026</p>
+        <h1 id="case-titulo" class="case-hero__title" data-intro>Setembro Amarelo</h1>
+        <p class="case-hero__lead" data-intro>Endomarketing · Branding &amp; UI</p>
+        <p class="case-hero__text" data-intro>Campanha interna de Setembro Amarelo para uma empresa de cibersegurança. O desafio era falar de saúde mental com acolhimento sem sair da identidade escura e tecnológica da empresa. Criei o conceito &quot;Cuidado que se compartilha&quot;, cartões De/Para, tags para brindes, header de e-mail e banners para a intranet.</p>
       </div>
-    </figure>
+      <figure class="case-hero__thumb" data-intro><img src="%BASE_URL%img/projetos/setembro-amarelo/capa.webp" alt="Setembro Amarelo: capa do projeto" width="1600" height="1000" fetchpriority="high"></figure>
+    </div>
   </section>
 
   <section class="case-body" aria-label="Apresentação do projeto">
@@ -45,6 +41,15 @@
       <img src="%BASE_URL%img/projetos/setembro-amarelo/slide-04.webp" alt="Setembro Amarelo: apresentação, parte 4 de 4" width="1600" height="1666" loading="lazy" decoding="async">
     </div>
     <p class="case-behance"><a class="btn btn--ghost" href="https://www.behance.net/gallery/242659903/Yellow-September-Internal-Campaign-Branding-UI" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a></p>
+    <aside class="case-cta" aria-label="Fale comigo">
+      <img class="case-cta__selo" src="/src/assets/illustrations/selo-ems.svg" alt="" width="200" height="240" loading="lazy">
+      <div class="case-cta__txt">
+        <p class="case-cta__titulo">Curtiu este <em>projeto?</em></p>
+        <p>Me chama no WhatsApp e a gente conversa sobre o seu.</p>
+      </div>
+      <a class="btn btn--ivory" href="https://wa.me/5531992718754?text=Oi%2C%20Emilly!%20Vi%20o%20projeto%20Setembro%20Amarelo%20no%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener"><svg><use href="#i-whatsapp"/></svg> Me chama</a>
+    </aside>
+    <p class="case-voltar"><a class="case-back" href="%BASE_URL%projetos/"><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a></p>
   </section>
 
   <a class="case-next" href="%BASE_URL%projetos/cardapio-rinus.html" data-cursor-text="próximo">
