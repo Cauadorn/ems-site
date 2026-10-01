@@ -75,8 +75,8 @@ Cores: Ivory #FFFBDE · Ameixa #3D1C46 · Violeta #6225D8 (selo: #6125D9) · Lav
 Fontes: Anton (títulos), Instrument Serif itálico (voz), Inter (texto) — self-hosted via @fontsource.
 
 ## Pendências com a cliente
-- **Cobrar da Emilly (ela pediu):** um resumo curto de cada projeto. Quando ela mandar, entra no campo `resumo` de
-  cada projeto em `src/data/projects.js` e aparece no topo do case.
+- Resumos dos projetos (campo `resumo` em `src/data/projects.js`): escritos pelo Claude em 01/10 a pedido da Emilly;
+  ela revisa e avisa se quiser mudar algum.
 - ALMAH: case de identidade provisório (rótulos, cartões e fotos); trocar pelo brand book quando ficar pronto.
 - Página de brand book (`brandbook.html`): definir o que entra.
 

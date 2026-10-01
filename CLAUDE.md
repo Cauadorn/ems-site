@@ -87,8 +87,9 @@ O site é publicado dentro de `/ems-site/`: nunca escrever caminho de imagem com
 HTML; usar a base como na tabela acima, senão a imagem quebra no ar e funciona só no computador.
 
 ## Pendências (perguntar à Emilly)
-- **Lembrar a Emilly no começo de cada conversa (ela pediu para ser cobrada):** o resumo curto de cada projeto.
-  Quando ela mandar, vai no campo `resumo` do projeto em `src/data/projects.js` (aparece no topo do case).
+- Resumos dos projetos: em 01/10 a Emilly pediu para o Claude escrever do jeito que ela escreveria (a partir das
+  apresentações) e disse que avisa se discordar de algo. Estão no campo `resumo` em `src/data/projects.js`; projeto
+  novo também ganha resumo, sem inventar cliente, número ou resultado.
 - Vídeo da ALMAH (está no @itsemsdesign): entra no projeto ALMAH (velas) quando der para baixar. A rede do ambiente
   da nuvem foi liberada (Full) em 01/10; o Instagram às vezes pede para esperar alguns minutos.
 - Mais projetos para "Todos os projetos": a Emilly vai mandar o resto do portfólio, separado por área (identidade,
