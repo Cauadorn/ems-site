@@ -49,8 +49,10 @@
   clique, entrada com escala 0 → 1. Nunca girar continuamente nem deformar.
 
 ### Logo tipográfico do hero
-- "EMS" em Anton, caixa alta, cada letra numa caixa: E e S em `#6E36E6`, M em `#5A1FCB`, texto marfim.
-- Tamanho `clamp(7rem, 21vw, 21rem)`, `line-height .82`, espaço entre caixas `.06em`, padding da caixa `.04em .08em 0`.
+- "EMS" em Anton, caixa alta, cada letra numa caixa: E e S em violeta-2 `#7B4DF2`, M em ameixa `#3D1C46`, texto marfim
+  (01/10, pedido da Emilly: as caixas antigas `#6E36E6`/`#5A1FCB` quase sumiam no fundo violeta).
+- Tamanho `clamp(7rem, 21vw, 21rem)`, `line-height .82`, espaço entre caixas `.06em`, padding da caixa `.04em .08em .05em`
+  (o respiro embaixo evita cortar a curva do S).
 - No celular (≤ 860 px): 30vw.
 - As caixas "respiram" em loop (sobe 6%, gira −2°/2°/−1,5°, 0,9 s, ida e volta, uma após a outra).
 
@@ -107,7 +109,7 @@
 | Papel | Família | Uso | Regras |
 |---|---|---|---|
 | Display | **Anton** 400 | títulos de seção, logo, nomes do carrossel, faixas | sempre CAIXA ALTA, `line-height .9–.98`, `letter-spacing -.01em` |
-| Voz | **Instrument Serif** itálico | a palavra de destaque, subtítulos, frase do hero, rodapé "ems" | caixa baixa, `letter-spacing -.02em`; ao lado do Anton, 1,16× (o topo das letras altas fica na altura das maiúsculas do Anton) |
+| Voz | **Instrument Serif** itálico | a palavra de destaque, subtítulos, frase do hero, rodapé "ems" | caixa baixa, `letter-spacing -.02em`, ~1,08× o tamanho do título ao lado |
 | Texto | **Inter** (variável) | parágrafos, botões, rótulos, interface | 400 texto, 500–600 rótulo, 700 botão forte; `line-height 1.55` |
 
 Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic), `@fontsource-variable/inter`
@@ -131,7 +133,7 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 ```
 ```css
 .section-title { font-family: var(--f-display); font-size: var(--t-h2); line-height: .95; text-transform: uppercase; letter-spacing: -.01em; }
-.section-title em { font-family: var(--f-serif); font-style: italic; text-transform: none; letter-spacing: -.02em; font-size: 1.16em; color: var(--pink); }
+.section-title em { font-family: var(--f-serif); font-style: italic; text-transform: none; letter-spacing: -.02em; font-size: 1.08em; color: var(--pink); }
 /* em fundo escuro a palavra em itálico fica manteiga */
 ```
 
@@ -140,7 +142,7 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 ## 5. Espaço, grade, forma
 
 - **Margem lateral:** `--gutter: clamp(16px, 4vw, 56px)`. Conteúdo até `--max: 1320px`, centralizado.
-- **Entre seções:** `--section: clamp(88px, 12vw, 180px)` em cima e embaixo.
+- **Entre seções:** `--section: clamp(56px, 7vw, 112px)` em cima e embaixo (reduzido em 01/10 a pedido da Emilly: o site ficava longo demais). Título → conteúdo: `clamp(28px, 4vw, 48px)`.
 - **Grupos:** sempre flex/grid com `gap` (8 px entre chips, 12 px entre botões, 16–18 px entre cartões).
 - **Raios:** 10 px (`--r-s`), 20 px (`--r-m`), 32 px (`--r-l`), pílula 999 px, card do carrossel .5rem, etiqueta 4 px.
 - **Sombras:** dura `6px 6px 0 var(--ink)` (cartões do processo, estilo adesivo); hover de botão `0 6px 0 rgba(42,20,51,.25)`;
@@ -156,7 +158,7 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 | Elemento | Como é | Onde |
 |---|---|---|
 | Grão de papel | ruído fractal (feTurbulence .9, 2 oitavas) em tela cheia, opacidade 7% | todo o site (`body::after`) |
-| Estrela em retícula | estrela arredondada de 5 pontas preenchida com pontos de 7 px (raio 2,1) que somem do centro para a borda | fundo do hero e do manifesto; cor por `color` |
+| Estrela da Emilly | estrela cheia de 5 pontas com uma auréola em forma de estrela maior, de pontos em grade que diminuem para fora (`src/assets/illustrations/estrela-ems.svg`, usada como máscara: `.estrela`) | fundo do hero, do manifesto e da 404; cor por `color` (tinta) |
 | Espiral | espiral de Arquimedes, traço 6, pontas redondas | ícone de Identidade visual, abertura, menu, contato |
 | Cereja | par de cerejas com cabo e folha em `#3D1C46`, frutas na cor do `color` | adesivo do hero, Social & peças |
 | XOXO | X e O desenhados em traço 8 | adesivo do hero |
@@ -228,8 +230,9 @@ diagonal; borda inferior 2 px; hover abre padding e mostra miniatura que segue o
 - Os cards formam um **anel** (cilindro): cada item `rotateY(360/posições × i) translateZ(R)`,
   `R = largura / (2·tan(180°/posições)) + espaço`; a lista recua `translateZ(-R)` e a perspectiva é `R`.
 - **O anel NÃO gira com a rolagem** (pedido da Emilly em 01/10: prender a rolagem atrapalhava). O carrossel ocupa uma
-  tela (100svh, mínimo 560 px) e gira `--c3d-rotate` até `−passo × projeto` (GSAP, .9 s, `expo.inOut`) quando a pessoa
-  usa as setas, arrasta para o lado (dedo ou mouse; arrastar para cima/baixo continua rolando a página) ou usa ← →.
+  tela (até 780 px de altura, mínimo 540 px). Arrastando para o lado (mouse, dedo ou touchpad) o anel acompanha (45% da largura =
+  um projeto) e o próximo card cresce até a frente; ao soltar, encaixa no mais próximo (gesto rápido já passa para o
+  vizinho; GSAP .9 s `expo.out`). Setas da tela e ← → também giram. Arrastar para cima/baixo continua rolando a página.
 - Largura do card 50vw / espaço 30vw (≤ 991: 70vw / 40vw); proporção 60% (≤ 991: 120%, ≤ 479: 140%).
 - **Mínimo 8 posições.** Posições sem projeto viram vagas "próximo projeto / vaga aberta" (fundo `#2F1535`,
   tracejado marfim 30%, espiral rosa). A partir do 9º projeto o anel cresce.
@@ -322,11 +325,12 @@ aparece no lugar.
    "Faço marca bonita *de perto* / e clara *de longe*."; etiquetas; CTA
 3. **Faixas** cruzadas (vinho sobre lavanda)
 4. **Projetos** — ameixa; "(01) Trabalhos que têm *cara*"; carrossel 3D ou lista
-5. **Como eu penso design** — lavanda-2; texto que acende no scroll
+5. **Como eu penso design** — lavanda-2; título igual aos outros ("Marca boa é a que as pessoas *reconhecem*", palavra em
+   violeta) + parágrafo menor que acende no scroll
 6. **Serviços** — ameixa; quatro cartões coloridos
 7. **Processo** — marfim; 4 cartões em escada
 8. **Sobre** — ivory-2; foto em moldura de seleção + CPF × CNPJ
-9. **Contato** — violeta; selo balançando + "VAMOS CRIAR *juntos?*" + "Chamar no WhatsApp" (botão principal), Instagram, e-mail, Behance
+9. **Contato** — violeta; selo balançando + "VAMOS CRIAR *juntos?*" (mesmo tamanho dos outros títulos de seção) + "Chamar no WhatsApp" (botão principal), Instagram, e-mail, Behance
 10. **Rodapé** — tinta; "ems" gigante em serif lavanda + brilho manteiga
 
 Os botões "ver case" do carrossel e da lista abrem a página de case do projeto, na mesma aba.

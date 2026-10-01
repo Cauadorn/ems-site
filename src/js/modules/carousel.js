@@ -8,8 +8,9 @@ const BASE = import.meta.env.BASE_URL;
 
 // Carrossel 3D dos projetos — o anel da pixel.melbourne (ver docs/referencia-pixel.md):
 // os cards formam um cilindro (rotateY + translateZ) e giram até o projeto escolhido.
-// Pedido da Emilly (01/10): o carrossel NÃO prende a rolagem da página. Ele ocupa uma tela só e
-// troca de projeto pelas setas, arrastando para o lado (dedo ou mouse) ou pelas setas do teclado.
+// Pedido da Emilly (01/10): o carrossel NÃO prende a rolagem da página. Ele ocupa uma tela só; arrastando
+// para o lado (mouse, dedo ou touchpad) o anel acompanha, o próximo card cresce até a frente e, ao soltar,
+// encaixa no projeto mais próximo. Setas da tela e do teclado também funcionam.
 
 // O anel tem no mínimo 8 posições (como o da Pixel). Posição sem projeto vira uma vaga
 // "próximo projeto"; ao incluir um projeto em src/data/projects.js ele ocupa a vaga sozinho.
@@ -75,15 +76,31 @@ export function initCarousel(root) {
   items.forEach((el, i) => { el.style.transform = `rotateY(${rotateAmount * i}deg) translateZ(${posTranslate})`; });
   gsap.to(wrap, { opacity: 1 });
 
-  // projeto ativo: gira o anel até ele, mostra o painel dele e acerta as setas
-  let active = 0;
+  // rotação atual do anel, em graus (0 = primeiro projeto; cada projeto à frente é −passo)
+  const step = rotateAmount;
+  const rot = { v: 0 };
+  const apply = () => wrap.style.setProperty('--c3d-rotate', `${rot.v}deg`);
+  const minRot = -step * (n - 1);
+  const clampRot = (v) => Math.max(minRot - step * .3, Math.min(step * .3, v)); // passa um pouco das pontas e volta
+  const pxPerStep = () => root.offsetWidth * .45; // quanto arrastar para andar um projeto
+
+  // painel e setas do projeto mais à frente
+  let active = -1;
+  const setActive = (i) => {
+    if (i === active) return;
+    active = i;
+    panels.forEach((el, k) => { el.classList.toggle('is-active', k === i); el.inert = k !== i; });
+    items.forEach((el, k) => el.classList.toggle('is-active', k === i));
+    prev.setAttribute('aria-disabled', String(i === 0));
+    next.setAttribute('aria-disabled', String(i === n - 1));
+  };
+  const nearest = () => Math.max(0, Math.min(n - 1, Math.round(-rot.v / step)));
+
+  // encaixa num projeto: o anel gira até ele e o card cresce até a frente
   const go = (i, animate = true) => {
-    active = Math.max(0, Math.min(n - 1, i));
-    gsap.to(wrap, { '--c3d-rotate': `${-rotateAmount * active}deg`, duration: animate && !reduced ? .9 : 0, ease: 'expo.inOut', overwrite: 'auto' });
-    panels.forEach((el, k) => { el.classList.toggle('is-active', k === active); el.inert = k !== active; });
-    items.forEach((el, k) => el.classList.toggle('is-active', k === active));
-    prev.setAttribute('aria-disabled', String(active === 0));
-    next.setAttribute('aria-disabled', String(active === n - 1));
+    i = Math.max(0, Math.min(n - 1, i));
+    setActive(i);
+    gsap.to(rot, { v: -step * i, duration: animate && !reduced ? .9 : 0, ease: 'expo.out', overwrite: true, onUpdate: apply });
   };
   go(0, false);
 
@@ -96,18 +113,59 @@ export function initCarousel(root) {
     if (e.key === 'ArrowLeft') { e.preventDefault(); go(active - 1); }
   });
 
-  // arrastar para o lado (dedo ou mouse); arrastar para cima/baixo continua rolando a página
-  let x0 = null, y0 = 0, dragged = false;
-  root.addEventListener('pointerdown', (e) => { if (e.target.closest('button')) return; x0 = e.clientX; y0 = e.clientY; dragged = false; });
-  root.addEventListener('pointerup', (e) => {
-    if (x0 === null) return;
-    const dx = e.clientX - x0, dy = e.clientY - y0;
-    x0 = null;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.2) { dragged = true; go(active + (dx < 0 ? 1 : -1)); }
+  // arrastar para o lado (mouse ou dedo): o anel acompanha e, ao soltar, encaixa no projeto mais próximo.
+  // Arrastar para cima/baixo é da página: a rolagem nunca fica presa no carrossel.
+  let drag = null, dragged = false;
+  root.addEventListener('pointerdown', (e) => {
+    if (e.button > 0 || e.target.closest('button')) return;
+    drag = { x: e.clientX, y: e.clientY, start: rot.v, moved: false, lastX: e.clientX, t: performance.now(), v: 0 };
   });
-  root.addEventListener('pointercancel', () => { x0 = null; });
-  // depois de arrastar com o mouse, o "soltar" não deve abrir o case
-  root.addEventListener('click', (e) => { if (dragged) { e.preventDefault(); dragged = false; } }, true);
+  addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (!drag.moved) {
+      if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+      if (Math.abs(dy) > Math.abs(dx)) { drag = null; return; } // gesto vertical: deixa a página rolar
+      drag.moved = true;
+      gsap.killTweensOf(rot);
+      root.classList.add('is-dragging');
+    }
+    rot.v = clampRot(drag.start + (dx / pxPerStep()) * step);
+    apply();
+    setActive(nearest());
+    const now = performance.now();
+    drag.v = (e.clientX - drag.lastX) / Math.max(1, now - drag.t);
+    drag.lastX = e.clientX; drag.t = now;
+  });
+  const endDrag = () => {
+    if (!drag) return;
+    const d = drag;
+    drag = null;
+    root.classList.remove('is-dragging');
+    if (!d.moved) return;
+    dragged = true;
+    const pos = -rot.v / step;
+    // um gesto rápido já passa para o vizinho, mesmo sem chegar na metade (se parou antes de soltar, não conta)
+    const flick = performance.now() - d.t < 100 && Math.abs(d.v) > .4;
+    go(flick ? (d.v < 0 ? Math.ceil(pos) : Math.floor(pos)) : Math.round(pos));
+  };
+  addEventListener('pointerup', endDrag);
+  addEventListener('pointercancel', endDrag);
+  // depois de arrastar, o "soltar" não abre o case
+  root.addEventListener('click', (e) => { if (dragged) { e.preventDefault(); e.stopPropagation(); dragged = false; } }, true);
+
+  // deslizar para o lado no touchpad: mesmo efeito do arrastar; rolagem vertical continua sendo da página
+  let wheelT;
+  root.addEventListener('wheel', (e) => {
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault();
+    gsap.killTweensOf(rot);
+    rot.v = clampRot(rot.v - (e.deltaX / pxPerStep()) * step);
+    apply();
+    setActive(nearest());
+    clearTimeout(wheelT);
+    wheelT = setTimeout(() => go(nearest()), 160);
+  }, { passive: false });
 
   initList(root.closest('section'), root);
 }

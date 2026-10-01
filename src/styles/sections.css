@@ -54,13 +54,14 @@
   background: var(--violeta); color: var(--ivory); text-align: center;
 }
 .hero__bg { position: absolute; inset: 0; pointer-events: none; }
-.hero__star { position: absolute; color: var(--violeta-2); }
+.hero__star { position: absolute; color: var(--ink); }
 .hero__star--a { width: 46vw; height: 46vw; left: -14vw; bottom: -20vw; }
-.hero__star--b { width: 30vw; height: 30vw; right: -8vw; top: -6vw; color: var(--pink); opacity: .45; }
+.hero__star--b { width: 30vw; height: 30vw; right: -8vw; top: -6vw; opacity: .45; }
 
 .hero__logo { position: relative; z-index: 1; display: flex; gap: .06em; font-family: var(--f-display); font-size: clamp(7rem, 21vw, 21rem); line-height: .82; text-transform: uppercase; }
-.hero__box { display: block; padding: .04em .08em 0; background: #6E36E6; overflow: hidden; }
-.hero__box:nth-child(2) { background: #5A1FCB; }
+/* plaquinhas em tons da paleta que se destacam do fundo violeta; o respiro embaixo evita cortar a curva do S */
+.hero__box { display: block; padding: .04em .08em .05em; background: var(--violeta-2); overflow: hidden; }
+.hero__box:nth-child(2) { background: var(--ameixa); }
 .hero__box span { display: block; }
 .hero__seal { position: absolute; right: -.62em; top: -.22em; width: .62em; rotate: 12deg; cursor: pointer; filter: drop-shadow(0 18px 24px rgba(42, 20, 51, .45)); }
 .hero__seal svg { width: 100%; height: auto; overflow: visible; }
@@ -91,7 +92,9 @@
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* ================= FAIXAS ================= */
-.tapes { position: relative; height: clamp(120px, 16vw, 200px); margin-top: -40px; z-index: 5; overflow-x: clip; }
+/* sem fundo claro em volta das faixas: em cima continua o violeta do topo, embaixo começa o ameixa dos projetos.
+   A troca de cor (50%) fica sempre escondida atrás de uma das faixas; os 40px de cima são do próprio topo */
+.tapes { position: relative; height: clamp(120px, 16vw, 200px); margin-top: -40px; z-index: 5; overflow-x: clip; background: linear-gradient(to bottom, transparent 40px, var(--violeta) 40px, var(--violeta) 50%, var(--ameixa) 50%); }
 .tape { position: absolute; left: -5%; width: 110%; overflow: hidden; padding: 14px 0; box-shadow: 0 12px 24px -12px rgba(42, 20, 51, .5); }
 .tape--wine { top: 20%; background: var(--wine); color: var(--ivory); transform: rotate(-3deg); z-index: 2; }
 .tape--lavanda { top: 32%; background: var(--lavanda); color: var(--ink); transform: rotate(2.5deg); }
@@ -112,7 +115,7 @@
 
 /* carrossel 3D (valores da Pixel: item 50vw, espaço 30vw; tablet 70vw/40vw).
    Ocupa uma tela só e não prende a rolagem: troca de projeto pelas setas ou arrastando para o lado */
-.c3d { position: relative; height: 100vh; height: 100svh; min-height: 560px; touch-action: pan-y; user-select: none; }
+.c3d { position: relative; height: min(100svh, 780px); min-height: 540px; touch-action: pan-y; user-select: none; }
 .c3d__track { position: absolute; inset: 0; }
 .c3d__sticky { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
 .c3d__wrap { --c3d-item-width: 50vw; --c3d-gap: 30vw; --c3d-rotate: 0deg; --c3d-z: 0px; opacity: 0; will-change: contents; }
@@ -131,7 +134,9 @@
 .c3d__face--back.c3d__slot span, .c3d__face--back.c3d__slot small { visibility: hidden; }
 .c3d__panels { position: absolute; inset: 0; z-index: 2; display: grid; pointer-events: none; }
 .c3d__panel { grid-area: 1 / 1; padding: 1.8rem 1.8rem 6rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; opacity: 0; translate: 0 18px; visibility: hidden; transition: opacity .45s var(--ease), translate .6s var(--ease), visibility 0s linear .45s; }
-.c3d__panel.is-active { opacity: 1; translate: 0 0; visibility: visible; transition-delay: .25s, .25s, 0s; }
+.c3d__panel.is-active { opacity: 1; translate: 0 0; visibility: visible; transition-delay: .1s, .1s, 0s; }
+.c3d { cursor: grab; }
+.c3d.is-dragging { cursor: grabbing; }
 .c3d__count { font-weight: 600; font-size: var(--t-small); letter-spacing: .1em; margin-bottom: .6rem; padding: .3em .8em .25em; border-radius: 100vw; background: rgba(42, 20, 51, .62); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .c3d__name { font-family: var(--f-display); font-weight: 400; font-size: 8vw; line-height: 1; text-transform: uppercase; color: var(--ivory); text-shadow: 0 2px 8px rgba(42, 20, 51, .55), 0 4px 30px rgba(42, 20, 51, .45); }
 .c3d__cat { margin-top: .6rem; padding: .25em .9em .3em; border-radius: 100vw; background: rgba(42, 20, 51, .62); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-family: var(--f-serif); font-style: italic; font-size: clamp(1.1rem, 1.6vw, 1.5rem); text-wrap: balance; }
@@ -157,7 +162,7 @@
   .c3d__cat { font-size: .95rem; }
 }
 .project-list { margin-bottom: var(--section); }
-.section-head { display: grid; gap: 14px; margin-bottom: clamp(36px, 5vw, 64px); }
+.section-head { display: grid; gap: 14px; margin-bottom: clamp(28px, 4vw, 48px); }
 .projects .section-head { grid-template-columns: 1fr auto; align-items: end; }
 .projects .section-head .eyebrow { grid-column: 1 / -1; }
 .view-toggle { display: inline-flex; justify-self: start; padding: 4px; border-radius: 999px; background: var(--lavanda-2); }
@@ -177,13 +182,14 @@
 /* ================= MANIFESTO ================= */
 .manifesto { position: relative; padding: var(--section) 0; background: var(--lavanda-2); overflow: hidden; }
 .manifesto .container { position: relative; }
-.manifesto__text { margin-top: 26px; max-width: 1180px; font-size: clamp(1.5rem, 2.8vw, 2.6rem); line-height: 1.18; font-weight: 600; letter-spacing: -.03em; }
+.manifesto .section-title em { color: var(--violeta); } /* rosa sobre lavanda-2 não tem contraste */
+.manifesto__text { max-width: 62ch; font-size: clamp(1.15rem, 1.6vw, 1.45rem); line-height: 1.5; font-weight: 500; }
 .manifesto__text em { font-family: var(--f-serif); font-style: italic; font-weight: 400; letter-spacing: -.02em; }
 .manifesto__text .w { color: rgba(42, 20, 51, .18); transition: color .2s; }
 .manifesto__text .w.is-on { color: var(--ink); }
 .manifesto__text em .w.is-on { color: var(--pink); }
 .manifesto__tag { position: absolute; right: 6%; bottom: -46px; transform: rotate(-4deg); }
-.manifesto__star { position: absolute; right: -12vw; top: -16vw; width: 40vw; height: 40vw; color: var(--violeta); opacity: .5; pointer-events: none; }
+.manifesto__star { position: absolute; right: -12vw; top: -16vw; width: 40vw; height: 40vw; color: var(--ink); opacity: .5; pointer-events: none; }
 
 /* ================= SERVIÇOS ================= */
 .services { padding: var(--section) 0; background: var(--ameixa); color: var(--ivory); }
@@ -246,9 +252,8 @@
 .contact__inner { position: relative; display: grid; justify-items: center; gap: 22px; }
 .contact__mascote { width: clamp(120px, 14vw, 180px); height: auto; animation: bob 3s var(--ease) infinite alternate; }
 @keyframes bob { to { transform: translateY(-12px) rotate(4deg); } }
-.contact__title { font-size: clamp(3.6rem, 12vw, 11rem); line-height: .9; }
-.contact__title .display { display: block; }
-.contact__title .serif { display: block; color: var(--manteiga); font-size: 1.16em; }
+/* mesmo tamanho dos outros títulos de seção (pedido da Emilly: todos os títulos iguais) */
+.contact .section-title em { color: var(--manteiga); }
 .contact__lead { font-size: var(--t-lead); }
 .contact__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 10px; }
 .nope { margin-top: 30px; font-size: .85rem; text-decoration: underline; text-underline-offset: 4px; opacity: .75; }

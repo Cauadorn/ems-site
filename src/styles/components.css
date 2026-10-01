@@ -42,6 +42,10 @@
 .tag--violeta { background: var(--violeta); color: var(--ivory); }
 .tag--violeta svg { color: var(--violeta); }
 
+/* estrela da Emilly: estrela cheia com auréola de retícula (arte em src/assets/illustrations/estrela-ems.svg).
+   A arte é usada como máscara: a cor vem de color (currentColor) */
+.estrela { display: block; aspect-ratio: 1000 / 955; background: currentColor; -webkit-mask: url(../assets/illustrations/estrela-ems.svg) center / contain no-repeat; mask: url(../assets/illustrations/estrela-ems.svg) center / contain no-repeat; }
+
 /* moldura de seleção do Figma */
 .frame { position: relative; border: 1.5px solid var(--ivory); padding: clamp(10px, 1.6vw, 18px); }
 .frame--ink { border-color: var(--violeta); }
