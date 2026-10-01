@@ -4,6 +4,7 @@
 //   apresentação  public/img/projetos/<slug>/slide-01.webp, slide-02.webp… (fatias de 1600 px de largura, na ordem)
 // behance: link do projeto no Behance (aparece no fim do case) ou null
 // video: (opcional) video.mp4 + video.webm (mesmo nome) e video-poster.webp em public/img/projetos/<slug>/, no topo do case
+// mockup: (opcional) foto do projeto aplicado (ex.: mockup.webp em public/img/projetos/<slug>/), em destaque antes das páginas
 // site: (opcional) endereço do site no ar, para projetos de web (botão "Ver o site no ar" no case)
 // soon: true = aparece no carrossel como "em breve" e ainda não tem página de case
 // resumo: (opcional) parágrafo da Emilly sobre o projeto, aparece no topo do case
@@ -89,6 +90,7 @@ export const projects = [
     area: 'social',
     destaque: false,
     galeria: 'paginas', // páginas inteiras, sem corte, em duas colunas (dá para ler)
+    mockup: 'mockup.webp', // página de promoções impressa, na mesa (mockup)
     title: "Rinu's",
     category: 'Cardápio',
     detail: 'Cardápio para bar e restaurante · 9 páginas',
