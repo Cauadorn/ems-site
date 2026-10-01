@@ -110,10 +110,11 @@
 .projects .view-toggle { background: rgba(255, 251, 222, .12); }
 .projects .view-toggle button[aria-pressed='true'] { background: var(--ivory); color: var(--ameixa); }
 
-/* carrossel 3D (valores da Pixel: item 50vw, espaço 30vw; tablet 70vw/40vw) */
-.c3d { position: relative; }
+/* carrossel 3D (valores da Pixel: item 50vw, espaço 30vw; tablet 70vw/40vw).
+   Ocupa uma tela só e não prende a rolagem: troca de projeto pelas setas ou arrastando para o lado */
+.c3d { position: relative; height: 100vh; height: 100svh; min-height: 560px; touch-action: pan-y; user-select: none; }
 .c3d__track { position: absolute; inset: 0; }
-.c3d__sticky { position: sticky; top: 0; width: 100%; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
+.c3d__sticky { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
 .c3d__wrap { --c3d-item-width: 50vw; --c3d-gap: 30vw; --c3d-rotate: 0deg; --c3d-z: 0px; opacity: 0; will-change: contents; }
 .c3d__list { position: relative; display: flex; justify-content: center; align-items: center; transform-style: preserve-3d; transform: translate3d(0, 0, var(--c3d-z)) rotateX(0deg) rotateY(var(--c3d-rotate)); }
 /* o item só posiciona; quem corta e esconde o verso são as faces (overflow no item achataria o 3D) */
@@ -128,8 +129,9 @@
 .c3d__slot small { font-size: clamp(.7rem, 1vw, .9rem); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .6; }
 /* no verso (vaga do outro lado do anel) o texto apareceria picotado atrás do card central: fica só a espiral */
 .c3d__face--back.c3d__slot span, .c3d__face--back.c3d__slot small { visibility: hidden; }
-.c3d__panels { position: relative; z-index: 2; pointer-events: none; }
-.c3d__panel { min-height: 100vh; min-height: 100svh; padding: 1.8rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.c3d__panels { position: absolute; inset: 0; z-index: 2; display: grid; pointer-events: none; }
+.c3d__panel { grid-area: 1 / 1; padding: 1.8rem 1.8rem 6rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; opacity: 0; translate: 0 18px; visibility: hidden; transition: opacity .45s var(--ease), translate .6s var(--ease), visibility 0s linear .45s; }
+.c3d__panel.is-active { opacity: 1; translate: 0 0; visibility: visible; transition-delay: .25s, .25s, 0s; }
 .c3d__count { font-weight: 600; font-size: var(--t-small); letter-spacing: .1em; margin-bottom: .6rem; padding: .3em .8em .25em; border-radius: 100vw; background: rgba(42, 20, 51, .62); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .c3d__name { font-family: var(--f-display); font-weight: 400; font-size: 8vw; line-height: 1; text-transform: uppercase; color: var(--ivory); text-shadow: 0 2px 8px rgba(42, 20, 51, .55), 0 4px 30px rgba(42, 20, 51, .45); }
 .c3d__cat { margin-top: .6rem; padding: .25em .9em .3em; border-radius: 100vw; background: rgba(42, 20, 51, .62); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-family: var(--f-serif); font-style: italic; font-size: clamp(1.1rem, 1.6vw, 1.5rem); text-wrap: balance; }
@@ -137,7 +139,7 @@
 .c3d__btn:hover { background: var(--manteiga); color: var(--ink); transform: scale(1.05); }
 .c3d__btn--soon { background: rgba(42, 20, 51, .62); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .c3d__arrows { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
-.c3d__arrows-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; justify-content: center; align-items: flex-end; gap: .75rem; padding: 2.5rem; }
+.c3d__arrows-sticky { position: absolute; inset: 0; display: flex; justify-content: center; align-items: flex-end; gap: .75rem; padding: 2.5rem; }
 .c3d__arrow { pointer-events: auto; display: grid; place-items: center; width: 4.2rem; height: 2rem; border-radius: 100vw; background: var(--manteiga); color: var(--ink); transition: opacity .3s, transform .3s var(--ease-back); }
 .c3d__arrow svg { width: 18px; height: 18px; transform: scaleX(-1); }
 .c3d__arrow--next svg { transform: none; }

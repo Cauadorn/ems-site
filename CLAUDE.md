@@ -60,8 +60,9 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
 ## O que já foi aprovado ou pedido pelo Cauã (não desfazer sem perguntar)
 - Hero no estilo pixel.melbourne: logo "EMS" em caixas, selo carimbado, etiquetas arrastáveis. A frase da marca
   ficou em 2 linhas corridas e menores, em itálico (pedido da Emilly em 01/10: a de 3 linhas era grande demais).
-- Carrossel 3D igual ao da pixel.melbourne: anel circular girado pela rolagem, mínimo de 8 posições, vagas
-  "próximo projeto" (`docs/referencia-pixel.md` e `src/js/modules/carousel.js`).
+- Carrossel 3D igual ao da pixel.melbourne: anel circular, mínimo de 8 posições, vagas "próximo projeto"
+  (`docs/referencia-pixel.md` e `src/js/modules/carousel.js`). Em 01/10 a Emilly pediu para o anel NÃO girar com a
+  rolagem (prendia a página): ele ocupa uma tela e gira pelas setas, arrastando para o lado ou pelas setas do teclado.
 - Seção "Como eu penso design": texto menor e objetivo.
 - Abertura (selo + contador + cortinas) só na 1ª visita da sessão.
 
