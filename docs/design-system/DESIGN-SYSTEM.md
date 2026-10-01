@@ -179,11 +179,17 @@ Regras: ícones herdam a cor por `currentColor`; tamanho mínimo 16 px; nada de 
 
 ## 7. Componentes
 
-### Botão (`.btn`)
-- Pílula, altura 52 px (pequeno 42, grande 60), padding `0 1.5em`, borda 2 px, Inter 600, ícone 1,15 em à direita ou esquerda.
-- Variantes: `--ivory` (fundo marfim, texto violeta: ação principal sobre violeta), `--ink` (tinta/marfim: CTA do
-  cabeçalho), `--ghost` (transparente com borda da cor do texto: ação secundária).
-- Hover: sobe 3 px + sombra `0 6px 0 rgba(42,20,51,.25)` com `--ease-back` (.35 s). No celular (≤ 560 px) ocupa a largura.
+### Botão (`.btn`) — estilo etiqueta-adesivo
+Igual à etiqueta "IDENTIDADE VISUAL" do topo (pedido da Emilly em 01/10): retângulo de cantos 6 px, Inter 800 em CAIXA
+ALTA (`letter-spacing .06em`, .82rem), altura 48 px (pequeno 40, grande 54), sombra dura `3px 3px 0`. Sem setas: o
+texto fica centralizado (ícones só nos botões de rede). Hover: sobe 2 px na diagonal e a sombra vai a 5 px; clique afunda.
+- `--manteiga` (principal): fundo manteiga, texto tinta, sombra tinta.
+- `--claro`: fundo marfim, texto tinta, sombra rosa.
+- `--lavanda`: fundo lavanda, texto tinta, sombra tinta.
+- `--ink` (cabeçalho): fundo tinta, texto marfim, sombra rosa.
+- `--email`: mantém minúsculas. Em fundo ameixa (projetos, cases, "Todos os projetos") a sombra fica rosa.
+- Rosa nunca é fundo de botão (texto pequeno sobre rosa não tem contraste); entra como sombra.
+O "ver case" do carrossel e as setas seguem o mesmo estilo (manteiga, sombra rosa).
 
 ### Botão redondo (`.round-btn`)
 56 px, manteiga, borda 2 px tinta, sombra dura 3 px; hover sobe na diagonal (sombra 5 px), clique afunda (1 px).
