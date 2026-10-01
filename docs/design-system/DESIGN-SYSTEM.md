@@ -341,7 +341,8 @@ do hero sobe. Depois: logo respira em loop; adesivos flutuam (±12 px, 2,2–3,1
 leve giro de 1,5° (intervalo .1 s); texto do manifesto acende palavra por palavra; estrelas com parallax.
 
 **Interações:** adesivos arrastáveis (mouse e dedo) com volta elástica; botão "não clica aqui 😱" solta uma
-chuva de cerejas, corações, brilhos e espirais.
+chuva de cerejas, corações, brilhos e espirais; na 4ª vez vira o link "agora me chama no direct 💜", que abre o
+Instagram @itsemsdesign.
 
 **Movimento reduzido (`prefers-reduced-motion`):** sem abertura, sem Lenis, sem reveals, faixas paradas; tudo já
 aparece no lugar.
@@ -371,9 +372,12 @@ aparece no lugar.
 6. **Serviços** — ameixa; quatro cartões coloridos
 7. **Processo** — marfim; 4 cartões alinhados
 8. **Sobre** — ivory-2; foto em moldura de seleção + CPF × CNPJ
-9. **Contato** — violeta; selo balançando + "VAMOS CRIAR *juntos?*" (mesmo tamanho dos outros títulos de seção) + "Chamar no WhatsApp" (botão principal), Instagram, e-mail, Behance
-10. **Rodapé** — tinta, uma linha só: © + "atendo todo o Brasil", pílulas com ícone (WhatsApp, Instagram, Behance) e
-    botão redondo manteiga "voltar ao topo" (seta pra cima, sombra dura rosa). O "ems" gigante saiu em 01/10.
+9. **Contato** — violeta; selo balançando + "VAMOS CRIAR *juntos?*" (mesmo tamanho dos outros títulos de seção) +
+   "Me conta sobre a sua marca…" + "não clica aqui 😱". Sem botões: eles repetiam os do rodapé, logo abaixo (01/10).
+10. **Rodapé** — tinta; os botões de contato: "Chamar no WhatsApp" (marfim, principal), @itsemsdesign, e-mail e Behance
+    (vazados) + botão redondo manteiga "voltar ao topo" (seta pra cima, sombra dura rosa); embaixo, separado por uma
+    linha fina, © + "atendo todo o Brasil". No celular os botões ficam um embaixo do outro, na largura toda. Aparece em
+    todas as páginas, então o contato está sempre a um clique. O "ems" gigante saiu em 01/10.
 
 Os botões "ver case" do carrossel e da lista abrem a página de case do projeto, na mesma aba.
 
