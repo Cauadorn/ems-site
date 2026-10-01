@@ -103,7 +103,7 @@ export const projects = [
     year: '2026',
     color: '#492852',
     behance: null,
-    soon: true, // entra no portfólio; o case sai quando o brand book da ALMAH ficar pronto
+    // case provisório com os rótulos, os cartões e as fotos (pedido da Emilly); trocar pelo brand book quando ficar pronto
   },
   {
     slug: 'ems',

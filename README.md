@@ -77,8 +77,7 @@ Fontes: Anton (títulos), Instrument Serif itálico (voz), Inter (texto) — sel
 ## Pendências com a cliente
 - **Cobrar da Emilly (ela pediu):** um resumo curto de cada projeto. Quando ela mandar, entra no campo `resumo` de
   cada projeto em `src/data/projects.js` e aparece no topo do case.
-- ALMAH entra no portfólio, mas o case só sai quando o brand book da ALMAH ficar pronto (hoje: logo, rótulos,
-  fotos das velas e um vídeo). Até lá fica "em breve" (`soon: true`).
+- ALMAH: case de identidade provisório (rótulos, cartões e fotos); trocar pelo brand book quando ficar pronto.
 - Página de brand book (`brandbook.html`): definir o que entra.
 
 Resolvido em 01/10: WhatsApp (31) 99271-8754, e-mail contatoemillyss@gmail.com, formação em Design Gráfico pela UNA.

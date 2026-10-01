@@ -93,8 +93,8 @@ HTML; usar a base como na tabela acima, senão a imagem quebra no ar e funciona 
   da nuvem foi liberada (Full) em 01/10; o Instagram às vezes pede para esperar alguns minutos.
 - Mais projetos para "Todos os projetos": a Emilly vai mandar o resto do portfólio, separado por área (identidade,
   web, social, fotografia, produtos). Fotografia ainda não tem nenhum projeto (aparece "em breve").
-- ALMAH entra no portfólio, mas o case espera o brand book da ALMAH (hoje: logo, rótulos, fotos das velas, um vídeo).
-  Até lá fica "em breve" (`soon: true`).
+- ALMAH: o case de identidade é provisório (rótulos, cartões e fotos, montados em pranchas em 01/10); trocar pelo brand
+  book quando ela terminar. Arquivos originais no Drive dela, pasta "coleçao genisi".
 - Página de brand book do site: o que entra?
 - Domínio próprio (ex.: emsdesign.com.br) em vez de cauadorn.github.io/ems-site: se mudar, trocar `SITE_URL` em `vite.config.js`.
 - Prancheta de revisão com os prints do site: https://claude.ai/artifact/W3FVwhEdbnUmFAh2U1niwW
