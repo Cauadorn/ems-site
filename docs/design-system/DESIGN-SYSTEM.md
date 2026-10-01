@@ -109,7 +109,7 @@
 | Papel | Família | Uso | Regras |
 |---|---|---|---|
 | Display | **Anton** 400 | títulos de seção, logo, nomes do carrossel, faixas | sempre CAIXA ALTA, `line-height .9–.98`, `letter-spacing -.01em` |
-| Voz | **Instrument Serif** itálico | a palavra de destaque, subtítulos, frase do hero, rodapé "ems" | caixa baixa, `letter-spacing -.02em`, ~1,08× o tamanho do título ao lado |
+| Voz | **Instrument Serif** itálico | a palavra de destaque, subtítulos, frase do hero | caixa baixa, `letter-spacing -.02em`; nos títulos 1,3× o Anton e no nome do menu 1,35× o Inter (o itálico fino parece menor; pedido da Emilly em 01/10) |
 | Texto | **Inter** (variável) | parágrafos, botões, rótulos, interface | 400 texto, 500–600 rótulo, 700 botão forte; `line-height 1.55` |
 
 Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic), `@fontsource-variable/inter`
@@ -133,7 +133,7 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 ```
 ```css
 .section-title { font-family: var(--f-display); font-size: var(--t-h2); line-height: .95; text-transform: uppercase; letter-spacing: -.01em; }
-.section-title em { font-family: var(--f-serif); font-style: italic; text-transform: none; letter-spacing: -.02em; font-size: 1.08em; color: var(--pink); }
+.section-title em { font-family: var(--f-serif); font-style: italic; text-transform: none; letter-spacing: -.02em; font-size: 1.3em; color: var(--pink); }
 /* em fundo escuro a palavra em itálico fica manteiga */
 ```
 
@@ -209,10 +209,11 @@ volta ao subir. ≤ 860 px: vira botão violeta "Menu +" que abre menu em tela c
 partir do botão, .7 s), links em Anton 17vw.
 
 ### Cartões de serviço (`.service`)
-Quatro colunas: vinho (Identidade *visual*), violeta (Web & *UX/UI*), rosa (Social & *peças*), lavanda com texto
-tinta (Produtos *personalizados*, ícone estrela ameixa, pílulas com borda tinta 35%). Raio 32, padding
-clamp(24px, 3vw, 40px), ícone 64 px, título Anton + palavra serif, lista de entregas em pílulas com borda marfim 45%,
-link "Quero … →". Desktop com mouse: o cartão sob o mouse cresce (flex 1,6; os outros 0,8; .7 s). ≤ 1000 px: empilhados.
+Cinco cartões do mesmo tamanho (grade): vinho (Identidade *visual*), violeta (Web & *UX/UI*), rosa (Social & *peças*),
+manteiga (Foto*grafia*, ícone câmera vinho) e lavanda (Produtos *personalizados*, estrela ameixa); nos dois claros o
+texto é tinta e as pílulas têm borda tinta 35%. Raio 32, padding clamp(22px, 2vw, 30px), ícone 56 px, título Anton +
+palavra serif com altura mínima de 2 linhas (todos os títulos na mesma altura) e link "Quero … →" sempre embaixo.
+Hover: o cartão sobe 6 px. ≤ 1180 px: 2 colunas (o último ocupa a linha toda); ≤ 600 px: 1 coluna.
 
 ### Cartões do processo (`.step`)
 Borda 2 px tinta, raio 20, fundo marfim, sombra dura 6 px; número em círculo de 52 px (violeta, rosa, vinho,
@@ -233,6 +234,8 @@ diagonal; borda inferior 2 px; hover abre padding e mostra miniatura que segue o
   tela (até 780 px de altura, mínimo 540 px). Arrastando para o lado (mouse, dedo ou touchpad) o anel acompanha (45% da largura =
   um projeto) e o próximo card cresce até a frente; ao soltar, encaixa no mais próximo (gesto rápido já passa para o
   vizinho; GSAP .9 s `expo.out`). Setas da tela e ← → também giram. Arrastar para cima/baixo continua rolando a página.
+- Com mouse, o card de outro projeto cresce 12% ao passar por cima (etiqueta "ver este"); o clique traz ele para a frente.
+  O card da frente abre o case ("ver case").
 - Largura do card 50vw / espaço 30vw (≤ 991: 70vw / 40vw); proporção 60% (≤ 991: 120%, ≤ 479: 140%).
 - **Mínimo 8 posições.** Posições sem projeto viram vagas "próximo projeto / vaga aberta" (fundo `#2F1535`,
   tracejado marfim 30%, espiral rosa). A partir do 9º projeto o anel cresce.
@@ -331,7 +334,8 @@ aparece no lugar.
 7. **Processo** — marfim; 4 cartões em escada
 8. **Sobre** — ivory-2; foto em moldura de seleção + CPF × CNPJ
 9. **Contato** — violeta; selo balançando + "VAMOS CRIAR *juntos?*" (mesmo tamanho dos outros títulos de seção) + "Chamar no WhatsApp" (botão principal), Instagram, e-mail, Behance
-10. **Rodapé** — tinta; "ems" gigante em serif lavanda + brilho manteiga
+10. **Rodapé** — tinta, uma linha só: © + "atendo todo o Brasil", pílulas com ícone (WhatsApp, Instagram, Behance) e
+    botão redondo manteiga "voltar ao topo" (seta pra cima, sombra dura rosa). O "ems" gigante saiu em 01/10.
 
 Os botões "ver case" do carrossel e da lista abrem a página de case do projeto, na mesma aba.
 

@@ -39,7 +39,9 @@ em { font-style: normal; }
 .serif { font-family: var(--f-serif); font-style: italic; font-weight: 400; letter-spacing: -.02em; line-height: 1; }
 .eyebrow { font-size: var(--t-small); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
 .section-title { font-family: var(--f-display); font-weight: 400; font-size: var(--t-h2); line-height: .95; text-transform: uppercase; letter-spacing: -.01em; }
-.section-title em { font-family: var(--f-serif); font-style: italic; text-transform: none; letter-spacing: -.02em; font-size: 1.08em; color: var(--pink); }
+/* 1.3em: o itálico é fino e de minúsculas baixas; neste tamanho ele fica com o mesmo "peso" visual das maiúsculas
+   do Anton (pedido da Emilly: "cara" e "Emi" pareciam menores que o resto do título) */
+.section-title em { font-family: var(--f-serif); font-style: italic; text-transform: none; letter-spacing: -.02em; font-size: 1.3em; color: var(--pink); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
