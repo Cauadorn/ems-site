@@ -277,19 +277,17 @@
 /* mesmo tamanho dos outros títulos de seção (pedido da Emilly: todos os títulos iguais) */
 .contact .section-title em { color: var(--manteiga); }
 .contact__lead { font-size: var(--t-lead); }
-.contact__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 10px; }
 .nope { margin-top: 30px; font-size: .85rem; text-decoration: underline; text-underline-offset: 4px; opacity: .75; }
 .nope:hover { opacity: 1; }
 .burst { position: fixed; z-index: 9600; pointer-events: none; width: 34px; height: 34px; }
 
 /* ================= RODAPÉ ================= */
-.site-footer { background: var(--ink); color: var(--ivory); padding: 32px var(--gutter); }
-.site-footer__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 28px; max-width: var(--max); margin-inline: auto; font-size: var(--t-small); }
-.site-footer__copy { opacity: .85; }
-.site-footer__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-left: auto; }
-.site-footer__links a { display: inline-flex; align-items: center; gap: .5em; min-height: 44px; padding: 0 1.05em; border-radius: 999px; border: 1px solid rgba(255, 251, 222, .28); font-weight: 600; text-decoration: none; white-space: nowrap; transition: background .25s, color .25s, border-color .25s; }
-.site-footer__links a:hover { background: var(--ivory); color: var(--ink); border-color: var(--ivory); }
-.site-footer__links svg { width: 18px; height: 18px; flex: none; }
+/* rodapé: os botões de contato (WhatsApp marfim + Instagram, e-mail e Behance vazados) e o voltar ao topo; embaixo, o © */
+.site-footer { background: var(--ink); color: var(--ivory); padding: 36px var(--gutter) 28px; }
+.site-footer__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 28px; max-width: var(--max); margin-inline: auto; }
+.site-footer__links { display: flex; flex-wrap: wrap; gap: 10px; }
+.site-footer__links .btn--ghost:hover { color: var(--ink); }
+.site-footer__copy { max-width: var(--max); margin: 24px auto 0; padding-top: 20px; border-top: 1px solid rgba(255, 251, 222, .12); font-size: var(--t-small); opacity: .75; }
 /* voltar ao topo: botão redondo manteiga, sombra dura rosa; a seta sobe no hover */
 .site-footer__top { box-shadow: 3px 3px 0 var(--pink); border-color: var(--manteiga); }
 .site-footer__top:hover { box-shadow: 5px 5px 0 var(--pink); }
@@ -331,8 +329,9 @@
 @media (max-width: 560px) {
   .process__list { grid-template-columns: 1fr; }
   .hero__actions .btn { flex: 1 1 100%; justify-content: center; }
-  .contact__actions .btn { width: 100%; justify-content: center; font-size: .95rem; }
   .cpfcnpj__switch button { font-size: 1.6rem; padding: .45em .8em; }
-  .site-footer__row { flex-direction: column; text-align: center; }
-  .site-footer__links { margin-left: 0; }
+  .site-footer__row { flex-direction: column; }
+  .site-footer__links { width: 100%; }
+  .site-footer__links .btn { width: 100%; justify-content: center; font-size: .95rem; }
+  .site-footer__copy { text-align: center; }
 }

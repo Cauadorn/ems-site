@@ -26,5 +26,16 @@ export function initNope() {
       gsap.to(s, { y: `+=${420 + Math.random() * 200}`, rotate: '+=220', duration: 1.1, delay: .7, ease: 'power2.in', onComplete: () => s.remove() });
     }
     btn.textContent = lines[Math.min(clicks++, lines.length - 1)];
+    // na última frase ("agora me chama no direct") o botão vira link para o Instagram (pedido da Emilly em 01/10)
+    if (clicks === lines.length) {
+      const a = document.createElement('a');
+      a.className = 'nope';
+      a.href = 'https://www.instagram.com/itsemsdesign/';
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.dataset.cursorText = 'abrir o insta';
+      a.textContent = btn.textContent;
+      btn.replaceWith(a);
+    }
   });
 }
