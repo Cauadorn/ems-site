@@ -1,13 +1,15 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projects } from '../../data/projects.js';
+import { reduced } from './site.js';
 
 // raiz do site ("/" aqui, "/ems-site/" no GitHub Pages): toda imagem da pasta public passa por ela
 const BASE = import.meta.env.BASE_URL;
 
-// Carrossel 3D dos projetos — mesma lógica do pixel.melbourne (ver docs/referencia-pixel.md):
-// os cards formam um cilindro (rotateY + translateZ) e a ROLAGEM gira o cilindro.
-// Cada projeto tem um "painel" de 100vh com o nome gigante; as setas rolam até o painel vizinho.
+// Carrossel 3D dos projetos — o anel da pixel.melbourne (ver docs/referencia-pixel.md):
+// os cards formam um cilindro (rotateY + translateZ) e giram até o projeto escolhido.
+// Pedido da Emilly (01/10): o carrossel NÃO prende a rolagem da página. Ele ocupa uma tela só e
+// troca de projeto pelas setas, arrastando para o lado (dedo ou mouse) ou pelas setas do teclado.
 
 // O anel tem no mínimo 8 posições (como o da Pixel). Posição sem projeto vira uma vaga
 // "próximo projeto"; ao incluir um projeto em src/data/projects.js ele ocupa a vaga sozinho.
@@ -29,7 +31,7 @@ const face = (p, back, lazy) => {
     : `<div class="${cls}">${img}</div>`;
 };
 
-export function initCarousel(root, lenis) {
+export function initCarousel(root) {
   if (!root) return;
   const wrap = root.querySelector('[data-c3d-wrap]');
   const list = root.querySelector('[data-c3d-list]');
@@ -49,7 +51,7 @@ export function initCarousel(root, lenis) {
     list.append(item);
   }
 
-  // painéis com o nome (o conteúdo acessível fica aqui)
+  // painéis com o nome (o conteúdo acessível fica aqui); só o do projeto ativo aparece
   panelsEl.innerHTML = projects.map((p, i) => `
     <article class="c3d__panel" data-c3d-panel>
       <p class="c3d__count">${String(i + 1).padStart(2, '0')} / ${String(n).padStart(2, '0')}</p>
@@ -73,47 +75,39 @@ export function initCarousel(root, lenis) {
   items.forEach((el, i) => { el.style.transform = `rotateY(${rotateAmount * i}deg) translateZ(${posTranslate})`; });
   gsap.to(wrap, { opacity: 1 });
 
-  gsap.timeline({
-    // termina no topo do último painel (e não no fim da seção): assim o giro bate com o painel mesmo quando 100vh ≠ 100svh no celular
-    scrollTrigger: { trigger: root, start: 'top top', endTrigger: panels[n - 1], end: 'top top', scrub: true },
-  // gira do 1º ao último projeto (a Pixel usa -(360 - passo), que é o mesmo valor quando não há vagas)
-  }).fromTo(wrap, { '--c3d-rotate': '0deg' }, { '--c3d-rotate': `${-rotateAmount * (n - 1)}deg`, duration: 30, ease: 'none' });
-
-  // painel ativo + setas
+  // projeto ativo: gira o anel até ele, mostra o painel dele e acerta as setas
   let active = 0;
-  let animating = false;
-  let lockT;
-  const setActive = (i) => {
-    active = i;
-    prev.setAttribute('aria-disabled', String(i === 0));
-    next.setAttribute('aria-disabled', String(i === n - 1));
-    items.forEach((el, k) => el.classList.toggle('is-active', k === i));
+  const go = (i, animate = true) => {
+    active = Math.max(0, Math.min(n - 1, i));
+    gsap.to(wrap, { '--c3d-rotate': `${-rotateAmount * active}deg`, duration: animate && !reduced ? .9 : 0, ease: 'expo.inOut', overwrite: 'auto' });
+    panels.forEach((el, k) => { el.classList.toggle('is-active', k === active); el.inert = k !== active; });
+    items.forEach((el, k) => el.classList.toggle('is-active', k === active));
+    prev.setAttribute('aria-disabled', String(active === 0));
+    next.setAttribute('aria-disabled', String(active === n - 1));
   };
-  setActive(0);
+  go(0, false);
 
-  panels.forEach((panel, i) => {
-    ScrollTrigger.create({
-      trigger: panel, start: 'top center', end: 'bottom center',
-      onToggle: ({ isActive }) => { if (isActive) setActive(i); },
-    });
+  next.addEventListener('click', () => go(active + 1));
+  prev.addEventListener('click', () => go(active - 1));
+
+  // setas do teclado com o foco dentro do carrossel
+  root.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); go(active + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(active - 1); }
   });
 
-  // a trava das setas se solta por tempo: se a pessoa girar a roda no meio, o onComplete do Lenis não chega e as setas travariam
-  const scrollToActive = () => {
-    animating = true;
-    clearTimeout(lockT);
-    lockT = setTimeout(() => { animating = false; }, 650);
-    const y = panels[active].getBoundingClientRect().top + scrollY;
-    if (lenis) lenis.scrollTo(y, { duration: .6 });
-    else scrollTo({ top: y, behavior: 'auto' }); // sem Lenis = movimento reduzido
-  };
-  // navegando com Tab, o painel que recebe o foco vira o ativo e o anel gira até ele
-  panels.forEach((p, i) => p.addEventListener('focusin', () => { if (i !== active) { setActive(i); scrollToActive(); } }));
-  next.addEventListener('click', () => { if (active < n - 1 && !animating) { setActive(active + 1); scrollToActive(); } });
-  prev.addEventListener('click', () => { if (active > 0 && !animating) { setActive(active - 1); scrollToActive(); } });
-
-  setTimeout(() => ScrollTrigger.refresh(), 300);
-  addEventListener('load', () => ScrollTrigger.refresh());
+  // arrastar para o lado (dedo ou mouse); arrastar para cima/baixo continua rolando a página
+  let x0 = null, y0 = 0, dragged = false;
+  root.addEventListener('pointerdown', (e) => { if (e.target.closest('button')) return; x0 = e.clientX; y0 = e.clientY; dragged = false; });
+  root.addEventListener('pointerup', (e) => {
+    if (x0 === null) return;
+    const dx = e.clientX - x0, dy = e.clientY - y0;
+    x0 = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.2) { dragged = true; go(active + (dx < 0 ? 1 : -1)); }
+  });
+  root.addEventListener('pointercancel', () => { x0 = null; });
+  // depois de arrastar com o mouse, o "soltar" não deve abrir o case
+  root.addEventListener('click', (e) => { if (dragged) { e.preventDefault(); dragged = false; } }, true);
 
   initList(root.closest('section'), root);
 }

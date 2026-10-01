@@ -227,8 +227,9 @@ diagonal; borda inferior 2 px; hover abre padding e mostra miniatura que segue o
 ### Carrossel 3D (`.c3d`) — igual ao da pixel.melbourne
 - Os cards formam um **anel** (cilindro): cada item `rotateY(360/posições × i) translateZ(R)`,
   `R = largura / (2·tan(180°/posições)) + espaço`; a lista recua `translateZ(-R)` e a perspectiva é `R`.
-- **A rolagem gira o anel.** Um painel de 100svh por projeto com o nome gigante; GSAP ScrollTrigger (scrub) leva
-  `--c3d-rotate` de 0 a `−passo × (projetos − 1)`, terminando no topo do último painel.
+- **O anel NÃO gira com a rolagem** (pedido da Emilly em 01/10: prender a rolagem atrapalhava). O carrossel ocupa uma
+  tela (100svh, mínimo 560 px) e gira `--c3d-rotate` até `−passo × projeto` (GSAP, .9 s, `expo.inOut`) quando a pessoa
+  usa as setas, arrasta para o lado (dedo ou mouse; arrastar para cima/baixo continua rolando a página) ou usa ← →.
 - Largura do card 50vw / espaço 30vw (≤ 991: 70vw / 40vw); proporção 60% (≤ 991: 120%, ≤ 479: 140%).
 - **Mínimo 8 posições.** Posições sem projeto viram vagas "próximo projeto / vaga aberta" (fundo `#2F1535`,
   tracejado marfim 30%, espiral rosa). A partir do 9º projeto o anel cresce.
@@ -236,7 +237,8 @@ diagonal; borda inferior 2 px; hover abre padding e mostra miniatura que segue o
 - Painel: contador "01 / 06" em pílula escura, nome Anton marfim com sombra
   `0 2px 8px rgba(42,20,51,.55), 0 4px 30px rgba(42,20,51,.45)`, categoria serif em pílula escura com desfoque,
   botão rosa "ver case" (ou "em breve" em pílula escura).
-- Setas rolam até o painel vizinho (.6 s); Tab foca o painel e o anel gira até ele.
+- Só o painel do projeto ativo aparece (os outros somem com opacidade e ficam `inert`); setas desativadas nas pontas
+  (opacidade .4 + `aria-disabled`).
 - **Adicionar projeto:** capa 1600 × 1000 (`python scripts/nova-capa.py <imagem> <slug>`) + um bloco em
   `src/data/projects.js`.
 

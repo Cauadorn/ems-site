@@ -53,8 +53,8 @@ Zip para enviar: `Clientes\EMI\EMS-design-system.zip`.
 ## Estado (01/10/2026)
 Pronto:
 - Home: abertura (selo + contador + cortinas), hero no estilo Pixel (logo EMS em caixas, selo, frase entrando pelos
-  lados, etiquetas arrastáveis), faixas, carrossel 3D igual ao da Pixel (anel circular girado pela rolagem, painéis
-  de 100vh, setas que rolam) + modo lista, "como eu penso design", serviços, processo, sobre (CPF × CNPJ), contato
+  lados, etiquetas arrastáveis), faixas, carrossel 3D igual ao da Pixel (anel circular numa tela só, girado pelas
+  setas ou arrastando para o lado, sem prender a rolagem) + modo lista, "como eu penso design", serviços, processo, sobre (CPF × CNPJ), contato
   com easter egg, rodapé. Referência técnica da Pixel em `docs/referencia-pixel.md`.
 - Build com várias páginas e trechos reaproveitados (`<!-- @include partials/x.html -->`) em `vite.config.js`.
 - Páginas de case `projetos/<slug>.html` (geradas de `src/data/projects.js` + slides; os cards do carrossel e da
