@@ -4,7 +4,8 @@ Este arquivo é lido sozinho quando o Claude abre esta pasta. Ele guarda o que f
 para qualquer computador continuar de onde parou. **Responda sempre em português do Brasil, simples e direto.**
 
 ## Contato e dados confirmados pela Emilly (01/10/2026)
-WhatsApp (31) 99271-8754 · e-mail contatoemillyss@gmail.com · Instagram @itsemsdesign · Behance emysilva7 ·
+WhatsApp (31) 99271-8754 · e-mail contatoemillyss@gmail.com · Instagram @itsemsdesign · Instagram de fotografia
+esportiva @itsemsfotografia (ela autorizou usar as fotos e divulgar) · Behance emysilva7 ·
 formada em Design Gráfico pela UNA (Belo Horizonte). Mora entre São Paulo e Belo Horizonte e atende o Brasil todo,
 online: no site, nunca apresentar uma cidade só (afasta cliente de outro estado).
 
@@ -87,6 +88,8 @@ HTML; usar a base como na tabela acima, senão a imagem quebra no ar e funciona 
 ## Pendências (perguntar à Emilly)
 - **Lembrar a Emilly no começo de cada conversa (ela pediu para ser cobrada):** o resumo curto de cada projeto.
   Quando ela mandar, vai no campo `resumo` do projeto em `src/data/projects.js` (aparece no topo do case).
+- Fotografia: pedir à Emilly os ARQUIVOS das fotos esportivas do @itsemsfotografia e o vídeo da ALMAH (está no
+  @itsemsdesign): o Instagram é bloqueado na nuvem. O vídeo entra no projeto ALMAH (velas) quando chegar.
 - Mais projetos para "Todos os projetos": a Emilly vai mandar o resto do portfólio, separado por área (identidade,
   web, social, fotografia, produtos). Fotografia ainda não tem nenhum projeto (aparece "em breve").
 - ALMAH entra no portfólio, mas o case espera o brand book da ALMAH (hoje: logo, rótulos, fotos das velas, um vídeo).
