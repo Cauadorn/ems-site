@@ -25,6 +25,31 @@ function webpSize(file) {
   throw new Error(`não consegui ler o tamanho de ${file}`);
 }
 
+// imagens do case: apresentação empilhada, galeria de fotos/páginas, ou posts de rede social separados por formato
+function galeria(p, t, list, img) {
+  const tag = (s, k, n, nome, cls = '') => `<img${cls ? ` class="${cls}"` : ''} src="${img(s.file)}" alt="${t}: ${nome} ${k + 1} de ${n}" width="${s.w}" height="${s.h}"${p.galeria === 'posts' || k ? ' loading="lazy"' : ''} decoding="async">`;
+  if (p.galeria !== 'posts') {
+    const nome = { paginas: 'página' }[p.galeria] || (p.galeria ? 'foto' : 'apresentação, parte');
+    const cls = p.galeria ? `case-gallery${p.galeria === 'paginas' ? ' case-gallery--paginas' : ''}` : 'case-slides';
+    return `    <div class="${cls}">\n${list.map((s, k) => `      ${tag(s, k, list.length, nome, p.galeria && s.w > s.h * 1.5 ? 'is-wide' : '')}`).join('\n')}\n    </div>`;
+  }
+  // posts: feed (4:5), carrosséis (a imagem deitada com todos os cards) e stories (9:16), cada um com seu título
+  const grupos = [
+    { titulo: 'Feed', nome: 'post', cls: 'case-gallery case-gallery--posts', itens: list.filter((s) => s.w <= s.h * 1.2 && s.w >= s.h * 0.7) },
+    { titulo: 'Carrosséis', nome: 'carrossel', cls: 'case-carrosseis', itens: list.filter((s) => s.w > s.h * 1.2) },
+    { titulo: 'Stories', nome: 'story', cls: 'case-gallery case-gallery--posts case-gallery--stories', itens: list.filter((s) => s.w < s.h * 0.7) },
+  ].filter((g) => g.itens.length);
+  return `    <div class="case-posts">\n${grupos.map((g) => `      <section class="case-posts__grupo" aria-label="${g.titulo}">
+        <h2 class="eyebrow case-posts__titulo">${g.titulo} · ${g.itens.length}</h2>
+        <div class="${g.cls}">
+${g.itens.map((s, k) => g.nome === 'carrossel'
+    // no celular o carrossel fica na altura de um post e desliza para o lado, como no Instagram
+    ? `          <div class="case-carrossel">${tag(s, k, g.itens.length, g.nome)}</div>`
+    : `          ${tag(s, k, g.itens.length, g.nome)}`).join('\n')}
+        </div>
+      </section>`).join('\n')}\n    </div>`;
+}
+
 function page(p, i, total, next, slides) {
   const t = esc(p.title);
   const url = `%SITE_URL%projetos/${p.slug}.html`;
@@ -60,20 +85,18 @@ ${MARCA}
       <p class="case-hero__lead" data-intro>${esc(p.detail)}</p>
 ${p.resumo ? `      <p class="case-hero__text" data-intro>${esc(p.resumo)}</p>
 ` : ''}    </div>
-    <figure class="case-cover" data-intro>
+${p.capaNoCase === false ? '' : `    <figure class="case-cover" data-intro>
       <div class="frame">
         <span class="frame__h frame__h--tl"></span><span class="frame__h frame__h--tr"></span>
         <span class="frame__h frame__h--bl"></span><span class="frame__h frame__h--br"></span>
         <img src="${img('capa.webp')}" alt="${t}: capa do projeto" width="1600" height="1000">
       </div>
     </figure>
-  </section>
+`}  </section>
 
   <section class="case-body" aria-label="Apresentação do projeto">
-${p.video ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}${slides.mockup ? `    <figure class="case-mockup"><img src="${img(p.mockup)}" alt="${t}: ${p.galeria === 'paginas' ? 'página impressa' : 'projeto aplicado'} sobre a mesa (mockup)" width="${slides.mockup.w}" height="${slides.mockup.h}" decoding="async"></figure>\n` : ''}    <div class="${p.galeria ? `case-gallery${p.galeria === 'paginas' || p.galeria === 'posts' ? ` case-gallery--${p.galeria}` : ''}` : 'case-slides'}">
-${slides.list.map((s, k) => `      <img${p.galeria && s.w > s.h * 1.5 ? ' class="is-wide"' : ''} src="${img(s.file)}" alt="${t}: ${{ paginas: 'página', posts: 'post' }[p.galeria] || (p.galeria ? 'foto' : 'apresentação, parte')} ${k + 1} de ${slides.list.length}" width="${s.w}" height="${s.h}"${k ? ' loading="lazy"' : ''} decoding="async">`).join('\n')}
-    </div>
-${p.site || p.instagram || p.behance ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener">Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.instagram ? `<a class="btn btn--ivory" href="${esc(p.instagram)}" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> Ver no Instagram</a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}</p>\n` : ''}  </section>
+${p.video ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}${slides.mockup ? `    <figure class="case-mockup"><img src="${img(p.mockup)}" alt="${t}: ${p.galeria === 'paginas' ? 'página impressa' : 'projeto aplicado'} sobre a mesa (mockup)" width="${slides.mockup.w}" height="${slides.mockup.h}"${p.capaNoCase === false ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></figure>\n` : ''}${galeria(p, t, slides.list, img)}
+${p.site || p.instagram || p.behance ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener">Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.instagram ? `<a class="btn btn--ivory" href="${esc(p.instagram)}" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> ${esc(p.instagramTexto || 'Ver no Instagram')}</a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}</p>\n` : ''}  </section>
 
   <a class="case-next" href="%BASE_URL%projetos/${next.slug}.html" data-cursor-text="próximo">
     <span class="case-next__inner container">

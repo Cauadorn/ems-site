@@ -6,13 +6,16 @@
 // video: (opcional) video.mp4 + video.webm (mesmo nome) e video-poster.webp em public/img/projetos/<slug>/, no topo do case
 // mockup: (opcional) foto do projeto aplicado (ex.: mockup.webp em public/img/projetos/<slug>/), em destaque antes das páginas
 // site: (opcional) endereço do site no ar, para projetos de web (botão "Ver o site no ar" no case)
-// instagram: (opcional) Instagram do cliente, para projetos de social media (botão "Ver no Instagram" no case)
+// instagram: (opcional) Instagram do cliente, para projetos de social media (botão "Ver no Instagram" no case);
+//   instagramTexto muda o texto do botão (ex.: "Ver mais fotos" nas fotografias esportivas)
+// capaNoCase: false = a capa aparece só nos cards e no carrossel; o case começa direto pelo vídeo ou mockup
 // soon: true = aparece no carrossel como "em breve" e ainda não tem página de case
 // resumo: (opcional) parágrafo curto sobre o projeto, em primeira pessoa, no topo do case. Os de 01/10/2026 foram
 //   escritos pelo Claude a pedido da Emilly, a partir das apresentações; ela revisa e pede para mudar o que quiser
 // galeria: true = as imagens aparecem em grade (bom para fotos verticais), em vez de empilhadas;
 //   'paginas' = páginas inteiras, sem corte, em duas colunas (cardápios, revistas);
-//   'posts' = posts de rede social (4:5), 4 por linha; imagem deitada (carrossel inteiro) ocupa a linha toda
+//   'posts' = posts de rede social, separados sozinhos pelo formato da imagem em Feed (4:5), Carrosséis (imagem
+//   deitada com todos os cards) e Stories (9:16), na ordem dos arquivos
 // area: em qual seção da página "Todos os projetos" (projetos/index.html) ele aparece: um id de `areas` abaixo
 // destaque: true = também aparece no carrossel da home ("Trabalhos que têm cara"); false = só em "Todos os projetos"
 
@@ -22,11 +25,8 @@ export const areas = [
   { id: 'identidade', titulo: 'Identidade <em>visual</em>' },
   { id: 'web', titulo: 'Web &amp; <em>UX/UI</em>' },
   { id: 'social', titulo: 'Social &amp; <em>peças</em>' },
-  {
-    id: 'fotografia', titulo: 'Foto<em>grafia</em>',
-    // card extra que leva ao Instagram de fotografia esportiva (a Emilly pediu para divulgar)
-    link: { href: 'https://www.instagram.com/itsemsfotografia/', titulo: '@itsemsfotografia', detalhe: 'Fotografia esportiva no Instagram' },
-  },
+  // o Instagram de fotografia esportiva (@itsemsfotografia) fica no botão "Ver mais fotos" de cada case de foto
+  { id: 'fotografia', titulo: 'Foto<em>grafia</em>' },
   { id: 'produtos', titulo: 'Produtos <em>personalizados</em>' },
 ];
 
@@ -43,11 +43,12 @@ export const projects = [
     resumo: 'Marca para uma psicóloga que precisava passar autoridade clínica sem perder o acolhimento. Fugi da estética fria de consultório: monograma MV, o nome em letra cursiva e uma paleta terrosa de azul, marrom e areia. Levei a identidade para placa, cartão de visitas, papelaria e um motion do logo.',
     behance: 'https://www.behance.net/gallery/243857007/Psicologa-Maria-Valentina-Branding-Design',
     video: 'video.mp4', // motion do logo (5 s, sem som), horizontal
+    capaNoCase: false, // o case abre direto no motion (pedido da Emilly)
   },
   {
     slug: 'idex',
     area: 'identidade',
-    destaque: false, // só em "Todos os projetos" → Identidade visual (pedido da Emilly)
+    destaque: true, // no carrossel no lugar do Setembro Amarelo (pedido da Emilly em 01/10)
     title: 'IDex',
     category: 'Branding',
     detail: 'Identidade visual para plataforma de crédito',
@@ -84,6 +85,20 @@ export const projects = [
     instagram: 'https://www.instagram.com/idex.brasil/',
   },
   {
+    slug: 'dr-pedro-caetano',
+    area: 'social',
+    destaque: false,
+    galeria: 'posts', // 3 posts de feed, 7 carrosséis e 4 stories (slide-01 a 03, 04 a 10, 11 a 14)
+    title: 'Dr. Pedro Caetano',
+    category: 'Social media',
+    detail: 'Posts, carrosséis e stories para cardiologista',
+    year: '2026',
+    color: '#8E1F24',
+    resumo: 'Conteúdo para o Instagram do Dr. Pedro Caetano, cardiologista: posts, carrosséis e stories sobre prevenção, treino e saúde do coração, e também as datas do ano, como Dia das Mães, Dia dos Pais e Outubro Rosa. Tudo no vinho e no vermelho da marca, com fotos fortes e um convite claro para agendar a avaliação.',
+    behance: null,
+    instagram: 'https://www.instagram.com/drpedrocaetano/',
+  },
+  {
     slug: 'banco-inter',
     area: 'web',
     destaque: true,
@@ -98,7 +113,7 @@ export const projects = [
   {
     slug: 'setembro-amarelo',
     area: 'social',
-    destaque: true,
+    destaque: false, // saiu do carrossel (pedido da Emilly em 01/10); continua em "Todos os projetos"
     title: 'Setembro Amarelo',
     category: 'Campanha',
     detail: 'Endomarketing · Branding & UI',
@@ -112,7 +127,8 @@ export const projects = [
     area: 'social',
     destaque: false,
     galeria: 'paginas', // páginas inteiras, sem corte, em duas colunas (dá para ler)
-    mockup: 'mockup.webp', // página de promoções impressa, na mesa (mockup)
+    mockup: 'mockup.webp', // página de promoções impressa, na mesa (mockup); a capa é um recorte dele
+    capaNoCase: false, // o case abre direto no mockup (pedido da Emilly)
     title: "Rinu's",
     category: 'Cardápio',
     detail: 'Cardápio para bar e restaurante · 9 páginas',
@@ -124,7 +140,7 @@ export const projects = [
   {
     slug: 'suddenly-30',
     area: 'produtos',
-    destaque: true,
+    destaque: false, // saiu do carrossel (pedido da Emilly em 01/10); continua em "Todos os projetos"
     title: 'Suddenly 30',
     category: 'Surface design',
     detail: 'Projeto autoral · estampas e copos',
@@ -170,11 +186,13 @@ export const projects = [
     color: '#2A1433',
     resumo: 'Cobertura fotográfica da Copa Búfalo de jiu-jitsu. Procuro o que acontece de perto: a pegada, o esforço no rosto, a concentração antes da luta. Em algumas fotos juntei tipografia para virar post.',
     behance: null,
+    instagram: 'https://www.instagram.com/itsemsfotografia/',
+    instagramTexto: 'Ver mais fotos',
   },
   {
     slug: 'foto-circuito-gmt',
     area: 'fotografia',
-    destaque: false,
+    destaque: true, // no carrossel no lugar do Suddenly 30 (pedido da Emilly em 01/10)
     galeria: true,
     title: 'Circuito GMT',
     category: 'Fotografia esportiva',
@@ -183,6 +201,8 @@ export const projects = [
     color: '#2A1433',
     resumo: 'Cobertura da 2ª etapa do Circuito GMT de jiu-jitsu, com atletas de várias idades e faixas. Além das fotos, montei posts com tipografia por cima, como "The mat doesn\'t lie".',
     behance: null,
+    instagram: 'https://www.instagram.com/itsemsfotografia/',
+    instagramTexto: 'Ver mais fotos',
   },
   {
     slug: 'almah-fotos',
