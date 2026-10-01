@@ -73,7 +73,8 @@ export function initCarousel(root) {
 
   wrap.style.setProperty('--c3d-z', negTranslate);
   wrap.style.perspective = posTranslate;
-  items.forEach((el, i) => { el.style.transform = `rotateY(${rotateAmount * i}deg) translateZ(${posTranslate})`; });
+  // scale(var(--s)): o card do lado cresce um pouco quando o mouse passa por ele (ver sections.css)
+  items.forEach((el, i) => { el.style.transform = `rotateY(${rotateAmount * i}deg) translateZ(${posTranslate}) scale(var(--s, 1))`; });
   gsap.to(wrap, { opacity: 1 });
 
   // rotação atual do anel, em graus (0 = primeiro projeto; cada projeto à frente é −passo)
@@ -90,7 +91,11 @@ export function initCarousel(root) {
     if (i === active) return;
     active = i;
     panels.forEach((el, k) => { el.classList.toggle('is-active', k === i); el.inert = k !== i; });
-    items.forEach((el, k) => el.classList.toggle('is-active', k === i));
+    items.forEach((el, k) => {
+      el.classList.toggle('is-active', k === i);
+      // o card da frente abre o case; os do lado trazem o projeto para a frente
+      el.querySelector('a.c3d__face')?.setAttribute('data-cursor-text', k === i ? 'ver case' : 'ver este');
+    });
     prev.setAttribute('aria-disabled', String(i === 0));
     next.setAttribute('aria-disabled', String(i === n - 1));
   };
@@ -103,6 +108,12 @@ export function initCarousel(root) {
     gsap.to(rot, { v: -step * i, duration: animate && !reduced ? .9 : 0, ease: 'expo.out', overwrite: true, onUpdate: apply });
   };
   go(0, false);
+
+  // clicar num card do lado traz aquele projeto para a frente (o da frente segue o link do case)
+  items.forEach((el, k) => {
+    if (!projects[k]) return;
+    el.addEventListener('click', (e) => { if (k !== active) { e.preventDefault(); go(k); } });
+  });
 
   next.addEventListener('click', () => go(active + 1));
   prev.addEventListener('click', () => go(active - 1));
