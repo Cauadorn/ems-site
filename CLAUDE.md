@@ -3,6 +3,10 @@
 Este arquivo é lido sozinho quando o Claude abre esta pasta. Ele guarda o que foi decidido na construção do site,
 para qualquer computador continuar de onde parou. **Responda sempre em português do Brasil, simples e direto.**
 
+## Contato e dados confirmados pela Emilly (01/10/2026)
+WhatsApp (31) 99271-8754 · e-mail contatoemillyss@gmail.com · Instagram @itsemsdesign · Behance emysilva7 ·
+formada em Design Gráfico pela UNA (Belo Horizonte).
+
 ## Quem usa
 - **Emilly Silva** (@itsemsdesign): designer gráfica e UX/UI, dona da marca EMS e do site. Não é programadora:
   explique o que mudou em palavras comuns, sem jargão, e mostre o resultado no navegador.
@@ -29,6 +33,10 @@ Portfólio da Emilly para trazer clientes. Vite + HTML/CSS/JS puro + GSAP + Leni
 
 ## Publicar
 Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
+- **Pelo Claude na nuvem (claude.ai/code, app do celular):** lá o Claude só pode enviar para um ramo próprio
+  (`claude/...`), e o site só publica o que entra na `main`. Depois do push, abrir um pull request para a `main` e
+  pedir para a pessoa aprovar ("Merge") no GitHub; em cerca de 1 minuto o site atualiza.
+- **No computador (Claude Code instalado):** os passos abaixo.
 1. `git add` + `git commit` com mensagem curta em português dizendo o que mudou.
 2. `git push` — em cerca de 1 minuto o GitHub gera e publica sozinho (`.github/workflows/deploy.yml`).
 3. Conferir https://cauadorn.github.io/ems-site/ e avisar que está no ar.
@@ -59,7 +67,8 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
 | Quero mudar | Arquivo |
 |---|---|
 | Projetos do carrossel e da lista | `src/data/projects.js` (capa: `python scripts/nova-capa.py <imagem> <slug>`) |
-| Textos | `index.html` |
+| Páginas de case | geradas sozinhas de `projects.js` + `public/img/projetos/<slug>/slide-*.webp`; layout em `scripts/gerar-cases.mjs` e `src/styles/case.css`. Não editar `projetos/*.html` à mão |
+| Textos | `index.html` (contato: `partials/contact.html`; 404: `404.html`) |
 | Cores, fontes, espaçamentos | `src/styles/tokens.css` |
 | Botões, etiquetas, chips | `src/styles/components.css` |
 | Layout das seções | `src/styles/sections.css` |
@@ -72,8 +81,10 @@ O site é publicado dentro de `/ems-site/`: nunca escrever caminho de imagem com
 HTML; usar a base como na tabela acima, senão a imagem quebra no ar e funciona só no computador.
 
 ## Pendências (perguntar à Emilly)
-- ALMAH entra no portfólio? (hoje aparece como "em breve")
-- WhatsApp para o contato; e-mail atual (o site usa contact.emsdesigner@gmail.com, do Behance).
-- Formação (curso e instituição) para a seção Sobre.
-- Páginas de case de cada projeto (hoje os botões abrem o Behance), página de brand book, página 404.
+- **Lembrar a Emilly no começo de cada conversa (ela pediu para ser cobrada):** o resumo curto de cada projeto.
+  Quando ela mandar, vai no campo `resumo` do projeto em `src/data/projects.js` (aparece no topo do case).
+- ALMAH entra no portfólio, mas o case espera o brand book da ALMAH (hoje: logo, rótulos, fotos das velas, um vídeo).
+  Até lá fica "em breve" (`soon: true`).
+- Página de brand book do site: o que entra?
+- Domínio próprio (ex.: emsdesign.com.br) em vez de cauadorn.github.io/ems-site: se mudar, trocar `SITE_URL` em `vite.config.js`.
 - Prancheta de revisão com os prints do site: https://claude.ai/artifact/W3FVwhEdbnUmFAh2U1niwW

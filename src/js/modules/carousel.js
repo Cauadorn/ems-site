@@ -14,6 +14,9 @@ const BASE = import.meta.env.BASE_URL;
 // Com mais de 8 projetos o anel cresce junto.
 const MIN_SLOTS = 8;
 
+// página de case do projeto (gerada por scripts/gerar-cases.mjs); projeto "em breve" não tem
+const caseUrl = (p) => (p.soon ? null : `${BASE}projetos/${p.slug}.html`);
+
 const face = (p, back, lazy) => {
   const cls = `c3d__face${back ? ' c3d__face--back' : ''}`;
   if (!p) {
@@ -21,8 +24,8 @@ const face = (p, back, lazy) => {
   }
   const img = `<img src="${BASE}img/projetos/${p.slug}/capa.webp" alt="" ${lazy ? 'loading="lazy"' : ''} draggable="false">`;
   // só a frente é clicável; o verso aparece quando o card está do outro lado do anel
-  return p.link && !back
-    ? `<a class="${cls}" href="${p.link}" target="_blank" rel="noopener" tabindex="-1" data-cursor-text="ver case">${img}</a>`
+  return caseUrl(p) && !back
+    ? `<a class="${cls}" href="${caseUrl(p)}" tabindex="-1" data-cursor-text="ver case">${img}</a>`
     : `<div class="${cls}">${img}</div>`;
 };
 
@@ -52,8 +55,8 @@ export function initCarousel(root, lenis) {
       <p class="c3d__count">${String(i + 1).padStart(2, '0')} / ${String(n).padStart(2, '0')}</p>
       <h3 class="c3d__name">${p.title}</h3>
       <p class="c3d__cat">${p.category} · ${p.detail}</p>
-      ${p.link
-        ? `<a class="c3d__btn" href="${p.link}" target="_blank" rel="noopener" data-cursor-text="abre no Behance">ver case</a>`
+      ${caseUrl(p)
+        ? `<a class="c3d__btn" href="${caseUrl(p)}" data-cursor-text="ver case">ver case</a>`
         : '<span class="c3d__btn c3d__btn--soon">em breve</span>'}
     </article>`).join('');
 
@@ -119,7 +122,7 @@ export function initCarousel(root, lenis) {
 function initList(section, carousel) {
   const list = section.querySelector('[data-project-list]');
   list.innerHTML = projects.map((p) => `
-    <a class="project-row" ${p.link ? `href="${p.link}" target="_blank" rel="noopener"` : 'aria-disabled="true"'} data-preview="${BASE}img/projetos/${p.slug}/capa.webp" data-cursor-text="${p.link ? 'ver case' : 'em breve'}">
+    <a class="project-row" ${caseUrl(p) ? `href="${caseUrl(p)}"` : 'aria-disabled="true"'} data-preview="${BASE}img/projetos/${p.slug}/capa.webp" data-cursor-text="${caseUrl(p) ? 'ver case' : 'em breve'}">
       <span class="project-row__title">${p.title}</span>
       <span class="project-row__cat">${p.category}</span>
       <span class="project-row__year">${p.year}</span>
