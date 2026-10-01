@@ -5,6 +5,7 @@
 // behance: link do projeto no Behance (aparece no fim do case) ou null
 // soon: true = aparece no carrossel como "em breve" e ainda não tem página de case
 // resumo: (opcional) parágrafo da Emilly sobre o projeto, aparece no topo do case
+// galeria: true = as imagens aparecem em grade (bom para fotos verticais), em vez de empilhadas
 // area: em qual seção da página "Todos os projetos" (projetos/index.html) ele aparece: um id de `areas` abaixo
 // destaque: true = também aparece no carrossel da home ("Trabalhos que têm cara"); false = só em "Todos os projetos"
 
@@ -102,6 +103,30 @@ export const projects = [
     behance: 'https://www.behance.net/gallery/241318371/EMS-Personal-Brand',
   },
   {
+    slug: 'foto-copa-bufalo',
+    area: 'fotografia',
+    destaque: false,
+    galeria: true, // fotos em grade (verticais), em vez da apresentação empilhada
+    title: 'Copa Búfalo',
+    category: 'Fotografia esportiva',
+    detail: 'Cobertura de jiu-jitsu',
+    year: '2026',
+    color: '#2A1433',
+    behance: null,
+  },
+  {
+    slug: 'foto-circuito-gmt',
+    area: 'fotografia',
+    destaque: false,
+    galeria: true,
+    title: 'Circuito GMT',
+    category: 'Fotografia esportiva',
+    detail: '2ª etapa · cobertura de jiu-jitsu',
+    year: '2026',
+    color: '#2A1433',
+    behance: null,
+  },
+  {
     slug: 'almah-fotos',
     area: 'fotografia',
     destaque: false,
@@ -112,5 +137,27 @@ export const projects = [
     color: '#492852',
     behance: null,
     soon: true, // fotos das velas da ALMAH: "em breve" por enquanto (pedido da Emilly)
+  },
+  {
+    slug: 'copo-24-da-bruninha',
+    area: 'produtos',
+    destaque: false,
+    title: '24 da Bruninha',
+    category: 'Copo personalizado',
+    detail: 'Copo EcoLabel para aniversário',
+    year: '',
+    color: '#1FB57F',
+    behance: null,
+  },
+  {
+    slug: 'copo-carnaval-2026',
+    area: 'produtos',
+    destaque: false,
+    title: 'Carnaval 2026',
+    category: 'Copo personalizado',
+    detail: 'Copo EcoLabel para o Carnaval',
+    year: '2026',
+    color: '#F2CF4A',
+    behance: null,
   },
 ];
