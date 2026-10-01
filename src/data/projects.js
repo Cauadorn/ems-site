@@ -60,6 +60,18 @@ export const projects = [
     behance: null,
   },
   {
+    slug: 'i3cred',
+    area: 'identidade',
+    destaque: false,
+    title: 'I3Cred',
+    category: 'Branding',
+    detail: 'Identidade visual para empresa de crédito',
+    year: '2026',
+    color: '#FFD701',
+    resumo: 'Montei o guia básico de identidade visual da I3Cred: o símbolo que junta o "i" e o "3", as versões do logo, o amarelo e o preto da marca e a Gotham como fonte. Depois levei a marca para cartão de visitas, caderno, tablet, caneca, ecobag, livro e outdoor.',
+    behance: null,
+  },
+  {
     slug: 'idex-site',
     area: 'web',
     destaque: false,
