@@ -20,50 +20,61 @@
 <!-- @include partials/header.html -->
 
 <main id="conteudo">
-  <section class="case-hero" aria-labelledby="case-titulo">
+  <section class="case-hero case-hero--thumb" aria-labelledby="case-titulo">
     <div class="case-hero__inner container">
-      <a class="case-back" href="%BASE_URL%projetos/" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a>
-      <p class="eyebrow" data-intro>(04/16) Social media · 2026</p>
-      <h1 id="case-titulo" class="case-hero__title" data-intro>IDex Brasil</h1>
-      <p class="case-hero__lead" data-intro>Posts e carrosséis para o Instagram · crédito CLT</p>
-      <p class="case-hero__text" data-intro>Posts e carrosséis para o Instagram da IDex Brasil. A ideia era explicar o crédito CLT de um jeito simples (quem pode contratar, como funciona a jornada, por que a operação é diferente) com a mesma linguagem da marca: fundo escuro, roxo, o símbolo em 3D e títulos curtos.</p>
-    </div>
-    <figure class="case-cover" data-intro>
-      <div class="frame">
-        <span class="frame__h frame__h--tl"></span><span class="frame__h frame__h--tr"></span>
-        <span class="frame__h frame__h--bl"></span><span class="frame__h frame__h--br"></span>
-        <img src="%BASE_URL%img/projetos/idex-social/capa.webp" alt="IDex Brasil: capa do projeto" width="1600" height="1000">
+      <div class="case-hero__txt">
+        <a class="case-back" href="%BASE_URL%projetos/" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a>
+        <p class="eyebrow" data-intro>(04/16) Social media · 2026</p>
+        <h1 id="case-titulo" class="case-hero__title" data-intro>IDex Brasil</h1>
+        <p class="case-hero__lead" data-intro>Posts e carrosséis para o Instagram · crédito CLT</p>
+        <p class="case-hero__text" data-intro>Posts e carrosséis para o Instagram da IDex Brasil. A ideia era explicar o crédito CLT de um jeito simples (quem pode contratar, como funciona a jornada, por que a operação é diferente) com a mesma linguagem da marca: fundo escuro, roxo, o símbolo em 3D e títulos curtos.</p>
       </div>
-    </figure>
+      <figure class="case-hero__thumb" data-intro><img src="%BASE_URL%img/projetos/idex-social/capa.webp" alt="IDex Brasil: capa do projeto" width="1600" height="1000" fetchpriority="high"></figure>
+    </div>
   </section>
 
   <section class="case-body" aria-label="Apresentação do projeto">
-    <div class="case-posts">
-      <section class="case-posts__grupo" aria-label="Feed">
-        <h2 class="eyebrow case-posts__titulo">Feed · 11</h2>
-        <div class="case-gallery case-gallery--posts">
-          <img src="%BASE_URL%img/projetos/idex-social/slide-01.webp" alt="IDex Brasil: post 1 de 11" width="1600" height="2000" loading="lazy" decoding="async">
-          <img src="%BASE_URL%img/projetos/idex-social/slide-02.webp" alt="IDex Brasil: post 2 de 11" width="1600" height="2000" loading="lazy" decoding="async">
-          <img src="%BASE_URL%img/projetos/idex-social/slide-03.webp" alt="IDex Brasil: post 3 de 11" width="1600" height="2000" loading="lazy" decoding="async">
-          <img src="%BASE_URL%img/projetos/idex-social/slide-04.webp" alt="IDex Brasil: post 4 de 11" width="1600" height="2000" loading="lazy" decoding="async">
-          <img src="%BASE_URL%img/projetos/idex-social/slide-06.webp" alt="IDex Brasil: post 5 de 11" width="1600" height="2000" loading="lazy" decoding="async">
-          <img src="%BASE_URL%img/projetos/idex-social/slide-07.webp" alt="IDex Brasil: post 6 de 11" width="1600" height="2000" loading="lazy" decoding="async">
-          <img src="%BASE_URL%img/projetos/idex-social/slide-08.webp" alt="IDex Brasil: post 7 de 11" width="1600" height="2000" loading="lazy" decoding="async">
-          <img src="%BASE_URL%img/projetos/idex-social/slide-09.webp" alt="IDex Brasil: post 8 de 11" width="1600" height="2000" loading="lazy" decoding="async">
-          <img src="%BASE_URL%img/projetos/idex-social/slide-11.webp" alt="IDex Brasil: post 9 de 11" width="1600" height="2000" loading="lazy" decoding="async">
-          <img src="%BASE_URL%img/projetos/idex-social/slide-12.webp" alt="IDex Brasil: post 10 de 11" width="1600" height="2000" loading="lazy" decoding="async">
-          <img src="%BASE_URL%img/projetos/idex-social/slide-13.webp" alt="IDex Brasil: post 11 de 11" width="1600" height="2000" loading="lazy" decoding="async">
-        </div>
-      </section>
-      <section class="case-posts__grupo" aria-label="Carrosséis">
-        <h2 class="eyebrow case-posts__titulo">Carrosséis · 2</h2>
-        <div class="case-carrosseis">
-          <div class="case-carrossel"><img src="%BASE_URL%img/projetos/idex-social/slide-05.webp" alt="IDex Brasil: carrossel 1 de 2" width="2000" height="625" loading="lazy" decoding="async"></div>
-          <div class="case-carrossel"><img src="%BASE_URL%img/projetos/idex-social/slide-10.webp" alt="IDex Brasil: carrossel 2 de 2" width="2000" height="625" loading="lazy" decoding="async"></div>
-        </div>
-      </section>
-    </div>
+    <section class="case-ring" aria-label="Posts e carrosséis">
+      <h2 class="eyebrow case-posts__titulo">Posts e carrosséis · 19 artes</h2>
+      <div class="c3d c3d--posts" data-ring data-cursor-text="arrasta pro lado" tabindex="0">
+        <div class="c3d__track"><div class="c3d__sticky"><div class="c3d__wrap" data-c3d-wrap><div class="c3d__list" data-c3d-list>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img src="%BASE_URL%img/projetos/idex-social/slide-01.webp" alt="IDex Brasil: post 1" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img src="%BASE_URL%img/projetos/idex-social/slide-01.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img src="%BASE_URL%img/projetos/idex-social/slide-02.webp" alt="IDex Brasil: post 2" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img src="%BASE_URL%img/projetos/idex-social/slide-02.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img src="%BASE_URL%img/projetos/idex-social/slide-03.webp" alt="IDex Brasil: post 3" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img src="%BASE_URL%img/projetos/idex-social/slide-03.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img src="%BASE_URL%img/projetos/idex-social/slide-04.webp" alt="IDex Brasil: post 4" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img src="%BASE_URL%img/projetos/idex-social/slide-04.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img class="c3d__faixa" style="width:400%;left:-0%" src="%BASE_URL%img/projetos/idex-social/slide-05.webp" alt="IDex Brasil: carrossel 1, card 1 de 4" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img class="c3d__faixa" style="width:400%;left:-0%" src="%BASE_URL%img/projetos/idex-social/slide-05.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img class="c3d__faixa" style="width:400%;left:-100%" src="%BASE_URL%img/projetos/idex-social/slide-05.webp" alt="IDex Brasil: carrossel 1, card 2 de 4" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img class="c3d__faixa" style="width:400%;left:-100%" src="%BASE_URL%img/projetos/idex-social/slide-05.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img class="c3d__faixa" style="width:400%;left:-200%" src="%BASE_URL%img/projetos/idex-social/slide-05.webp" alt="IDex Brasil: carrossel 1, card 3 de 4" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img class="c3d__faixa" style="width:400%;left:-200%" src="%BASE_URL%img/projetos/idex-social/slide-05.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img class="c3d__faixa" style="width:400%;left:-300%" src="%BASE_URL%img/projetos/idex-social/slide-05.webp" alt="IDex Brasil: carrossel 1, card 4 de 4" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img class="c3d__faixa" style="width:400%;left:-300%" src="%BASE_URL%img/projetos/idex-social/slide-05.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img src="%BASE_URL%img/projetos/idex-social/slide-06.webp" alt="IDex Brasil: post 5" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img src="%BASE_URL%img/projetos/idex-social/slide-06.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img src="%BASE_URL%img/projetos/idex-social/slide-07.webp" alt="IDex Brasil: post 6" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img src="%BASE_URL%img/projetos/idex-social/slide-07.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img src="%BASE_URL%img/projetos/idex-social/slide-08.webp" alt="IDex Brasil: post 7" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img src="%BASE_URL%img/projetos/idex-social/slide-08.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img src="%BASE_URL%img/projetos/idex-social/slide-09.webp" alt="IDex Brasil: post 8" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img src="%BASE_URL%img/projetos/idex-social/slide-09.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img class="c3d__faixa" style="width:400%;left:-0%" src="%BASE_URL%img/projetos/idex-social/slide-10.webp" alt="IDex Brasil: carrossel 2, card 1 de 4" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img class="c3d__faixa" style="width:400%;left:-0%" src="%BASE_URL%img/projetos/idex-social/slide-10.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img class="c3d__faixa" style="width:400%;left:-100%" src="%BASE_URL%img/projetos/idex-social/slide-10.webp" alt="IDex Brasil: carrossel 2, card 2 de 4" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img class="c3d__faixa" style="width:400%;left:-100%" src="%BASE_URL%img/projetos/idex-social/slide-10.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img class="c3d__faixa" style="width:400%;left:-200%" src="%BASE_URL%img/projetos/idex-social/slide-10.webp" alt="IDex Brasil: carrossel 2, card 3 de 4" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img class="c3d__faixa" style="width:400%;left:-200%" src="%BASE_URL%img/projetos/idex-social/slide-10.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img class="c3d__faixa" style="width:400%;left:-300%" src="%BASE_URL%img/projetos/idex-social/slide-10.webp" alt="IDex Brasil: carrossel 2, card 4 de 4" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img class="c3d__faixa" style="width:400%;left:-300%" src="%BASE_URL%img/projetos/idex-social/slide-10.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img src="%BASE_URL%img/projetos/idex-social/slide-11.webp" alt="IDex Brasil: post 9" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img src="%BASE_URL%img/projetos/idex-social/slide-11.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img src="%BASE_URL%img/projetos/idex-social/slide-12.webp" alt="IDex Brasil: post 10" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img src="%BASE_URL%img/projetos/idex-social/slide-12.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face"><img src="%BASE_URL%img/projetos/idex-social/slide-13.webp" alt="IDex Brasil: post 11" loading="lazy" decoding="async" draggable="false"></div><div class="c3d__face c3d__face--back" aria-hidden="true"><img src="%BASE_URL%img/projetos/idex-social/slide-13.webp" alt="" loading="lazy" decoding="async" draggable="false"></div></div>
+        </div></div></div></div>
+        <div class="c3d__arrows"><div class="c3d__arrows-sticky">
+          <button class="c3d__arrow" type="button" data-c3d-prev aria-label="Arte anterior"><svg><use href="#i-seta"/></svg></button>
+          <p class="c3d__count" data-ring-count aria-live="polite">01 / 19</p>
+          <button class="c3d__arrow c3d__arrow--next" type="button" data-c3d-next aria-label="Próxima arte"><svg><use href="#i-seta"/></svg></button>
+        </div></div>
+      </div>
+    </section>
     <p class="case-behance"><a class="btn btn--ivory" href="https://www.instagram.com/idex.brasil/" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> Ver no Instagram</a></p>
+    <aside class="case-cta" aria-label="Fale comigo">
+      <img class="case-cta__selo" src="/src/assets/illustrations/selo-ems.svg" alt="" width="200" height="240" loading="lazy">
+      <div class="case-cta__txt">
+        <p class="case-cta__titulo">Curtiu este <em>projeto?</em></p>
+        <p>Me chama no WhatsApp e a gente conversa sobre o seu.</p>
+      </div>
+      <a class="btn btn--ivory" href="https://wa.me/5531992718754?text=Oi%2C%20Emilly!%20Vi%20o%20projeto%20IDex%20Brasil%20no%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener"><svg><use href="#i-whatsapp"/></svg> Me chama</a>
+    </aside>
+    <p class="case-voltar"><a class="case-back" href="%BASE_URL%projetos/"><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a></p>
   </section>
 
   <a class="case-next" href="%BASE_URL%projetos/dr-pedro-caetano.html" data-cursor-text="próximo">
