@@ -115,13 +115,13 @@ export const projects = [
     slug: 'i3cred-social',
     area: 'social',
     destaque: false,
-    galeria: 'posts', // 5 posts no anel e 5 carrosséis inteiros (2 e 3 lâminas)
+    galeria: 'posts', // 5 posts no anel e 4 carrosséis inteiros (2 e 3 lâminas); o "Organize suas contas" saiu (qualidade baixa)
     title: 'I3Cred',
     category: 'Social media',
     detail: 'Posts e carrosséis para o Instagram · Crédito CLT',
     year: '2026',
     color: '#FFD701',
-    resumo: 'Posts e carrosséis para o Instagram da I3Cred, todos sobre o Crédito CLT: para quem é (CLT com mais de 6 meses de empresa), o que ele oferece (análise sem SPC e Serasa, processo rápido, atendimento com especialista) e sempre um convite para falar com a equipe pelo WhatsApp. Usei fotos de trabalhadores no dia a dia, o amarelo e o preto da marca e o símbolo do i3 ao fundo.',
+    resumo: 'A I3Cred é uma empresa de crédito consignado, e o desafio era falar com o trabalhador de carteira assinada, o público classe C, de um jeito próximo e sem juridiquês. Coloquei no centro quem trabalha todo dia (frentista, vigilante, cozinheiro, operário), falei das contas do fim do mês e dos planos que estão esperando, e usei o amarelo e o preto da marca para deixar o Crédito CLT simples de entender e de pedir pelo WhatsApp.',
     behance: null,
     instagram: 'https://www.instagram.com/i3cred.oficial/',
   },
