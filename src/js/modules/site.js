@@ -28,13 +28,11 @@ export function initSite() {
     lenis ? lenis.scrollTo(target, { offset: -20 }) : (target === 0 ? scrollTo(0, 0) : target.scrollIntoView());
   });
 
-  // header some ao descer e volta ao subir
+  // header sempre visível: ao descer a página ele encolhe numa pílula menor, como o da Apple (pedido da Emilly em
+  // 02/10; antes ele sumia ao descer)
   const header = document.querySelector('[data-header]');
-  let lastY = 0;
-  const onScroll = (y) => {
-    header?.classList.toggle('is-hidden', y > lastY && y > 200 && !document.documentElement.classList.contains('menu-open'));
-    lastY = y;
-  };
+  const onScroll = (y) => header?.classList.toggle('is-compact', y > 80);
+  onScroll(lenis ? lenis.scroll : scrollY);
   lenis ? lenis.on('scroll', ({ scroll }) => onScroll(scroll)) : addEventListener('scroll', () => onScroll(scrollY));
 
   document.querySelectorAll('[data-year]').forEach((el) => (el.textContent = new Date().getFullYear()));
