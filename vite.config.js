@@ -7,7 +7,7 @@ import { gerarCases } from './scripts/gerar-cases.mjs';
 const root = dirname(fileURLToPath(import.meta.url));
 
 // endereço do site no ar: vai nas prévias de link (WhatsApp, Instagram), que exigem o endereço completo
-const SITE_URL = process.env.SITE_URL || 'https://cauadorn.github.io/ems-site/';
+const SITE_URL = process.env.SITE_URL || 'https://emsdesign.com.br/';
 
 // uma página de case por projeto (projetos/<slug>.html); mudou src/data/projects.js, o Vite reinicia e refaz
 gerarCases(root, projects, areas);
@@ -42,7 +42,7 @@ for (const dir of ['', 'projetos']) {
 
 // sem import de 'vite': assim o motor em D:\Dev\ems-site consegue reaproveitar esta config
 export default {
-  // no GitHub Pages o site fica em /ems-site/ (a Action passa BASE_PATH); localmente é a raiz
+  // o site fica na raiz do domínio (emsdesign.com.br desde 02/10/2026); BASE_PATH só se ele voltar para uma subpasta
   base: process.env.BASE_PATH || '/',
   plugins: [htmlPartials()],
   build: { rollupOptions: { input: pages } },

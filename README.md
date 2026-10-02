@@ -2,10 +2,13 @@
 
 Site portfólio da Emilly Silva (@itsemsdesign). Vite + HTML/CSS/JS puro + GSAP + Lenis.
 
-- **No ar:** https://cauadorn.github.io/ems-site/
+- **No ar:** https://emsdesign.com.br/ (domínio próprio desde 02/10/2026; o endereço antigo
+  cauadorn.github.io/ems-site leva para ele)
 - **Repositório:** https://github.com/Cauadorn/ems-site
 - **Publicação:** cada push na `main` gera e publica o site sozinho (GitHub Actions → GitHub Pages,
-  `.github/workflows/deploy.yml`, com `BASE_PATH=/ems-site/`). Localmente o site roda na raiz `/`.
+  `.github/workflows/deploy.yml`). O site fica na raiz `/` do domínio, como no computador.
+  Domínio: DNS na Hostinger (4 registros A @ → 185.199.108-111.153 e CNAME www → cauadorn.github.io) e
+  GitHub → Settings → Pages → Custom domain `emsdesign.com.br`.
   Imagem da pasta `public` no JS usa `import.meta.env.BASE_URL`; no HTML, `%BASE_URL%`.
 
 ## Rodar
