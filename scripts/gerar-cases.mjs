@@ -92,9 +92,14 @@ ${artes.map((a) => `          <div class="c3d__item"><div class="c3d__ratio"></d
 ${posts.map((s, k) => `        ${tag(s, k, posts.length, 'post')}`).join('\n')}
       </div>`);
   // no celular cada carrossel fica na altura de um post e desliza para o lado, como no Instagram
-  if (carrosseis.length && !(p.carrosselNoAnel && artes.length >= 5)) html += bloco('Carrosséis', carrosseis.length, `      <div class="case-carrosseis">
-${carrosseis.map((s, k) => `        <div class="case-carrossel">${tag(s, k, carrosseis.length, 'carrossel')}</div>`).join('\n')}
-      </div>`);
+  // carrosséis: cada um vira um carrossel de Instagram (uma lâmina por vez, passa para o lado; pedido da Emilly em
+  // 02/10, para a página não ficar comprida). A imagem deitada é uma só; cada lâmina mostra a sua parte dela
+  if (carrosseis.length && !(p.carrosselNoAnel && artes.length >= 5)) {
+    html += igBloco(carrosseis.map((s, n) => {
+      const k = Math.max(2, Math.round(s.w / s.h / 0.8));
+      return { laminas: Array.from({ length: k }, (_, c) => `<img class="ig-faixa" style="width:${k * 100}%;left:-${c * 100}%" src="${img(s.file)}" alt="${t}: carrossel ${n + 1}, lâmina ${c + 1} de ${k}" loading="lazy" decoding="async" draggable="false">`) };
+    }));
+  }
   if (stories.length) html += bloco('Stories', stories.length, `      <div class="case-gallery case-gallery--posts case-gallery--stories">
 ${stories.map((s, k) => `        ${tag(s, k, stories.length, 'story')}`).join('\n')}
       </div>`);
@@ -113,14 +118,18 @@ function igCarrosseis(p, t, img, dir) {
     const d = webpSize(resolve(dir, f));
     return `<img src="${img(f)}" alt="${t}: ${nome}, lâmina ${k + 1} de ${n}" width="${d.w}" height="${d.h}" loading="lazy" decoding="async" draggable="false">`;
   };
+  return igBloco(p.carrosseis.map((c) => ({ titulo: c.titulo, laminas: c.laminas.map((f, k) => lamina(f, k, c.laminas.length, esc(c.titulo))) })));
+}
+
+// parte "Carrosséis": lista de { titulo (opcional), laminas: [html da lâmina] } → carrosséis de Instagram (src/js/modules/ig.js)
+function igBloco(lista) {
   return `    <section class="case-posts__grupo" aria-label="Carrosséis">
-      <h2 class="eyebrow case-posts__titulo">Carrosséis · ${p.carrosseis.length}</h2>
+      <h2 class="eyebrow case-posts__titulo">Carrosséis · ${lista.length}</h2>
       <div class="ig-carrosseis">
-${p.carrosseis.map((c) => `        <div class="ig-carrossel" data-ig>
-          <p class="ig-carrossel__nome">${esc(c.titulo)}</p>
-          <div class="ig-carrossel__janela">
-            <div class="ig-carrossel__trilho" data-ig-trilho tabindex="0" aria-label="${esc(c.titulo)}: ${c.laminas.length} lâminas, passe para o lado">
-${c.laminas.map((f, k) => `              <figure class="ig-carrossel__lamina">${lamina(f, k, c.laminas.length, esc(c.titulo))}</figure>`).join('\n')}
+${lista.map((c, n) => `        <div class="ig-carrossel" data-ig>
+${c.titulo ? `          <p class="ig-carrossel__nome">${esc(c.titulo)}</p>\n` : ''}          <div class="ig-carrossel__janela">
+            <div class="ig-carrossel__trilho" data-ig-trilho tabindex="0" aria-label="${c.titulo ? esc(c.titulo) : `Carrossel ${n + 1}`}: ${c.laminas.length} lâminas, passe para o lado">
+${c.laminas.map((l) => `              <figure class="ig-carrossel__lamina">${l}</figure>`).join('\n')}
             </div>
             <button class="ig-carrossel__seta" type="button" data-ig-prev aria-label="Lâmina anterior"><svg aria-hidden="true"><use href="#i-seta"/></svg></button>
             <button class="ig-carrossel__seta ig-carrossel__seta--next" type="button" data-ig-next aria-label="Próxima lâmina"><svg aria-hidden="true"><use href="#i-seta"/></svg></button>

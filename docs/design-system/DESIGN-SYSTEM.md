@@ -290,10 +290,10 @@ carrossel; no case, "← Todos os projetos" leva para cá.
 - `galeria: true` (fotografia): as imagens em grade 4:5 (mín. 260 px), cantos 10 px, em vez da apresentação empilhada.
 - `galeria: 'posts'` (social media): os **Posts** 4:5 giram num **anel 3D igual ao carrossel da home**
   (`src/js/modules/ring.js`): arrastar, setas manteiga e teclado; contador "05 / 11" entre as setas. Com menos de 5
-  posts, eles ficam em grade; de 5 a 7, eles se repetem em sequência para o anel não ficar com buraco. Embaixo, cada um na sua parte: **Carrosséis** (a imagem deitada com todos os cards, na
-  largura toda; no celular fica com 420 px de altura e desliza para o lado) e **Stories** (9:16, grade de 4; 2 no
-  celular). Com `carrosselNoAnel: true` (Dr. Pedro Caetano, que é quase só carrossel), cada card dos carrosséis gira no
-  anel junto com os posts e só os stories ficam embaixo.
+  posts, eles ficam em grade; de 5 a 7, eles se repetem em sequência para o anel não ficar com buraco. Embaixo:
+  **Carrosséis** como no Instagram (uma lâmina por vez, recortada da imagem deitada do carrossel inteiro; ver
+  `carrosseis` abaixo) e **Stories** (9:16, grade de 4; 2 no celular). Com `carrosselNoAnel: true` (Dr. Pedro Caetano,
+  que é quase só carrossel), cada card dos carrosséis gira no anel junto com os posts e só os stories ficam embaixo.
 - Topo do case: nome e resumo à esquerda e **miniatura da capa** à direita (400 px, borda tinta, sombra dura, inclinada
   3°); no celular a miniatura fica pequena (96 px) no canto, ao lado de "← Todos os projetos". A capa grande saiu:
   repetia o 1º slide da apresentação.
@@ -303,7 +303,7 @@ carrossel; no case, "← Todos os projetos" leva para cá.
 - `instagram`: botão marfim com ícone do Instagram no fim do case ("Ver no Instagram"; `instagramTexto` muda o texto,
   ex.: "Ver mais fotos" nas fotografias esportivas, que levam ao @itsemsfotografia).
 - `carrosseis` (social media): carrosséis de Instagram numa parte "Carrosséis" depois do anel: uma lâmina 4:5 por vez
-  (até 440 px), nome em serif manteiga em cima, passa com o dedo/touchpad (encaixe), setas manteiga com sombra rosa por
+  (380 px, 3 por linha no computador, 1 no celular; é o formato de todos os carrosséis desde 02/10), nome em serif manteiga em cima, passa com o dedo/touchpad (encaixe), setas manteiga com sombra rosa por
   cima da lâmina e pontinhos embaixo (o ativo vira traço manteiga). Lâmina .mp4 é vídeo mudo em loop que só toca quando
   está na tela (`src/js/modules/ig.js`). `anelTitulo` troca o título pequeno do anel.
 - `capaNoCase: false`: a capa fica só nos cards e no carrossel; o case abre direto no vídeo ou no mockup.
