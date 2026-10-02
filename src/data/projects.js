@@ -98,6 +98,21 @@ export const projects = [
     site: 'https://i3cred.com.br/',
   },
   {
+    slug: 'ems-social',
+    area: 'social',
+    destaque: false,
+    galeria: 'posts', // 3 carrosséis do @itsemsdesign (5, 5 e 3 lâminas), baixados do Instagram dela com autorização
+    carrosselNoAnel: true, // só carrossel: cada lâmina gira no anel
+    title: 'EMS',
+    category: 'Social media',
+    detail: 'O meu Instagram de designer · @itsemsdesign',
+    year: '2026',
+    color: '#6225D8',
+    resumo: 'O meu próprio Instagram de designer, onde a EMS conversa com quem tem marca. Misturo três assuntos: o dia a dia de quem vive de criar, com o gato da marca; opinião sobre branding, como o carrossel sobre marcas que viram blanding de tanto minimalismo; e quem eu sou fora das telas, no CPF x CNPJ. Tudo no roxo, rosa e marfim da EMS, com estrelas e tipografia de cartaz.',
+    behance: null,
+    instagram: 'https://www.instagram.com/itsemsdesign/',
+  },
+  {
     slug: 'idex-social',
     area: 'social',
     destaque: false,
