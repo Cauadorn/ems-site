@@ -10,6 +10,9 @@
 //   instagramTexto muda o texto do botão (ex.: "Ver mais fotos" nas fotografias esportivas)
 // carrosselNoAnel: true = nos posts (galeria 'posts'), cada card dos carrosséis gira no anel 3D junto com os posts,
 //   em vez de os carrosséis ficarem numa parte separada embaixo
+// anelTitulo: (opcional) título pequeno em cima do anel, no lugar de "Posts" / "Posts e carrosséis"
+// carrosseis: (opcional) [{ titulo, laminas: ['a.webp', 'b.mp4', …] }]: carrosséis que passam para o lado, como no
+//   Instagram, numa parte "Carrosséis" depois do anel; lâmina .mp4 vira vídeo (com .webm e -poster.webp do mesmo nome)
 // capaNoCase: false = a capa aparece só nos cards e no carrossel; o case começa direto pelo vídeo ou mockup
 // soon: true = aparece no carrossel como "em breve" e ainda não tem página de case
 // resumo: (opcional) parágrafo curto sobre o projeto, em primeira pessoa, no topo do case. Os de 01/10/2026 foram
@@ -101,14 +104,20 @@ export const projects = [
     slug: 'ems-social',
     area: 'social',
     destaque: false,
-    galeria: 'posts', // 3 carrosséis do @itsemsdesign (5, 5 e 3 lâminas), baixados do Instagram dela com autorização
-    carrosselNoAnel: true, // só carrossel: cada lâmina gira no anel
+    galeria: 'posts', // slide-01: "Ocupada sendo criativa" (5 lâminas) gira no anel
+    carrosselNoAnel: true,
+    anelTitulo: 'Ocupada sendo criativa',
+    // carrosséis que passam para o lado, como no Instagram (o 1º card do CPF x CNPJ é vídeo: .mp4 + .webm + -poster.webp)
+    carrosseis: [
+      { titulo: 'CPF x CNPJ', laminas: ['carrossel-1-01.mp4', 'carrossel-1-02.webp', 'carrossel-1-03.webp'] },
+      { titulo: 'Minimalismo virou desculpa', laminas: ['carrossel-2-01.webp', 'carrossel-2-02.webp', 'carrossel-2-03.webp', 'carrossel-2-04.webp', 'carrossel-2-05.webp'] },
+    ],
     title: 'EMS',
     category: 'Social media',
     detail: 'O meu Instagram de designer · @itsemsdesign',
     year: '2026',
     color: '#6225D8',
-    resumo: 'O meu próprio Instagram de designer, onde a EMS conversa com quem tem marca. Misturo três assuntos: o dia a dia de quem vive de criar, com o gato da marca; opinião sobre branding, como o carrossel sobre marcas que viram blanding de tanto minimalismo; e quem eu sou fora das telas, no CPF x CNPJ. Tudo no roxo, rosa e marfim da EMS, com estrelas e tipografia de cartaz.',
+    resumo: 'Meu Instagram é onde eu falo de design do meu jeito: com humor, opinião e um pouco de quem eu sou fora das telas. É ali que eu converso com quem quer uma marca com personalidade.',
     behance: null,
     instagram: 'https://www.instagram.com/itsemsdesign/',
   },
@@ -158,7 +167,7 @@ export const projects = [
   {
     slug: 'credfranco',
     area: 'social',
-    destaque: false,
+    destaque: true, // no carrossel do início (pedido da Emilly em 02/10)
     galeria: 'posts', // 21 posts, 10 carrosséis inteiros e 30 stories (artes da pasta "EMIS 4D", sem os cortes dos carrosséis)
     title: 'Credfranco',
     category: 'Social media',
@@ -171,7 +180,7 @@ export const projects = [
   {
     slug: 'topo-do-mundo',
     area: 'social',
-    destaque: false,
+    destaque: true, // no carrossel do início (pedido da Emilly em 02/10)
     galeria: 'posts', // 2 posts (feed e tráfego pago) e 15 stories, em sequências de 3
     title: 'Topo do Mundo',
     category: 'Social media',
