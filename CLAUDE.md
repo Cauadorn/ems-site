@@ -4,7 +4,7 @@ Este arquivo é lido sozinho quando o Claude abre esta pasta. Ele guarda o que f
 para qualquer computador continuar de onde parou. **Responda sempre em português do Brasil, simples e direto.**
 
 ## Contato e dados confirmados pela Emilly (01/10/2026)
-WhatsApp (31) 99271-8754 · e-mail contatoemillyss@gmail.com · Instagram @itsemsdesign · Instagram de fotografia
+WhatsApp profissional (31) 92006-0754 (o pessoal saiu do site em 02/10) · e-mail contatoemillyss@gmail.com · Instagram @itsemsdesign · Instagram de fotografia
 esportiva @itsemsfotografia (ela autorizou usar as fotos e divulgar) · Behance emysilva7 ·
 formada em Design Gráfico pela UNA (Belo Horizonte). Mora entre São Paulo e Belo Horizonte e atende o Brasil todo,
 online: no site, nunca apresentar uma cidade só (afasta cliente de outro estado).

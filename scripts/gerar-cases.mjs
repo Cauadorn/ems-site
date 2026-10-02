@@ -97,7 +97,7 @@ function cta(p) {
         <p class="case-cta__titulo">Curtiu este <em>projeto?</em></p>
         <p>Me chama no WhatsApp e a gente conversa sobre o seu.</p>
       </div>
-      <a class="btn btn--ivory" href="https://wa.me/5531992718754?text=${msg}" target="_blank" rel="noopener"><svg><use href="#i-whatsapp"/></svg> Me chama</a>
+      <a class="btn btn--ivory" href="https://wa.me/5531920060754?text=${msg}" target="_blank" rel="noopener"><svg><use href="#i-whatsapp"/></svg> Me chama</a>
     </aside>`;
 }
 
