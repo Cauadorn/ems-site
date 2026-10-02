@@ -4,8 +4,22 @@
 // Para mudar o layout de TODAS as páginas de case, edite este arquivo (estilos em src/styles/case.css).
 // Não edite os projetos/*.html: eles são refeitos a cada vez.
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, rmSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+
+// "versão" de cada capa (pedaço do hash do arquivo): vai no endereço da imagem (capa.webp?v=…) para o navegador
+// buscar a capa nova quando ela é trocada, em vez de mostrar a antiga guardada (pedido da Emilly em 02/10)
+export function versoesDasCapas(root, projects) {
+  const v = {};
+  for (const p of projects) {
+    const f = resolve(root, 'public/img/projetos', p.slug, 'capa.webp');
+    if (existsSync(f)) v[p.slug] = createHash('md5').update(readFileSync(f)).digest('hex').slice(0, 8);
+  }
+  return v;
+}
+let VERSOES = {};
+const capa = (slug) => `%BASE_URL%img/projetos/${slug}/capa.webp${VERSOES[slug] ? `?v=${VERSOES[slug]}` : ''}`;
 
 const MARCA = '<!-- gerado por scripts/gerar-cases.mjs: edite src/data/projects.js, não este arquivo -->';
 
@@ -167,7 +181,7 @@ ${MARCA}
         <p class="case-hero__lead" data-intro>${esc(p.detail)}</p>
 ${p.resumo ? `        <p class="case-hero__text" data-intro>${esc(p.resumo)}</p>
 ` : ''}      </div>
-${p.capaNoCase === false ? '' : `      <figure class="case-hero__thumb" data-intro><img src="${img('capa.webp')}" alt="${t}: capa do projeto" width="1600" height="1000" fetchpriority="high"></figure>
+${p.capaNoCase === false ? '' : `      <figure class="case-hero__thumb" data-intro><img src="${capa(p.slug)}" alt="${t}: capa do projeto" width="1600" height="1000" fetchpriority="high"></figure>
 `}    </div>
   </section>
 
@@ -182,7 +196,7 @@ ${igCarrosseis(p, t, img, slides.dir)}${p.site || p.instagram || p.behance ? `  
       <span class="eyebrow">Próximo projeto</span>
       <span class="case-next__title">${esc(next.title)} <svg aria-hidden="true"><use href="#i-seta"/></svg></span>
       <span class="case-next__cat">${esc(next.category)} · ${esc(next.detail)}</span>
-      <img class="case-next__thumb" src="%BASE_URL%img/projetos/${next.slug}/capa.webp" alt="" width="1600" height="1000" loading="lazy">
+      <img class="case-next__thumb" src="${capa(next.slug)}" alt="" width="1600" height="1000" loading="lazy">
     </span>
   </a>
 
@@ -197,7 +211,7 @@ ${igCarrosseis(p, t, img, slides.dir)}${p.site || p.instagram || p.behance ? `  
 
 // card de projeto na página "Todos os projetos"
 function card(p) {
-  const img = `<span class="work-card__img"><img src="%BASE_URL%img/projetos/${p.slug}/capa.webp" alt="" width="1600" height="1000" loading="lazy"></span>`;
+  const img = `<span class="work-card__img"><img src="${capa(p.slug)}" alt="" width="1600" height="1000" loading="lazy"></span>`;
   const body = `<span class="work-card__body"><span class="work-card__title">${esc(p.title)}</span><span class="work-card__cat">${esc(p.category)} · ${esc(p.detail)}</span>${p.year ? `<span class="work-card__year">${esc(p.year)}</span>` : ''}</span>`;
   return p.soon
     ? `<li><div class="work-card work-card--soon">${img}<span class="work-card__badge">em breve</span>${body}</div></li>`
@@ -272,6 +286,7 @@ ${secoes}
 }
 
 export function gerarCases(root, projects, areas = []) {
+  VERSOES = versoesDasCapas(root, projects);
   const dir = resolve(root, 'projetos');
   mkdirSync(dir, { recursive: true });
   const cases = projects.filter((p) => !p.soon);
