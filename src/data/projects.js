@@ -112,6 +112,20 @@ export const projects = [
     instagram: 'https://www.instagram.com/idex.brasil/',
   },
   {
+    slug: 'i3cred-social',
+    area: 'social',
+    destaque: false,
+    galeria: 'posts', // 5 posts no anel e 5 carrosséis inteiros (2 e 3 lâminas)
+    title: 'I3Cred',
+    category: 'Social media',
+    detail: 'Posts e carrosséis para o Instagram · Crédito CLT',
+    year: '2026',
+    color: '#FFD701',
+    resumo: 'Posts e carrosséis para o Instagram da I3Cred, todos sobre o Crédito CLT: para quem é (CLT com mais de 6 meses de empresa), o que ele oferece (análise sem SPC e Serasa, processo rápido, atendimento com especialista) e sempre um convite para falar com a equipe pelo WhatsApp. Usei fotos de trabalhadores no dia a dia, o amarelo e o preto da marca e o símbolo do i3 ao fundo.',
+    behance: null,
+    instagram: 'https://www.instagram.com/i3cred.oficial/',
+  },
+  {
     slug: 'dr-pedro-caetano',
     area: 'social',
     destaque: false,

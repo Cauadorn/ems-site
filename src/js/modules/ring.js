@@ -8,7 +8,8 @@ import { reduced } from './site.js';
 // Arrastar para o lado, as setas da tela e as do teclado giram; clicar num vizinho traz ele para a frente.
 // A rolagem da página nunca fica presa aqui.
 
-// como no da home: com menos de 8 artes o anel completa com posições vazias (invisíveis)
+// o anel tem no mínimo 8 posições; com menos artes que isso elas se repetem em sequência (5 posts viram 10 cards),
+// para não sobrar buraco vazio de um dos lados. O contador mostra sempre a arte real ("03 / 05")
 const MIN_SLOTS = 8;
 
 export function initRings() {
@@ -21,14 +22,18 @@ function initRing(root) {
   const prev = root.querySelector('[data-c3d-prev]');
   const next = root.querySelector('[data-c3d-next]');
   const countEl = root.querySelector('[data-ring-count]');
-  const n = list.children.length;
-  const slots = Math.max(n, MIN_SLOTS);
-  for (let i = n; i < slots; i++) {
-    const vazio = document.createElement('div');
-    vazio.className = 'c3d__item c3d__item--vazio';
-    vazio.innerHTML = '<div class="c3d__ratio"></div>';
-    list.append(vazio);
+  const real = list.children.length;
+  const originais = [...list.children];
+  for (let r = 1; r < Math.ceil(MIN_SLOTS / real); r++) {
+    originais.forEach((el) => {
+      const copia = el.cloneNode(true);
+      copia.setAttribute('aria-hidden', 'true');
+      copia.querySelectorAll('img').forEach((img) => img.setAttribute('alt', ''));
+      list.append(copia);
+    });
   }
+  const n = list.children.length;
+  const slots = n;
   const items = [...list.children];
 
   const rotateAmount = 360 / slots;
@@ -62,7 +67,7 @@ function initRing(root) {
     const i = mod(pos, slots);
     if (i === active) return;
     active = i;
-    if (countEl) countEl.textContent = `${pad(i + 1)} / ${pad(n)}`;
+    if (countEl) countEl.textContent = `${pad((i % real) + 1)} / ${pad(real)}`;
     const near = [mod(pos - 1, slots), mod(pos + 1, slots)];
     items.forEach((el, k) => {
       el.classList.toggle('is-active', k === i);
