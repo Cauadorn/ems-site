@@ -21,6 +21,10 @@ const projects = todos.filter((p) => p.destaque);
 const MIN_SLOTS = 8;
 
 // página de case do projeto (gerada por scripts/gerar-cases.mjs); projeto "em breve" não tem
+// capa com a "versão" do arquivo (vite.config.js): quando a capa é trocada, o navegador busca a nova
+const VERSOES = typeof __CAPAS__ === 'undefined' ? {} : __CAPAS__;
+const capaUrl = (p) => `${BASE}img/projetos/${p.slug}/capa.webp${VERSOES[p.slug] ? `?v=${VERSOES[p.slug]}` : ''}`;
+
 const caseUrl = (p) => (p.soon ? null : `${BASE}projetos/${p.slug}.html`);
 
 const face = (p, back, lazy) => {
@@ -28,7 +32,7 @@ const face = (p, back, lazy) => {
   if (!p) {
     return `<div class="${cls} c3d__slot"><svg aria-hidden="true"><use href="#i-espiral"/></svg><span>próximo projeto</span><small>vaga aberta</small></div>`;
   }
-  const img = `<img src="${BASE}img/projetos/${p.slug}/capa.webp" alt="" ${lazy ? 'loading="lazy"' : ''} draggable="false">`;
+  const img = `<img src="${capaUrl(p)}" alt="" ${lazy ? 'loading="lazy"' : ''} draggable="false">`;
   // só a frente é clicável; o verso aparece quando o card está do outro lado do anel
   return caseUrl(p) && !back
     ? `<a class="${cls}" href="${caseUrl(p)}" tabindex="-1" data-cursor-text="ver case">${img}</a>`
@@ -207,7 +211,7 @@ export function initCarousel(root) {
 function initList(section, carousel) {
   const list = section.querySelector('[data-project-list]');
   list.innerHTML = projects.map((p) => `
-    <a class="project-row" ${caseUrl(p) ? `href="${caseUrl(p)}"` : 'aria-disabled="true"'} data-preview="${BASE}img/projetos/${p.slug}/capa.webp" data-cursor-text="${caseUrl(p) ? 'ver case' : 'em breve'}">
+    <a class="project-row" ${caseUrl(p) ? `href="${caseUrl(p)}"` : 'aria-disabled="true"'} data-preview="${capaUrl(p)}" data-cursor-text="${caseUrl(p) ? 'ver case' : 'em breve'}">
       <span class="project-row__title">${p.title}</span>
       <span class="project-row__cat">${p.category}</span>
       <span class="project-row__year">${p.year}</span>

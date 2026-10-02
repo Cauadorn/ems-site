@@ -2,7 +2,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { projects, areas } from './src/data/projects.js';
-import { gerarCases } from './scripts/gerar-cases.mjs';
+import { gerarCases, versoesDasCapas } from './scripts/gerar-cases.mjs';
 
 const root = dirname(fileURLToPath(import.meta.url));
 
@@ -45,6 +45,8 @@ export default {
   // o site fica na raiz do domínio (emsdesign.com.br desde 02/10/2026); BASE_PATH só se ele voltar para uma subpasta
   base: process.env.BASE_PATH || '/',
   plugins: [htmlPartials()],
+  // versão de cada capa para o carrossel da home (carousel.js): capa trocada = endereço novo, o navegador não usa a antiga
+  define: { __CAPAS__: JSON.stringify(versoesDasCapas(root, projects)) },
   build: { rollupOptions: { input: pages } },
   server: { port: 5178 },
 };
