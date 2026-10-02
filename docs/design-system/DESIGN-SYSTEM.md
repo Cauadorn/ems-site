@@ -209,8 +209,9 @@ inclinadas (+8° / −7°); manteiga com texto tinta ou rosa com texto marfim. A
 
 ### Cabeçalho (`.nav`)
 Barra-pílula flutuante (14 px do topo), fundo marfim 82% com desfoque 14 px, borda tinta 10%, sombra suave.
-Esquerda: selo 30 px + "Emilly Silva *design*". Direita: links + botão "Vamos conversar". Some ao rolar para baixo,
-volta ao subir. ≤ 860 px: vira botão violeta "Menu +" que abre menu em tela cheia violeta (círculo que cresce a
+Esquerda: selo 30 px + "Emilly Silva *design*". Direita: links + botão "Vamos conversar". Nunca some: depois de 80 px
+de rolagem encolhe (como o da Apple) numa pílula de até 760 px, centralizada, 6 px mais alta, mais opaca (92%), com
+selo 26 px, textos e botão menores; volta ao tamanho cheio no topo (transição .6 s). ≤ 860 px: vira botão violeta "Menu +" que abre menu em tela cheia violeta (círculo que cresce a
 partir do botão, .7 s), links em Anton 17vw.
 
 ### Cartões de serviço (`.service`)

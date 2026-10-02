@@ -16,23 +16,32 @@
 .is-loaded .loader { display: none; }
 
 /* ================= HEADER ================= */
-.site-header { position: fixed; inset: 14px var(--gutter) auto; z-index: 900; transition: transform .5s var(--ease); }
-.site-header.is-hidden { transform: translateY(-140%); }
+.site-header { position: fixed; inset: 14px var(--gutter) auto; z-index: 900; transition: transform .6s var(--ease); }
 .nav {
   display: flex; align-items: center; gap: 24px;
   max-width: var(--max); margin-inline: auto;
   padding: 8px 8px 8px 14px; border-radius: 999px;
   background: rgba(255, 251, 222, .82); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4);
   border: 1px solid rgba(42, 20, 51, .1); box-shadow: 0 10px 30px -12px rgba(42, 20, 51, .35);
+  transition: max-width .6s var(--ease), padding .6s var(--ease), gap .6s var(--ease), background .4s, box-shadow .4s;
 }
+/* ao descer a página o header não some: encolhe numa pílula menor e mais opaca, centralizada (como o da Apple) */
+.site-header.is-compact { transform: translateY(-6px); }
+.is-compact .nav { max-width: 760px; gap: 14px; padding: 5px 5px 5px 12px; background: rgba(255, 251, 222, .92); box-shadow: 0 8px 24px -12px rgba(42, 20, 51, .45); }
+.is-compact .nav__brand img { width: 26px; }
+.is-compact .nav__name { font-size: .92rem; }
+.is-compact .nav__links { gap: 2px; }
+.is-compact .nav__links a { padding: .45em .75em; font-size: .88rem; }
+.is-compact .nav__cta { min-height: 36px; font-size: .82rem; }
+.nav__cta { transition: min-height .6s var(--ease), font-size .6s var(--ease), transform .35s var(--ease-back), background .25s, color .25s; }
 .nav__brand { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-right: auto; }
-.nav__brand img { width: 30px; height: auto; transition: transform .5s var(--ease-back); }
+.nav__brand img { width: 30px; height: auto; transition: width .6s var(--ease), transform .5s var(--ease-back); }
 .nav__brand:hover img { transform: rotate(-12deg) scale(1.1); }
-.nav__name { font-weight: 700; letter-spacing: -.01em; }
+.nav__name { font-weight: 700; letter-spacing: -.01em; transition: font-size .6s var(--ease); }
 /* 1.15em: o itálico fino fica com o mesmo tamanho visual do "Emilly Silva" em Inter negrito */
 .nav__name em { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 1.15em; line-height: 1; color: var(--violeta); }
 .nav__links { display: flex; gap: 6px; }
-.nav__links a { display: block; padding: .5em .9em; border-radius: 999px; text-decoration: none; font-weight: 500; font-size: .95rem; transition: background .25s; }
+.nav__links a { display: block; padding: .5em .9em; border-radius: 999px; text-decoration: none; font-weight: 500; font-size: .95rem; transition: background .25s, padding .6s var(--ease), font-size .6s var(--ease); }
 .nav__links a:hover { background: var(--lavanda-2); }
 .nav__toggle { display: none; align-items: center; gap: 6px; min-height: 42px; padding: 0 16px; border-radius: 999px; background: var(--violeta); color: var(--ivory); font-weight: 600; }
 .nav__plus { font-size: 1.4rem; line-height: 1; transition: transform .4s var(--ease-back); }
