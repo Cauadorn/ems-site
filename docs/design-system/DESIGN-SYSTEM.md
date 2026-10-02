@@ -290,7 +290,7 @@ carrossel; no case, "← Todos os projetos" leva para cá.
 - `galeria: true` (fotografia): as imagens em grade 4:5 (mín. 260 px), cantos 10 px, em vez da apresentação empilhada.
 - `galeria: 'posts'` (social media): os **Posts** 4:5 giram num **anel 3D igual ao carrossel da home**
   (`src/js/modules/ring.js`): arrastar, setas manteiga e teclado; contador "05 / 11" entre as setas. Com menos de 5
-  posts, eles ficam em grade. Embaixo, cada um na sua parte: **Carrosséis** (a imagem deitada com todos os cards, na
+  posts, eles ficam em grade; de 5 a 7, eles se repetem em sequência para o anel não ficar com buraco. Embaixo, cada um na sua parte: **Carrosséis** (a imagem deitada com todos os cards, na
   largura toda; no celular fica com 420 px de altura e desliza para o lado) e **Stories** (9:16, grade de 4; 2 no
   celular). Com `carrosselNoAnel: true` (Dr. Pedro Caetano, que é quase só carrossel), cada card dos carrosséis gira no
   anel junto com os posts e só os stories ficam embaixo.
