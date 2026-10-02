@@ -302,6 +302,10 @@ carrossel; no case, "← Todos os projetos" leva para cá.
   "← Todos os projetos".
 - `instagram`: botão marfim com ícone do Instagram no fim do case ("Ver no Instagram"; `instagramTexto` muda o texto,
   ex.: "Ver mais fotos" nas fotografias esportivas, que levam ao @itsemsfotografia).
+- `carrosseis` (social media): carrosséis de Instagram numa parte "Carrosséis" depois do anel: uma lâmina 4:5 por vez
+  (até 440 px), nome em serif manteiga em cima, passa com o dedo/touchpad (encaixe), setas manteiga com sombra rosa por
+  cima da lâmina e pontinhos embaixo (o ativo vira traço manteiga). Lâmina .mp4 é vídeo mudo em loop que só toca quando
+  está na tela (`src/js/modules/ig.js`). `anelTitulo` troca o título pequeno do anel.
 - `capaNoCase: false`: a capa fica só nos cards e no carrossel; o case abre direto no vídeo ou no mockup.
 - `video`: vídeo vertical no topo do case (até 420 px, 9:16, raio 20), mudo, em loop, com controles; sempre em WebM
   (VP9) + MP4 (H.264, `faststart`) a 720 px, com `video-poster.webp`. Comprimir antes de subir (ffmpeg).

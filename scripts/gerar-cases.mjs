@@ -59,10 +59,10 @@ function galeria(p, t, list, img) {
       <h2 class="eyebrow case-posts__titulo">${titulo} · ${n}</h2>
 ${corpo}
     </section>\n`;
-  const rotulo = p.carrosselNoAnel && carrosseis.length ? 'Posts e carrosséis' : 'Posts';
+  const rotulo = p.anelTitulo || (p.carrosselNoAnel && carrosseis.length ? 'Posts e carrosséis' : 'Posts');
   let html = '';
   if (artes.length >= 5) html += `    <section class="case-ring" aria-label="${rotulo}">
-      <h2 class="eyebrow case-posts__titulo">${rotulo} · ${artes.length}${rotulo === 'Posts' ? '' : ' artes'}</h2>
+      <h2 class="eyebrow case-posts__titulo">${rotulo} · ${artes.length}${rotulo === 'Posts' ? '' : p.anelTitulo ? ' lâminas' : ' artes'}</h2>
       <div class="c3d c3d--posts" data-ring data-cursor-text="arrasta pro lado" tabindex="0">
         <div class="c3d__track"><div class="c3d__sticky"><div class="c3d__wrap" data-c3d-wrap><div class="c3d__list" data-c3d-list>
 ${artes.map((a) => `          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face">${face(a, `${t}: ${a.nome}`)}</div><div class="c3d__face c3d__face--back" aria-hidden="true">${face(a, '')}</div></div>`).join('\n')}
@@ -85,6 +85,36 @@ ${carrosseis.map((s, k) => `        <div class="case-carrossel">${tag(s, k, carr
 ${stories.map((s, k) => `        ${tag(s, k, stories.length, 'story')}`).join('\n')}
       </div>`);
   return html.replace(/\n$/, '');
+}
+
+// carrosséis que passam para o lado, como no Instagram (campo `carrosseis` do projeto): uma lâmina por vez, setas,
+// pontinhos e arrastar com o dedo; uma lâmina .mp4 vira vídeo mudo em loop (com .webm e -poster.webp do mesmo nome)
+function igCarrosseis(p, t, img, dir) {
+  if (!p.carrosseis?.length) return '';
+  const lamina = (f, k, n, nome) => {
+    if (f.endsWith('.mp4')) {
+      const base = f.replace(/\.mp4$/, '');
+      return `<video poster="${img(base + '-poster.webp')}" muted loop playsinline preload="metadata" aria-label="${t}: ${nome}, lâmina ${k + 1} de ${n} (vídeo)"><source src="${img(base + '.webm')}" type="video/webm"><source src="${img(f)}" type="video/mp4"></video>`;
+    }
+    const d = webpSize(resolve(dir, f));
+    return `<img src="${img(f)}" alt="${t}: ${nome}, lâmina ${k + 1} de ${n}" width="${d.w}" height="${d.h}" loading="lazy" decoding="async" draggable="false">`;
+  };
+  return `    <section class="case-posts__grupo" aria-label="Carrosséis">
+      <h2 class="eyebrow case-posts__titulo">Carrosséis · ${p.carrosseis.length}</h2>
+      <div class="ig-carrosseis">
+${p.carrosseis.map((c) => `        <div class="ig-carrossel" data-ig>
+          <p class="ig-carrossel__nome">${esc(c.titulo)}</p>
+          <div class="ig-carrossel__janela">
+            <div class="ig-carrossel__trilho" data-ig-trilho tabindex="0" aria-label="${esc(c.titulo)}: ${c.laminas.length} lâminas, passe para o lado">
+${c.laminas.map((f, k) => `              <figure class="ig-carrossel__lamina">${lamina(f, k, c.laminas.length, esc(c.titulo))}</figure>`).join('\n')}
+            </div>
+            <button class="ig-carrossel__seta" type="button" data-ig-prev aria-label="Lâmina anterior"><svg aria-hidden="true"><use href="#i-seta"/></svg></button>
+            <button class="ig-carrossel__seta ig-carrossel__seta--next" type="button" data-ig-next aria-label="Próxima lâmina"><svg aria-hidden="true"><use href="#i-seta"/></svg></button>
+          </div>
+          <div class="ig-carrossel__pontos" aria-hidden="true">${c.laminas.map(() => '<span></span>').join('')}</div>
+        </div>`).join('\n')}
+      </div>
+    </section>\n`;
 }
 
 // convite discreto no fim de cada case (pedido da Emilly): a bonequinha da EMS (o selo, sem girar nem recolorir)
@@ -143,7 +173,7 @@ ${p.capaNoCase === false ? '' : `      <figure class="case-hero__thumb" data-int
 
   <section class="case-body" aria-label="Apresentação do projeto">
 ${p.video ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}${slides.mockup ? `    <figure class="case-mockup"><img src="${img(p.mockup)}" alt="${t}: ${p.galeria === 'paginas' ? 'página impressa' : 'projeto aplicado'} sobre a mesa (mockup)" width="${slides.mockup.w}" height="${slides.mockup.h}"${p.capaNoCase === false ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></figure>\n` : ''}${galeria(p, t, slides.list, img)}
-${p.site || p.instagram || p.behance ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener">Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.instagram ? `<a class="btn btn--ivory" href="${esc(p.instagram)}" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> ${esc(p.instagramTexto || 'Ver no Instagram')}</a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}</p>\n` : ''}${cta(p)}
+${igCarrosseis(p, t, img, slides.dir)}${p.site || p.instagram || p.behance ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener">Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.instagram ? `<a class="btn btn--ivory" href="${esc(p.instagram)}" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> ${esc(p.instagramTexto || 'Ver no Instagram')}</a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}</p>\n` : ''}${cta(p)}
     <p class="case-voltar"><a class="case-back" href="%BASE_URL%projetos/"><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a></p>
   </section>
 
