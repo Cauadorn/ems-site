@@ -1,4 +1,5 @@
-# Publica o site no GitHub Pages a cada push na main: https://cauadorn.github.io/ems-site/
+# Publica o site no GitHub Pages a cada push na main: https://emsdesign.com.br/ (domínio próprio, configurado em
+# Settings → Pages → Custom domain; o DNS fica na Hostinger)
 name: Publicar no GitHub Pages
 
 on:
@@ -27,7 +28,7 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          BASE_PATH: /ems-site/
+          BASE_PATH: /
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

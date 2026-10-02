@@ -3,7 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projects as todos } from '../../data/projects.js';
 import { reduced } from './site.js';
 
-// raiz do site ("/" aqui, "/ems-site/" no GitHub Pages): toda imagem da pasta public passa por ela
+// raiz do site ("/" aqui e no emsdesign.com.br): toda imagem da pasta public passa por ela
 const BASE = import.meta.env.BASE_URL;
 
 // a home mostra só os projetos com destaque: true; a página "Todos os projetos" mostra todos

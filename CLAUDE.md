@@ -16,7 +16,8 @@ online: no site, nunca apresentar uma cidade só (afasta cliente de outro estado
 
 ## O que é
 Portfólio da Emilly para trazer clientes. Vite + HTML/CSS/JS puro + GSAP + Lenis, sem framework.
-- **No ar:** https://cauadorn.github.io/ems-site/
+- **No ar:** https://emsdesign.com.br/ (domínio próprio desde 02/10/2026, DNS na Hostinger; o endereço antigo
+  cauadorn.github.io/ems-site leva para ele)
 - **Repositório:** https://github.com/Cauadorn/ems-site (público)
 - **Estado e pendências:** `README.md` (ler antes de continuar um trabalho grande).
 
@@ -41,7 +42,7 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
 - **No computador (Claude Code instalado):** os passos abaixo.
 1. `git add` + `git commit` com mensagem curta em português dizendo o que mudou.
 2. `git push` — em cerca de 1 minuto o GitHub gera e publica sozinho (`.github/workflows/deploy.yml`).
-3. Conferir https://cauadorn.github.io/ems-site/ e avisar que está no ar.
+3. Conferir https://emsdesign.com.br/ e avisar que está no ar.
 - No primeiro `git push` de um computador novo o Git abre o navegador para entrar no GitHub (conta **Cauadorn**).
   O Claude não digita senha: peça para a pessoa entrar.
 - Nunca `git push --force`. Nunca apagar o repositório nem mudar a visibilidade.
@@ -83,8 +84,8 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
 | Animações | `src/js/modules/` |
 | Imagens | `public/img/` (WebP; no JS usar `import.meta.env.BASE_URL`, no HTML `%BASE_URL%`) |
 
-O site é publicado dentro de `/ems-site/`: nunca escrever caminho de imagem começando só com `/img/...` em JS ou
-HTML; usar a base como na tabela acima, senão a imagem quebra no ar e funciona só no computador.
+Mesmo com o site na raiz do domínio, continue usando a base da tabela acima (`%BASE_URL%` no HTML,
+`import.meta.env.BASE_URL` no JS) e nunca um caminho fixo `/img/...`: se o site voltar a morar numa subpasta, nada quebra.
 
 ## Pendências (perguntar à Emilly)
 - Resumos dos projetos: em 01/10 a Emilly pediu para o Claude escrever do jeito que ela escreveria (a partir das
@@ -97,5 +98,4 @@ HTML; usar a base como na tabela acima, senão a imagem quebra no ar e funciona 
 - ALMAH: o case de identidade é provisório (rótulos, cartões e fotos, montados em pranchas em 01/10); trocar pelo brand
   book quando ela terminar. Arquivos originais no Drive dela, pasta "coleçao genisi".
 - Página de brand book do site: o que entra?
-- Domínio próprio (ex.: emsdesign.com.br) em vez de cauadorn.github.io/ems-site: se mudar, trocar `SITE_URL` em `vite.config.js`.
 - Prancheta de revisão com os prints do site: https://claude.ai/artifact/W3FVwhEdbnUmFAh2U1niwW
