@@ -127,6 +127,32 @@ export const projects = [
     instagram: 'https://www.instagram.com/drpedrocaetano/',
   },
   {
+    slug: 'credfranco',
+    area: 'social',
+    destaque: false,
+    galeria: 'posts', // 21 posts, 10 carrosséis inteiros e 30 stories (artes da pasta "EMIS 4D", sem os cortes dos carrosséis)
+    title: 'Credfranco',
+    category: 'Social media',
+    detail: 'Posts, carrosséis e stories para promotora de crédito',
+    year: '2026',
+    color: '#C8102E',
+    resumo: 'Conteúdo para o Instagram da Credfranco, promotora de crédito que fala com parceiros de todo o Brasil. Os posts, carrosséis e stories apresentam os produtos (Home Equity, Car Equity, VEX, Full Consig, crédito CLT, convênios) e falam de carteira, atendimento e pós-venda, além de datas como Setembro Amarelo e Outubro Rosa. Tudo no vermelho e azul da marca, com fundo claro e elementos em 3D.',
+    behance: null,
+  },
+  {
+    slug: 'topo-do-mundo',
+    area: 'social',
+    destaque: false,
+    galeria: 'posts', // 2 posts (feed e tráfego pago) e 15 stories, em sequências de 3
+    title: 'Topo do Mundo',
+    category: 'Social media',
+    detail: 'Campanha de inverno para restaurante',
+    year: '2026',
+    color: '#2A1A10',
+    resumo: 'Stories e posts da campanha de inverno do Topo do Mundo: a sequência de fondue com 40% de desconto, o Merlot da casa em edição especial e o convite para reservar. Usei o pôr do sol e a vista da cidade para vender a experiência, com títulos em serifa e chamadas curtas para reservar pelo WhatsApp.',
+    behance: null,
+  },
+  {
     slug: 'banco-inter',
     area: 'web',
     destaque: true,
