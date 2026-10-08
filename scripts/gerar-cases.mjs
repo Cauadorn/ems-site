@@ -46,17 +46,29 @@ function galeria(p, t, list, img) {
     const nome = { paginas: 'página' }[p.galeria] || (p.galeria ? 'foto' : 'apresentação, parte');
     const cls = p.galeria ? `case-gallery${p.galeria === 'paginas' ? ' case-gallery--paginas' : ''}` : 'case-slides';
     const largas = list.map((s) => Boolean(p.galeria) && s.w > s.h * 1.5);
-    // páginas lado a lado de 2 em 2: a que sobra sozinha numa linha (antes de uma imagem larga ou no fim) fica centralizada
+    // páginas lado a lado de 2 em 2: a que sobra sozinha numa linha (antes de uma imagem larga, no fim de um grupo
+    // ou no fim) fica centralizada
     const sozinha = list.map(() => false);
     if (p.galeria === 'paginas') {
+      const fimDeGrupo = new Set((p.grupos || []).reduce((fins, g) => [...fins, (fins.at(-1) ?? -1) + g.imagens], []));
       let seguidas = [];
       [...largas, true].forEach((larga, k) => {
-        if (!larga) return seguidas.push(k);
+        if (!larga) seguidas.push(k);
+        if (!larga && !fimDeGrupo.has(k)) return;
         if (seguidas.length % 2) sozinha[seguidas.at(-1)] = true;
         seguidas = [];
       });
     }
-    return `    <div class="${cls}">\n${list.map((s, k) => `      ${tag(s, k, list.length, nome, largas[k] ? 'is-wide' : sozinha[k] ? 'is-solo' : '')}`).join('\n')}\n    </div>`;
+    const html = (de, ate) => `    <div class="${cls}">\n${list.slice(de, ate).map((s, i) => `      ${tag(s, de + i, list.length, nome, largas[de + i] ? 'is-wide' : sozinha[de + i] ? 'is-solo' : '')}`).join('\n')}\n    </div>`;
+    if (!p.grupos) return html(0, list.length);
+    // grupos: as imagens em partes com um título, na ordem dos slides (ex.: as duas opções de um material)
+    let de = 0;
+    return p.grupos.map((g) => {
+      const ate = de + g.imagens;
+      const parte = `    <section class="case-posts__grupo" aria-label="${esc(g.titulo)}">\n      <h2 class="eyebrow case-posts__titulo">${esc(g.titulo)}</h2>\n${html(de, ate).replace(/^/gm, '  ')}\n    </section>`;
+      de = ate;
+      return parte;
+    }).join('\n');
   }
   // posts: os posts 4:5 giram num anel 3D igual ao da home (src/js/modules/ring.js); com poucos (menos de 5) o anel
   // ficaria vazio, então eles ficam em grade. Os carrosséis (a imagem deitada com todos os cards) e os stories (9:16)

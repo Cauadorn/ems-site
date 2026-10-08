@@ -21,6 +21,8 @@
 //   'paginas' = páginas inteiras, sem corte, em duas colunas (cardápios, revistas);
 //   'posts' = posts de rede social, separados sozinhos pelo formato da imagem em Feed (4:5), Carrosséis (imagem
 //   deitada com todos os cards) e Stories (9:16), na ordem dos arquivos
+// grupos: (opcional, galeria 'paginas') [{ titulo, imagens }]: divide as imagens, na ordem, em partes com um título
+//   pequeno em cima (ex.: as duas opções de fundo de um material)
 // area: em qual seção da página "Todos os projetos" (projetos/index.html) ele aparece: um id de `areas` abaixo
 // destaque: true = também aparece no carrossel da home ("Trabalhos que têm cara"); false = só em "Todos os projetos"
 
@@ -234,12 +236,18 @@ export const projects = [
     area: 'social',
     destaque: false,
     galeria: 'paginas', // mockups (largos, na linha toda), folder externo + interno lado a lado e o panfleto
+    // as duas opções de fundo, uma embaixo da outra: slides 01–08 (quadriculado) e 09–16 (prancha). Cada opção abre
+    // com o folder nas mãos (frente em cima, verso embaixo) e o panfleto na folha curvada, lado a lado
+    grupos: [
+      { titulo: 'Opção 1 · fundo quadriculado', imagens: 8 },
+      { titulo: 'Opção 2 · prancha de projeto', imagens: 8 },
+    ],
     title: 'Resultado Engenharia',
     category: 'Material impresso',
     detail: 'Folder de 3 dobras e panfleto A5 para engenharia de segurança contra incêndio',
     year: '2026',
     color: '#E30613',
-    resumo: 'A Resultado Engenharia faz projetos e regularização em segurança contra incêndio e pânico, um assunto técnico que muita gente adia. No folder e no panfleto organizei tudo para uma leitura rápida: a pergunta direta na capa, os serviços com fotos de equipamentos reais, o passo a passo do diagnóstico à regularização, as dúvidas frequentes e o WhatsApp com QR code. O vermelho e o preto vêm do próprio universo dos extintores, e o fundo quadriculado lembra uma prancha de projeto.',
+    resumo: 'A Resultado Engenharia faz projetos e regularização em segurança contra incêndio e pânico, um assunto técnico que muita gente adia. No folder e no panfleto organizei tudo para uma leitura rápida: a pergunta direta na capa, os serviços com fotos de equipamentos reais, o passo a passo do diagnóstico à regularização, as dúvidas frequentes e o WhatsApp com QR code. O vermelho e o preto vêm do próprio universo dos extintores. Fiz duas opções de fundo: uma quadriculada e outra que imita uma prancha de projeto, com régua nas bordas.',
     behance: null,
   },
   {
