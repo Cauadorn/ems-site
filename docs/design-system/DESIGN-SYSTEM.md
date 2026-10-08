@@ -309,7 +309,8 @@ carrossel; no case, "← Todos os projetos" leva para cá.
 - `capaNoCase: false`: a capa fica só nos cards e no carrossel; o case abre direto no vídeo ou no mockup.
 - `grupos` (galeria `'paginas'`): as imagens em partes, cada uma com o título pequeno (eyebrow) em cima, como nos blocos
   de social media (ex.: Resultado Engenharia, "Opção 1 · fundo quadriculado" e "Opção 2 · prancha de projeto"). A página
-  que sobra sozinha no fim de um grupo fica centralizada.
+  que sobra sozinha no fim de um grupo fica centralizada; duas imagens em pé de alturas diferentes ficam centralizadas
+  na linha (ex.: o folder nas mãos ao lado do panfleto na folha curvada).
 - `video`: vídeo vertical no topo do case (até 420 px, 9:16, raio 20), mudo, em loop, com controles; sempre em WebM
   (VP9) + MP4 (H.264, `faststart`) a 720 px, com `video-poster.webp`. Comprimir antes de subir (ffmpeg).
 - `site`: botão "Ver o site no ar" no fim do case (projetos de web).

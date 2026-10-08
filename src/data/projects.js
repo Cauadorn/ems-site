@@ -236,10 +236,11 @@ export const projects = [
     area: 'social',
     destaque: false,
     galeria: 'paginas', // mockups (largos, na linha toda), folder externo + interno lado a lado e o panfleto
-    // as duas opções de fundo, uma embaixo da outra: slides 01–06 (quadriculado) e 07–12 (prancha)
+    // as duas opções de fundo, uma embaixo da outra: slides 01–08 (quadriculado) e 09–16 (prancha). Cada opção abre
+    // com o folder nas mãos (frente em cima, verso embaixo) e o panfleto na folha curvada, lado a lado
     grupos: [
-      { titulo: 'Opção 1 · fundo quadriculado', imagens: 6 },
-      { titulo: 'Opção 2 · prancha de projeto', imagens: 6 },
+      { titulo: 'Opção 1 · fundo quadriculado', imagens: 8 },
+      { titulo: 'Opção 2 · prancha de projeto', imagens: 8 },
     ],
     title: 'Resultado Engenharia',
     category: 'Material impresso',
