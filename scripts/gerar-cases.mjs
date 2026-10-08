@@ -45,7 +45,18 @@ function galeria(p, t, list, img) {
   if (p.galeria !== 'posts') {
     const nome = { paginas: 'página' }[p.galeria] || (p.galeria ? 'foto' : 'apresentação, parte');
     const cls = p.galeria ? `case-gallery${p.galeria === 'paginas' ? ' case-gallery--paginas' : ''}` : 'case-slides';
-    return `    <div class="${cls}">\n${list.map((s, k) => `      ${tag(s, k, list.length, nome, p.galeria && s.w > s.h * 1.5 ? 'is-wide' : '')}`).join('\n')}\n    </div>`;
+    const largas = list.map((s) => Boolean(p.galeria) && s.w > s.h * 1.5);
+    // páginas lado a lado de 2 em 2: a que sobra sozinha numa linha (antes de uma imagem larga ou no fim) fica centralizada
+    const sozinha = list.map(() => false);
+    if (p.galeria === 'paginas') {
+      let seguidas = [];
+      [...largas, true].forEach((larga, k) => {
+        if (!larga) return seguidas.push(k);
+        if (seguidas.length % 2) sozinha[seguidas.at(-1)] = true;
+        seguidas = [];
+      });
+    }
+    return `    <div class="${cls}">\n${list.map((s, k) => `      ${tag(s, k, list.length, nome, largas[k] ? 'is-wide' : sozinha[k] ? 'is-solo' : '')}`).join('\n')}\n    </div>`;
   }
   // posts: os posts 4:5 giram num anel 3D igual ao da home (src/js/modules/ring.js); com poucos (menos de 5) o anel
   // ficaria vazio, então eles ficam em grade. Os carrosséis (a imagem deitada com todos os cards) e os stories (9:16)

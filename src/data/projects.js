@@ -230,6 +230,19 @@ export const projects = [
     behance: null,
   },
   {
+    slug: 'resultado-engenharia',
+    area: 'social',
+    destaque: false,
+    galeria: 'paginas', // mockups (largos, na linha toda), folder externo + interno lado a lado e o panfleto
+    title: 'Resultado Engenharia',
+    category: 'Material impresso',
+    detail: 'Folder de 2 dobras e panfleto A5 para engenharia de segurança contra incêndio',
+    year: '2026',
+    color: '#E30613',
+    resumo: 'A Resultado Engenharia faz projetos e regularização em segurança contra incêndio e pânico, um assunto técnico que muita gente adia. No folder e no panfleto organizei tudo para uma leitura rápida: a pergunta direta na capa, os serviços com fotos de equipamentos reais, o passo a passo do diagnóstico à regularização, as dúvidas frequentes e o WhatsApp com QR code. O vermelho e o preto vêm do próprio universo dos extintores, e o fundo quadriculado lembra uma prancha de projeto.',
+    behance: null,
+  },
+  {
     slug: 'suddenly-30',
     area: 'produtos',
     destaque: false, // saiu do carrossel (pedido da Emilly em 01/10); continua em "Todos os projetos"
