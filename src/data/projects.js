@@ -235,11 +235,11 @@ export const projects = [
     slug: 'resultado-engenharia',
     area: 'social',
     destaque: false,
-    galeria: 'paginas', // uma seção por opção de fundo, cada uma com o folder nas mãos (frente em cima, verso embaixo)
-    // e o panfleto na folha curvada, lado a lado (pedido da Emilly: sem repetir a mesma peça várias vezes)
+    galeria: 'paginas', // uma seção por opção de fundo, sem repetir peça: o folder nas mãos (frente em cima, verso
+    // embaixo) e o panfleto na folha curvada lado a lado; embaixo, as artes (folder por fora e por dentro, panfleto)
     grupos: [
-      { titulo: 'Opção 1 · fundo quadriculado', imagens: 2 },
-      { titulo: 'Opção 2 · prancha de projeto', imagens: 2 },
+      { titulo: 'Opção 1 · fundo quadriculado', imagens: 5 },
+      { titulo: 'Opção 2 · prancha de projeto', imagens: 5 },
     ],
     title: 'Resultado Engenharia',
     category: 'Material impresso',
