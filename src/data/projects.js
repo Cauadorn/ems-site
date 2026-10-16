@@ -21,6 +21,10 @@
 //   'paginas' = páginas inteiras, sem corte, em duas colunas (cardápios, revistas);
 //   'posts' = posts de rede social, separados sozinhos pelo formato da imagem em Feed (4:5), Carrosséis (imagem
 //   deitada com todos os cards) e Stories (9:16), na ordem dos arquivos
+// capitulos: (opcional) case especial em capítulos, no lugar da galeria: [{ rotulo, titulo (com <em> na palavra em
+//   serif), texto, midias: [{ a: 'arquivo.webp' ou 'loop.mp4', l: 'cheia' | 'meia' | 'larga' | 'estreita', alt }],
+//   botao: { href, texto } }]; .mp4 = loop mudo (com .webm e -poster.webp do mesmo nome) que só toca na tela
+// entregas: (opcional) etiquetas do que foi entregue, embaixo do resumo (ex.: Monograma, Estampa, Kit da festa)
 // grupos: (opcional, galeria 'paginas') [{ titulo, imagens }]: divide as imagens, na ordem, em partes com um título
 //   pequeno em cima (ex.: as duas opções de fundo de um material)
 // area: em qual seção da página "Todos os projetos" (projetos/index.html) ele aparece: um id de `areas` abaixo
@@ -38,6 +42,85 @@ export const areas = [
 ];
 
 export const projects = [
+  {
+    slug: 'formatura-babi',
+    area: 'identidade',
+    destaque: true, // primeiro do carrossel: case especial, em capítulos (pedido da Emilly em 16/10)
+    title: 'Formatura Babi',
+    category: 'Identidade visual',
+    detail: 'Brasão, monograma e kit de formatura em bordô e ouro',
+    year: '2026',
+    color: '#5A1626',
+    resumo: 'Identidade visual para a formatura de Bioquímica da Babi. O conceito é "a ciência que floresce": um brasão Art Nouveau em traço de gravura, em que o DNA vira ramo, as moléculas viram frutinhas e a borboleta fecha um ciclo. Monograma BS, paleta bordô e ouro, cinco ilustrações, estampa e o kit da festa. Apresentei a proposta num site, e não num PDF, para a Babi viver a marca antes de aprovar.',
+    entregas: ['Monograma', 'Brasão', 'Paleta', 'Tipografia', '5 ilustrações', 'Estampa', 'Kit da festa', 'Site da proposta'],
+    behance: 'https://www.behance.net/gallery/257181347/Formatura-Babi-Identidade-Visual',
+    video: 'video.mp4', // o filme da proposta (56 s, sem som), deitado, no topo do case
+    // textos a partir dos slides da apresentação da própria Emilly
+    capitulos: [
+      {
+        rotulo: 'O conceito',
+        titulo: 'A ciência <em>que floresce</em>',
+        texto: 'Cada detalhe do brasão guarda um pedaço da história dela: a ciência, o laboratório, a formatura e o caminho. O DNA vira ramo, as moléculas viram frutinhas e a borboleta fecha o ciclo.',
+        midias: [{ a: 'brasao.mp4', alt: 'o brasão montado peça por peça' }],
+      },
+      {
+        rotulo: 'O monograma',
+        titulo: 'Como nasceu <em>a assinatura</em>',
+        texto: 'Duas partes que, juntas, contam quem ela é: o monograma desenhado à pena e o medalhão Art Nouveau. O S nasce da curva do B e termina num raminho com moléculas, e a haste do B é o módulo que mede todo o desenho.',
+        midias: [
+          { a: 'assinatura.mp4', l: 'meia', alt: 'o monograma e o medalhão se juntando' },
+          { a: 'construcao.mp4', l: 'meia', alt: 'construção do BS no grid' },
+          { a: 'versoes.webp', alt: 'as versões: bordô sobre creme, creme sobre vinho e uma cor só' },
+          { a: 'cartao.webp', l: 'meia', alt: 'cartão com o brasão na mão' },
+          { a: 'lacre.webp', l: 'meia', alt: 'lacre de cera com o monograma' },
+        ],
+      },
+      {
+        rotulo: 'Cores e tipografia',
+        titulo: 'Bordô <em>e ouro</em>',
+        texto: 'O bordô manda. A prata aparece nas peças, o creme dá respiro e o ouro, a cor favorita dela, entra só nos pontos de luz. Na tipografia, uma serifa clássica para o nome e os títulos e uma letra simples e moderna para o resto.',
+        midias: [
+          { a: 'cores.webp', l: 'meia', alt: 'paleta: vinho escuro, bordô, rosé, ouro, prata e creme' },
+          { a: 'tipografia.webp', l: 'meia', alt: 'tipografia: Cormorant Garamond e Instrument Sans' },
+        ],
+      },
+      {
+        rotulo: 'Estampa e ilustrações',
+        titulo: 'O desenho <em>que se repete</em>',
+        texto: 'Ramos Art Nouveau em traço fino de gravura, com os símbolos dela no meio: a orquídea da tatuagem, o erlenmeyer do laboratório, o DNA, o globo espelhado da festa e os livros dos anos de estudo. A estampa emenda sem aparecer e vai no chinelo, no copo e no marca-página.',
+        midias: [
+          { a: 'estampa.mp4', alt: 'a estampa contínua' },
+          { a: 'ilustracoes.mp4', alt: 'as cinco ilustrações: orquídea, erlenmeyer, DNA, globo espelhado e livros' },
+          { a: 'adesivos.webp', alt: 'as ilustrações em adesivos' },
+        ],
+      },
+      {
+        rotulo: 'O kit da festa',
+        titulo: 'A marca <em>na festa</em>',
+        texto: 'Caixa com lacre dourado, porta-copos, fita, sacola, chinelo, kit ressaca, copos, marca-página e necessaire: sempre o mesmo desenho, em bordô, creme, prata e ouro.',
+        midias: [
+          { a: 'caixa.webp', alt: 'caixa de veludo com o brasão em relevo e lacre dourado' },
+          { a: 'porta-copos.webp', l: 'meia', alt: 'porta-copos com as ilustrações' },
+          { a: 'fita.webp', l: 'meia', alt: 'fita de cetim com o nome' },
+          { a: 'sacola-chinelo.webp', alt: 'sacola, chinelo, copo e marca-página' },
+          { a: 'kit-ressaca.webp', alt: 'kit ressaca e chinelo' },
+          { a: 'copo-marcapagina.webp', alt: 'copos de festa e marca-página' },
+          { a: 'necessaire.webp', alt: 'necessaires clara e escura' },
+          { a: 'envelope.webp', alt: 'envelope com lacre de cera' },
+        ],
+      },
+      {
+        rotulo: 'A apresentação',
+        titulo: 'A proposta <em>num site</em>',
+        texto: 'Em vez de um PDF, a Babi recebeu um site: a marca inteira se apresenta numa página só, e o brasão é feito de partículas que viram pó de ouro quando o mouse passa.',
+        midias: [
+          { a: 'site-computador.webp', l: 'larga', alt: 'o site da proposta no computador' },
+          { a: 'site-celular.webp', l: 'estreita', alt: 'o site da proposta no celular' },
+        ],
+        botao: { href: 'https://babi-formatura.vercel.app/', texto: 'Abrir o site da proposta' },
+      },
+    ],
+  },
   {
     slug: 'maria-valentina',
     area: 'identidade',

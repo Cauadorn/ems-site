@@ -172,3 +172,25 @@
 /* área ainda sem projeto: vaga "em breve", igual às do carrossel */
 .work-card--slot .work-card__img { display: grid; place-items: center; background: #2F1535; outline: 2px dashed rgba(255, 251, 222, .3); outline-offset: -12px; }
 .work-card--slot svg { width: 64px; height: 64px; color: var(--pink); }
+
+/* case especial em capítulos (campo `capitulos`, ex.: Formatura Babi): cabeçalho em duas colunas (número, título
+   e texto curto) e as mídias numa grade de 12 colunas; loops mudos que tocam só na tela (src/js/modules/loops.js) */
+.case-hero__entregas { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.cap { margin-top: clamp(72px, 9vw, 140px); }
+.cap__cab { width: min(100% - 2 * var(--gutter), 1200px); margin-inline: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 14px clamp(24px, 5vw, 80px); align-items: end; margin-bottom: clamp(24px, 3vw, 40px); }
+.cap__num { grid-column: 1 / -1; color: var(--manteiga); }
+.cap__titulo { font-size: clamp(2.2rem, 5vw, 4.4rem); text-wrap: balance; }
+.cap__titulo em { color: var(--manteiga); }
+.cap__texto { max-width: 52ch; font-size: var(--t-lead); opacity: .92; }
+@media (max-width: 860px) { .cap__cab { grid-template-columns: 1fr; } }
+.cap__midias { width: min(100% - 2 * var(--gutter), 1200px); margin-inline: auto; display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(12px, 1.6vw, 20px); align-items: center; }
+.cap__midia { grid-column: span 12; margin: 0; }
+.cap__midia--meia { grid-column: span 6; }
+.cap__midia--larga { grid-column: span 8; }
+.cap__midia--estreita { grid-column: span 4; }
+.cap__midia img, .cap__midia video { display: block; width: 100%; height: auto; border-radius: var(--r-s); background: var(--ink); box-shadow: 0 20px 40px -24px rgba(42, 20, 51, .6); }
+@media (max-width: 720px) {
+  .cap__midia--meia, .cap__midia--larga { grid-column: span 12; }
+  .cap__midia--estreita { grid-column: 3 / span 8; }
+}
+.cap__botao { display: flex; justify-content: center; margin: clamp(24px, 3vw, 40px) 0 0; }

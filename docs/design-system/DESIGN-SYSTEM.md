@@ -307,6 +307,13 @@ carrossel; no case, "← Todos os projetos" leva para cá.
   cima da lâmina e pontinhos embaixo (o ativo vira traço manteiga). Lâmina .mp4 é vídeo mudo em loop que só toca quando
   está na tela (`src/js/modules/ig.js`). `anelTitulo` troca o título pequeno do anel.
 - `capaNoCase: false`: a capa fica só nos cards e no carrossel; o case abre direto no vídeo ou no mockup.
+- **Case em capítulos** (`capitulos`, desde 16/10, ex.: Formatura Babi): para projeto com muito material (vídeo,
+  animações, kit). Depois do filme, cada capítulo tem um cabeçalho em duas colunas (eyebrow `manteiga` "01 · O conceito",
+  título Anton + palavra em serif `manteiga` de clamp(2.2rem, 5vw, 4.4rem), texto curto até 52ch) e as mídias numa grade
+  de 12 colunas até 1200 px: `cheia`, `meia`, `larga` (2/3) e `estreita` (1/3); no celular tudo vira 1 coluna e a
+  estreita fica com 8/12 no centro. Animações (GIF) entram como loop mudo MP4 + WebM com poster, que só baixa e toca na
+  tela (`src/js/modules/loops.js`; com "reduzir movimento" fica parado, com controles). Respiro entre capítulos
+  clamp(72px, 9vw, 140px). `entregas` mostra o que foi entregue em chips embaixo do resumo.
 - `grupos` (galeria `'paginas'`): as imagens em partes, cada uma com o título pequeno (eyebrow) em cima, como nos blocos
   de social media (ex.: Resultado Engenharia, "Opção 1 · fundo quadriculado" e "Opção 2 · prancha de projeto"). A página
   que sobra sozinha no fim de um grupo fica centralizada; duas imagens em pé de alturas diferentes ficam centralizadas
