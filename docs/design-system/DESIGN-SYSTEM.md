@@ -315,8 +315,12 @@ carrossel; no case, "← Todos os projetos" leva para cá.
   tela (`src/js/modules/loops.js`; com "reduzir movimento" fica parado, com controles). Respiro entre capítulos
   clamp(72px, 9vw, 140px). `entregas` mostra o que foi entregue em chips embaixo do resumo.
 - `colaboracao` (projeto em parceria, ex.: Formatura Babi com o Cauã Dorn): linha "Em colaboração com <nome>" embaixo
-  do resumo, texto pequeno com o nome em `manteiga` sublinhado e seta diagonal (link para o site da pessoa), e um botão
-  ghost no fim do case, ao lado do Behance.
+  do resumo, texto pequeno com o nome em `manteiga` sublinhado e seta diagonal (link para o site da pessoa). No fim do
+  case, um **cartão de colaboração** (até 1000 px, marfim 5% com borda 18%, raio `r-l`): à esquerda a foto 4:5 na
+  moldura de seleção (`.frame`) com a etiqueta de cursor violeta com o @ da pessoa, como no Sobre da home; à direita
+  "Em colaboração com" (eyebrow `manteiga`), o nome em Anton com o sobrenome em serif `manteiga`, o cargo em serif
+  itálico `manteiga`, um texto curto em primeira pessoa e os links: botão ivory para o case no site da pessoa e link
+  sublinhado para o site. No celular, a foto fica em cima (até 260 px).
 - `grupos` (galeria `'paginas'`): as imagens em partes, cada uma com o título pequeno (eyebrow) em cima, como nos blocos
   de social media (ex.: Resultado Engenharia, "Opção 1 · fundo quadriculado" e "Opção 2 · prancha de projeto"). A página
   que sobra sozinha no fim de um grupo fica centralizada; duas imagens em pé de alturas diferentes ficam centralizadas
