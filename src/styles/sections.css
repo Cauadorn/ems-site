@@ -66,6 +66,12 @@
   padding: calc(112px + .3 * var(--logo)) var(--gutter) 48px;
   background: var(--violeta); color: var(--ivory); text-align: center;
 }
+/* tela em pé e larga (monitor na vertical, tablet em pé): a tela inteira de altura deixava um vazio enorme em cima e
+   embaixo do logo. Aqui o topo vai no máximo até a largura da tela e o EMS cresce um pouco para ocupar o espaço.
+   Celular (menos de 600 px) e monitor deitado continuam iguais */
+@media (orientation: portrait) and (min-width: 600px) {
+  .hero { min-height: min(100svh, 100vw); --logo: clamp(7rem, min(26vw, 36vh), 21rem); }
+}
 .hero__bg { position: absolute; inset: 0; pointer-events: none; }
 .hero__star { position: absolute; color: var(--ink); }
 .hero__star--a { width: 46vw; height: 46vw; left: -14vw; bottom: -20vw; opacity: .55; }
@@ -183,6 +189,11 @@
   .c3d__ratio { padding-top: 140%; }
   .c3d__name { font-size: 14vw; }
   .c3d__cat { font-size: .95rem; }
+}
+/* no monitor em pé o card do carrossel (50vw, proporção 60%) é baixo: o carrossel encolhe junto para não sobrar
+   um vazio enorme entre o título e o card */
+@media (orientation: portrait) and (min-width: 992px) {
+  .c3d { height: clamp(540px, calc(30vw + 320px), 780px); }
 }
 .project-list { margin-bottom: 0; }
 .projects__more { display: flex; justify-content: center; padding: 0 0 var(--section); }
@@ -318,7 +329,8 @@
   .hero__title-wrap { margin-block: 44px 34px; }
   .hero__label--a { left: auto; right: 0; top: -34px; margin: 0; }
   .hero__label--b { right: auto; left: 0; bottom: -34px; margin: 0; }
-  .hero__pop--cereja { right: auto; left: -2%; top: -175px; margin: 0; width: 54px; }
+  /* a cereja fica pendurada no canto do E: a altura acompanha o logo (antes era fixa e, no tablet, caía em cima do E) */
+  .hero__pop--cereja { right: auto; left: -2%; top: calc(-.91 * var(--logo) - 69px); margin: 0; width: 54px; }
   .hero__pop--xoxo, .hero .sparkle { display: none; }
   .hero__foot { justify-content: center; text-align: center; }
   .hero__who { justify-content: center; }
