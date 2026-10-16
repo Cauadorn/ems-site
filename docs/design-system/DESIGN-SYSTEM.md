@@ -149,6 +149,10 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
   card 3D `0 30px 60px -30px rgba(42,20,51,.6)`. Nunca sombra preta (`rgba(0,0,0,…)`).
 - **Pontos de quebra:** 1000 px (hover dos serviços), 991 px (carrossel tablet), 860 px (menu vira tela cheia,
   hero em 1 coluna), 560 px (botões na largura toda, processo em 1 coluna), 479 px (carrossel celular).
+- **Tela em pé e larga** (monitor na vertical, tablet em pé: `orientation: portrait` e 600 px ou mais): o topo não ocupa
+  a tela inteira, só até a largura da tela (`min(100svh, 100vw)`), e o EMS cresce um pouco (26vw); a partir de 992 px o
+  carrossel fica com `clamp(540px, 30vw + 320px, 780px)` de altura. Antes sobrava um vazio enorme em cima e embaixo.
+  A cereja do topo (≤860 px) fica pendurada no canto do E pela altura do logo (`calc(-.91 * var(--logo) - 69px)`).
 - **Nunca rolagem lateral:** elementos inclinados que passam da tela (faixas) levam `overflow-x: clip` no container.
 
 ---
