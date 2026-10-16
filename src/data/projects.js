@@ -24,8 +24,9 @@
 // capitulos: (opcional) case especial em capítulos, no lugar da galeria: [{ rotulo, titulo (com <em> na palavra em
 //   serif), texto, midias: [{ a: 'arquivo.webp' ou 'loop.mp4', l: 'cheia' | 'meia' | 'larga' | 'estreita', alt }],
 //   botao: { href, texto } }]; .mp4 = loop mudo (com .webm e -poster.webp do mesmo nome) que só toca na tela
-// colaboracao: (opcional) { nome, site, botao }: projeto feito em parceria; aparece "Em colaboração com <nome>" no topo
-//   (link para o site da pessoa) e um botão com o texto `botao` no fim do case
+// colaboracao: (opcional) projeto feito em parceria: { nome, cargo, arroba, foto, fotoAlt, texto, site, case, botao, link }.
+//   Aparece "Em colaboração com <nome>" no topo (link para o site) e, no fim do case, um cartão com a foto na moldura de
+//   seleção, o texto e os botões para o case no site da pessoa (`case`) e para o site dela (`site`)
 // entregas: (opcional) etiquetas do que foi entregue, embaixo do resumo (ex.: Monograma, Estampa, Kit da festa)
 // grupos: (opcional, galeria 'paginas') [{ titulo, imagens }]: divide as imagens, na ordem, em partes com um título
 //   pequeno em cima (ex.: as duas opções de fundo de um material)
@@ -56,7 +57,19 @@ export const projects = [
     resumo: 'Identidade visual para a formatura de Bioquímica da Babi. O conceito é "a ciência que floresce": um brasão Art Nouveau em traço de gravura, em que o DNA vira ramo, as moléculas viram frutinhas e a borboleta fecha um ciclo. Monograma BS, paleta bordô e ouro, cinco ilustrações, estampa e o kit da festa. Apresentei a proposta num site, e não num PDF, para a Babi viver a marca antes de aprovar.',
     entregas: ['Monograma', 'Brasão', 'Paleta', 'Tipografia', '5 ilustrações', 'Estampa', 'Kit da festa', 'Site da proposta'],
     behance: 'https://www.behance.net/gallery/257181347/Formatura-Babi-Identidade-Visual',
-    colaboracao: { nome: 'Cauã Dorn', site: 'https://cauadorn.com.br/', botao: 'Conhecer o trabalho do Cauã' }, // feito em dupla
+    // feito em dupla com o Cauã: cartão com a foto dele no fim do case (o site dele tem o mesmo cartão com a Emilly)
+    colaboracao: {
+      nome: 'Cauã Dorn',
+      cargo: 'Designer, audiovisual e diretor criativo',
+      arroba: '@ohdorn',
+      foto: 'caua-dorn.webp',
+      fotoAlt: 'Cauã Dorn sentado numa poltrona de couro',
+      texto: 'Este projeto não tem divisão de tarefas para contar: o Cauã e eu fizemos tudo juntos, do primeiro rabisco do brasão ao gabarito que foi para o fornecedor. Conceito, ilustração, kit e apresentação passaram pelas duas mãos, e o case está publicado nos dois portfólios.',
+      site: 'https://cauadorn.com.br/',
+      case: 'https://cauadorn.com.br/trabalhos/formatura-babi',
+      botao: 'Ver o case no site do Cauã',
+      link: 'Site do Cauã',
+    },
     video: 'video.mp4', // o filme da proposta (56 s, sem som), deitado, no topo do case
     // textos a partir dos slides da apresentação da própria Emilly
     capitulos: [

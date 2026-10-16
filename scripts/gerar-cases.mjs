@@ -190,6 +190,34 @@ ${c.midias.map((m) => `        ${midia(m)}`).join('\n')}
 ${c.botao ? `      <p class="cap__botao"><a class="btn btn--ivory" href="${esc(c.botao.href)}" target="_blank" rel="noopener">${esc(c.botao.texto)} <svg><use href="#i-seta-diag"/></svg></a></p>\n` : ''}    </section>`).join('\n');
 }
 
+// cartão de colaboração (campo `colaboracao`): foto na moldura de seleção da EMS com a etiqueta de cursor (como a
+// foto do Sobre), "Em colaboração com", nome em Anton + sobrenome em serif, cargo, texto e os links para o site da pessoa
+function colaboracao(p, img, dir) {
+  const c = p.colaboracao;
+  if (!c?.foto) return '';
+  const d = webpSize(resolve(dir, c.foto));
+  const partes = c.nome.split(' ');
+  const nome = partes.length > 1 ? `${esc(partes.slice(0, -1).join(' '))} <em>${esc(partes.at(-1))}</em>` : esc(c.nome);
+  return `    <section class="colab" aria-labelledby="colab-nome" data-reveal>
+      <figure class="colab__foto">
+        <div class="frame">
+          <span class="frame__h frame__h--tl"></span><span class="frame__h frame__h--tr"></span>
+          <span class="frame__h frame__h--bl"></span><span class="frame__h frame__h--br"></span>
+          <img src="${img(c.foto)}" alt="${esc(c.fotoAlt || c.nome)}" width="${d.w}" height="${d.h}" loading="lazy" decoding="async">
+        </div>
+${c.arroba ? `        <span class="tag tag--violeta colab__tag"><svg><use href="#i-cursor"/></svg>${esc(c.arroba)}</span>
+` : ''}      </figure>
+      <div class="colab__txt">
+        <p class="eyebrow colab__eyebrow">Em colaboração com</p>
+        <h2 id="colab-nome" class="section-title colab__nome">${nome}</h2>
+${c.cargo ? `        <p class="colab__cargo">${esc(c.cargo)}</p>
+` : ''}${c.texto ? `        <p class="colab__texto">${esc(c.texto)}</p>
+` : ''}        <p class="colab__links">${c.case ? `<a class="btn btn--ivory" href="${esc(c.case)}" target="_blank" rel="noopener">${esc(c.botao || 'Ver o case')} <svg><use href="#i-seta-diag"/></svg></a>` : ''}${c.site ? `<a class="colab__link" href="${esc(c.site)}" target="_blank" rel="noopener">${esc(c.link || c.nome)} <svg aria-hidden="true"><use href="#i-seta-diag"/></svg></a>` : ''}</p>
+      </div>
+    </section>
+`;
+}
+
 // convite discreto no fim de cada case (pedido da Emilly): a bonequinha da EMS (o selo, sem girar nem recolorir)
 // e o WhatsApp já com o nome do projeto na mensagem
 function cta(p) {
@@ -248,7 +276,7 @@ ${p.capaNoCase === false ? '' : `      <figure class="case-hero__thumb" data-int
 
   <section class="case-body" aria-label="Apresentação do projeto">
 ${p.video ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}${slides.mockup ? `    <figure class="case-mockup"><img src="${img(p.mockup)}" alt="${t}: ${p.galeria === 'paginas' ? 'página impressa' : 'projeto aplicado'} sobre a mesa (mockup)" width="${slides.mockup.w}" height="${slides.mockup.h}"${p.capaNoCase === false ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></figure>\n` : ''}${p.capitulos ? capitulos(p, t, img, slides.dir) : galeria(p, t, slides.list, img)}
-${igCarrosseis(p, t, img, slides.dir)}${p.site || p.instagram || p.behance || p.colaboracao ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener">Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.instagram ? `<a class="btn btn--ivory" href="${esc(p.instagram)}" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> ${esc(p.instagramTexto || 'Ver no Instagram')}</a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}${p.colaboracao ? `<a class="btn btn--ghost" href="${esc(p.colaboracao.site)}" target="_blank" rel="noopener">${esc(p.colaboracao.botao || `Conhecer ${p.colaboracao.nome}`)} <svg><use href="#i-seta-diag"/></svg></a>` : ''}</p>\n` : ''}${cta(p)}
+${igCarrosseis(p, t, img, slides.dir)}${colaboracao(p, img, slides.dir)}${p.site || p.instagram || p.behance ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener">Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.instagram ? `<a class="btn btn--ivory" href="${esc(p.instagram)}" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> ${esc(p.instagramTexto || 'Ver no Instagram')}</a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}</p>\n` : ''}${cta(p)}
     <p class="case-voltar"><a class="case-back" href="%BASE_URL%projetos/"><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a></p>
   </section>
 
