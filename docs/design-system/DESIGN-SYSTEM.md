@@ -314,6 +314,9 @@ carrossel; no case, "← Todos os projetos" leva para cá.
   estreita fica com 8/12 no centro. Animações (GIF) entram como loop mudo MP4 + WebM com poster, que só baixa e toca na
   tela (`src/js/modules/loops.js`; com "reduzir movimento" fica parado, com controles). Respiro entre capítulos
   clamp(72px, 9vw, 140px). `entregas` mostra o que foi entregue em chips embaixo do resumo.
+- `colaboracao` (projeto em parceria, ex.: Formatura Babi com o Cauã Dorn): linha "Em colaboração com <nome>" embaixo
+  do resumo, texto pequeno com o nome em `manteiga` sublinhado e seta diagonal (link para o site da pessoa), e um botão
+  ghost no fim do case, ao lado do Behance.
 - `grupos` (galeria `'paginas'`): as imagens em partes, cada uma com o título pequeno (eyebrow) em cima, como nos blocos
   de social media (ex.: Resultado Engenharia, "Opção 1 · fundo quadriculado" e "Opção 2 · prancha de projeto"). A página
   que sobra sozinha no fim de um grupo fica centralizada; duas imagens em pé de alturas diferentes ficam centralizadas
