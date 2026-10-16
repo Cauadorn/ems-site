@@ -163,6 +163,33 @@ ${c.laminas.map((l) => `              <figure class="ig-carrossel__lamina">${l}<
     </section>\n`;
 }
 
+// case especial em capítulos (campo `capitulos`): cada capítulo tem número, rótulo, título (Anton + palavra em serif),
+// texto curto e as mídias numa grade de 12 colunas (cheia, meia, larga = 2/3, estreita = 1/3). Vídeo .mp4 é um loop
+// mudo (com .webm e -poster.webp do mesmo nome) que só toca na tela (src/js/modules/loops.js)
+function capitulos(p, t, img, dir) {
+  const midia = (m) => {
+    const l = m.l || 'cheia';
+    const alt = `${t}: ${esc(m.alt || '')}`;
+    if (m.a.endsWith('.mp4')) {
+      const base = m.a.replace(/\.mp4$/, '');
+      const d = webpSize(resolve(dir, `${base}-poster.webp`));
+      return `<figure class="cap__midia cap__midia--${l}"><video data-loop muted loop playsinline preload="none" poster="${img(`${base}-poster.webp`)}" width="${d.w}" height="${d.h}" aria-label="${alt}"><source src="${img(`${base}.webm`)}" type="video/webm"><source src="${img(m.a)}" type="video/mp4"></video></figure>`;
+    }
+    const d = webpSize(resolve(dir, m.a));
+    return `<figure class="cap__midia cap__midia--${l}"><img src="${img(m.a)}" alt="${alt}" width="${d.w}" height="${d.h}" loading="lazy" decoding="async"></figure>`;
+  };
+  return p.capitulos.map((c, k) => `    <section class="cap" aria-labelledby="cap-${k + 1}">
+      <header class="cap__cab" data-reveal>
+        <p class="eyebrow cap__num">${nn(k + 1)} · ${esc(c.rotulo)}</p>
+        <h2 id="cap-${k + 1}" class="section-title cap__titulo">${c.titulo}</h2>
+        <p class="cap__texto">${esc(c.texto)}</p>
+      </header>
+      <div class="cap__midias">
+${c.midias.map((m) => `        ${midia(m)}`).join('\n')}
+      </div>
+${c.botao ? `      <p class="cap__botao"><a class="btn btn--ivory" href="${esc(c.botao.href)}" target="_blank" rel="noopener">${esc(c.botao.texto)} <svg><use href="#i-seta-diag"/></svg></a></p>\n` : ''}    </section>`).join('\n');
+}
+
 // convite discreto no fim de cada case (pedido da Emilly): a bonequinha da EMS (o selo, sem girar nem recolorir)
 // e o WhatsApp já com o nome do projeto na mensagem
 function cta(p) {
@@ -212,13 +239,14 @@ ${MARCA}
         <h1 id="case-titulo" class="case-hero__title" data-intro>${t}</h1>
         <p class="case-hero__lead" data-intro>${esc(p.detail)}</p>
 ${p.resumo ? `        <p class="case-hero__text" data-intro>${esc(p.resumo)}</p>
+` : ''}${p.entregas ? `        <ul class="case-hero__entregas" data-intro aria-label="O que entreguei">${p.entregas.map((e) => `<li class="chip">${esc(e)}</li>`).join('')}</ul>
 ` : ''}      </div>
 ${p.capaNoCase === false ? '' : `      <figure class="case-hero__thumb" data-intro><img src="${capa(p.slug)}" alt="${t}: capa do projeto" width="1600" height="1000" fetchpriority="high"></figure>
 `}    </div>
   </section>
 
   <section class="case-body" aria-label="Apresentação do projeto">
-${p.video ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}${slides.mockup ? `    <figure class="case-mockup"><img src="${img(p.mockup)}" alt="${t}: ${p.galeria === 'paginas' ? 'página impressa' : 'projeto aplicado'} sobre a mesa (mockup)" width="${slides.mockup.w}" height="${slides.mockup.h}"${p.capaNoCase === false ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></figure>\n` : ''}${galeria(p, t, slides.list, img)}
+${p.video ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}${slides.mockup ? `    <figure class="case-mockup"><img src="${img(p.mockup)}" alt="${t}: ${p.galeria === 'paginas' ? 'página impressa' : 'projeto aplicado'} sobre a mesa (mockup)" width="${slides.mockup.w}" height="${slides.mockup.h}"${p.capaNoCase === false ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></figure>\n` : ''}${p.capitulos ? capitulos(p, t, img, slides.dir) : galeria(p, t, slides.list, img)}
 ${igCarrosseis(p, t, img, slides.dir)}${p.site || p.instagram || p.behance ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener">Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.instagram ? `<a class="btn btn--ivory" href="${esc(p.instagram)}" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> ${esc(p.instagramTexto || 'Ver no Instagram')}</a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}</p>\n` : ''}${cta(p)}
     <p class="case-voltar"><a class="case-back" href="%BASE_URL%projetos/"><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a></p>
   </section>
@@ -327,7 +355,7 @@ export function gerarCases(root, projects, areas = []) {
   cases.forEach((p, i) => {
     const imgDir = resolve(root, 'public/img/projetos', p.slug);
     const files = existsSync(imgDir) ? readdirSync(imgDir).filter((f) => /^slide-\d+\.webp$/.test(f)).sort() : [];
-    if (!files.length) console.warn(`[cases] ${p.slug}: nenhuma imagem slide-01.webp em public/img/projetos/${p.slug}/`);
+    if (!files.length && !p.capitulos) console.warn(`[cases] ${p.slug}: nenhuma imagem slide-01.webp em public/img/projetos/${p.slug}/`);
     const slides = { dir: imgDir, list: files.map((file) => ({ file, ...webpSize(resolve(imgDir, file)) })) };
     // vídeo deitado (pelo poster) ocupa a largura da apresentação; o em pé fica estreito
     const poster = resolve(imgDir, 'video-poster.webp');
