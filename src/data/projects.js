@@ -382,7 +382,7 @@ export const projects = [
       site: 'https://cauadorn.com.br/',
       link: 'Site do Cauã',
     },
-    video: 'video.mp4', // o logo se montando: a lua, a chama e o nome (do Behance), deitado, no topo do case
+    video: 'logo.gif', // o logo se montando (a lua, a chama e o nome), em GIF no topo do case: pedido da Emilly em 21/10
     // textos a partir do brand book (Behance), na voz da Emilly
     capitulos: [
       {
