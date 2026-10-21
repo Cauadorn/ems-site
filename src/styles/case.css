@@ -26,10 +26,10 @@
 .case-slides img { width: 100%; height: auto; }
 /* vídeo do projeto (vertical): centralizado, cantos arredondados; começa mudo e em loop */
 .case-video { width: min(100% - 2 * var(--gutter), 420px); margin: 0 auto clamp(24px, 3vw, 40px); }
-.case-video video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: var(--r-m); background: var(--ink); box-shadow: 0 30px 60px -30px rgba(42, 20, 51, .6); }
+.case-video video, .case-video img { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: var(--r-m); background: var(--ink); box-shadow: 0 30px 60px -30px rgba(42, 20, 51, .6); }
 /* vídeo deitado: largura da apresentação e proporção do próprio vídeo (vem depois para vencer o 9:16) */
 .case-video--wide { width: min(100% - 2 * var(--gutter), 1200px); }
-.case-video--wide video { aspect-ratio: auto; }
+.case-video--wide video, .case-video--wide img { aspect-ratio: auto; }
 /* mockup: o projeto aplicado (ex.: cardápio impresso na mesa), em destaque antes das páginas */
 .case-mockup { width: min(100% - 2 * var(--gutter), 600px); margin: 0 auto clamp(32px, 4vw, 56px); }
 .case-mockup img { width: 100%; height: auto; border-radius: var(--r-m); background: var(--ink); box-shadow: 0 30px 60px -30px rgba(42, 20, 51, .6); }
