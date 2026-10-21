@@ -95,7 +95,7 @@ Mesmo com o site na raiz do domínio, continue usando a base da tabela acima (`%
   da nuvem foi liberada (Full) em 01/10; o Instagram às vezes pede para esperar alguns minutos.
 - Mais projetos para "Todos os projetos": a Emilly vai mandar o resto do portfólio, separado por área (identidade,
   web, social, fotografia, produtos). Fotografia ainda não tem nenhum projeto (aparece "em breve").
-- ALMAH: o case de identidade é provisório (rótulos, cartões e fotos, montados em pranchas em 01/10); trocar pelo brand
-  book quando ela terminar. Arquivos originais no Drive dela, pasta "coleçao genisi".
+- ALMAH: o case agora é o brand book do Behance (publicado em 19/10), em capítulos como o da Babi, com o cartão do Cauã
+  (ele desenhou o logo). Se ela mudar o Behance de novo, baixar de lá e atualizar `capitulos` em `projects.js`.
 - Página de brand book do site: o que entra?
 - Prancheta de revisão com os prints do site: https://claude.ai/artifact/W3FVwhEdbnUmFAh2U1niwW

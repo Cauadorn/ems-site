@@ -363,15 +363,87 @@ export const projects = [
   {
     slug: 'almah',
     area: 'identidade',
-    destaque: true,
+    destaque: true, // case especial, em capítulos, a partir do brand book publicado no Behance em 19/10 (pedido da Emilly em 21/10)
     title: 'Almah',
-    category: 'Identidade & rótulos',
+    category: 'Identidade visual',
     detail: 'Minha marca de velas artesanais · coleção Gênesis',
     year: '2026',
-    color: '#503B69',
-    resumo: 'A Almah é a minha marca de velas artesanais. Criei o símbolo da chama dentro da lua, os rótulos da coleção Gênesis (Selene, Aura, Terra, Serena e Vênus, cada um com sua cor e aroma) e os cartões que vão junto com o pedido.',
-    behance: null,
-    // case provisório com os rótulos, os cartões e as fotos (pedido da Emilly); trocar pelo brand book quando ficar pronto
+    color: '#3B2A55',
+    resumo: 'A Almah é a minha marca de velas aromáticas feitas à mão. O nome carrega a palavra alma, e o símbolo junta uma lua crescente e uma chama: uma luz que nasce dentro da lua. Fiz a identidade com o Cauã Dorn, que desenhou o logo à mão. A primeira coleção, Gênesis, tem cinco velas, cada uma com um aroma e uma cor, e chega numa caixa roxo-profundo com um card de agradecimento e um de cuidados.',
+    entregas: ['Logo', 'Construção do símbolo', 'Coleção Gênesis', '5 rótulos', 'Caixa e faca', 'Cards do pedido', 'Paleta e tipografia', 'Fotos de produto'],
+    behance: 'https://www.behance.net/gallery/257324541/Almah-Identidade-Visual',
+    colaboracao: {
+      nome: 'Cauã Dorn',
+      cargo: 'Designer, audiovisual e diretor criativo',
+      arroba: '@ohdorn',
+      foto: 'caua-dorn.webp',
+      fotoAlt: 'Cauã Dorn sentado numa poltrona de couro',
+      texto: 'O símbolo da Almah nasceu do traço do Cauã: ele desenhou a lua e a chama à mão, no papel, e depois a gente redesenhou em vetor. A identidade, os rótulos da coleção Gênesis, a caixa e os cards fizemos juntos.',
+      site: 'https://cauadorn.com.br/',
+      link: 'Site do Cauã',
+    },
+    video: 'video.mp4', // o logo se montando: a lua, a chama e o nome (do Behance), deitado, no topo do case
+    // textos a partir do brand book (Behance), na voz da Emilly
+    capitulos: [
+      {
+        rotulo: 'A marca',
+        titulo: 'Uma luz que nasce <em>dentro da lua</em>',
+        texto: 'Almah é uma marca de velas aromáticas feitas à mão. O nome carrega a palavra alma, e o símbolo junta uma lua crescente e uma chama.',
+        midias: [
+          { a: 'lua.mp4', l: 'estreita', alt: 'a vela acesa na mão, na frente de uma lua crescente' },
+          { a: 'apresentacao.webp', l: 'larga', alt: 'abertura do brand book: o logo Almah e a frase "uma luz que nasce dentro da lua"' },
+        ],
+      },
+      {
+        rotulo: 'O traço',
+        titulo: 'Desenhado <em>à mão</em>',
+        texto: 'O logo começou no papel, desenhado à mão pelo Cauã, e depois foi redesenhado em vetor: dois círculos desenham a lua e um eixo guia a chama.',
+        midias: [
+          { a: 'esboco.webp', l: 'estreita', alt: 'esboço a lápis da lua e da chama' },
+          { a: 'construcao.webp', l: 'larga', alt: 'construção do símbolo: dois círculos e um eixo' },
+        ],
+      },
+      {
+        rotulo: 'Coleção Gênesis',
+        titulo: 'Cinco velas, <em>cinco céus</em>',
+        texto: 'A primeira coleção tem cinco velas: Aura, Terra, Selene, Serena e Vênus. Cada uma tem um aroma e uma cor, e os rótulos são impressos numa tinta só sobre papel creme.',
+        midias: [
+          { a: 'colecao.webp', alt: 'as cinco velas da coleção Gênesis embaixo de uma lua' },
+          { a: 'rotulos.webp', alt: 'os cinco rótulos: Aura, Terra, Selene, Serena e Vênus' },
+          { a: 'cinco-velas.webp', alt: 'as cinco velas, cada uma com a sua cor' },
+          { a: 'foto-selene.webp', alt: 'as velas Selene e Serena acesas' },
+        ],
+      },
+      {
+        rotulo: 'A embalagem',
+        titulo: 'Seu pedido <em>chegou!</em>',
+        texto: 'Cada vela chega numa caixa roxo-profundo, fechada com o adesivo "Seu pedido chegou!". A caixa foi pensada aberta no plano, com a faca pronta para a gráfica.',
+        midias: [
+          { a: 'caixa-maos.webp', l: 'meia', alt: 'a caixa fechada com laço, nas mãos' },
+          { a: 'caixa-aberta.webp', l: 'meia', alt: 'a caixa aberta com a vela Selene e o card de agradecimento' },
+          { a: 'planificacao.webp', alt: 'a caixa aberta no plano, com as dobras e os cortes' },
+        ],
+      },
+      {
+        rotulo: 'Os cards',
+        titulo: 'Abrir <em>e cuidar</em>',
+        texto: 'Dentro da caixa vão dois cards: um de agradecimento, fechado com lacre de cera, e um de cuidados com a vela.',
+        midias: [
+          { a: 'card-obrigada.webp', alt: 'card de agradecimento com envelope e lacre de cera' },
+          { a: 'cuidados.webp', l: 'meia', alt: 'vela Selene acesa ao lado do card de cuidados' },
+          { a: 'kit.webp', l: 'meia', alt: 'o kit completo: caixa, vela, cards e envelope' },
+        ],
+      },
+      {
+        rotulo: 'Cores e tipografia',
+        titulo: 'Roxo profundo, <em>sempre</em>',
+        texto: 'O roxo profundo é a cor principal da marca, e cada vela da coleção ganha a sua cor. A assinatura fecha a ideia: luz que acalma, aroma que abraça.',
+        midias: [
+          { a: 'cores.webp', alt: 'paleta, cores da coleção, logo, assinatura e tipografia' },
+          { a: 'obrigada.webp', alt: 'encerramento do brand book: obrigada' },
+        ],
+      },
+    ],
   },
   {
     slug: 'ems',
