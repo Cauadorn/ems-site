@@ -81,7 +81,7 @@ Fontes: Anton (títulos), Instrument Serif itálico (voz), Inter (texto) — sel
 ## Pendências com a cliente
 - Resumos dos projetos (campo `resumo` em `src/data/projects.js`): escritos pelo Claude em 01/10 a pedido da Emilly;
   ela revisa e avisa se quiser mudar algum.
-- ALMAH: case de identidade provisório (rótulos, cartões e fotos); trocar pelo brand book quando ficar pronto.
+- ALMAH: case em capítulos com o brand book do Behance (21/10), feito com o Cauã (cartão de colaboração no fim).
 - Página de brand book (`brandbook.html`): definir o que entra.
 
 Resolvido em 01/10: WhatsApp (31) 92006-0754 (número profissional, trocado em 02/10), e-mail contatoemillyss@gmail.com, formação em Design Gráfico pela UNA.
