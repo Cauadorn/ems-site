@@ -20,6 +20,9 @@ initWorks();
 initRings(); // anel 3D dos posts nas páginas de social media
 initIg(); // carrosséis de Instagram que passam para o lado
 initLoops(reduced); // vídeos curtos dos cases em capítulos: tocam só na tela
+// parede 3D da abertura do Encontro de Lideranças: o three.js só carrega na página que tem a parede
+const parede = document.querySelector('[data-parede]');
+if (parede && !reduced) import('./modules/parede.js').then((m) => m.initParede(parede));
 initReveals(reduced);
 
 // entrada do topo da página

@@ -184,12 +184,17 @@ function capitulos(p, t, img, dir) {
   const midia = (m) => {
     const l = m.l || 'cheia';
     const alt = `${t}: ${esc(m.alt || '')}`;
+    // estampa que passa sem parar (`faixa`: o ladrilho da estampa): duas faixas em sentidos contrários, como no site
+    // da proposta do Encontro de Lideranças
+    if (m.faixa) return `<figure class="cap__midia cap__midia--${l} faixas" role="img" aria-label="${alt}" style="--faixa: url('${img(m.faixa)}')"><div class="faixa"></div><div class="faixa faixa--b"></div></figure>`;
     if (m.a.endsWith('.mp4')) {
       const base = m.a.replace(/\.mp4$/, '');
       const d = webpSize(resolve(dir, `${base}-poster.webp`));
       return `<figure class="cap__midia cap__midia--${l}"><video data-loop muted loop playsinline preload="none" poster="${img(`${base}-poster.webp`)}" width="${d.w}" height="${d.h}" aria-label="${alt}"><source src="${img(`${base}.webm`)}" type="video/webm"><source src="${img(m.a)}" type="video/mp4"></video></figure>`;
     }
     const d = webpSize(resolve(dir, m.a));
+    // `parede`: a imagem vira a parede 3D que mexe com o mouse (src/js/modules/parede.js); `parede` é o título recortado
+    if (m.parede) return `<figure class="cap__midia cap__midia--${l} parede" data-parede="${img(m.parede)}"><img src="${img(m.a)}" alt="${alt}" width="${d.w}" height="${d.h}" decoding="async"></figure>`;
     return `<figure class="cap__midia cap__midia--${l}"><img src="${img(m.a)}" alt="${alt}" width="${d.w}" height="${d.h}" loading="lazy" decoding="async"></figure>`;
   };
   return p.capitulos.map((c, k) => `    <section class="cap" aria-labelledby="cap-${k + 1}">
