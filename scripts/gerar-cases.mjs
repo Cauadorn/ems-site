@@ -129,6 +129,20 @@ ${stories.map((s, k) => `        ${tag(s, k, stories.length, 'story')}`).join('\
   return html.replace(/\n$/, '');
 }
 
+// Reels (campo `reels`: [{ a: 'reel-01.mp4', titulo }]): vídeos em pé 9:16, lado a lado. Tocam mudos e em loop só
+// quando aparecem na tela (src/js/modules/loops.js) e têm os controles para ligar o som; cada um precisa do .webm e do
+// -poster.webp com o mesmo nome (pedido da Emilly em 30/10)
+function reels(p, t, img) {
+  if (!p.reels?.length) return '';
+  return `    <section class="case-posts__grupo" aria-label="Reels">
+      <h2 class="eyebrow case-posts__titulo">Reels · ${p.reels.length}</h2>
+      <div class="case-reels">
+${p.reels.map((r) => { const base = r.a.replace(/\.mp4$/, ''); return `        <figure class="case-reel"><video data-loop muted loop playsinline controls preload="none" poster="${img(base + '-poster.webp')}" width="720" height="1280" aria-label="${t}: ${esc(r.titulo || 'Reels')} (vídeo)"><source src="${img(base + '.webm')}" type="video/webm"><source src="${img(r.a)}" type="video/mp4"></video>${r.titulo ? `<figcaption>${esc(r.titulo)}</figcaption>` : ''}</figure>`; }).join('\n')}
+      </div>
+    </section>
+`;
+}
+
 // carrosséis que passam para o lado, como no Instagram (campo `carrosseis` do projeto): uma lâmina por vez, setas,
 // pontinhos e arrastar com o dedo; uma lâmina .mp4 vira vídeo mudo em loop (com .webm e -poster.webp do mesmo nome)
 function igCarrosseis(p, t, img, dir) {
@@ -275,7 +289,7 @@ ${p.capaNoCase === false ? '' : `      <figure class="case-hero__thumb" data-int
   </section>
 
   <section class="case-body" aria-label="Apresentação do projeto">
-${p.video?.endsWith('.gif') ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><img src="${img(p.video)}" alt="${t}: animação do projeto" width="${slides.gif.w}" height="${slides.gif.h}" fetchpriority="high"></figure>\n` : p.video ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}${slides.mockup ? `    <figure class="case-mockup"><img src="${img(p.mockup)}" alt="${t}: ${p.galeria === 'paginas' ? 'página impressa' : 'projeto aplicado'} sobre a mesa (mockup)" width="${slides.mockup.w}" height="${slides.mockup.h}"${p.capaNoCase === false ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></figure>\n` : ''}${p.capitulos ? capitulos(p, t, img, slides.dir) : galeria(p, t, slides.list, img)}
+${p.video?.endsWith('.gif') ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><img src="${img(p.video)}" alt="${t}: animação do projeto" width="${slides.gif.w}" height="${slides.gif.h}" fetchpriority="high"></figure>\n` : p.video ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}${slides.mockup ? `    <figure class="case-mockup"><img src="${img(p.mockup)}" alt="${t}: ${p.galeria === 'paginas' ? 'página impressa' : 'projeto aplicado'} sobre a mesa (mockup)" width="${slides.mockup.w}" height="${slides.mockup.h}"${p.capaNoCase === false ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></figure>\n` : ''}${p.capitulos ? capitulos(p, t, img, slides.dir) : `${reels(p, t, img)}${galeria(p, t, slides.list, img)}`}
 ${igCarrosseis(p, t, img, slides.dir)}${colaboracao(p, img, slides.dir)}${p.site || p.instagram || p.behance ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener">Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.instagram ? `<a class="btn btn--ivory" href="${esc(p.instagram)}" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> ${esc(p.instagramTexto || 'Ver no Instagram')}</a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}</p>\n` : ''}${cta(p)}
     <p class="case-voltar"><a class="case-back" href="%BASE_URL%projetos/"><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a></p>
   </section>

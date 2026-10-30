@@ -232,9 +232,11 @@ export const projects = [
     detail: 'Posts e carrosséis para o Instagram · crédito CLT',
     year: '2026',
     color: '#6225D8',
-    resumo: 'Posts e carrosséis para o Instagram da IDex Brasil. A ideia era explicar o crédito CLT de um jeito simples (quem pode contratar, como funciona a jornada, por que a operação é diferente) com a mesma linguagem da marca: fundo escuro, roxo, o símbolo em 3D e títulos curtos.',
+    resumo: 'Posts, carrosséis e Reels para o Instagram da IDex Brasil. A ideia era explicar o crédito CLT de um jeito simples (quem pode contratar, como funciona a jornada, por que a operação é diferente) com a mesma linguagem da marca: fundo escuro, roxo, o símbolo em 3D e títulos curtos.',
     behance: null,
     instagram: 'https://www.instagram.com/idex.brasil/',
+    // Reels em cima dos posts (tarefas do Runrun.it que a Emilly indicou em 30/10)
+    reels: [{ a: 'reel-01.mp4', titulo: 'Você sabe como está sua corrida até Punta Cana?' }],
   },
   {
     slug: 'i3cred-social',
@@ -285,11 +287,17 @@ export const projects = [
     galeria: 'posts', // 2 posts (feed e tráfego pago) e 15 stories, em sequências de 3
     title: 'Topo do Mundo',
     category: 'Social media',
-    detail: 'Campanha de inverno para restaurante',
+    detail: 'Campanhas de inverno e de Black Friday para restaurante',
     year: '2026',
     color: '#2A1A10',
-    resumo: 'Stories e posts da campanha de inverno do Topo do Mundo: a sequência de fondue com 40% de desconto, o Merlot da casa em edição especial e o convite para reservar. Usei o pôr do sol e a vista da cidade para vender a experiência, com títulos em serifa e chamadas curtas para reservar pelo WhatsApp.',
+    resumo: 'Reels, stories e posts do Topo do Mundo. Na Black Friday, Reels com o fondue para dois, a vista e a contagem das últimas horas. No inverno, a sequência de fondue com 40% de desconto, o Merlot da casa em edição especial e o convite para reservar. Usei o pôr do sol e a vista da cidade para vender a experiência, com títulos em serifa e chamadas curtas.',
     behance: null,
+    // Reels de Black Friday em cima dos posts (tarefas do Runrun.it que a Emilly indicou em 30/10)
+    reels: [
+      { a: 'reel-01.mp4', titulo: 'Esquenta Black Friday: fondue para dois' },
+      { a: 'reel-02.mp4', titulo: 'Black Friday no Topo' },
+      { a: 'reel-03.mp4', titulo: 'Últimas horas de Black Friday' },
+    ],
   },
   {
     slug: 'banco-inter',
@@ -442,6 +450,71 @@ export const projects = [
           { a: 'cores.webp', alt: 'paleta, cores da coleção, logo, assinatura e tipografia' },
           { a: 'obrigada.webp', alt: 'encerramento do brand book: obrigada' },
         ],
+      },
+    ],
+  },
+  {
+    slug: 'encontro-liderancas-comerciais',
+    area: 'identidade',
+    destaque: false,
+    title: 'Encontro de Lideranças',
+    category: 'Identidade visual',
+    detail: 'Identidade de evento para a CREDFRANCO',
+    year: '2026',
+    color: '#8C0C1D',
+    resumo: 'Proposta de identidade visual para o Encontro de Lideranças Comerciais da CREDFRANCO, um evento de um dia. O conceito é ascensão: três peças do squircle, o grafismo da marca, sobem como um gráfico e chegam ao vermelho mais forte no topo. Fiz o selo, as versões, a estampa, a paleta e as aplicações (telão, painel de fotos, bloquinho, copos e camiseta), e a proposta foi apresentada num site.',
+    entregas: ['Selo', 'Versões', 'Estampa', 'Paleta', 'Telão', 'Painel de fotos', 'Bloquinho e copos', 'Camiseta', 'Site da proposta'],
+    behance: null,
+    // case em capítulos a partir do site da proposta (tarefa 6800 do Runrun.it, pedido da Emilly em 30/10)
+    capitulos: [
+      {
+        rotulo: 'O conceito',
+        titulo: 'Liderança que <em>move resultados</em>',
+        texto: 'O conceito é ascensão: liderança é o que faz o resultado subir. O selo mostra isso com três peças que crescem como um gráfico e chegam ao vermelho mais forte no topo.',
+        midias: [
+          { a: 'abertura.webp', alt: 'abertura da proposta: o selo do Encontro de Lideranças Comerciais sobre a estampa' },
+          { a: 'ascensao.webp', l: 'meia', alt: 'as três peças do selo subindo como um gráfico' },
+          { a: 'frase.webp', l: 'meia', alt: 'a frase do encontro: liderança que move resultados' },
+        ],
+      },
+      {
+        rotulo: 'O selo',
+        titulo: 'Nasce do <em>grafismo da marca</em>',
+        texto: 'Cada peça é o squircle, o grafismo da CREDFRANCO, em três tamanhos. As peças apoiam na linha de "Encontro de" e ocupam a largura de "Lideranças": o selo vira um bloco só e funciona em qualquer peça.',
+        midias: [
+          { a: 'selo.webp', l: 'meia', alt: 'construção do selo: as peças alinhadas ao nome' },
+          { a: 'versoes.webp', l: 'meia', alt: 'as versões: principal, negativo, horizontal e uma cor' },
+        ],
+      },
+      {
+        rotulo: 'Estampa e cores',
+        titulo: 'A estampa <em>do encontro</em>',
+        texto: 'As formas do grafismo, cada uma num tom da convenção, do vinho ao rosa. A estampa abre o painel, o telão, o bloquinho e o copo.',
+        midias: [
+          { a: 'estampa-faixa.webp', alt: 'a estampa feita com as formas do squircle' },
+          { a: 'cores.webp', alt: 'a paleta, do vinho ao rosa, com dois cinzas' },
+          { a: 'estampa.webp', l: 'meia', alt: 'a estampa em pé' },
+          { a: 'painel.webp', l: 'meia', alt: 'painel para fotos com a estampa e o selo' },
+        ],
+      },
+      {
+        rotulo: 'Na prática',
+        titulo: 'O encontro <em>inteiro</em>',
+        texto: 'Telão do auditório, bloquinho e caneta, copos e camiseta: o mesmo selo e a mesma estampa em todas as peças.',
+        midias: [
+          { a: 'telao.webp', alt: 'telão do auditório com o selo e a estampa' },
+          { a: 'bloquinho.webp', l: 'meia', alt: 'bloquinho e caneta' },
+          { a: 'copo-branco.webp', l: 'meia', alt: 'copo branco com a estampa' },
+          { a: 'copo-vermelho.webp', l: 'meia', alt: 'copo vermelho na mão' },
+          { a: 'camisa.webp', l: 'meia', alt: 'camiseta vermelha, frente e costas' },
+        ],
+      },
+      {
+        rotulo: 'A apresentação',
+        titulo: 'A proposta <em>num site</em>',
+        texto: 'A proposta foi apresentada num site: a identidade inteira numa página só, com as peças do selo que reagem ao toque.',
+        midias: [{ a: 'fim.webp', alt: 'encerramento da proposta com o selo e as marcas CREDFRANCO e CF Promotora' }],
+        botao: { href: 'https://cauadorn.github.io/encontro-lideranca-comercial/', texto: 'Abrir o site da proposta' },
       },
     ],
   },
