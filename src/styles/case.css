@@ -201,6 +201,22 @@
 .cap__midia--larga { grid-column: span 8; }
 .cap__midia--estreita { grid-column: span 4; }
 .cap__midia img, .cap__midia video { display: block; width: 100%; height: auto; border-radius: var(--r-s); background: var(--ink); box-shadow: 0 20px 40px -24px rgba(42, 20, 51, .6); }
+/* parede 3D da abertura do Encontro (src/js/modules/parede.js): por cima da imagem parada, o fundo vermelho, a parede,
+   o véu atrás do título, o título e as peças do selo; aparece quando o 3D começa */
+.parede { position: relative; border-radius: var(--r-s); overflow: hidden; box-shadow: 0 20px 40px -24px rgba(42, 20, 51, .6); }
+.parede__viva { position: absolute; inset: 0; opacity: 0; visibility: hidden; background: radial-gradient(120% 102.5% at 50% 38.6%, #B3132A 0%, #8C0C1D 50%, #5E0912 100%); }
+.parede.is-viva .parede__viva { opacity: 1; visibility: visible; }
+.parede__viva > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cap__midia .parede__viva img { border-radius: 0; background: none; box-shadow: none; }
+.parede__veu { background: radial-gradient(52% 50.1% at 50% 50%, rgba(80, 6, 14, .82) 0%, rgba(80, 6, 14, .5) 50%, rgba(80, 6, 14, .12) 100%); }
+.parede__frente { pointer-events: none; }
+/* estampa que passa sem parar (mídia com `faixa`), como no site da proposta: duas faixas em sentidos contrários */
+.faixas { display: grid; gap: 10px; }
+/* --ladrilho: 420 px no computador (como no site); no celular diminui junto com a tela, para caber mais de uma peça */
+.faixa { --ladrilho: clamp(180px, 35vw, 420px); height: calc(var(--ladrilho) * .62); border-radius: var(--r-s); background: var(--faixa) 0 0 / var(--ladrilho) auto repeat-x; animation: faixa-corre 30s linear infinite; }
+.faixa--b { background-position-y: 100%; animation-duration: 36s; animation-direction: reverse; }
+@keyframes faixa-corre { to { background-position-x: calc(-1 * var(--ladrilho)); } }
+@media (prefers-reduced-motion: reduce) { .faixa { animation: none; } }
 @media (max-width: 720px) {
   .cap__midia--meia, .cap__midia--larga { grid-column: span 12; }
   .cap__midia--estreita { grid-column: 3 / span 8; }

@@ -24,6 +24,8 @@
 // capitulos: (opcional) case especial em capítulos, no lugar da galeria: [{ rotulo, titulo (com <em> na palavra em
 //   serif), texto, midias: [{ a: 'arquivo.webp' ou 'loop.mp4', l: 'cheia' | 'meia' | 'larga' | 'estreita', alt }],
 //   botao: { href, texto } }]; .mp4 = loop mudo (com .webm e -poster.webp do mesmo nome) que só toca na tela
+//   Mídias especiais do Encontro de Lideranças: { a, parede: 'titulo.webp' } = a parede 3D que mexe com o mouse
+//   (src/js/modules/parede.js); { faixa: 'ladrilho.webp' } = a estampa passando sem parar, em duas faixas
 // colaboracao: (opcional) projeto feito em parceria: { nome, cargo, arroba, foto, fotoAlt, texto, site, case, botao, link }.
 //   Aparece "Em colaboração com <nome>" no topo (link para o site) e, no fim do case, um cartão com a foto na moldura de
 //   seleção, o texto e os botões para o case no site da pessoa (`case`) e para o site dela (`site`)
@@ -547,7 +549,8 @@ export const projects = [
         titulo: 'Liderança que <em>move resultados</em>',
         texto: 'O conceito é ascensão: liderança é o que faz o resultado subir. O selo mostra isso com três peças que crescem como um gráfico e chegam ao vermelho mais forte no topo.',
         midias: [
-          { a: 'abertura.webp', alt: 'abertura da proposta: o selo do Encontro de Lideranças Comerciais sobre a estampa' },
+          // a abertura mexe com o mouse, como no site da proposta (pedido da Emilly em 30/10)
+          { a: 'abertura.webp', parede: 'abertura-titulo.webp', alt: 'abertura da proposta: o selo do Encontro de Lideranças Comerciais sobre a estampa' },
           { a: 'ascensao.webp', l: 'meia', alt: 'as três peças do selo subindo como um gráfico' },
           { a: 'frase.webp', l: 'meia', alt: 'a frase do encontro: liderança que move resultados' },
         ],
@@ -566,7 +569,8 @@ export const projects = [
         titulo: 'A estampa <em>do encontro</em>',
         texto: 'As formas do grafismo, cada uma num tom da convenção, do vinho ao rosa. A estampa abre o painel, o telão, o bloquinho e o copo.',
         midias: [
-          { a: 'estampa-faixa.webp', alt: 'a estampa feita com as formas do squircle' },
+          // a estampa passa sem parar, em duas faixas (pedido da Emilly em 30/10)
+          { faixa: 'estampa-tile.webp', alt: 'a estampa feita com as formas do squircle, passando' },
           { a: 'cores.webp', alt: 'a paleta, do vinho ao rosa, com dois cinzas' },
           { a: 'estampa.webp', l: 'meia', alt: 'a estampa em pé' },
           { a: 'painel.webp', l: 'meia', alt: 'painel para fotos com a estampa e o selo' },

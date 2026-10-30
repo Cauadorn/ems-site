@@ -47,6 +47,7 @@ export default {
   plugins: [htmlPartials()],
   // versão de cada capa para o carrossel da home (carousel.js): capa trocada = endereço novo, o navegador não usa a antiga
   define: { __CAPAS__: JSON.stringify(versoesDasCapas(root, projects)) },
-  build: { rollupOptions: { input: pages } },
+  // o three.js da parede 3D do Encontro (src/js/modules/parede.js) passa de 500 kB, mas só carrega naquela página
+  build: { rollupOptions: { input: pages }, chunkSizeWarningLimit: 600 },
   server: { port: 5178 },
 };
