@@ -398,7 +398,7 @@ export function gerarCases(root, projects, areas = []) {
   cases.forEach((p, i) => {
     const imgDir = resolve(root, 'public/img/projetos', p.slug);
     const files = existsSync(imgDir) ? readdirSync(imgDir).filter((f) => /^slide-\d+\.webp$/.test(f)).sort() : [];
-    if (!files.length && !p.capitulos) console.warn(`[cases] ${p.slug}: nenhuma imagem slide-01.webp em public/img/projetos/${p.slug}/`);
+    if (!files.length && !p.capitulos && !p.reels) console.warn(`[cases] ${p.slug}: nenhuma imagem slide-01.webp em public/img/projetos/${p.slug}/`);
     const slides = { dir: imgDir, list: files.map((file) => ({ file, ...webpSize(resolve(imgDir, file)) })) };
     // vídeo deitado (pelo poster) ocupa a largura da apresentação; o em pé fica estreito
     const poster = resolve(imgDir, 'video-poster.webp');

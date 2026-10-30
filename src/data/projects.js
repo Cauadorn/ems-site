@@ -290,13 +290,88 @@ export const projects = [
     detail: 'Campanhas de inverno e de Black Friday para restaurante',
     year: '2026',
     color: '#2A1A10',
-    resumo: 'Reels, stories e posts do Topo do Mundo. Na Black Friday, Reels com o fondue para dois, a vista e a contagem das últimas horas. No inverno, a sequência de fondue com 40% de desconto, o Merlot da casa em edição especial e o convite para reservar. Usei o pôr do sol e a vista da cidade para vender a experiência, com títulos em serifa e chamadas curtas.',
+    resumo: 'Reels, stories e posts do Topo do Mundo. Na Black Friday, Reels com o fondue para dois, a vista e a contagem das últimas horas. Para o Dia Mundial do Enoturismo, um Reels com os vinhos brasileiros da adega. No inverno, a sequência de fondue com 40% de desconto, o Merlot da casa em edição especial e o convite para reservar. Usei o pôr do sol e a vista da cidade para vender a experiência, com títulos em serifa e chamadas curtas.',
     behance: null,
-    // Reels de Black Friday em cima dos posts (tarefas do Runrun.it que a Emilly indicou em 30/10)
+    // Reels em cima dos posts (tarefas do Runrun.it que a Emilly indicou em 30/10; o dos vinhos veio pelo Drive)
     reels: [
       { a: 'reel-01.mp4', titulo: 'Esquenta Black Friday: fondue para dois' },
       { a: 'reel-02.mp4', titulo: 'Black Friday no Topo' },
       { a: 'reel-03.mp4', titulo: 'Últimas horas de Black Friday' },
+      { a: 'reel-04.mp4', titulo: 'Dia Mundial do Enoturismo: vinhos brasileiros da adega' },
+    ],
+  },
+  {
+    slug: '4d-social',
+    area: 'social',
+    destaque: false,
+    galeria: 'posts', // só Reels por enquanto (sem slide-*.webp)
+    title: '4D',
+    category: 'Social media',
+    detail: 'Reels de marca para o Instagram da 4D',
+    year: '2026',
+    color: '#1442E6',
+    resumo: 'Reels para o Instagram da 4D sobre o valor de uma marca: o que aconteceria se ela sumisse amanhã e como ela se comunica em todos os pontos de contato, do site ao atendimento, da embalagem ao pós-venda. Usei o azul da 4D, ícones em vidro 3D e telas de interface para mostrar cada ponto, com frases curtas que fecham em "Fale com a 4D".',
+    behance: null,
+    // tarefas 5342 e 5340 do Runrun.it (vídeos que a Emilly mandou pelo Drive em 30/10)
+    reels: [
+      { a: 'reel-01.mp4', titulo: 'Se a sua marca desaparecesse amanhã, alguém perceberia?' },
+      { a: 'reel-02.mp4', titulo: 'Toda empresa tem um marketing invisível' },
+    ],
+  },
+  {
+    slug: 'vitoria-regia',
+    area: 'social',
+    destaque: false,
+    title: 'Vitória-régia',
+    category: 'Social media',
+    detail: 'Carrossel com motion · desafio de design para a Badauê',
+    year: '2026',
+    color: '#141C30',
+    resumo: 'Carrossel que criei num processo seletivo da Badauê. O desafio era fazer um novo layout para o post sobre a vitória-régia, com a mesma copy e a mesma temática, em 7 lâminas e com motion na capa. Levei a história para a noite, no lago, com a lua e a planta em papel recortado, para juntar lenda, história e ciência numa peça só.',
+    entregas: ['Carrossel de 7 lâminas', 'Motion da capa', 'Direção de arte'],
+    behance: null,
+    // material da pasta do Drive que a Emilly mandou em 30/10 (entrega do teste: 7 PNGs 4:5 e o MP4 da capa)
+    capitulos: [
+      {
+        rotulo: 'O desafio',
+        titulo: 'Motion <em>na capa</em>',
+        texto: 'A capa abre no lago à noite, com a lua, e o título aparece por cima das folhas. Na lâmina seguinte, a ave pousada na folha mostra o tamanho da planta.',
+        midias: [
+          { a: 'lamina-01.mp4', l: 'meia', alt: 'capa animada, o lago à noite e o título' },
+          { a: 'lamina-02.webp', l: 'meia', alt: 'lâmina 2, a ave sobre a folha da vitória-régia' },
+        ],
+      },
+      {
+        rotulo: 'Lenda e história',
+        titulo: 'Da lua <em>à rainha</em>',
+        texto: 'A lenda de Naiá e Jaci ganhou a flor no meio das ondas do lago. No século XIX, a Rainha Vitória aparece sentada na própria folha.',
+        midias: [
+          { a: 'lamina-03.webp', l: 'meia', alt: 'lâmina 3, a flor branca no meio das ondas do lago' },
+          { a: 'lamina-04.webp', l: 'meia', alt: 'lâmina 4, a Rainha Vitória sentada na folha' },
+        ],
+      },
+      {
+        rotulo: 'Ciência e símbolo',
+        titulo: 'Engenharia <em>da natureza</em>',
+        texto: 'A folha virada mostra a nervura que aguenta tanto peso. Depois, a flor rosa reúne natureza, ciência, memória e ancestralidade num símbolo só.',
+        midias: [
+          { a: 'lamina-05.webp', l: 'meia', alt: 'lâmina 5, a nervura da folha vista por baixo' },
+          { a: 'lamina-06.webp', l: 'meia', alt: 'lâmina 6, a flor rosa aberta' },
+        ],
+      },
+      {
+        rotulo: 'Assinatura',
+        titulo: 'Do começo <em>ao fim</em>',
+        texto: 'A última lâmina volta para o lago da capa, agora com a assinatura da Badauê. O carrossel começa e termina no mesmo lugar.',
+        midias: [
+          { a: 'lamina-01.webp', l: 'meia', alt: 'lâmina 1, a capa' },
+          { a: 'lamina-07.webp', l: 'meia', alt: 'lâmina 7, a assinatura da Badauê' },
+        ],
+      },
+    ],
+    // o carrossel inteiro para passar para o lado, como no Instagram
+    carrosseis: [
+      { titulo: 'O carrossel inteiro', laminas: ['lamina-01.mp4', 'lamina-02.webp', 'lamina-03.webp', 'lamina-04.webp', 'lamina-05.webp', 'lamina-06.webp', 'lamina-07.webp'] },
     ],
   },
   {
