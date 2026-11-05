@@ -1,3 +1,5 @@
+import { t } from './idioma.js';
+
 // Menu de tela cheia (celular e tablet)
 export function initMenu(lenis) {
   const btn = document.querySelector('[data-menu-toggle]');
@@ -8,7 +10,7 @@ export function initMenu(lenis) {
   const set = (open) => {
     html.classList.toggle('menu-open', open);
     btn.setAttribute('aria-expanded', String(open));
-    btn.querySelector('.nav__toggle-label').textContent = open ? 'Fechar' : 'Menu';
+    btn.querySelector('.nav__toggle-label').textContent = open ? t('Fechar', 'Close') : 'Menu';
     if (open) { menu.hidden = false; lenis?.stop(); menu.querySelector('a')?.focus({ preventScroll: true }); }
     else { lenis?.start(); setTimeout(() => { if (!html.classList.contains('menu-open')) menu.hidden = true; }, 700); }
   };

@@ -1,11 +1,6 @@
 <svg class="jubarte" viewBox="0 0 1982 1141" fill="currentColor" aria-hidden="true">
   <!-- Jubarte (05/11, Nano Banana Pro + vetor): o desenho mora em jubarte-defs.svg (incluído uma vez na página).
-       Partes para animar: o corpo, a cauda (bate em volta da junta 1410 520) e o borrifo (traço que se desenha) -->
+       Partes para animar: o corpo e a cauda (bate em volta da junta 1410 520). O borrifo saiu (pedido da Emilly, 05/11) -->
   <g class="jubarte__corpo" clip-path="url(#jubarte-corte-corpo)"><use href="#jubarte-desenho" width="1982" height="1141"/></g>
   <g class="jubarte__cauda"><g clip-path="url(#jubarte-corte-cauda)"><use href="#jubarte-desenho" width="1982" height="1141"/></g></g>
-  <g class="jubarte__borrifo" fill="none" stroke="currentColor" stroke-width="22" stroke-linecap="round">
-    <path pathLength="1" d="M628 214 C610 150 580 104 536 70"/>
-    <path pathLength="1" d="M652 208 L660 64"/>
-    <path pathLength="1" d="M676 214 C700 150 732 108 778 78"/>
-  </g>
 </svg>

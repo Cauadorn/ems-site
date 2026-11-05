@@ -32,10 +32,17 @@
 | "Marca boa é a que as pessoas reconhecem." | "Minimalismo virou desculpa…" em tamanho gigante (reprovado por ser emotivo demais) |
 | Botões com verbo + objeto: "Ver projetos", "Quero uma marca" | "Clique aqui", "Saiba mais" |
 
-**Um pouco de inglês (pedido da Emilly em 05/11, inspirada no kenjilambert.com):** só nos detalhes novos, com
-`lang="en"`: "loading ideas with *personality*" (abertura), "hello, my name is", "graphic & UX/UI designer",
-"Let's create *together*", "flip back" e "pull me" (crachá), "say hi" e "back to the top" (fundo do mar). O resto do
-site continua em português.
+**Inglês (pedido da Emilly em 05/11, inspirada no kenjilambert.com):**
+- Detalhes que ficam sempre em inglês, nos dois idiomas, por estilo (com `lang="en"`): "loading ideas with
+  *personality*" (abertura), "hello, my name is", "graphic & UX/UI designer", "Let's create *together*", "flip back" e
+  "pull me" (crachá), "say hi" e "back to the top" (fundo do mar).
+- **Botão PT · EN** no menu (no celular, só o botão do outro idioma): o site inteiro troca para inglês e a escolha fica
+  guardada no navegador. O português continua sendo o padrão.
+- Como funciona: o português fica no HTML e o inglês ao lado, no mesmo elemento: `data-en="..."` (conteúdo, pode ter
+  `<em>`) e `data-en-aria` / `-alt` / `-title` / `-content` / `-cursor` (atributos). Os textos dos projetos em inglês ficam
+  em `src/data/projects-en.js` (mesmas chaves de `projects.js`). Texto novo no site = escrever também o inglês.
+- Tom em inglês: o mesmo do português (primeira pessoa, curto, direto). "Faço marca bonita de perto e clara de longe"
+  vira "I make brands beautiful *up close* and clear *from afar*".
 
 ---
 
@@ -366,14 +373,15 @@ texto e dois botões ("Ver projetos", "Ir pro início").
 | rápido / base / lento | 250 / 350 / 700 ms | hover / botão / cartão |
 
 **Abertura (toca ao abrir ou recarregar a home; pula ao voltar de outra página do site; clique pula):** a jubarte, em
-traço, aparece da cabeça para a cauda no fundo marfim (máscara que passa, 1,3 s) e nada no lugar (cauda e nadadeira batendo) enquanto o contador vai de 0 a 100%
-(2,4 s) e o traço passa do violeta ao rosa → em 100% ela borrifa, salta (nariz para cima) e mergulha (nariz para baixo)
-→ o mar violeta, com a crista em onda, sobe e cobre a tela (1 s) e vira o topo do site. Pedido da Emilly em 05/11,
+traço, entra nadando pela direita no fundo marfim (1,8 s, `power3.out`) e nada no lugar (a cauda bate, o corpo sobe e
+desce) enquanto o contador vai de 0 a 100% (2,4 s) e o traço passa do violeta ao rosa → em 100% ela sai nadando pela
+esquerda, descendo de leve → o mar violeta, com a crista em onda, sobe e cobre a tela (1 s) e vira o topo do site. Sem
+borrifo e sem salto (a Emilly não gostou: a baleia só nada). Pedido da Emilly em 05/11,
 inspirado no peixe em neon do kenjilambert.com (antes: selo + contador + três cortinas).
 
 **Crachá do topo (05/11):** cai do alto preso no cordão ameixa escrito "itsemsdesign", balança e para à esquerda do EMS
 (no celular, no meio, embaixo do menu). Dá para puxar e jogar (mouse e dedo); no clique vira e mostra "Vamos criar
-*juntos?*", o WhatsApp e o Instagram. Física de cordão (Verlet), sem biblioteca. Volta a cair quando o site recomeça.
+*together*", o WhatsApp e o Instagram. Física de cordão (Verlet), sem biblioteca. Volta a cair quando o site recomeça.
 
 **Fundo do mar (05/11, só na home, depois do rodapé):** o e-mail gigante em Anton passando, bolhas e a jubarte nadando
 em marfim-lavanda; o mar clareia do tinta ao violeta e, perto do fim, ela mergulha conforme a rolagem. A última tela é

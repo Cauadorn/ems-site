@@ -1,5 +1,6 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { idioma } from './idioma.js';
 
 // Entrada do hero, depois da abertura
 // deNovo: quando a pessoa chega ao fim do site e volta para o começo (mar.js), a entrada toca outra vez, sem repetir o
@@ -23,15 +24,20 @@ export function initReveals(reduced) {
   // manifesto: as palavras acendem conforme a rolagem
   const m = document.querySelector('[data-manifesto]');
   if (m) {
-    splitWords(m);
-    const words = m.querySelectorAll('.w');
-    if (reduced) words.forEach((w) => w.classList.add('is-on'));
-    else ScrollTrigger.create({
+    // em inglês (botão PT · EN) o texto vem de data-manifesto-en e as palavras são separadas de novo
+    const pt = m.textContent;
+    let progresso = reduced ? 1 : 0;
+    const acender = () => {
+      const words = m.querySelectorAll('.w');
+      const on = Math.round(progresso * words.length);
+      words.forEach((w, i) => w.classList.toggle('is-on', i < on));
+    };
+    const montar = () => { m.textContent = idioma === 'en' && m.dataset.manifestoEn ? m.dataset.manifestoEn : pt; splitWords(m); acender(); };
+    montar();
+    document.addEventListener('idioma', montar);
+    if (!reduced) ScrollTrigger.create({
       trigger: m, start: 'top 90%', end: 'top 45%', scrub: true,
-      onUpdate: (st) => {
-        const on = Math.round(st.progress * words.length);
-        words.forEach((w, i) => w.classList.toggle('is-on', i < on));
-      },
+      onUpdate: (st) => { progresso = st.progress; acender(); },
     });
   }
 

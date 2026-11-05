@@ -81,7 +81,8 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
 | Projetos do carrossel e da lista | `src/data/projects.js` (capa: `python scripts/nova-capa.py <imagem> <slug>`) |
 | Página "Todos os projetos" (por área) | gerada sozinha em `projetos/index.html` a partir de `projects.js` (`area`, `destaque` e a lista `areas`); layout em `scripts/gerar-cases.mjs` e `src/styles/case.css` |
 | Páginas de case | geradas sozinhas de `projects.js` + `public/img/projetos/<slug>/slide-*.webp`; layout em `scripts/gerar-cases.mjs` e `src/styles/case.css`. Não editar `projetos/*.html` à mão |
-| Textos | `index.html` (contato: `partials/contact.html`; 404: `404.html`) |
+| Textos | `index.html` (contato: `partials/contact.html`; 404: `404.html`). Inglês: no mesmo lugar, em `data-en` |
+| Textos dos projetos em inglês | `src/data/projects-en.js` |
 | Cores, fontes, espaçamentos | `src/styles/tokens.css` |
 | Botões, etiquetas, chips | `src/styles/components.css` |
 | Layout das seções | `src/styles/sections.css` |
@@ -107,6 +108,7 @@ Mesmo com o site na raiz do domínio, continue usando a base da tabela acima (`%
 - Jubarte (abertura e fundo do mar): gerada no Nano Banana Pro pelo Higgsfield (05/11; no Freepik/Magnific a API estava
   sem créditos) e vetorizada em `src/assets/illustrations/jubarte-defs.svg`. Se a Emilly quiser outra, gerar de novo,
   vetorizar e manter o corte da cauda (ver DESIGN-SYSTEM §6).
-- Inglês: em 05/11 ela pediu "um pouco do inglês"; entrou só nos detalhes novos (abertura, crachá, fundo do mar). Se ela
-  quiser o site inteiro em inglês (botão EN/PT, como o do Kenji), é outro trabalho: perguntar antes.
+- Inglês: botão PT · EN no menu desde 05/11 (pedido dela). O português fica no HTML e o inglês ao lado (`data-en`,
+  `data-en-alt`, `data-en-aria`…); projetos em `src/data/projects-en.js`. Texto novo ou mudado = escrever o inglês junto
+  (ver DESIGN-SYSTEM §1, "Inglês").
 - Prancheta de revisão com os prints do site: https://claude.ai/artifact/W3FVwhEdbnUmFAh2U1niwW

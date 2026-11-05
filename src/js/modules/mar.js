@@ -20,10 +20,10 @@ export function initMar(lenis, reduced, aoVoltar) {
     bolhas.append(b);
   }
 
-  // mergulho: enquanto a superfície sobe, a baleia desce de nariz para baixo
+  // mergulho: enquanto a superfície sobe, a baleia desce devagar, nariz um pouco para baixo, sem parar de nadar
   const superficie = mar.querySelector('[data-mar-superficie]');
   gsap.to(mar.querySelector('[data-mar-baleia]'), {
-    y: () => innerHeight * 0.7, rotation: -30, ease: 'power1.in',
+    y: () => innerHeight * 0.55, rotation: -10, ease: 'sine.inOut',
     scrollTrigger: { trigger: superficie, start: 'top bottom', end: 'top 15%', scrub: true, invalidateOnRefresh: true },
   });
 

@@ -1,11 +1,12 @@
 import gsap from 'gsap';
+import { t } from './idioma.js';
 
 // Easter egg: "não clica aqui" solta uma chuva de cerejas, corações e brilhos.
 export function initNope() {
   const btn = document.querySelector('[data-nope]');
   if (!btn) return;
   const icons = [['i-cereja', '#9E122C'], ['i-coracao', '#DD34A8'], ['i-brilho', '#F2CF7A'], ['i-estrela', '#FFFBDE'], ['i-espiral', '#C0A5C4']];
-  const lines = ['eu avisei 😱', 'tá bom, mais uma', 'ok, você venceu', 'agora me chama no direct 💜'];
+  const lines = () => t(['eu avisei 😱', 'tá bom, mais uma', 'ok, você venceu', 'agora me chama no direct 💜'], ['told you 😱', 'okay, one more', 'fine, you win', 'now send me a DM 💜']);
   let clicks = 0;
 
   btn.addEventListener('click', () => {
@@ -25,15 +26,17 @@ export function initNope() {
       gsap.to(s, { y: `+=${Math.sin(ang) * v}`, duration: .7, ease: 'power2.out' });
       gsap.to(s, { y: `+=${420 + Math.random() * 200}`, rotate: '+=220', duration: 1.1, delay: .7, ease: 'power2.in', onComplete: () => s.remove() });
     }
-    btn.textContent = lines[Math.min(clicks++, lines.length - 1)];
+    // depois do 1º clique o texto é do JS (no idioma da vez), não mais do botão PT · EN
+    btn.removeAttribute('data-en'); btn.removeAttribute('data-pt');
+    btn.textContent = lines()[Math.min(clicks++, lines().length - 1)];
     // na última frase ("agora me chama no direct") o botão vira link para o Instagram (pedido da Emilly em 01/10)
-    if (clicks === lines.length) {
+    if (clicks === lines().length) {
       const a = document.createElement('a');
       a.className = 'nope';
       a.href = 'https://www.instagram.com/itsemsdesign/';
       a.target = '_blank';
       a.rel = 'noopener';
-      a.dataset.cursorText = 'abrir o insta';
+      a.dataset.cursorText = t('abrir o insta', 'open Instagram');
       a.textContent = btn.textContent;
       btn.replaceWith(a);
     }

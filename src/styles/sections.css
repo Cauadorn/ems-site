@@ -6,10 +6,8 @@
 .loader__content { position: relative; z-index: 2; display: grid; justify-items: center; gap: 10px; text-align: center; }
 .loader__baleia { width: clamp(230px, 34vw, 460px); color: var(--violeta); }
 .loader__baleia .jubarte { display: block; width: 100%; height: auto; overflow: visible; }
-/* antes do JS: a baleia ainda não apareceu (ela se revela da cabeça para a cauda, como um traço passando) e o borrifo
-   ainda não foi desenhado */
-.loader__baleia .jubarte { --revela: 0%; -webkit-mask-image: linear-gradient(90deg, #000 calc(var(--revela) - 12%), transparent var(--revela)); mask-image: linear-gradient(90deg, #000 calc(var(--revela) - 12%), transparent var(--revela)); }
-.loader__baleia .jubarte__borrifo path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+/* antes do JS a baleia fica fora da tela (ela entra nadando pela direita) */
+.loader__baleia { opacity: 0; }
 .loader__count { font-family: var(--f-display); font-size: clamp(3.5rem, 9vw, 6rem); line-height: 1; color: var(--violeta); font-variant-numeric: tabular-nums; }
 .loader__line { font-size: var(--t-small); color: var(--ameixa); letter-spacing: .02em; }
 .loader__line em { font-family: var(--f-serif); font-style: italic; font-size: 1.35em; color: var(--pink); }
@@ -50,6 +48,21 @@
 .nav__links { display: flex; gap: 6px; }
 .nav__links a { display: block; padding: .5em .9em; border-radius: 999px; text-decoration: none; font-weight: 500; font-size: .95rem; transition: background .25s, padding .6s var(--ease), font-size .6s var(--ease); }
 .nav__links a:hover { background: var(--lavanda-2); }
+/* PT · EN (src/js/modules/idioma.js): o idioma da vez fica forte, o outro apagado */
+.idioma { display: flex; align-items: center; gap: 1px; font-size: .78rem; font-weight: 700; letter-spacing: .04em; }
+.idioma button { min-width: 32px; min-height: 32px; padding: 0 5px; border-radius: 999px; color: var(--ink); opacity: .45; transition: opacity .2s, background .2s; }
+.idioma button:hover { opacity: .8; }
+.idioma button[aria-pressed="true"] { opacity: 1; background: var(--lavanda-2); }
+.idioma span { opacity: .3; }
+html.idioma-esperando body { visibility: hidden; }
+/* celular: o nome não pode quebrar; fica só o botão do outro idioma (EN quando está em português, PT quando em inglês) */
+.nav__name { white-space: nowrap; }
+@media (max-width: 599px) {
+  .nav { gap: 8px; padding-left: 10px; }
+  .idioma span, .idioma button[aria-pressed="true"] { display: none; }
+  .idioma button { min-width: 44px; border: 1.5px solid rgba(42, 20, 51, .18); opacity: .85; }
+}
+@media (max-width: 380px) { .nav__name { font-size: .88rem; } }
 .nav__toggle { display: none; align-items: center; gap: 6px; min-height: 42px; padding: 0 16px; border-radius: 999px; background: var(--violeta); color: var(--ivory); font-weight: 600; }
 .nav__plus { font-size: 1.4rem; line-height: 1; transition: transform .4s var(--ease-back); }
 .menu-open .nav__plus { transform: rotate(45deg); }
@@ -373,7 +386,6 @@
 .mar__baleia { position: absolute; left: 0; top: 18%; width: 100%; }
 .mar__nado { width: clamp(220px, 30vw, 440px); color: var(--lavanda-2); animation: mar-nada 18s linear infinite; }
 .mar__nado .jubarte { display: block; width: 100%; height: auto; overflow: visible; }
-.mar__nado .jubarte__borrifo { display: none; }
 .mar__nado .jubarte__cauda { transform-box: view-box; transform-origin: 1410px 520px; animation: mar-cauda 1.2s ease-in-out infinite alternate; }
 @keyframes mar-nada { from { transform: translateX(100vw); } to { transform: translateX(-110%); } }
 @keyframes mar-cauda { from { rotate: -6deg; } to { rotate: 6deg; } }
@@ -398,7 +410,6 @@
   .nav__links, .nav__cta { display: none; }
   .nav__toggle { display: inline-flex; }
   .hero { --logo: 30vw; }
-  .hero__logo { margin-right: 12vw; }
   .hero__title { font-size: 8.4vw; }
   .hero__title-wrap { margin-block: 44px 34px; }
   .hero__label--a { left: auto; right: 0; top: -34px; margin: 0; }
@@ -418,7 +429,7 @@
 }
 /* toque (celular e tablet): todo link ou botão com pelo menos 44 px de altura */
 @media (pointer: coarse) {
-  .nav__toggle, .view-toggle button, .nope { min-height: 44px; }
+  .nav__toggle, .view-toggle button, .nope, .idioma button { min-height: 44px; }
   .c3d__btn, .service__cta { display: inline-flex; align-items: center; min-height: 44px; }
 }
 @media (max-width: 560px) {

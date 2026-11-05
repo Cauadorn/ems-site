@@ -7,6 +7,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, rmSync
 import { createHash } from 'node:crypto';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { projectsEn, areasEn } from '../src/data/projects-en.js';
 
 // "versão" de cada capa (pedaço do hash do arquivo): vai no endereço da imagem (capa.webp?v=…) para o navegador
 // buscar a capa nova quando ela é trocada, em vez de mostrar a antiga guardada (pedido da Emilly em 02/10)
@@ -26,6 +27,14 @@ const MARCA = '<!-- gerado por scripts/gerar-cases.mjs: edite src/data/projects.
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const nn = (n) => String(n).padStart(2, '0');
 
+// inglês (botão PT · EN, src/js/modules/idioma.js; textos em src/data/projects-en.js): o português vai no HTML e o
+// inglês ao lado, em data-en (conteúdo, como HTML) e data-en-alt / -aria / -cursor / -content / -title (atributos)
+const en = (html) => (html ? ` data-en="${esc(html)}"` : ''); // conteúdo que já é HTML (títulos com <em>, links)
+const enT = (texto) => (texto ? en(esc(texto)) : ''); // conteúdo de texto puro
+const enA = (k, texto) => (texto ? ` data-en-${k}="${esc(texto)}"` : ''); // atributo
+const E = (p) => projectsEn[p.slug] || {};
+const NOME_EN = { 'página': 'page', foto: 'photo', 'apresentação, parte': 'presentation, part', post: 'post', story: 'story' };
+
 // largura e altura de um .webp lendo só o cabeçalho (evita a página "pular" enquanto as imagens carregam)
 function webpSize(file) {
   const b = readFileSync(file);
@@ -41,7 +50,7 @@ function webpSize(file) {
 
 // imagens do case: apresentação empilhada, galeria de fotos/páginas, ou posts de rede social (anel 3D + carrosséis + stories)
 function galeria(p, t, list, img) {
-  const tag = (s, k, n, nome, cls = '') => `<img${cls ? ` class="${cls}"` : ''} src="${img(s.file)}" alt="${t}: ${nome} ${k + 1} de ${n}" width="${s.w}" height="${s.h}"${p.galeria === 'posts' || k ? ' loading="lazy"' : ''} decoding="async">`;
+  const tag = (s, k, n, nome, cls = '') => `<img${cls ? ` class="${cls}"` : ''} src="${img(s.file)}" alt="${t}: ${nome} ${k + 1} de ${n}"${enA('alt', `${p.title}: ${NOME_EN[nome] || nome} ${k + 1} of ${n}`)} width="${s.w}" height="${s.h}"${p.galeria === 'posts' || k ? ' loading="lazy"' : ''} decoding="async">`;
   if (p.galeria !== 'posts') {
     const nome = { paginas: 'página' }[p.galeria] || (p.galeria ? 'foto' : 'apresentação, parte');
     const cls = p.galeria ? `case-gallery${p.galeria === 'paginas' ? ' case-gallery--paginas' : ''}` : 'case-slides';
@@ -63,9 +72,10 @@ function galeria(p, t, list, img) {
     if (!p.grupos) return html(0, list.length);
     // grupos: as imagens em partes com um título, na ordem dos slides (ex.: as duas opções de um material)
     let de = 0;
-    return p.grupos.map((g) => {
+    return p.grupos.map((g, gi) => {
       const ate = de + g.imagens;
-      const parte = `    <section class="case-posts__grupo" aria-label="${esc(g.titulo)}">\n      <h2 class="eyebrow case-posts__titulo">${esc(g.titulo)}</h2>\n${html(de, ate).replace(/^/gm, '  ')}\n    </section>`;
+      const ge = E(p).grupos?.[gi];
+      const parte = `    <section class="case-posts__grupo" aria-label="${esc(g.titulo)}"${enA('aria', ge)}>\n      <h2 class="eyebrow case-posts__titulo"${enT(ge)}>${esc(g.titulo)}</h2>\n${html(de, ate).replace(/^/gm, '  ')}\n    </section>`;
       de = ate;
       return parte;
     }).join('\n');
@@ -87,27 +97,28 @@ function galeria(p, t, list, img) {
     // a imagem deitada tem k cards 4:5 lado a lado; cada card do anel mostra só a sua parte
     const k = Math.max(2, Math.round(s.w / s.h / 0.8));
     nc++;
-    for (let c = 0; c < k; c++) artes.push({ s, k, c, nome: `carrossel ${nc}, card ${c + 1} de ${k}` });
+    for (let c = 0; c < k; c++) artes.push({ s, k, c, nome: `carrossel ${nc}, card ${c + 1} de ${k}`, nomeEn: `carousel ${nc}, card ${c + 1} of ${k}` });
   });
   let np = 0;
-  artes.forEach((a) => { if (a.nome === 'post') a.nome = `post ${++np}`; });
-  const face = (a, alt) => `<img${a.k ? ` class="c3d__faixa" style="width:${a.k * 100}%;left:-${a.c * 100}%"` : ''} src="${img(a.s.file)}" alt="${alt}" loading="lazy" decoding="async" draggable="false">`;
+  artes.forEach((a) => { if (a.nome === 'post') a.nome = a.nomeEn = `post ${++np}`; });
+  const face = (a, alt, altEn) => `<img${a.k ? ` class="c3d__faixa" style="width:${a.k * 100}%;left:-${a.c * 100}%"` : ''} src="${img(a.s.file)}" alt="${alt}"${enA('alt', altEn)} loading="lazy" decoding="async" draggable="false">`;
   const bloco = (titulo, n, corpo) => `    <section class="case-posts__grupo" aria-label="${titulo}">
       <h2 class="eyebrow case-posts__titulo">${titulo} · ${n}</h2>
 ${corpo}
     </section>\n`;
   const rotulo = p.anelTitulo || (p.carrosselNoAnel && carrosseis.length ? 'Posts e carrosséis' : 'Posts');
+  const rotuloEn = E(p).anelTitulo || (p.carrosselNoAnel && carrosseis.length ? 'Posts and carousels' : 'Posts');
   let html = '';
-  if (artes.length >= 5) html += `    <section class="case-ring" aria-label="${rotulo}">
-      <h2 class="eyebrow case-posts__titulo">${rotulo} · ${artes.length}${rotulo === 'Posts' ? '' : p.anelTitulo ? ' lâminas' : ' artes'}</h2>
-      <div class="c3d c3d--posts" data-ring data-cursor-text="arrasta pro lado" tabindex="0">
+  if (artes.length >= 5) html += `    <section class="case-ring" aria-label="${rotulo}"${enA('aria', rotuloEn)}>
+      <h2 class="eyebrow case-posts__titulo"${enT(`${rotuloEn} · ${artes.length}${rotulo === 'Posts' ? '' : p.anelTitulo ? ' slides' : ' pieces'}`)}>${rotulo} · ${artes.length}${rotulo === 'Posts' ? '' : p.anelTitulo ? ' lâminas' : ' artes'}</h2>
+      <div class="c3d c3d--posts" data-ring data-cursor-text="arrasta pro lado"${enA('cursor', 'drag sideways')} tabindex="0">
         <div class="c3d__track"><div class="c3d__sticky"><div class="c3d__wrap" data-c3d-wrap><div class="c3d__list" data-c3d-list>
-${artes.map((a) => `          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face">${face(a, `${t}: ${a.nome}`)}</div><div class="c3d__face c3d__face--back" aria-hidden="true">${face(a, '')}</div></div>`).join('\n')}
+${artes.map((a) => `          <div class="c3d__item"><div class="c3d__ratio"></div><div class="c3d__face">${face(a, `${t}: ${a.nome}`, `${p.title}: ${a.nomeEn}`)}</div><div class="c3d__face c3d__face--back" aria-hidden="true">${face(a, '')}</div></div>`).join('\n')}
         </div></div></div></div>
         <div class="c3d__arrows"><div class="c3d__arrows-sticky">
-          <button class="c3d__arrow" type="button" data-c3d-prev aria-label="Arte anterior"><svg><use href="#i-seta"/></svg></button>
+          <button class="c3d__arrow" type="button" data-c3d-prev aria-label="Arte anterior"${enA('aria', 'Previous piece')}><svg><use href="#i-seta"/></svg></button>
           <p class="c3d__count" data-ring-count aria-live="polite">01 / ${nn(artes.length)}</p>
-          <button class="c3d__arrow c3d__arrow--next" type="button" data-c3d-next aria-label="Próxima arte"><svg><use href="#i-seta"/></svg></button>
+          <button class="c3d__arrow c3d__arrow--next" type="button" data-c3d-next aria-label="Próxima arte"${enA('aria', 'Next piece')}><svg><use href="#i-seta"/></svg></button>
         </div></div>
       </div>
     </section>\n`;
@@ -120,7 +131,7 @@ ${posts.map((s, k) => `        ${tag(s, k, posts.length, 'post')}`).join('\n')}
   if (carrosseis.length && !(p.carrosselNoAnel && artes.length >= 5)) {
     html += igBloco(carrosseis.map((s, n) => {
       const k = Math.max(2, Math.round(s.w / s.h / 0.8));
-      return { laminas: Array.from({ length: k }, (_, c) => `<img class="ig-faixa" style="width:${k * 100}%;left:-${c * 100}%" src="${img(s.file)}" alt="${t}: carrossel ${n + 1}, lâmina ${c + 1} de ${k}" loading="lazy" decoding="async" draggable="false">`) };
+      return { laminas: Array.from({ length: k }, (_, c) => `<img class="ig-faixa" style="width:${k * 100}%;left:-${c * 100}%" src="${img(s.file)}" alt="${t}: carrossel ${n + 1}, lâmina ${c + 1} de ${k}"${enA('alt', `${p.title}: carousel ${n + 1}, slide ${c + 1} of ${k}`)} loading="lazy" decoding="async" draggable="false">`) };
     }));
   }
   if (stories.length) html += bloco('Stories', stories.length, `      <div class="case-gallery case-gallery--posts case-gallery--stories">
@@ -137,7 +148,7 @@ function reels(p, t, img) {
   return `    <section class="case-posts__grupo" aria-label="Reels">
       <h2 class="eyebrow case-posts__titulo">Reels · ${p.reels.length}</h2>
       <div class="case-reels">
-${p.reels.map((r) => { const base = r.a.replace(/\.mp4$/, ''); return `        <figure class="case-reel"><video data-loop muted loop playsinline controls preload="none" poster="${img(base + '-poster.webp')}" width="720" height="1280" aria-label="${t}: ${esc(r.titulo || 'Reels')} (vídeo)"><source src="${img(base + '.webm')}" type="video/webm"><source src="${img(r.a)}" type="video/mp4"></video>${r.titulo ? `<figcaption>${esc(r.titulo)}</figcaption>` : ''}</figure>`; }).join('\n')}
+${p.reels.map((r, ri) => { const base = r.a.replace(/\.mp4$/, ''); const re = E(p).reels?.[ri]; return `        <figure class="case-reel"><video data-loop muted loop playsinline controls preload="none" poster="${img(base + '-poster.webp')}" width="720" height="1280" aria-label="${t}: ${esc(r.titulo || 'Reels')} (vídeo)"${enA('aria', `${p.title}: ${re || r.titulo || 'Reels'} (video)`)}><source src="${img(base + '.webm')}" type="video/webm"><source src="${img(r.a)}" type="video/mp4"></video>${r.titulo ? `<figcaption${enT(re)}>${esc(r.titulo)}</figcaption>` : ''}</figure>`; }).join('\n')}
       </div>
     </section>
 `;
@@ -147,29 +158,32 @@ ${p.reels.map((r) => { const base = r.a.replace(/\.mp4$/, ''); return `        <
 // pontinhos e arrastar com o dedo; uma lâmina .mp4 vira vídeo mudo em loop (com .webm e -poster.webp do mesmo nome)
 function igCarrosseis(p, t, img, dir) {
   if (!p.carrosseis?.length) return '';
-  const lamina = (f, k, n, nome) => {
+  const lamina = (f, k, n, nome, nomeEn) => {
     if (f.endsWith('.mp4')) {
       const base = f.replace(/\.mp4$/, '');
-      return `<video poster="${img(base + '-poster.webp')}" muted loop playsinline preload="metadata" aria-label="${t}: ${nome}, lâmina ${k + 1} de ${n} (vídeo)"><source src="${img(base + '.webm')}" type="video/webm"><source src="${img(f)}" type="video/mp4"></video>`;
+      return `<video poster="${img(base + '-poster.webp')}" muted loop playsinline preload="metadata" aria-label="${t}: ${nome}, lâmina ${k + 1} de ${n} (vídeo)"${enA('aria', `${p.title}: ${nomeEn}, slide ${k + 1} of ${n} (video)`)}><source src="${img(base + '.webm')}" type="video/webm"><source src="${img(f)}" type="video/mp4"></video>`;
     }
     const d = webpSize(resolve(dir, f));
-    return `<img src="${img(f)}" alt="${t}: ${nome}, lâmina ${k + 1} de ${n}" width="${d.w}" height="${d.h}" loading="lazy" decoding="async" draggable="false">`;
+    return `<img src="${img(f)}" alt="${t}: ${nome}, lâmina ${k + 1} de ${n}"${enA('alt', `${p.title}: ${nomeEn}, slide ${k + 1} of ${n}`)} width="${d.w}" height="${d.h}" loading="lazy" decoding="async" draggable="false">`;
   };
-  return igBloco(p.carrosseis.map((c) => ({ titulo: c.titulo, laminas: c.laminas.map((f, k) => lamina(f, k, c.laminas.length, esc(c.titulo))) })));
+  return igBloco(p.carrosseis.map((c, ci) => {
+    const ce = E(p).carrosseis?.[ci] || c.titulo;
+    return { titulo: c.titulo, tituloEn: ce, laminas: c.laminas.map((f, k) => lamina(f, k, c.laminas.length, esc(c.titulo), ce)) };
+  }));
 }
 
 // parte "Carrosséis": lista de { titulo (opcional), laminas: [html da lâmina] } → carrosséis de Instagram (src/js/modules/ig.js)
 function igBloco(lista) {
-  return `    <section class="case-posts__grupo" aria-label="Carrosséis">
-      <h2 class="eyebrow case-posts__titulo">Carrosséis · ${lista.length}</h2>
+  return `    <section class="case-posts__grupo" aria-label="Carrosséis"${enA('aria', 'Carousels')}>
+      <h2 class="eyebrow case-posts__titulo"${enT(`Carousels · ${lista.length}`)}>Carrosséis · ${lista.length}</h2>
       <div class="ig-carrosseis">
 ${lista.map((c, n) => `        <div class="ig-carrossel" data-ig>
-${c.titulo ? `          <p class="ig-carrossel__nome">${esc(c.titulo)}</p>\n` : ''}          <div class="ig-carrossel__janela">
-            <div class="ig-carrossel__trilho" data-ig-trilho tabindex="0" aria-label="${c.titulo ? esc(c.titulo) : `Carrossel ${n + 1}`}: ${c.laminas.length} lâminas, passe para o lado">
+${c.titulo ? `          <p class="ig-carrossel__nome"${enT(c.tituloEn)}>${esc(c.titulo)}</p>\n` : ''}          <div class="ig-carrossel__janela">
+            <div class="ig-carrossel__trilho" data-ig-trilho tabindex="0" aria-label="${c.titulo ? esc(c.titulo) : `Carrossel ${n + 1}`}: ${c.laminas.length} lâminas, passe para o lado"${enA('aria', `${c.tituloEn || `Carousel ${n + 1}`}: ${c.laminas.length} slides, swipe sideways`)}>
 ${c.laminas.map((l) => `              <figure class="ig-carrossel__lamina">${l}</figure>`).join('\n')}
             </div>
-            <button class="ig-carrossel__seta" type="button" data-ig-prev aria-label="Lâmina anterior"><svg aria-hidden="true"><use href="#i-seta"/></svg></button>
-            <button class="ig-carrossel__seta ig-carrossel__seta--next" type="button" data-ig-next aria-label="Próxima lâmina"><svg aria-hidden="true"><use href="#i-seta"/></svg></button>
+            <button class="ig-carrossel__seta" type="button" data-ig-prev aria-label="Lâmina anterior"${enA('aria', 'Previous slide')}><svg aria-hidden="true"><use href="#i-seta"/></svg></button>
+            <button class="ig-carrossel__seta ig-carrossel__seta--next" type="button" data-ig-next aria-label="Próxima lâmina"${enA('aria', 'Next slide')}><svg aria-hidden="true"><use href="#i-seta"/></svg></button>
           </div>
           <div class="ig-carrossel__pontos" aria-hidden="true">${c.laminas.map(() => '<span></span>').join('')}</div>
         </div>`).join('\n')}
@@ -181,32 +195,33 @@ ${c.laminas.map((l) => `              <figure class="ig-carrossel__lamina">${l}<
 // texto curto e as mídias numa grade de 12 colunas (cheia, meia, larga = 2/3, estreita = 1/3). Vídeo .mp4 é um loop
 // mudo (com .webm e -poster.webp do mesmo nome) que só toca na tela (src/js/modules/loops.js)
 function capitulos(p, t, img, dir) {
-  const midia = (m) => {
+  const midia = (m, altEn) => {
     const l = m.l || 'cheia';
     const alt = `${t}: ${esc(m.alt || '')}`;
+    const aEn = altEn ? `${p.title}: ${altEn}` : '';
     // estampa que passa sem parar (`faixa`: o ladrilho da estampa): duas faixas em sentidos contrários, como no site
     // da proposta do Encontro de Lideranças
-    if (m.faixa) return `<figure class="cap__midia cap__midia--${l} faixas" role="img" aria-label="${alt}" style="--faixa: url('${img(m.faixa)}')"><div class="faixa"></div><div class="faixa faixa--b"></div></figure>`;
+    if (m.faixa) return `<figure class="cap__midia cap__midia--${l} faixas" role="img" aria-label="${alt}"${enA('aria', aEn)} style="--faixa: url('${img(m.faixa)}')"><div class="faixa"></div><div class="faixa faixa--b"></div></figure>`;
     if (m.a.endsWith('.mp4')) {
       const base = m.a.replace(/\.mp4$/, '');
       const d = webpSize(resolve(dir, `${base}-poster.webp`));
-      return `<figure class="cap__midia cap__midia--${l}"><video data-loop muted loop playsinline preload="none" poster="${img(`${base}-poster.webp`)}" width="${d.w}" height="${d.h}" aria-label="${alt}"><source src="${img(`${base}.webm`)}" type="video/webm"><source src="${img(m.a)}" type="video/mp4"></video></figure>`;
+      return `<figure class="cap__midia cap__midia--${l}"><video data-loop muted loop playsinline preload="none" poster="${img(`${base}-poster.webp`)}" width="${d.w}" height="${d.h}" aria-label="${alt}"${enA('aria', aEn)}><source src="${img(`${base}.webm`)}" type="video/webm"><source src="${img(m.a)}" type="video/mp4"></video></figure>`;
     }
     const d = webpSize(resolve(dir, m.a));
     // `parede`: a imagem vira a parede 3D que mexe com o mouse (src/js/modules/parede.js); `parede` é o título recortado
-    if (m.parede) return `<figure class="cap__midia cap__midia--${l} parede" data-parede="${img(m.parede)}"><img src="${img(m.a)}" alt="${alt}" width="${d.w}" height="${d.h}" decoding="async"></figure>`;
-    return `<figure class="cap__midia cap__midia--${l}"><img src="${img(m.a)}" alt="${alt}" width="${d.w}" height="${d.h}" loading="lazy" decoding="async"></figure>`;
+    if (m.parede) return `<figure class="cap__midia cap__midia--${l} parede" data-parede="${img(m.parede)}"><img src="${img(m.a)}" alt="${alt}"${enA('alt', aEn)} width="${d.w}" height="${d.h}" decoding="async"></figure>`;
+    return `<figure class="cap__midia cap__midia--${l}"><img src="${img(m.a)}" alt="${alt}"${enA('alt', aEn)} width="${d.w}" height="${d.h}" loading="lazy" decoding="async"></figure>`;
   };
-  return p.capitulos.map((c, k) => `    <section class="cap" aria-labelledby="cap-${k + 1}">
+  return p.capitulos.map((c, k) => { const ce = E(p).capitulos?.[k] || {}; return `    <section class="cap" aria-labelledby="cap-${k + 1}">
       <header class="cap__cab" data-reveal>
-        <p class="eyebrow cap__num">${nn(k + 1)} · ${esc(c.rotulo)}</p>
-        <h2 id="cap-${k + 1}" class="section-title cap__titulo">${c.titulo}</h2>
-        <p class="cap__texto">${esc(c.texto)}</p>
+        <p class="eyebrow cap__num"${enT(ce.rotulo && `${nn(k + 1)} · ${ce.rotulo}`)}>${nn(k + 1)} · ${esc(c.rotulo)}</p>
+        <h2 id="cap-${k + 1}" class="section-title cap__titulo"${en(ce.titulo)}>${c.titulo}</h2>
+        <p class="cap__texto"${enT(ce.texto)}>${esc(c.texto)}</p>
       </header>
       <div class="cap__midias">
-${c.midias.map((m) => `        ${midia(m)}`).join('\n')}
+${c.midias.map((m, j) => `        ${midia(m, ce.alts?.[j])}`).join('\n')}
       </div>
-${c.botao ? `      <p class="cap__botao"><a class="btn btn--ivory" href="${esc(c.botao.href)}" target="_blank" rel="noopener">${esc(c.botao.texto)} <svg><use href="#i-seta-diag"/></svg></a></p>\n` : ''}    </section>`).join('\n');
+${c.botao ? `      <p class="cap__botao"><a class="btn btn--ivory" href="${esc(c.botao.href)}" target="_blank" rel="noopener"${en(ce.botao && `${esc(ce.botao)} <svg><use href="#i-seta-diag"/></svg>`)}>${esc(c.botao.texto)} <svg><use href="#i-seta-diag"/></svg></a></p>\n` : ''}    </section>`; }).join('\n');
 }
 
 // cartão de colaboração (campo `colaboracao`): foto na moldura de seleção da EMS com a etiqueta de cursor (como a
@@ -214,6 +229,7 @@ ${c.botao ? `      <p class="cap__botao"><a class="btn btn--ivory" href="${esc(c
 function colaboracao(p, img, dir) {
   const c = p.colaboracao;
   if (!c?.foto) return '';
+  const ce = E(p).colaboracao || {};
   const d = webpSize(resolve(dir, c.foto));
   const partes = c.nome.split(' ');
   const nome = partes.length > 1 ? `${esc(partes.slice(0, -1).join(' '))} <em>${esc(partes.at(-1))}</em>` : esc(c.nome);
@@ -222,16 +238,16 @@ function colaboracao(p, img, dir) {
         <div class="frame">
           <span class="frame__h frame__h--tl"></span><span class="frame__h frame__h--tr"></span>
           <span class="frame__h frame__h--bl"></span><span class="frame__h frame__h--br"></span>
-          <img src="${img(c.foto)}" alt="${esc(c.fotoAlt || c.nome)}" width="${d.w}" height="${d.h}" loading="lazy" decoding="async">
+          <img src="${img(c.foto)}" alt="${esc(c.fotoAlt || c.nome)}"${enA('alt', ce.fotoAlt)} width="${d.w}" height="${d.h}" loading="lazy" decoding="async">
         </div>
 ${c.arroba ? `        <span class="tag tag--violeta colab__tag"><svg><use href="#i-cursor"/></svg>${esc(c.arroba)}</span>
 ` : ''}      </figure>
       <div class="colab__txt">
-        <p class="eyebrow colab__eyebrow">Em colaboração com</p>
+        <p class="eyebrow colab__eyebrow" data-en="In collaboration with">Em colaboração com</p>
         <h2 id="colab-nome" class="section-title colab__nome">${nome}</h2>
-${c.cargo ? `        <p class="colab__cargo">${esc(c.cargo)}</p>
-` : ''}${c.texto ? `        <p class="colab__texto">${esc(c.texto)}</p>
-` : ''}        <p class="colab__links">${c.case ? `<a class="btn btn--ivory" href="${esc(c.case)}" target="_blank" rel="noopener">${esc(c.botao || 'Ver o case')} <svg><use href="#i-seta-diag"/></svg></a>` : ''}${c.site ? `<a class="colab__link" href="${esc(c.site)}" target="_blank" rel="noopener">${esc(c.link || c.nome)} <svg aria-hidden="true"><use href="#i-seta-diag"/></svg></a>` : ''}</p>
+${c.cargo ? `        <p class="colab__cargo"${enT(ce.cargo)}>${esc(c.cargo)}</p>
+` : ''}${c.texto ? `        <p class="colab__texto"${enT(ce.texto)}>${esc(c.texto)}</p>
+` : ''}        <p class="colab__links">${c.case ? `<a class="btn btn--ivory" href="${esc(c.case)}" target="_blank" rel="noopener"${en(`${esc(ce.botao || 'See the case')} <svg><use href="#i-seta-diag"/></svg>`)}>${esc(c.botao || 'Ver o case')} <svg><use href="#i-seta-diag"/></svg></a>` : ''}${c.site ? `<a class="colab__link" href="${esc(c.site)}" target="_blank" rel="noopener"${en(ce.link && `${esc(ce.link)} <svg aria-hidden="true"><use href="#i-seta-diag"/></svg>`)}>${esc(c.link || c.nome)} <svg aria-hidden="true"><use href="#i-seta-diag"/></svg></a>` : ''}</p>
       </div>
     </section>
 `;
@@ -241,18 +257,20 @@ ${c.cargo ? `        <p class="colab__cargo">${esc(c.cargo)}</p>
 // e o WhatsApp já com o nome do projeto na mensagem
 function cta(p) {
   const msg = encodeURIComponent(`Oi, Emilly! Vi o projeto ${p.title} no seu site e quero conversar sobre um projeto.`);
-  return `    <aside class="case-cta" aria-label="Fale comigo">
+  return `    <aside class="case-cta" aria-label="Fale comigo" data-en-aria="Talk to me">
       <img class="case-cta__selo" src="/src/assets/illustrations/selo-ems.svg" alt="" width="200" height="240" loading="lazy">
       <div class="case-cta__txt">
-        <p class="case-cta__titulo">Curtiu este <em>projeto?</em></p>
-        <p>Me chama no WhatsApp e a gente conversa sobre o seu.</p>
+        <p class="case-cta__titulo" data-en="Liked this &lt;em&gt;project?&lt;/em&gt;">Curtiu este <em>projeto?</em></p>
+        <p data-en="Message me on WhatsApp and let’s talk about yours.">Me chama no WhatsApp e a gente conversa sobre o seu.</p>
       </div>
-      <a class="btn btn--ivory" href="https://wa.me/5531920060754?text=${msg}" target="_blank" rel="noopener"><svg><use href="#i-whatsapp"/></svg> Me chama</a>
+      <a class="btn btn--ivory" href="https://wa.me/5531920060754?text=${msg}" target="_blank" rel="noopener" data-en="&lt;svg&gt;&lt;use href=&quot;#i-whatsapp&quot;/&gt;&lt;/svg&gt; Message me"><svg><use href="#i-whatsapp"/></svg> Me chama</a>
     </aside>`;
 }
 
 function page(p, i, total, next, slides) {
   const t = esc(p.title);
+  const pe = E(p), ne = E(next);
+  const catEn = pe.category || p.category, detEn = pe.detail || p.detail;
   const url = `%SITE_URL%projetos/${p.slug}.html`;
   const img = (f) => `%BASE_URL%img/projetos/${p.slug}/${f}`;
   const og = existsSync(slides.dir + '/og.jpg') ? `%SITE_URL%img/projetos/${p.slug}/og.jpg` : '%SITE_URL%img/og.jpg';
@@ -261,8 +279,8 @@ ${MARCA}
 <html lang="pt-BR">
 <head>
 <!-- @include partials/head.html -->
-  <title>${t} — ${esc(p.category)} | Emilly Silva</title>
-  <meta name="description" content="${t} — ${esc(p.detail)}. Projeto de ${esc(p.category.toLowerCase())} de Emilly Silva, designer gráfico e UX/UI que atende todo o Brasil.">
+  <title${enT(`${p.title} — ${catEn} | Emilly Silva`)}>${t} — ${esc(p.category)} | Emilly Silva</title>
+  <meta name="description" content="${t} — ${esc(p.detail)}. Projeto de ${esc(p.category.toLowerCase())} de Emilly Silva, designer gráfico e UX/UI que atende todo o Brasil."${enA('content', `${p.title} — ${detEn}. A ${catEn.toLowerCase()} project by Emilly Silva, a graphic and UX/UI designer working with clients all over Brazil.`)}>
   <link rel="canonical" href="${url}">
   <meta property="og:type" content="article">
   <meta property="og:url" content="${url}">
@@ -281,29 +299,29 @@ ${MARCA}
   <section class="case-hero${p.capaNoCase === false ? '' : ' case-hero--thumb'}" aria-labelledby="case-titulo">
     <div class="case-hero__inner container">
       <div class="case-hero__txt">
-        <a class="case-back" href="%BASE_URL%projetos/" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a>
-        <p class="eyebrow" data-intro>(${nn(i + 1)}/${nn(total)}) ${esc(p.category)}${p.year ? ` · ${esc(p.year)}` : ''}</p>
+        <a class="case-back" href="%BASE_URL%projetos/" data-intro${en('<svg aria-hidden="true"><use href="#i-seta"/></svg> All projects')}><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a>
+        <p class="eyebrow" data-intro${enT(`(${nn(i + 1)}/${nn(total)}) ${catEn}${p.year ? ` · ${p.year}` : ''}`)}>(${nn(i + 1)}/${nn(total)}) ${esc(p.category)}${p.year ? ` · ${esc(p.year)}` : ''}</p>
         <h1 id="case-titulo" class="case-hero__title" data-intro>${t}</h1>
-        <p class="case-hero__lead" data-intro>${esc(p.detail)}</p>
-${p.resumo ? `        <p class="case-hero__text" data-intro>${esc(p.resumo)}</p>
-` : ''}${p.entregas ? `        <ul class="case-hero__entregas" data-intro aria-label="O que entreguei">${p.entregas.map((e) => `<li class="chip">${esc(e)}</li>`).join('')}</ul>
-` : ''}${p.colaboracao ? `        <p class="case-hero__colab" data-intro>Em colaboração com <a href="${esc(p.colaboracao.site)}" target="_blank" rel="noopener">${esc(p.colaboracao.nome)} <svg aria-hidden="true"><use href="#i-seta-diag"/></svg></a></p>
+        <p class="case-hero__lead" data-intro${enT(pe.detail)}>${esc(p.detail)}</p>
+${p.resumo ? `        <p class="case-hero__text" data-intro${enT(pe.resumo)}>${esc(p.resumo)}</p>
+` : ''}${p.entregas ? `        <ul class="case-hero__entregas" data-intro aria-label="O que entreguei"${enA('aria', 'What I delivered')}>${p.entregas.map((e, k) => `<li class="chip"${enT(pe.entregas?.[k])}>${esc(e)}</li>`).join('')}</ul>
+` : ''}${p.colaboracao ? `        <p class="case-hero__colab" data-intro${en(`In collaboration with <a href="${esc(p.colaboracao.site)}" target="_blank" rel="noopener">${esc(p.colaboracao.nome)} <svg aria-hidden="true"><use href="#i-seta-diag"/></svg></a>`)}>Em colaboração com <a href="${esc(p.colaboracao.site)}" target="_blank" rel="noopener">${esc(p.colaboracao.nome)} <svg aria-hidden="true"><use href="#i-seta-diag"/></svg></a></p>
 ` : ''}      </div>
-${p.capaNoCase === false ? '' : `      <figure class="case-hero__thumb" data-intro><img src="${capa(p.slug)}" alt="${t}: capa do projeto" width="1600" height="1000" fetchpriority="high"></figure>
+${p.capaNoCase === false ? '' : `      <figure class="case-hero__thumb" data-intro><img src="${capa(p.slug)}" alt="${t}: capa do projeto"${enA('alt', `${p.title}: project cover`)} width="1600" height="1000" fetchpriority="high"></figure>
 `}    </div>
   </section>
 
-  <section class="case-body" aria-label="Apresentação do projeto">
-${p.video?.endsWith('.gif') ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><img src="${img(p.video)}" alt="${t}: animação do projeto" width="${slides.gif.w}" height="${slides.gif.h}" fetchpriority="high"></figure>\n` : p.video ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}${slides.mockup ? `    <figure class="case-mockup"><img src="${img(p.mockup)}" alt="${t}: ${p.galeria === 'paginas' ? 'página impressa' : 'projeto aplicado'} sobre a mesa (mockup)" width="${slides.mockup.w}" height="${slides.mockup.h}"${p.capaNoCase === false ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></figure>\n` : ''}${p.capitulos ? capitulos(p, t, img, slides.dir) : `${reels(p, t, img)}${galeria(p, t, slides.list, img)}`}
-${igCarrosseis(p, t, img, slides.dir)}${colaboracao(p, img, slides.dir)}${p.site || p.instagram || p.behance ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener">Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.instagram ? `<a class="btn btn--ivory" href="${esc(p.instagram)}" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg> ${esc(p.instagramTexto || 'Ver no Instagram')}</a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}</p>\n` : ''}${cta(p)}
-    <p class="case-voltar"><a class="case-back" href="%BASE_URL%projetos/"><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a></p>
+  <section class="case-body" aria-label="Apresentação do projeto" data-en-aria="Project presentation">
+${p.video?.endsWith('.gif') ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><img src="${img(p.video)}" alt="${t}: animação do projeto"${enA('alt', `${p.title}: project animation`)} width="${slides.gif.w}" height="${slides.gif.h}" fetchpriority="high"></figure>\n` : p.video ? `    <figure class="case-video${slides.wide ? ' case-video--wide' : ''}"><video poster="${img('video-poster.webp')}" autoplay muted loop playsinline controls preload="metadata" aria-label="${t}: vídeo do projeto"${enA('aria', `${p.title}: project video`)}><source src="${img(p.video.replace(/\.mp4$/, '.webm'))}" type="video/webm"><source src="${img(p.video)}" type="video/mp4"></video></figure>\n` : ''}${slides.mockup ? `    <figure class="case-mockup"><img src="${img(p.mockup)}" alt="${t}: ${p.galeria === 'paginas' ? 'página impressa' : 'projeto aplicado'} sobre a mesa (mockup)"${enA('alt', `${p.title}: ${p.galeria === 'paginas' ? 'printed page' : 'applied project'} on the table (mockup)`)} width="${slides.mockup.w}" height="${slides.mockup.h}"${p.capaNoCase === false ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></figure>\n` : ''}${p.capitulos ? capitulos(p, t, img, slides.dir) : `${reels(p, t, img)}${galeria(p, t, slides.list, img)}`}
+${igCarrosseis(p, t, img, slides.dir)}${colaboracao(p, img, slides.dir)}${p.site || p.instagram || p.behance ? `    <p class="case-behance">${p.site ? `<a class="btn btn--ivory" href="${esc(p.site)}" target="_blank" rel="noopener"${en('See the live website <svg><use href="#i-seta-diag"/></svg>')}>Ver o site no ar <svg><use href="#i-seta-diag"/></svg></a>` : ''}${p.instagram ? `<a class="btn btn--ivory" href="${esc(p.instagram)}" target="_blank" rel="noopener"${en(`<svg><use href="#i-instagram"/></svg> ${esc(pe.instagramTexto || 'See on Instagram')}`)}><svg><use href="#i-instagram"/></svg> ${esc(p.instagramTexto || 'Ver no Instagram')}</a>` : ''}${p.behance ? `<a class="btn btn--ghost" href="${esc(p.behance)}" target="_blank" rel="noopener"${en('<svg><use href="#i-behance"/></svg> Also on Behance')}><svg><use href="#i-behance"/></svg> Ver também no Behance</a>` : ''}</p>\n` : ''}${cta(p)}
+    <p class="case-voltar"><a class="case-back" href="%BASE_URL%projetos/"${en('<svg aria-hidden="true"><use href="#i-seta"/></svg> All projects')}><svg aria-hidden="true"><use href="#i-seta"/></svg> Todos os projetos</a></p>
   </section>
 
-  <a class="case-next" href="%BASE_URL%projetos/${next.slug}.html" data-cursor-text="próximo">
+  <a class="case-next" href="%BASE_URL%projetos/${next.slug}.html" data-cursor-text="próximo" data-en-cursor="next">
     <span class="case-next__inner container">
-      <span class="eyebrow">Próximo projeto</span>
+      <span class="eyebrow" data-en="Next project">Próximo projeto</span>
       <span class="case-next__title">${esc(next.title)} <svg aria-hidden="true"><use href="#i-seta"/></svg></span>
-      <span class="case-next__cat">${esc(next.category)} · ${esc(next.detail)}</span>
+      <span class="case-next__cat"${enT(`${ne.category || next.category} · ${ne.detail || next.detail}`)}>${esc(next.category)} · ${esc(next.detail)}</span>
       <img class="case-next__thumb" src="${capa(next.slug)}" alt="" width="1600" height="1000" loading="lazy">
     </span>
   </a>
@@ -320,28 +338,29 @@ ${igCarrosseis(p, t, img, slides.dir)}${colaboracao(p, img, slides.dir)}${p.site
 // card de projeto na página "Todos os projetos"
 function card(p) {
   const img = `<span class="work-card__img"><img src="${capa(p.slug)}" alt="" width="1600" height="1000" loading="lazy"></span>`;
-  const body = `<span class="work-card__body"><span class="work-card__title">${esc(p.title)}</span><span class="work-card__cat">${esc(p.category)} · ${esc(p.detail)}</span>${p.year ? `<span class="work-card__year">${esc(p.year)}</span>` : ''}</span>`;
+  const pe = E(p);
+  const body = `<span class="work-card__body"><span class="work-card__title">${esc(p.title)}</span><span class="work-card__cat"${enT(pe.category && `${pe.category} · ${pe.detail || p.detail}`)}>${esc(p.category)} · ${esc(p.detail)}</span>${p.year ? `<span class="work-card__year">${esc(p.year)}</span>` : ''}</span>`;
   return p.soon
-    ? `<li><div class="work-card work-card--soon">${img}<span class="work-card__badge">em breve</span>${body}</div></li>`
-    : `<li><a class="work-card" href="%BASE_URL%projetos/${p.slug}.html" data-cursor-text="ver case">${img}${body}</a></li>`;
+    ? `<li><div class="work-card work-card--soon">${img}<span class="work-card__badge" data-en="coming soon">em breve</span>${body}</div></li>`
+    : `<li><a class="work-card" href="%BASE_URL%projetos/${p.slug}.html" data-cursor-text="ver case" data-en-cursor="see case">${img}${body}</a></li>`;
 }
 
 // card que leva para fora do site (ex.: Instagram de fotografia)
 function linkCard(l) {
-  return `<li><a class="work-card work-card--link" href="${esc(l.href)}" target="_blank" rel="noopener" data-cursor-text="abrir"><span class="work-card__img"><svg aria-hidden="true"><use href="#i-instagram"/></svg></span><span class="work-card__body"><span class="work-card__title">${esc(l.titulo)}</span><span class="work-card__cat">${esc(l.detalhe)}</span></span></a></li>`;
+  return `<li><a class="work-card work-card--link" href="${esc(l.href)}" target="_blank" rel="noopener" data-cursor-text="abrir" data-en-cursor="open"><span class="work-card__img"><svg aria-hidden="true"><use href="#i-instagram"/></svg></span><span class="work-card__body"><span class="work-card__title">${esc(l.titulo)}</span><span class="work-card__cat">${esc(l.detalhe)}</span></span></a></li>`;
 }
 
 function listing(projects, areas) {
   const comProjetos = (a) => projects.filter((p) => p.area === a.id);
-  const vaga = '<li><div class="work-card work-card--slot"><span class="work-card__img"><svg aria-hidden="true"><use href="#i-espiral"/></svg></span><span class="work-card__body"><span class="work-card__title">Em breve</span><span class="work-card__cat">próximo projeto</span></span></div></li>';
+  const vaga = '<li><div class="work-card work-card--slot"><span class="work-card__img"><svg aria-hidden="true"><use href="#i-espiral"/></svg></span><span class="work-card__body"><span class="work-card__title" data-en="Coming soon">Em breve</span><span class="work-card__cat" data-en="next project">próximo projeto</span></span></div></li>';
   const secoes = areas.map((a, i) => {
     const lista = comProjetos(a);
     return `
   <section class="works__area" id="${a.id}" aria-labelledby="area-${a.id}" data-area-section>
     <div class="container">
       <div class="works__head">
-        <p class="eyebrow">(${nn(i + 1)}) ${lista.length ? `${lista.length} ${lista.length === 1 ? 'projeto' : 'projetos'}` : 'em breve'}</p>
-        <h2 id="area-${a.id}" class="section-title">${a.titulo}</h2>
+        <p class="eyebrow"${enT(`(${nn(i + 1)}) ${lista.length ? `${lista.length} ${lista.length === 1 ? 'project' : 'projects'}` : 'coming soon'}`)}>(${nn(i + 1)}) ${lista.length ? `${lista.length} ${lista.length === 1 ? 'projeto' : 'projetos'}` : 'em breve'}</p>
+        <h2 id="area-${a.id}" class="section-title"${en(areasEn[a.id])}>${a.titulo}</h2>
       </div>
       <ul class="works__grid">
 ${[...(lista.length ? lista.map(card) : a.link ? [] : [vaga]), ...(a.link ? [linkCard(a.link)] : [])].map((c) => `        ${c}`).join('\n')}
@@ -354,8 +373,8 @@ ${MARCA}
 <html lang="pt-BR">
 <head>
 <!-- @include partials/head.html -->
-  <title>Todos os projetos | Emilly Silva</title>
-  <meta name="description" content="Portfólio completo de Emilly Silva, designer gráfico e UX/UI: identidade visual, web e UX/UI, social media, fotografia e produtos personalizados.">
+  <title data-en="All projects | Emilly Silva">Todos os projetos | Emilly Silva</title>
+  <meta name="description" content="Portfólio completo de Emilly Silva, designer gráfico e UX/UI: identidade visual, web e UX/UI, social media, fotografia e produtos personalizados." data-en-content="Full portfolio of Emilly Silva, graphic and UX/UI designer: brand identity, web and UX/UI, social media, photography and custom products.">
   <link rel="canonical" href="%SITE_URL%projetos/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="%SITE_URL%projetos/">
@@ -373,12 +392,12 @@ ${MARCA}
 <main id="conteudo" class="works">
   <section class="works__hero" aria-labelledby="works-titulo">
     <div class="container">
-      <a class="case-back" href="%BASE_URL%#projetos" data-intro><svg aria-hidden="true"><use href="#i-seta"/></svg> Início</a>
-      <p class="eyebrow" data-intro>Portfólio · ${projects.length} projetos</p>
-      <h1 id="works-titulo" class="section-title">Todos os <em>projetos</em></h1>
-      <nav class="works__nav" aria-label="Filtrar por área" data-works-nav data-intro>
-        <a href="%BASE_URL%projetos/" data-area="" aria-current="page">Todos</a>
-${areas.map((a) => `        <a href="?area=${a.id}" data-area="${a.id}">${a.titulo.replace(/<\/?em>/g, '')}</a>`).join('\n')}
+      <a class="case-back" href="%BASE_URL%#projetos" data-intro${en('<svg aria-hidden="true"><use href="#i-seta"/></svg> Home')}><svg aria-hidden="true"><use href="#i-seta"/></svg> Início</a>
+      <p class="eyebrow" data-intro${enT(`Portfolio · ${projects.length} projects`)}>Portfólio · ${projects.length} projetos</p>
+      <h1 id="works-titulo" class="section-title" data-en="All &lt;em&gt;projects&lt;/em&gt;">Todos os <em>projetos</em></h1>
+      <nav class="works__nav" aria-label="Filtrar por área" data-en-aria="Filter by area" data-works-nav data-intro>
+        <a href="%BASE_URL%projetos/" data-area="" aria-current="page" data-en="All">Todos</a>
+${areas.map((a) => `        <a href="?area=${a.id}" data-area="${a.id}"${en(areasEn[a.id]?.replace(/<\/?em>/g, ''))}>${a.titulo.replace(/<\/?em>/g, '')}</a>`).join('\n')}
       </nav>
     </div>
   </section>

@@ -9,6 +9,7 @@ import { initWorks } from './modules/works.js';
 import { initRings } from './modules/ring.js';
 import { initIg } from './modules/ig.js';
 import { initLoops } from './modules/loops.js';
+import { initIdioma } from './modules/idioma.js';
 
 // Páginas internas (cases, todos os projetos e 404): a mesma base da home, sem a abertura.
 document.documentElement.classList.add('is-loaded');
@@ -24,6 +25,7 @@ initLoops(reduced); // vídeos curtos dos cases em capítulos: tocam só na tela
 const parede = document.querySelector('[data-parede]');
 if (parede && !reduced) import('./modules/parede.js').then((m) => m.initParede(parede));
 initReveals(reduced);
+initIdioma(); // português / inglês (botão PT · EN no menu)
 
 // entrada do topo da página
 if (!reduced) gsap.from('[data-intro]', { y: 40, opacity: 0, duration: 1, ease: 'expo.out', stagger: .08 });

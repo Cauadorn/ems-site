@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projects as todos } from '../../data/projects.js';
+import { projectsEn } from '../../data/projects-en.js';
 import { reduced } from './site.js';
 
 // raiz do site ("/" aqui e no emsdesign.com.br): toda imagem da pasta public passa por ela
@@ -27,15 +28,19 @@ const capaUrl = (p) => `${BASE}img/projetos/${p.slug}/capa.webp${VERSOES[p.slug]
 
 const caseUrl = (p) => (p.soon ? null : `${BASE}projetos/${p.slug}.html`);
 
+// inglês (botão PT · EN, idioma.js): o texto em inglês vai ao lado, em data-en; o idioma.js troca na hora
+const aspas = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+const en = (p) => projectsEn[p.slug] || {};
+
 const face = (p, back, lazy) => {
   const cls = `c3d__face${back ? ' c3d__face--back' : ''}`;
   if (!p) {
-    return `<div class="${cls} c3d__slot"><svg aria-hidden="true"><use href="#i-espiral"/></svg><span>próximo projeto</span><small>vaga aberta</small></div>`;
+    return `<div class="${cls} c3d__slot"><svg aria-hidden="true"><use href="#i-espiral"/></svg><span data-en="next project">próximo projeto</span><small data-en="open spot">vaga aberta</small></div>`;
   }
   const img = `<img src="${capaUrl(p)}" alt="" ${lazy ? 'loading="lazy"' : ''} draggable="false">`;
   // só a frente é clicável; o verso aparece quando o card está do outro lado do anel
   return caseUrl(p) && !back
-    ? `<a class="${cls}" href="${caseUrl(p)}" tabindex="-1" data-cursor-text="ver case">${img}</a>`
+    ? `<a class="${cls}" href="${caseUrl(p)}" tabindex="-1" data-cursor-text="ver case" data-en-cursor="see case">${img}</a>`
     : `<div class="${cls}">${img}</div>`;
 };
 
@@ -64,10 +69,10 @@ export function initCarousel(root) {
   panelsEl.innerHTML = projects.map((p) => `
     <article class="c3d__panel" data-c3d-panel>
       <h3 class="c3d__name">${p.title}</h3>
-      <p class="c3d__cat">${p.category} · ${p.detail}</p>
+      <p class="c3d__cat" data-en="${aspas(`${en(p).category || p.category} · ${en(p).detail || p.detail}`)}">${p.category} · ${p.detail}</p>
       ${caseUrl(p)
-        ? `<a class="c3d__btn" href="${caseUrl(p)}" data-cursor-text="ver case">ver case</a>`
-        : '<span class="c3d__btn c3d__btn--soon">em breve</span>'}
+        ? `<a class="c3d__btn" href="${caseUrl(p)}" data-cursor-text="ver case" data-en-cursor="see case" data-en="see case">ver case</a>`
+        : '<span class="c3d__btn c3d__btn--soon" data-en="coming soon">em breve</span>'}
     </article>`).join('');
 
   const items = [...list.children];
@@ -211,9 +216,9 @@ export function initCarousel(root) {
 function initList(section, carousel) {
   const list = section.querySelector('[data-project-list]');
   list.innerHTML = projects.map((p) => `
-    <a class="project-row" ${caseUrl(p) ? `href="${caseUrl(p)}"` : 'aria-disabled="true"'} data-preview="${capaUrl(p)}" data-cursor-text="${caseUrl(p) ? 'ver case' : 'em breve'}">
+    <a class="project-row" ${caseUrl(p) ? `href="${caseUrl(p)}"` : 'aria-disabled="true"'} data-preview="${capaUrl(p)}" data-cursor-text="${caseUrl(p) ? 'ver case' : 'em breve'}" data-en-cursor="${caseUrl(p) ? 'see case' : 'coming soon'}">
       <span class="project-row__title">${p.title}</span>
-      <span class="project-row__cat">${p.category}</span>
+      <span class="project-row__cat" data-en="${aspas(en(p).category || p.category)}">${p.category}</span>
       <span class="project-row__year">${p.year}</span>
       <svg aria-hidden="true"><use href="#i-seta-diag"/></svg>
     </a>`).join('');
