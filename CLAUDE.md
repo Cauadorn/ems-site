@@ -108,9 +108,10 @@ Mesmo com o site na raiz do domínio, continue usando a base da tabela acima (`%
 - ALMAH: o case agora é o brand book do Behance (publicado em 19/10), em capítulos como o da Babi, com o cartão do Cauã
   (ele desenhou o logo). Se ela mudar o Behance de novo, baixar de lá e atualizar `capitulos` em `projects.js`.
 - Página de brand book do site: o que entra?
-- Jubarte (abertura e fundo do mar): desenho no Nano Banana Pro e animação no Kling 3.0, pelo Higgsfield, montada no
-  Remotion (05/11; no Freepik/Magnific a API estava sem créditos). Vídeos prontos em `public/img/baleia/`; para trocar a
-  baleia, seguir `docs/baleia/README.md`.
+- Jubarte da abertura: desenho no Nano Banana Pro e animação no Kling 3.0, pelo Higgsfield, montada no Remotion (05/11;
+  no Freepik/Magnific a API estava sem créditos). Vídeo pronto em `public/img/baleia/`; para trocar, `docs/baleia/README.md`.
+- Fundo do mar: cena pintada e animada no Higgsfield (Nano Banana Pro + Kling 3.0), deitada e em pé, em `public/img/mar/`;
+  para trocar, `docs/mar/README.md`.
 - Inglês: botão PT · EN no menu desde 05/11 (pedido dela). O português fica no HTML e o inglês ao lado (`data-en`,
   `data-en-alt`, `data-en-aria`…); projetos em `src/data/projects-en.js`. Texto novo ou mudado = escrever o inglês junto
   (ver DESIGN-SYSTEM §1, "Inglês").
