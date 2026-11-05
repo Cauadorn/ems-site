@@ -1,12 +1,24 @@
 # A jubarte da abertura
 
-Pedido da Emilly em 05/11: a baleia tinha que nadar de verdade (o desenho vetorizado parado ficou duro). Ela agora é um
-vídeo curto em loop, que o site move pela tela (a volta em torno do contador fica em `src/js/modules/loader.js`).
+Pedido da Emilly em 05/11: a baleia tinha que nadar de verdade. Primeiro o desenho vetorizado parado ficou duro; depois
+o vídeo dela nadando, girando inteiro pelo caminho, ainda ficou "duro". Agora ela tem o **corpo flexível**.
 
-No site fica só o vídeo pronto: `public/img/baleia/abertura.mp4`. (O fundo do mar é outra coisa: a cena inteira pintada
-e animada, ver `docs/mar/README.md`.)
+## Como ela nada no site (corpo flexível)
 
-## Como foi feita (para refazer ou trocar a baleia)
+- `src/js/modules/baleia-gl.js` desenha a baleia em WebGL como uma fita de 56 pedaços com o desenho dela por cima
+  (textura `public/img/baleia/baleia-mascara.png`). A cabeça segue o caminho e cada pedaço do corpo passa por onde a
+  cabeça já passou, então o corpo curva nas voltas. Por cima, uma onda corre da cabeça à cauda e faz a cauda subir e
+  descer (a força da batida e o ritmo estão em `const onda` e `const fase`).
+- O caminho (entrada em onda, volta em torno do contador, saída) e a cor do violeta ao rosa ficam em
+  `src/js/modules/loader.js`.
+- **A textura:** é o traço de `baleia-branco.png` recortado com folga (proporção 1371 × 780), com o fundo branco virando
+  preto e o traço virando branco, no tamanho 1024 × 512 (o tamanho precisa ser potência de 2 para o traço ficar liso
+  pequeno). Se trocar o desenho, refazer a textura do mesmo jeito e ajustar `PROPORCAO` em `baleia-gl.js`.
+- **Sem WebGL** (raro), o loader usa o vídeo `public/img/baleia/abertura.mp4`, feito como explicado abaixo.
+
+(O fundo do mar é outra coisa: a cena inteira pintada e animada, ver `docs/mar/README.md`.)
+
+## Como foram feitos o desenho e o vídeo de reserva
 
 1. **Desenho:** Higgsfield, modelo Nano Banana Pro, 2K, 16:9. Prompt usado:
    > Minimal hand-drawn line illustration of a cute humpback whale swimming, side view facing left, whole body visible:

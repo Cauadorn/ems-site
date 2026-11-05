@@ -68,9 +68,10 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
   rolagem (prendia a página): ele ocupa uma tela e gira pelas setas, arrastando para o lado ou pelas setas do teclado.
 - Seção "Como eu penso design": texto menor e objetivo.
 - Abertura: toca sempre que a home é aberta ou recarregada e pula quando a pessoa volta de outra página do site (pedido
-  da Emilly em 01/10). Desde 05/11 é a jubarte (ela ama baleias): a baleia (vídeo dela nadando) entra pela direita, dá uma
-  volta em torno do contador 0 → 100, sai pela esquerda e o mar violeta sobe e vira o topo (inspirado no kenjilambert.com).
-  Ela reprovou o desenho vetorizado parado ("duro"), o borrifo, o salto, a baleia grande e ela nadando reto.
+  da Emilly em 01/10). Desde 05/11 é a jubarte (ela ama baleias): a baleia (com o corpo flexível: curva no caminho e bate a
+  cauda, `src/js/modules/baleia-gl.js`) entra pela direita, dá uma volta em torno do contador 0 → 100, sai pela esquerda e o
+  mar violeta sobe e vira o topo (inspirado no kenjilambert.com). Ela reprovou o desenho vetorizado parado e o vídeo
+  girando inteiro ("duro"), o borrifo, o salto, a baleia grande e ela nadando reto.
 - Crachá no topo (05/11): o selo original vai no crachá, que cai preso no cordão "itsemsdesign", balança, dá para puxar
   e vira mostrando WhatsApp e Instagram (`src/js/modules/cracha.js`).
 - Fundo do mar no fim da home (05/11), entre o contato e o rodapé: uma cena pintada e animada em vídeo (Higgsfield; nada
@@ -108,8 +109,9 @@ Mesmo com o site na raiz do domínio, continue usando a base da tabela acima (`%
 - ALMAH: o case agora é o brand book do Behance (publicado em 19/10), em capítulos como o da Babi, com o cartão do Cauã
   (ele desenhou o logo). Se ela mudar o Behance de novo, baixar de lá e atualizar `capitulos` em `projects.js`.
 - Página de brand book do site: o que entra?
-- Jubarte da abertura: desenho no Nano Banana Pro e animação no Kling 3.0, pelo Higgsfield, montada no Remotion (05/11;
-  no Freepik/Magnific a API estava sem créditos). Vídeo pronto em `public/img/baleia/`; para trocar, `docs/baleia/README.md`.
+- Jubarte da abertura: desenho no Nano Banana Pro (Higgsfield; no Freepik/Magnific a API estava sem créditos), com o corpo
+  flexível em WebGL (`baleia-gl.js`, textura `public/img/baleia/baleia-mascara.png`); o vídeo (Kling 3.0 + Remotion) é a
+  reserva sem WebGL. Para trocar, `docs/baleia/README.md`.
 - Fundo do mar: cena pintada e animada no Higgsfield (Nano Banana Pro + Kling 3.0), deitada e em pé, em `public/img/mar/`;
   para trocar, `docs/mar/README.md`.
 - Inglês: botão PT · EN no menu desde 05/11 (pedido dela). O português fica no HTML e o inglês ao lado (`data-en`,
