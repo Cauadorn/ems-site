@@ -47,6 +47,8 @@
   `drop-shadow(0 18px 24px rgba(42,20,51,.45))`. Em qualquer outro lugar, reto.
 - **Movimento permitido:** inclinar em 3D seguindo o cursor (até 9° em Y e 7° em X), pequeno "aceno" de −8° no
   clique, entrada com escala 0 → 1. Nunca girar continuamente nem deformar.
+- **Exceção aprovada (pedido da Emilly em 05/11):** o selo vai reto na frente do crachá do topo. O crachá balança no
+  cordão (e o selo junto), mas a arte é a original, sem mudar nada.
 
 ### Logo tipográfico do hero
 - "EMS" em Anton, caixa alta, cada letra numa caixa: E e S em ameixa `#3D1C46`, M em rosa `#DD34A8`, texto marfim, sobre
@@ -165,6 +167,7 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 | Estrela da Emilly | estrela cheia de 5 pontas com uma auréola em forma de estrela maior, de pontos em grade que diminuem para fora (`src/assets/illustrations/estrela-ems.svg`, usada como máscara: `.estrela`) | fundo do hero, da 404 e do manifesto, na cor tinta; cor por `color` |
 | Espiral | espiral de Arquimedes, traço 6, pontas redondas | ícone de Identidade visual, abertura, menu, contato |
 | Cereja | par de cerejas com cabo e folha em `#3D1C46`, frutas na cor do `color` | adesivo do hero, Social & peças |
+| Jubarte | baleia jubarte em traço 6 (pregas em traço 4), pontas redondas, cor por `color`: corpo, nadadeira, cauda e borrifo separados para animar (`src/assets/illustrations/jubarte.svg`). 1ª versão feita pelo Claude em 05/11; a Emilly pode trocar pelo desenho dela | abertura, fundo do mar |
 | XOXO | X e O desenhados em traço 8 | adesivo do hero |
 | Brilho | estrela de 4 pontas | acento, pisca (2,4 s) |
 | Coração | coração cheio | faixa lavanda, easter egg |
@@ -356,9 +359,20 @@ texto e dois botões ("Ver projetos", "Ir pro início").
 | Pixel "main" | cubic-bezier(.65, .01, .05, .99) ≈ GSAP `expo.inOut` | entrada do hero |
 | rápido / base / lento | 250 / 350 / 700 ms | hover / botão / cartão |
 
-**Abertura (toca ao abrir ou recarregar a home; pula ao voltar de outra página do site; clique pula):** selo entra girando (escala 0 → 1, `back.out(2)`, .8 s) →
-contador 0 → 100% (2 s) → selo pisca → conteúdo sobe e some → três cortinas sobem em sequência (marfim, violeta,
-vinho; `expo.inOut`, .9 s, intervalo .12 s).
+**Abertura (toca ao abrir ou recarregar a home; pula ao voltar de outra página do site; clique pula):** a jubarte, em
+traço, se desenha no fundo marfim (1,1 s) e nada no lugar (cauda e nadadeira batendo) enquanto o contador vai de 0 a 100%
+(2,4 s) e o traço passa do violeta ao rosa → em 100% ela borrifa, salta (nariz para cima) e mergulha (nariz para baixo)
+→ o mar violeta, com a crista em onda, sobe e cobre a tela (1 s) e vira o topo do site. Pedido da Emilly em 05/11,
+inspirado no peixe em neon do kenjilambert.com (antes: selo + contador + três cortinas).
+
+**Crachá do topo (05/11):** cai do alto preso no cordão ameixa escrito "itsemsdesign", balança e para à esquerda do EMS
+(no celular, no meio, embaixo do menu). Dá para puxar e jogar (mouse e dedo); no clique vira e mostra "Vamos criar
+*juntos?*", o WhatsApp e o Instagram. Física de cordão (Verlet), sem biblioteca. Volta a cair quando o site recomeça.
+
+**Fundo do mar (05/11, só na home, depois do rodapé):** o e-mail gigante em Anton passando, bolhas e a jubarte nadando
+em marfim-lavanda; o mar clareia do tinta ao violeta e, perto do fim, ela mergulha conforme a rolagem. A última tela é
+o violeta do topo ("de volta ao começo"): quando ela cobre a tela, o site volta para o começo, o topo entra de novo e
+o crachá cai outra vez.
 
 **Hero:** letras do EMS sobem das caixas (intervalo .08 s) → selo carimba (escala 0, −40°) → as duas linhas entram
 pelos lados (+20%, −15%, +12%, com opacidade) → etiquetas e adesivos pulam (escala 0 → 1, `back.out(3)`) → rodapé
@@ -372,7 +386,7 @@ chuva de cerejas, corações, brilhos e espirais; na 4ª vez vira o link "agora 
 Instagram @itsemsdesign.
 
 **Movimento reduzido (`prefers-reduced-motion`):** sem abertura, sem Lenis, sem reveals, faixas paradas; tudo já
-aparece no lugar.
+aparece no lugar. O crachá fica pendurado parado (ainda vira) e o fundo do mar fica parado, sem a volta para o começo.
 
 ---
 
@@ -389,9 +403,9 @@ aparece no lugar.
 
 ## 10. Estrutura da home (ordem e fundos)
 
-1. **Abertura** (marfim + cortinas violeta/vinho)
+1. **Abertura** (marfim + a jubarte; o mar violeta sobe e vira o topo)
 2. **Hero** — violeta; logo EMS + selo; frase em 2 linhas corridas, serif itálico marfim com destaque manteiga:
-   "Faço marca bonita *de perto* / e clara *de longe*."; etiquetas; CTA
+   "Faço marca bonita *de perto* / e clara *de longe*."; etiquetas; CTA; o crachá pendurado à esquerda
 3. **Faixas** cruzadas (vinho sobre lavanda); em volta, violeta em cima e ameixa embaixo
 4. **Projetos** — ameixa; "(01) Trabalhos que têm *cara*"; carrossel 3D ou lista + botão "Ver todos os projetos"
 5. **Como eu penso design** — lavanda-2; título igual aos outros ("Marca boa é a que as pessoas *reconhecem*", palavra em
@@ -405,6 +419,8 @@ aparece no lugar.
     (vazados) + botão redondo manteiga "voltar ao topo" (seta pra cima, sombra dura rosa); embaixo, separado por uma
     linha fina, © + "atendo todo o Brasil". No celular os botões ficam um embaixo do outro, na largura toda. Aparece em
     todas as páginas, então o contato está sempre a um clique. O "ems" gigante saiu em 01/10.
+11. **Fundo do mar** (só na home) — tinta → ameixa → violeta; e-mail gigante passando, jubarte e bolhas; a última tela é
+    o violeta do topo e leva de volta ao começo (05/11)
 
 Os botões "ver case" do carrossel e da lista abrem a página de case do projeto, na mesma aba.
 
@@ -452,6 +468,9 @@ Os botões "ver case" do carrossel e da lista abrem a página de case do projeto
 | Trechos repetidos (head, cabeçalho, contato, rodapé) | `partials/*.html` |
 | Carrossel 3D | `src/js/modules/carousel.js` |
 | Abertura, hero, reveals | `src/js/modules/loader.js`, `reveal.js` |
+| Crachá do topo | `src/js/modules/cracha.js` (estilo em `sections.css`, `.cracha`) |
+| Fundo do mar e volta ao começo | `src/js/modules/mar.js` (estilo em `sections.css`, `.mar`) |
+| Jubarte | `src/assets/illustrations/jubarte.svg` |
 | Base de todas as páginas (rolagem, cabeçalho, menu, cursor) | `src/js/modules/site.js` (home: `main.js`; cases e 404: `page.js`) |
 | Referência técnica da Pixel | `docs/referencia-pixel.md` |
 

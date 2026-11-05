@@ -14,7 +14,7 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="EMS, Emilly Silva: faço marca bonita de perto e clara de longe">
   <script>
-    // Abertura (contador 0 → 100): toca sempre que a home é aberta ou recarregada; pula quando a pessoa volta de outra
+    // Abertura (a jubarte e o contador 0 → 100): toca sempre que a home é aberta ou recarregada; pula quando a pessoa volta de outra
     // página do próprio site ou pede menos movimento. Decidido aqui, antes de a tela aparecer, para o "0%" não piscar.
     (function () {
       var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
@@ -30,16 +30,20 @@
 <!-- @include partials/icons.html -->
 
 <div class="loader" data-loader aria-hidden="true">
-  <div class="loader__layer loader__layer--wine"></div>
-  <div class="loader__layer loader__layer--violeta"></div>
-  <div class="loader__layer loader__layer--ivory">
+  <div class="loader__ceu">
     <div class="loader__content">
-      <img class="loader__mascote" src="/src/assets/illustrations/selo-ems.svg" alt="" width="160" height="192">
+      <div class="loader__baleia" data-loader-baleia>
+        <!-- @include src/assets/illustrations/jubarte.svg -->
+      </div>
       <p class="loader__count"><span data-loader-count>0</span>%</p>
       <p class="loader__line">carregando ideias com <em>personalidade</em></p>
     </div>
     <svg class="loader__spin loader__spin--a"><use href="#i-espiral"/></svg>
     <svg class="loader__spin loader__spin--b"><use href="#i-espiral"/></svg>
+  </div>
+  <!-- o mar: sobe quando a baleia mergulha e vira o violeta do topo -->
+  <div class="loader__mar" data-loader-mar>
+    <svg class="loader__crista" viewBox="0 0 2880 100" preserveAspectRatio="none"><path d="M0 50 Q180 0 360 50 T720 50 T1080 50 T1440 50 T1800 50 T2160 50 T2520 50 T2880 50 V100 H0 Z"/></svg>
   </div>
 </div>
 
@@ -52,6 +56,34 @@
     <div class="hero__bg" aria-hidden="true">
       <span class="estrela hero__star hero__star--a" data-parallax="-0.15"></span>
       <span class="estrela hero__star hero__star--b" data-parallax="0.2"></span>
+    </div>
+
+    <!-- crachá da EMS (05/11, inspirado no do kenjilambert.com): cai preso no cordão, balança, dá para puxar e vira no
+         clique (src/js/modules/cracha.js). O selo vai como está, é a arte original -->
+    <div class="cracha" data-cracha>
+      <svg class="cracha__cordao" aria-hidden="true">
+        <path id="cracha-cordao" data-cracha-cordao d=""/>
+        <text dominant-baseline="central"><textPath href="#cracha-cordao" startOffset="6">itsemsdesign · itsemsdesign · itsemsdesign · itsemsdesign · itsemsdesign · itsemsdesign · itsemsdesign</textPath></text>
+      </svg>
+      <div class="cracha__peca" data-cracha-peca data-cursor-text="me puxa">
+        <span class="cracha__presilha" aria-hidden="true"></span>
+        <div class="cracha__cartao" data-cracha-cartao>
+          <button class="cracha__face cracha__face--frente" type="button" data-cracha-virar aria-label="Crachá da Emilly Silva, designer gráfico e UX/UI. Virar para ver o contato">
+            <span class="cracha__furo" aria-hidden="true"></span>
+            <img class="cracha__selo" src="/src/assets/illustrations/selo-ems.svg" alt="" width="544" height="705" draggable="false">
+            <span class="cracha__nome">Emilly Silva</span>
+            <span class="cracha__cargo">designer gráfico e UX/UI</span>
+            <span class="cracha__faixa">@itsemsdesign</span>
+          </button>
+          <div class="cracha__face cracha__face--verso" inert>
+            <span class="cracha__furo" aria-hidden="true"></span>
+            <p class="cracha__titulo">Vamos criar <em>juntos?</em></p>
+            <a class="cracha__link" href="https://wa.me/5531920060754?text=Oi%2C%20Emilly!%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg> (31) 92006-0754</a>
+            <a class="cracha__link" href="https://www.instagram.com/itsemsdesign/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-instagram"/></svg> @itsemsdesign</a>
+            <button class="cracha__voltar" type="button" data-cracha-virar>virar de volta</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- logo gigante em caixas (no lugar do vídeo-logo da Pixel) -->
@@ -239,5 +271,27 @@
 </main>
 
 <!-- @include partials/footer.html -->
+
+<!-- FUNDO DO MAR (05/11, inspirado no fim do kenjilambert.com): o e-mail gigante passando e a jubarte nadando; no fim
+     ela mergulha, o mar clareia até o violeta do topo e o site volta para o começo (src/js/modules/mar.js) -->
+<section class="mar" data-mar aria-label="Fim da página">
+  <a class="mar__email" href="mailto:contatoemillyss@gmail.com" data-cursor-text="me manda um oi">
+    <span class="sr-only">Mandar e-mail para contatoemillyss@gmail.com</span>
+    <span class="mar__trilho" aria-hidden="true">
+      <span>contatoemillyss@gmail.com</span><svg><use href="#i-brilho"/></svg><span>contatoemillyss@gmail.com</span><svg><use href="#i-brilho"/></svg>
+    </span>
+  </a>
+  <div class="mar__fundo" aria-hidden="true">
+    <div class="mar__bolhas" data-mar-bolhas></div>
+    <div class="mar__baleia" data-mar-baleia>
+      <div class="mar__nado">
+        <!-- @include src/assets/illustrations/jubarte.svg -->
+      </div>
+    </div>
+  </div>
+  <div class="mar__superficie" data-mar-superficie aria-hidden="true">
+    <p class="mar__volta">de volta ao começo <svg><use href="#i-seta"/></svg></p>
+  </div>
+</section>
 </body>
 </html>

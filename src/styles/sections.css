@@ -1,11 +1,14 @@
 /* ================= LOADER ================= */
-.loader { position: fixed; inset: 0; z-index: 9800; pointer-events: none; }
-.loader__layer { position: absolute; inset: 0; }
-.loader__layer--wine { background: var(--wine); }
-.loader__layer--violeta { background: var(--violeta); }
-.loader__layer--ivory { background: var(--ivory); display: grid; place-items: center; overflow: hidden; pointer-events: auto; }
-.loader__content { position: relative; z-index: 2; display: grid; justify-items: center; gap: 14px; text-align: center; }
-.loader__mascote { width: clamp(120px, 18vw, 170px); height: auto; }
+/* Abertura da jubarte (05/11, inspirada no peixe em neon do kenjilambert.com): a baleia se desenha, o contador sobe e o
+   traço vai do violeta ao rosa; em 100% ela borrifa, salta e mergulha, e o mar violeta sobe e vira o topo do site */
+.loader { position: fixed; inset: 0; z-index: 9800; pointer-events: none; overflow: hidden; }
+.loader__ceu { position: absolute; inset: 0; background: var(--ivory); display: grid; place-items: center; overflow: hidden; pointer-events: auto; }
+.loader__content { position: relative; z-index: 2; display: grid; justify-items: center; gap: 10px; text-align: center; }
+.loader__baleia { width: clamp(240px, 38vw, 500px); color: var(--violeta); }
+.loader__baleia .jubarte { display: block; width: 100%; height: auto; overflow: visible; }
+/* antes do JS: o traço ainda não está desenhado (não pisca a baleia inteira) */
+.loader__baleia .jubarte path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.loader__baleia .jubarte__pontos { opacity: 0; }
 .loader__count { font-family: var(--f-display); font-size: clamp(3.5rem, 9vw, 6rem); line-height: 1; color: var(--violeta); font-variant-numeric: tabular-nums; }
 .loader__line { font-size: var(--t-small); color: var(--ameixa); letter-spacing: .02em; }
 .loader__line em { font-family: var(--f-serif); font-style: italic; font-size: 1.35em; color: var(--pink); }
@@ -13,6 +16,9 @@
 .loader__spin--a { left: -8vmin; top: -8vmin; }
 .loader__spin--b { right: -10vmin; bottom: -10vmin; animation-direction: reverse; }
 @keyframes spin { to { transform: rotate(360deg); } }
+.loader__mar { position: absolute; inset: 0; z-index: 3; background: var(--violeta); transform: translateY(calc(100% + 90px)); }
+.loader__crista { position: absolute; left: 0; bottom: calc(100% - 1px); width: 200%; max-width: none; height: clamp(36px, 7vh, 80px); fill: var(--violeta); animation: crista 1.6s linear infinite; }
+@keyframes crista { to { transform: translateX(-50%); } }
 .is-loaded .loader { display: none; }
 
 /* ================= HEADER ================= */
@@ -109,6 +115,42 @@
 .hero__who { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: var(--t-small); opacity: .92; }
 .hero__role { text-wrap: balance; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* crachá da EMS (src/js/modules/cracha.js, 05/11): o cordão ameixa com "itsemsdesign" nasce atrás do menu e o cartão
+   marfim com o selo fica na ponta. O JS põe a peça na ponta do cordão e gira conforme balança.
+   --cracha-x: onde o cordão nasce (fração da largura do topo) · --cracha-corda: comprimento (px) · --cracha-w: largura */
+.cracha { --cracha-x: .12; --cracha-corda: 290; --cracha-w: 160px; position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.cracha__cordao { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; overflow: visible; visibility: hidden; }
+.cracha__cordao path { fill: none; stroke: var(--ameixa); stroke-width: calc(var(--cracha-w) * .12); stroke-linecap: round; stroke-linejoin: round; }
+.cracha__cordao text { fill: var(--ivory); font-family: var(--f-sans); font-weight: 700; font-size: calc(var(--cracha-w) * .06); letter-spacing: .16em; text-transform: uppercase; }
+.cracha__peca { position: absolute; left: 0; top: 0; width: var(--cracha-w); pointer-events: auto; touch-action: none; cursor: grab; perspective: 900px; transform-origin: 50% 0; visibility: hidden; }
+.cracha.is-solto .cracha__peca, .cracha.is-solto .cracha__cordao { visibility: visible; }
+.cracha__peca.is-puxando { cursor: grabbing; }
+.cracha__presilha { position: absolute; left: 50%; top: 0; width: 22%; aspect-ratio: 1.2; translate: -50% -55%; border: calc(var(--cracha-w) * .028) solid var(--lavanda-2); border-radius: 30% 30% 18% 18%; }
+.cracha__cartao { position: relative; margin-top: calc(var(--cracha-w) * .06); aspect-ratio: 54 / 80; transform-style: preserve-3d; }
+.cracha__face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; padding: 16% 9% 0; border: 0; border-radius: calc(var(--cracha-w) * .08); background: var(--ivory); color: var(--ink); box-shadow: 4px 4px 0 var(--ink); backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; font: inherit; text-align: center; cursor: inherit; }
+.cracha__face--verso { justify-content: center; gap: 7%; padding: 14% 8% 8%; background: var(--ameixa); color: var(--ivory); transform: rotateY(180deg); }
+.cracha__furo { position: absolute; top: 5%; left: 50%; width: 30%; height: 4.4%; translate: -50% 0; border-radius: 99px; background: var(--violeta); }
+.cracha__selo { width: 56%; height: auto; pointer-events: none; }
+.cracha__nome { margin-top: 7%; font-family: var(--f-display); font-size: calc(var(--cracha-w) * .145); line-height: 1; text-transform: uppercase; }
+.cracha__cargo { margin-top: 4%; font-size: calc(var(--cracha-w) * .074); line-height: 1.25; color: var(--ameixa); }
+.cracha__faixa { position: absolute; inset: auto 0 0; padding: 5% 0 6%; background: var(--violeta); color: var(--ivory); font-size: calc(var(--cracha-w) * .07); font-weight: 700; letter-spacing: .06em; }
+.cracha__titulo { font-family: var(--f-display); font-size: calc(var(--cracha-w) * .13); line-height: .95; text-transform: uppercase; }
+.cracha__titulo em { display: block; font-family: var(--f-serif); font-style: italic; font-size: 1.2em; text-transform: none; color: var(--manteiga); }
+.cracha__link { display: inline-flex; align-items: center; gap: .45em; padding: .45em .8em; border: 1.5px solid rgba(255, 251, 222, .35); border-radius: 99px; color: var(--ivory); font-size: calc(var(--cracha-w) * .075); font-weight: 700; white-space: nowrap; text-decoration: none; }
+.cracha__link:hover { background: var(--ivory); color: var(--ameixa); }
+.cracha__link svg { width: 1.25em; height: 1.25em; }
+.cracha__voltar { border: 0; background: none; color: var(--lavanda); font: inherit; font-size: calc(var(--cracha-w) * .066); text-decoration: underline; cursor: pointer; }
+/* tablet em pé: o EMS cresce, o cordão vai mais para a borda */
+@media (orientation: portrait) and (min-width: 600px) { .cracha { --cracha-x: .1; --cracha-corda: 260; --cracha-w: 130px; } }
+/* celular: o crachá pendura do menu, no meio, entre o menu e o EMS; no verso ficam só os ícones (o texto é o nome do link) */
+@media (max-width: 599px) {
+  .cracha { --cracha-x: .5; --cracha-corda: 118; --cracha-w: 80px; }
+  .cracha__face { box-shadow: 3px 3px 0 var(--ink); }
+  .cracha__link { padding: .55em; font-size: 0; }
+  .cracha__link svg { width: 16px; height: 16px; }
+  .cracha__face--verso { gap: 5%; }
+}
 
 /* ================= FAIXAS ================= */
 /* sem fundo claro em volta das faixas: em cima continua o violeta do topo, embaixo começa o ameixa dos projetos.
@@ -314,6 +356,36 @@
 .site-footer__top:active { box-shadow: 1px 1px 0 var(--pink); }
 .site-footer__top svg { rotate: -90deg; transition: translate .4s var(--ease-back); }
 .site-footer__top:hover svg { translate: 0 -3px; }
+
+/* ================= FUNDO DO MAR ================= */
+/* depois do rodapé, só na home (05/11): o e-mail gigante passando, a jubarte nadando e as bolhas; o mar clareia do
+   tinta ao violeta e a última tela (a superfície) é o violeta do topo: ao chegar nela, o site volta para o começo */
+.mar { position: relative; overflow: hidden; color: var(--ivory); background: var(--ink); }
+.mar__email { display: block; padding: clamp(40px, 7vw, 96px) 0 0; overflow: hidden; color: var(--ivory); text-decoration: none; }
+.mar__trilho { display: inline-flex; align-items: center; gap: .25em; white-space: nowrap; font-family: var(--f-display); font-size: clamp(4.5rem, 15vw, 15rem); line-height: 1; text-transform: uppercase; animation: mar-corre 26s linear infinite; }
+.mar__trilho svg { width: .32em; height: .32em; flex: none; color: var(--manteiga); }
+.mar__email:hover .mar__trilho { color: var(--manteiga); }
+@keyframes mar-corre { to { transform: translateX(-50%); } }
+.mar__fundo { position: relative; height: clamp(360px, 70vh, 680px); background: linear-gradient(to bottom, var(--ink) 0%, var(--ameixa) 45%, var(--violeta) 100%); }
+.mar__baleia { position: absolute; left: 0; top: 18%; width: 100%; }
+.mar__nado { width: clamp(220px, 30vw, 440px); color: var(--lavanda-2); animation: mar-nada 18s linear infinite; }
+.mar__nado .jubarte { display: block; width: 100%; height: auto; overflow: visible; }
+.mar__nado .jubarte__borrifo { display: none; }
+.mar__nado .jubarte__cauda { transform-box: view-box; transform-origin: 528px 149px; animation: mar-cauda 1.2s ease-in-out infinite alternate; }
+.mar__nado .jubarte__nadadeira { transform-box: view-box; transform-origin: 252px 222px; animation: mar-cauda 1.6s ease-in-out infinite alternate-reverse; }
+@keyframes mar-nada { from { transform: translateX(100vw); } to { transform: translateX(-110%); } }
+@keyframes mar-cauda { from { rotate: -8deg; } to { rotate: 8deg; } }
+.mar__bolhas { position: absolute; inset: 0; }
+.mar__bolha { position: absolute; bottom: -20px; border: 2px solid var(--lavanda-2); border-radius: 50%; opacity: 0; animation: mar-bolha linear infinite; }
+@keyframes mar-bolha { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: .6; } 100% { opacity: 0; transform: translate(var(--b-x, 12px), -120vh); } }
+.mar__superficie { height: 100svh; display: grid; place-items: start center; padding-top: clamp(24px, 5vh, 48px); background: var(--violeta); }
+.mar__volta { display: inline-flex; align-items: center; gap: 8px; font-size: var(--t-small); opacity: .85; }
+.mar__volta svg { width: 16px; height: 16px; rotate: 90deg; }
+/* menos movimento: o e-mail e a baleia ficam parados e não há volta automática para o começo */
+.mar.is-calmo .mar__trilho, .mar.is-calmo .mar__nado, .mar.is-calmo .jubarte__cauda, .mar.is-calmo .jubarte__nadadeira { animation: none; }
+.mar.is-calmo .mar__nado { margin-inline: auto; }
+.mar.is-calmo .mar__superficie { display: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* ================= RESPONSIVO ================= */
 @media (max-width: 1000px) {

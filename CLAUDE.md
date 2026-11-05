@@ -66,8 +66,13 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
   (`docs/referencia-pixel.md` e `src/js/modules/carousel.js`). Em 01/10 a Emilly pediu para o anel NÃO girar com a
   rolagem (prendia a página): ele ocupa uma tela e gira pelas setas, arrastando para o lado ou pelas setas do teclado.
 - Seção "Como eu penso design": texto menor e objetivo.
-- Abertura (selo + contador 0 → 100 + cortinas): toca sempre que a home é aberta ou recarregada e pula quando a pessoa
-  volta de outra página do site (pedido da Emilly em 01/10; antes era só na 1ª visita da sessão e o "0%" piscava).
+- Abertura: toca sempre que a home é aberta ou recarregada e pula quando a pessoa volta de outra página do site (pedido
+  da Emilly em 01/10). Desde 05/11 é a jubarte (ela ama baleias): a baleia em traço se desenha, o contador 0 → 100 vira
+  o fôlego dela, em 100% ela borrifa, salta e mergulha e o mar violeta sobe e vira o topo (inspirado no kenjilambert.com).
+- Crachá no topo (05/11): o selo original vai no crachá, que cai preso no cordão "itsemsdesign", balança, dá para puxar
+  e vira mostrando WhatsApp e Instagram (`src/js/modules/cracha.js`).
+- Fundo do mar no fim da home (05/11): e-mail gigante passando e a jubarte nadando; na última tela o site volta para o
+  começo (`src/js/modules/mar.js`).
 
 ## Onde mexer
 | Quero mudar | Arquivo |
@@ -98,4 +103,6 @@ Mesmo com o site na raiz do domínio, continue usando a base da tabela acima (`%
 - ALMAH: o case agora é o brand book do Behance (publicado em 19/10), em capítulos como o da Babi, com o cartão do Cauã
   (ele desenhou o logo). Se ela mudar o Behance de novo, baixar de lá e atualizar `capitulos` em `projects.js`.
 - Página de brand book do site: o que entra?
+- Jubarte (abertura e fundo do mar): a 1ª versão do desenho é do Claude (`src/assets/illustrations/jubarte.svg`). Se a
+  Emilly mandar o desenho dela, trocar mantendo as partes separadas (corpo, nadadeira, cauda, borrifo).
 - Prancheta de revisão com os prints do site: https://claude.ai/artifact/W3FVwhEdbnUmFAh2U1niwW
