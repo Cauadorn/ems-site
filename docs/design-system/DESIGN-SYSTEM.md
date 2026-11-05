@@ -389,7 +389,7 @@ contador e não gostou da baleia grande, do borrifo, do salto nem dela nadando r
 pintado e animado de verdade (vídeo em loop: a jubarte nadando, o cardume girando, as algas balançando, os raios de luz e
 as bolhas), que some em cima no violeta do contato e embaixo no tinta do rodapé. A Emilly não quis nada em vetor ali:
 "quero movimentos fluidos". O vídeo só baixa perto da tela e só toca enquanto aparece; com "reduzir movimento" fica a
-imagem parada. O e-mail gigante que passava por cima saiu (a Emilly não quis). Sem volta automática para o
+imagem parada. O e-mail gigante que passava por cima saiu (a Emilly não quis). Na home, o rodapé (botões de contato, voltar ao topo e ©) sobe para dentro da parte de baixo da pintura, por cima das pedras e algas, com um escurecido suave atrás. Sem volta automática para o
 começo (a Emilly não quis): a página termina no rodapé, com o botão redondo de voltar ao topo.
 
 **Hero:** letras do EMS sobem das caixas (intervalo .08 s) → as duas linhas entram
