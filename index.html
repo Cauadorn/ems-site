@@ -28,13 +28,15 @@
 </head>
 <body id="topo">
 <!-- @include partials/icons.html -->
-<!-- @include src/assets/illustrations/jubarte-defs.svg -->
+<!-- @include src/assets/illustrations/peixinho.svg -->
 
 <div class="loader" data-loader aria-hidden="true">
   <div class="loader__ceu">
     <div class="loader__content">
+      <!-- a jubarte nadando: vídeo gerado no Higgsfield e montado no Remotion (traço violeta no branco; o branco some com
+           mix-blend-mode: multiply sobre o marfim). Fonte em docs/baleia/ -->
       <div class="loader__baleia" data-loader-baleia>
-        <!-- @include src/assets/illustrations/jubarte.svg -->
+        <video class="loader__video" src="%BASE_URL%img/baleia/abertura.mp4" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video>
       </div>
       <p class="loader__count"><span data-loader-count>0</span>%</p>
       <p class="loader__line" lang="en">loading ideas with <em>personality</em></p>
@@ -284,7 +286,7 @@
       <div class="mar__peixes" data-mar-peixes></div>
       <div class="mar__baleia">
         <div class="mar__nado">
-          <!-- @include src/assets/illustrations/jubarte.svg -->
+          <video class="mar__video" src="%BASE_URL%img/baleia/mar.mp4" poster="%BASE_URL%img/baleia/mar-poster.webp" muted loop playsinline preload="none" aria-hidden="true" data-mar-video></video>
         </div>
       </div>
       <svg class="mar__algas" viewBox="0 0 1440 220" preserveAspectRatio="xMidYMax slice">

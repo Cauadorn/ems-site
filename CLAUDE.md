@@ -68,8 +68,9 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
   rolagem (prendia a página): ele ocupa uma tela e gira pelas setas, arrastando para o lado ou pelas setas do teclado.
 - Seção "Como eu penso design": texto menor e objetivo.
 - Abertura: toca sempre que a home é aberta ou recarregada e pula quando a pessoa volta de outra página do site (pedido
-  da Emilly em 01/10). Desde 05/11 é a jubarte (ela ama baleias): a baleia em traço se desenha, o contador 0 → 100 vira
-  o fôlego dela, em 100% ela borrifa, salta e mergulha e o mar violeta sobe e vira o topo (inspirado no kenjilambert.com).
+  da Emilly em 01/10). Desde 05/11 é a jubarte (ela ama baleias): a baleia (vídeo dela nadando) entra pela direita, dá uma
+  volta em torno do contador 0 → 100, sai pela esquerda e o mar violeta sobe e vira o topo (inspirado no kenjilambert.com).
+  Ela reprovou o desenho vetorizado parado ("duro"), o borrifo, o salto, a baleia grande e ela nadando reto.
 - Crachá no topo (05/11): o selo original vai no crachá, que cai preso no cordão "itsemsdesign", balança, dá para puxar
   e vira mostrando WhatsApp e Instagram (`src/js/modules/cracha.js`).
 - Fundo do mar no fim da home (05/11), entre o contato e o rodapé: e-mail gigante passando, a jubarte nadando, peixinhos,
@@ -106,9 +107,9 @@ Mesmo com o site na raiz do domínio, continue usando a base da tabela acima (`%
 - ALMAH: o case agora é o brand book do Behance (publicado em 19/10), em capítulos como o da Babi, com o cartão do Cauã
   (ele desenhou o logo). Se ela mudar o Behance de novo, baixar de lá e atualizar `capitulos` em `projects.js`.
 - Página de brand book do site: o que entra?
-- Jubarte (abertura e fundo do mar): gerada no Nano Banana Pro pelo Higgsfield (05/11; no Freepik/Magnific a API estava
-  sem créditos) e vetorizada em `src/assets/illustrations/jubarte-defs.svg`. Se a Emilly quiser outra, gerar de novo,
-  vetorizar e manter o corte da cauda (ver DESIGN-SYSTEM §6).
+- Jubarte (abertura e fundo do mar): desenho no Nano Banana Pro e animação no Kling 3.0, pelo Higgsfield, montada no
+  Remotion (05/11; no Freepik/Magnific a API estava sem créditos). Vídeos prontos em `public/img/baleia/`; para trocar a
+  baleia, seguir `docs/baleia/README.md`.
 - Inglês: botão PT · EN no menu desde 05/11 (pedido dela). O português fica no HTML e o inglês ao lado (`data-en`,
   `data-en-alt`, `data-en-aria`…); projetos em `src/data/projects-en.js`. Texto novo ou mudado = escrever o inglês junto
   (ver DESIGN-SYSTEM §1, "Inglês").

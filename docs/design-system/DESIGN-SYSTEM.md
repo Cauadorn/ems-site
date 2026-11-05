@@ -180,7 +180,8 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 | Estrela da Emilly | estrela cheia de 5 pontas com uma auréola em forma de estrela maior, de pontos em grade que diminuem para fora (`src/assets/illustrations/estrela-ems.svg`, usada como máscara: `.estrela`) | fundo do hero, da 404 e do manifesto, na cor tinta; cor por `color` |
 | Espiral | espiral de Arquimedes, traço 6, pontas redondas | ícone de Identidade visual, abertura, menu, contato |
 | Cereja | par de cerejas com cabo e folha em `#3D1C46`, frutas na cor do `color` | adesivo do hero, Social & peças |
-| Jubarte | baleia jubarte em traço (contorno, pregas, calombos e nadadeiras compridas), cor por `color`. Gerada no Nano Banana Pro (Higgsfield) a pedido da Emilly em 05/11 e vetorizada: o desenho fica uma vez em `jubarte-defs.svg` e `jubarte.svg` usa em duas partes (corpo e cauda, cortados em x 1410, que bate em volta de 1410 520) + o borrifo em traço 22 | abertura, fundo do mar |
+| Jubarte | baleia jubarte em traço (contorno, pregas, calombos e nadadeiras compridas) que nada de verdade: vídeo curto em loop (corpo ondulando, cauda e nadadeiras). Desenho no Nano Banana Pro e animação no Kling 3.0 (Higgsfield), pintada no Remotion em duas versões: violeta no branco (abertura, `mix-blend-mode: multiply`) e lavanda no preto (fundo do mar, `screen`). A Emilly reprovou o desenho vetorizado parado (05/11). Como refazer: `docs/baleia/README.md` | abertura, fundo do mar |
+| Peixinho | peixe pequeno em traço, cor por `color` (`src/assets/illustrations/peixinho.svg`, símbolo `#peixinho`) | fundo do mar |
 | XOXO | X e O desenhados em traço 8 | adesivo do hero |
 | Brilho | estrela de 4 pontas | acento, pisca (2,4 s) |
 | Coração | coração cheio | faixa lavanda, easter egg |
@@ -372,8 +373,8 @@ texto e dois botões ("Ver projetos", "Ir pro início").
 | Pixel "main" | cubic-bezier(.65, .01, .05, .99) ≈ GSAP `expo.inOut` | entrada do hero |
 | rápido / base / lento | 250 / 350 / 700 ms | hover / botão / cartão |
 
-**Abertura (toca ao abrir ou recarregar a home; pula ao voltar de outra página do site; clique pula):** a jubarte, em
-traço e pequena (120–190 px), entra pela direita nadando em onda (o nariz segue a inclinação), dá uma volta em torno do
+**Abertura (toca ao abrir ou recarregar a home; pula ao voltar de outra página do site; clique pula):** a jubarte (o vídeo
+dela nadando, pequena: 140–220 px) entra pela direita nadando em onda (o nariz segue a inclinação), dá uma volta em torno do
 contador (desce pela esquerda, passa de cabeça para baixo por baixo da frase, sobe pela direita) e sai pela esquerda em
 onda, com a cauda batendo, enquanto o contador vai de 0 a 100% (2,9 s) e o traço passa do violeta ao rosa → enquanto ela
 sai, o mar violeta, com a crista em onda, sobe e cobre a tela (1 s) e vira o topo do site. A Emilly pediu a volta no
@@ -483,8 +484,8 @@ Os botões "ver case" do carrossel e da lista abrem a página de case do projeto
 | Carrossel 3D | `src/js/modules/carousel.js` |
 | Abertura, hero, reveals | `src/js/modules/loader.js`, `reveal.js` |
 | Crachá do topo | `src/js/modules/cracha.js` (estilo em `sections.css`, `.cracha`) |
-| Fundo do mar e volta ao começo | `src/js/modules/mar.js` (estilo em `sections.css`, `.mar`) |
-| Jubarte | `src/assets/illustrations/jubarte.svg` (partes) + `jubarte-defs.svg` (o desenho, uma vez por página) |
+| Fundo do mar | `src/js/modules/mar.js` (estilo em `sections.css`, `.mar`) |
+| Jubarte (vídeos) | `public/img/baleia/` (prontos) + `docs/baleia/` (desenho, animação, Remotion e o passo a passo) |
 | Base de todas as páginas (rolagem, cabeçalho, menu, cursor) | `src/js/modules/site.js` (home: `main.js`; cases e 404: `page.js`) |
 | Referência técnica da Pixel | `docs/referencia-pixel.md` |
 

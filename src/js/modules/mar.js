@@ -1,6 +1,6 @@
-// Fundo do mar no fim da home (pedido da Emilly em 05/11): a jubarte nada em onda e passam peixinhos e bolhas, cada um
-// numa altura, tamanho, cor e velocidade (o movimento é todo em CSS, em sections.css). Sem volta automática para o
-// começo: a página termina no rodapé, com o botão de voltar ao topo. Com "reduzir movimento", tudo fica parado.
+// Fundo do mar no fim da home (pedido da Emilly em 05/11): a jubarte (vídeo dela nadando, do Higgsfield + Remotion) passa
+// em onda e passam peixinhos e bolhas, cada um numa altura, tamanho, cor e velocidade (o movimento é em CSS, em sections.css).
+// Sem volta automática para o começo: a página termina no rodapé, com o botão de voltar ao topo. Com "reduzir movimento", tudo fica parado.
 const CORES = ['var(--lavanda-2)', 'var(--manteiga)', 'var(--lavanda)', 'var(--pink)'];
 const sorte = (a, b) => a + Math.random() * (b - a);
 
@@ -8,6 +8,10 @@ export function initMar(reduced) {
   const mar = document.querySelector('[data-mar]');
   if (!mar) return;
   if (reduced) { mar.classList.add('is-calmo'); return; }
+
+  // a baleia (vídeo) só nada enquanto o mar aparece na tela
+  const video = mar.querySelector('[data-mar-video]');
+  if (video) new IntersectionObserver(([e]) => { if (e.isIntersecting) video.play().catch(() => {}); else video.pause(); }).observe(mar);
 
   const bolhas = mar.querySelector('[data-mar-bolhas]');
   for (let i = 0; i < 14; i++) {
