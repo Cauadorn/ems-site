@@ -383,7 +383,10 @@ contador e não gostou da baleia grande, do borrifo, do salto nem dela nadando r
 
 **Crachá do topo (05/11):** cai do alto preso no cordão ameixa escrito "itsemsdesign", balança e para à esquerda do EMS
 (no celular, no meio, embaixo do menu). Dá para puxar e jogar (mouse e dedo); no clique vira e mostra "Vamos criar
-*together*", o WhatsApp e o Instagram. Física de cordão (Verlet), sem biblioteca.
+*together*", o WhatsApp e o Instagram. Desde 05/11 é 3D, como o do kenjilambert.com (pedido da Emilly): cartão com
+espessura e cantos arredondados, película de plástico que reflete a luz, prendedor de metal com argola e a fita 3D; física
+de corpo rígido (XPBD) feita à mão com o three.js: quando jogado, ele gira no ar e volta a ficar de frente aos poucos. A
+arte (selo original, nome, verso) é desenhada num canvas. Sem WebGL ou com "reduzir movimento", fica o crachá 2D.
 
 **Fundo do mar (05/11, só na home, entre o contato e o rodapé):** o mar
 pintado e animado de verdade (vídeo em loop: a jubarte nadando, o cardume girando, as algas balançando, os raios de luz e
@@ -486,7 +489,7 @@ Os botões "ver case" do carrossel e da lista abrem a página de case do projeto
 | Trechos repetidos (head, cabeçalho, contato, rodapé) | `partials/*.html` |
 | Carrossel 3D | `src/js/modules/carousel.js` |
 | Abertura, hero, reveals | `src/js/modules/loader.js`, `reveal.js` |
-| Crachá do topo | `src/js/modules/cracha.js` (estilo em `sections.css`, `.cracha`) |
+| Crachá do topo | `src/js/modules/cracha3d.js` (3D) e `cracha.js` (escolhe e tem o 2D de reserva); estilo em `sections.css`, `.cracha` |
 | Fundo do mar | `src/js/modules/mar.js` (estilo em `sections.css`, `.mar`) |
 | Jubarte da abertura (vídeo) | `public/img/baleia/` (pronto) + `docs/baleia/` (desenho, animação, Remotion e o passo a passo) |
 | Fundo do mar (vídeos) | `public/img/mar/` (prontos) + `docs/mar/` (as imagens, os prompts e o passo a passo) |

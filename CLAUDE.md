@@ -73,7 +73,8 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
   mar violeta sobe e vira o topo (inspirado no kenjilambert.com). Ela reprovou o desenho vetorizado parado e o vídeo
   girando inteiro ("duro"), o borrifo, o salto, a baleia grande e ela nadando reto.
 - Crachá no topo (05/11): o selo original vai no crachá, que cai preso no cordão "itsemsdesign", balança, dá para puxar
-  e vira mostrando WhatsApp e Instagram (`src/js/modules/cracha.js`).
+  e vira mostrando WhatsApp e Instagram. É 3D como o do kenjilambert.com (cartão com reflexo, prendedor de metal, gira
+  quando jogado e volta de frente: `src/js/modules/cracha3d.js`); o 2D de `cracha.js` é a reserva sem WebGL.
 - Fundo do mar no fim da home (05/11), entre o contato e o rodapé: uma cena pintada e animada em vídeo (Higgsfield; nada
   em vetor, pedido dela: "quero movimentos fluidos"; o e-mail gigante por cima ela tirou): a jubarte nadando, cardume, peixinhos,
   bolhas e algas (`src/js/modules/mar.js`). Ela NÃO quis a volta automática para o começo: a página termina no rodapé,
