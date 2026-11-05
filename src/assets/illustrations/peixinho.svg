@@ -1,4 +1,0 @@
-<svg class="peixinho-defs" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
-  <!-- peixinho em traço para o fundo do mar (olha para a esquerda); a cor vem do color de quem usa -->
-  <symbol id="peixinho" viewBox="0 0 64 32"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16 C14 5 34 4 46 16 C34 28 14 27 6 16 Z"/><path d="M46 16 L60 6 C57 12 57 20 60 26 Z"/><path d="M24 9 C27 13 27 19 24 23"/></g><circle cx="15" cy="14" r="2.4" fill="currentColor"/></symbol>
-</svg>

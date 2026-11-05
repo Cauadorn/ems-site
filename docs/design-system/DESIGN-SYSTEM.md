@@ -180,8 +180,8 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 | Estrela da Emilly | estrela cheia de 5 pontas com uma auréola em forma de estrela maior, de pontos em grade que diminuem para fora (`src/assets/illustrations/estrela-ems.svg`, usada como máscara: `.estrela`) | fundo do hero, da 404 e do manifesto, na cor tinta; cor por `color` |
 | Espiral | espiral de Arquimedes, traço 6, pontas redondas | ícone de Identidade visual, abertura, menu, contato |
 | Cereja | par de cerejas com cabo e folha em `#3D1C46`, frutas na cor do `color` | adesivo do hero, Social & peças |
-| Jubarte | baleia jubarte em traço (contorno, pregas, calombos e nadadeiras compridas) que nada de verdade: vídeo curto em loop (corpo ondulando, cauda e nadadeiras). Desenho no Nano Banana Pro e animação no Kling 3.0 (Higgsfield), pintada no Remotion em duas versões: violeta no branco (abertura, `mix-blend-mode: multiply`) e lavanda no preto (fundo do mar, `screen`). A Emilly reprovou o desenho vetorizado parado (05/11). Como refazer: `docs/baleia/README.md` | abertura, fundo do mar |
-| Peixinho | peixe pequeno em traço, cor por `color` (`src/assets/illustrations/peixinho.svg`, símbolo `#peixinho`) | fundo do mar |
+| Jubarte | baleia jubarte em traço (contorno, pregas, calombos e nadadeiras compridas) que nada de verdade: vídeo curto em loop (corpo ondulando, cauda e nadadeiras). Desenho no Nano Banana Pro e animação no Kling 3.0 (Higgsfield), pintada de violeta no Remotion (sobre o marfim com `mix-blend-mode: multiply`). A Emilly reprovou o desenho vetorizado parado (05/11). Como refazer: `docs/baleia/README.md` | abertura |
+| Fundo do mar | cena pintada à mão (guache digital, luz suave) e animada em loop: a jubarte lavanda nadando, cardume manteiga, peixinhos rosa, algas vinho e lavanda, raios de luz, bolhas e partículas, do violeta da superfície ao tinta do fundo. Gerada no Higgsfield (Nano Banana Pro + Kling 3.0), deitada e em pé. Nada em vetor ali (pedido da Emilly em 05/11). Como refazer: `docs/mar/README.md` | fundo do mar |
 | XOXO | X e O desenhados em traço 8 | adesivo do hero |
 | Brilho | estrela de 4 pontas | acento, pisca (2,4 s) |
 | Coração | coração cheio | faixa lavanda, easter egg |
@@ -385,8 +385,10 @@ contador e não gostou da baleia grande, do borrifo, do salto nem dela nadando r
 *together*", o WhatsApp e o Instagram. Física de cordão (Verlet), sem biblioteca.
 
 **Fundo do mar (05/11, só na home, entre o contato e o rodapé):** o e-mail gigante em Anton passando e, embaixo, o mar
-escurecendo do violeta do contato ao tinta do rodapé, com a jubarte nadando em onda (marfim-lavanda), peixinhos em traço
-(lavanda, manteiga e rosa, nos dois sentidos), bolhas subindo e algas balançando no fundo. Sem volta automática para o
+pintado e animado de verdade (vídeo em loop: a jubarte nadando, o cardume girando, as algas balançando, os raios de luz e
+as bolhas), que some em cima no violeta do contato e embaixo no tinta do rodapé. A Emilly não quis nada em vetor ali:
+"quero movimentos fluidos". O vídeo só baixa perto da tela e só toca enquanto aparece; com "reduzir movimento" fica a
+imagem parada. Sem volta automática para o
 começo (a Emilly não quis): a página termina no rodapé, com o botão redondo de voltar ao topo.
 
 **Hero:** letras do EMS sobem das caixas (intervalo .08 s) → as duas linhas entram
@@ -435,7 +437,7 @@ aparece no lugar. O crachá fica pendurado parado (ainda vira) e o fundo do mar 
     linha fina, © + "atendo todo o Brasil". No celular os botões ficam um embaixo do outro, na largura toda. Aparece em
     todas as páginas, então o contato está sempre a um clique. O "ems" gigante saiu em 01/10.
 11. **Fundo do mar** (só na home, entre o Contato e o Rodapé) — violeta → ameixa → tinta; e-mail gigante passando,
-    jubarte, peixinhos, bolhas e algas (05/11)
+    cena pintada e animada: jubarte, cardume, algas, luz e bolhas (05/11)
 
 Os botões "ver case" do carrossel e da lista abrem a página de case do projeto, na mesma aba.
 
@@ -485,7 +487,8 @@ Os botões "ver case" do carrossel e da lista abrem a página de case do projeto
 | Abertura, hero, reveals | `src/js/modules/loader.js`, `reveal.js` |
 | Crachá do topo | `src/js/modules/cracha.js` (estilo em `sections.css`, `.cracha`) |
 | Fundo do mar | `src/js/modules/mar.js` (estilo em `sections.css`, `.mar`) |
-| Jubarte (vídeos) | `public/img/baleia/` (prontos) + `docs/baleia/` (desenho, animação, Remotion e o passo a passo) |
+| Jubarte da abertura (vídeo) | `public/img/baleia/` (pronto) + `docs/baleia/` (desenho, animação, Remotion e o passo a passo) |
+| Fundo do mar (vídeos) | `public/img/mar/` (prontos) + `docs/mar/` (as imagens, os prompts e o passo a passo) |
 | Base de todas as páginas (rolagem, cabeçalho, menu, cursor) | `src/js/modules/site.js` (home: `main.js`; cases e 404: `page.js`) |
 | Referência técnica da Pixel | `docs/referencia-pixel.md` |
 

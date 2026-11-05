@@ -26,5 +26,5 @@ runLoader(reduced).then(() => {
   heroIntro(reduced);
   initReveals(reduced);
   setTimeout(soltarCracha, reduced ? 0 : 900); // o crachá cai depois que o EMS aparece
-  initMar(reduced); // fim do site no fundo do mar (baleia, peixinhos, bolhas e algas)
+  initMar(reduced); // fim do site no fundo do mar (cena animada em vídeo)
 });

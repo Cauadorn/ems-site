@@ -375,44 +375,29 @@ html.idioma-esperando body { visibility: hidden; }
 .site-footer__top:hover svg { translate: 0 -3px; }
 
 /* ================= FUNDO DO MAR ================= */
-/* só na home, entre o contato e o rodapé (05/11): o e-mail gigante passando e o mar escurecendo do violeta do contato
-   ao tinta do rodapé, com a jubarte nadando em onda, peixinhos, bolhas e algas. Sem volta automática para o começo:
-   a página termina no rodapé, com o botão de voltar ao topo */
+/* só na home, entre o contato e o rodapé (05/11): o e-mail gigante passando sobre o fundo do mar pintado e animado de
+   verdade (jubarte, cardume, algas, raios de luz e bolhas; a Emilly não quis nada em vetor). Sem volta automática para o
+   começo: a página termina no rodapé, com o botão de voltar ao topo */
 .mar { position: relative; overflow: hidden; color: var(--ivory); background: linear-gradient(to bottom, var(--violeta) 0%, var(--ameixa) 48%, var(--ink) 100%); }
-.mar__email { display: block; padding: clamp(24px, 4vw, 56px) 0 0; overflow: hidden; color: var(--ivory); text-decoration: none; }
-.mar__trilho { display: inline-flex; align-items: center; gap: .25em; white-space: nowrap; font-family: var(--f-display); font-size: clamp(4.5rem, 15vw, 15rem); line-height: 1; text-transform: uppercase; animation: mar-corre 26s linear infinite; }
+/* a cena animada (vídeo do Higgsfield) cobre a seção toda; em cima e embaixo ela some no violeta do contato e no tinta do
+   rodapé, para não ter emenda */
+.mar__cena { position: absolute; inset: 0; }
+.mar__video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 84%, transparent 100%); }
+.mar__email { position: relative; display: block; padding: clamp(24px, 4vw, 56px) 0 0; overflow: hidden; color: var(--ivory); text-decoration: none; }
+.mar__trilho { display: inline-flex; align-items: center; gap: .25em; white-space: nowrap; font-family: var(--f-display); font-size: clamp(4.5rem, 15vw, 15rem); line-height: 1; text-transform: uppercase; text-shadow: 0 4px 30px rgb(42 20 51 / .35); animation: mar-corre 26s linear infinite; }
 .mar__trilho svg { width: .32em; height: .32em; flex: none; color: var(--manteiga); }
 .mar__email:hover .mar__trilho { color: var(--manteiga); }
 @keyframes mar-corre { to { transform: translateX(-50%); } }
-.mar__fundo { position: relative; height: clamp(360px, 72vh, 680px); }
-.mar__baleia { position: absolute; left: 0; top: 26%; width: 100%; }
-.mar__nado { width: clamp(170px, 20vw, 300px); animation: mar-nada 26s linear infinite; mix-blend-mode: screen; }
-/* a baleia nadando (vídeo do Higgsfield montado no Remotion, traço lavanda no preto: screen faz o preto sumir); além do
-   nado do vídeo, ela sobe e desce devagar com o nariz acompanhando */
-.mar__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; animation: mar-onda-y 2.6s ease-in-out infinite alternate, mar-onda-r 2.6s ease-in-out -1.3s infinite alternate; }
-@keyframes mar-onda-y { from { translate: 0 -18px; } to { translate: 0 18px; } }
-@keyframes mar-onda-r { from { rotate: 5deg; } to { rotate: -5deg; } }
-@keyframes mar-nada { from { transform: translateX(100vw); } to { transform: translateX(-110%); } }
-.mar__bolhas, .mar__peixes { position: absolute; inset: 0; }
-.mar__bolha { position: absolute; bottom: -20px; border: 2px solid var(--lavanda-2); border-radius: 50%; opacity: 0; animation: mar-bolha linear infinite; }
-@keyframes mar-bolha { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: .6; } 100% { opacity: 0; transform: translate(var(--b-x, 12px), -120vh); } }
-/* peixinhos (mar.js): cada um numa altura, tamanho, cor e velocidade; os que vão para a direita viram de lado */
-.mar__peixe { position: absolute; left: 0; aspect-ratio: 2; animation: peixe-esquerda linear infinite; }
-.mar__peixe svg { display: block; width: 100%; height: 100%; animation: peixe-onda 1.4s ease-in-out infinite alternate; }
-.mar__peixe--direita { animation-name: peixe-direita; }
-.mar__peixe--direita svg { scale: -1 1; }
-@keyframes peixe-esquerda { from { transform: translateX(105vw); } to { transform: translateX(-120px); } }
-@keyframes peixe-direita { from { transform: translateX(-120px); } to { transform: translateX(105vw); } }
-@keyframes peixe-onda { from { translate: 0 -6px; } to { translate: 0 6px; } }
-/* algas no fundo, balançando devagar */
-.mar__algas { position: absolute; left: 0; bottom: 0; width: 100%; height: clamp(120px, 22vh, 220px); max-width: none; fill: none; stroke: var(--lavanda); stroke-width: 7; stroke-linecap: round; opacity: .55; }
-.mar__algas path { transform-box: fill-box; transform-origin: 50% 100%; animation: alga 3.6s ease-in-out infinite alternate; }
-.mar__algas path:nth-child(2n) { stroke: var(--wine); animation-duration: 4.4s; animation-delay: -1.2s; }
-.mar__algas path:nth-child(3n) { animation-duration: 3s; animation-delay: -2s; }
-@keyframes alga { from { rotate: -5deg; } to { rotate: 5deg; } }
-/* menos movimento: tudo parado */
-.mar.is-calmo .mar__trilho, .mar.is-calmo .mar__nado, .mar.is-calmo .mar__video, .mar.is-calmo .mar__algas path { animation: none; }
-.mar.is-calmo .mar__nado { margin-inline: auto; }
+.mar__fundo { position: relative; height: clamp(380px, 76vh, 720px); }
+/* em pé (celular, tablet em pé) entra a versão em pé da cena; a seção fica na proporção dela, para a baleia caber inteira */
+@media (orientation: portrait) {
+  .mar { width: 100%; aspect-ratio: 900 / 1612; max-height: 120vh; }
+  .mar__fundo { height: auto; }
+}
+/* menos movimento: o e-mail para e a cena fica na foto parada (mar.js não toca o vídeo) */
+.mar.is-calmo .mar__trilho { animation: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* ================= RESPONSIVO ================= */

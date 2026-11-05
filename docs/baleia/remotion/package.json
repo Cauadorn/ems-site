@@ -1,11 +1,10 @@
 {
   "name": "ems-baleia",
   "private": true,
-  "description": "Monta os vídeos da jubarte do site (abertura e fundo do mar) a partir do traço animado no Higgsfield",
+  "description": "Monta o vídeo da jubarte da abertura do site a partir do traço animado no Higgsfield",
   "scripts": {
     "estudio": "remotion studio src/index.ts",
-    "abertura": "remotion render src/index.ts abertura out/abertura.mp4 --codec=h264 --crf=18",
-    "mar": "remotion render src/index.ts mar out/mar.mp4 --codec=h264 --crf=18"
+    "abertura": "remotion render src/index.ts abertura out/abertura.mp4 --codec=h264 --crf=18"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.540",
