@@ -24,6 +24,8 @@
       if (calma || tipo === 'back_forward' || (tipo === 'navigate' && deDentro)) document.documentElement.classList.add('is-loaded', 'sem-abertura');
     })();
   </script>
+  <!-- o desenho da baleia da abertura, para ela já estar pronta quando entrar -->
+  <link rel="preload" as="image" href="%BASE_URL%img/baleia/baleia-mascara.png">
   <script type="module" src="/src/js/main.js"></script>
 </head>
 <body id="topo">
@@ -32,16 +34,17 @@
 <div class="loader" data-loader aria-hidden="true">
   <div class="loader__ceu">
     <div class="loader__content">
-      <!-- a jubarte nadando: vídeo gerado no Higgsfield e montado no Remotion (traço violeta no branco; o branco some com
-           mix-blend-mode: multiply sobre o marfim). Fonte em docs/baleia/ -->
+      <!-- o lugar e o tamanho da jubarte (em cima do contador). Ela é desenhada com o corpo flexível na tela de baixo
+           (src/js/modules/baleia-gl.js); o vídeo só entra em navegador sem WebGL (fonte em docs/baleia/) -->
       <div class="loader__baleia" data-loader-baleia>
-        <video class="loader__video" src="%BASE_URL%img/baleia/abertura.mp4" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video>
+        <video class="loader__video" data-src="%BASE_URL%img/baleia/abertura.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
       </div>
       <p class="loader__count"><span data-loader-count>0</span>%</p>
       <p class="loader__line" lang="en">loading ideas with <em>personality</em></p>
     </div>
     <svg class="loader__spin loader__spin--a"><use href="#i-espiral"/></svg>
     <svg class="loader__spin loader__spin--b"><use href="#i-espiral"/></svg>
+    <canvas class="loader__tela" data-loader-tela aria-hidden="true"></canvas>
   </div>
   <!-- o mar: sobe quando a baleia mergulha e vira o violeta do topo -->
   <div class="loader__mar" data-loader-mar>

@@ -1,17 +1,21 @@
 /* ================= LOADER ================= */
-/* Abertura da jubarte (05/11, inspirada no peixe em neon do kenjilambert.com): a baleia nadando (vídeo do Higgsfield
-   montado no Remotion) entra em onda, dá uma volta no contador e sai; o traço vai do violeta ao rosa; o mar violeta sobe e
-   vira o topo do site (loader.js) */
+/* Abertura da jubarte (05/11, inspirada no peixe em neon do kenjilambert.com): a baleia de corpo flexível (o corpo curva
+   no caminho e a cauda bate; baleia-gl.js) entra em onda, dá uma volta no contador e sai; o traço vai do violeta ao rosa;
+   o mar violeta sobe e vira o topo do site (loader.js) */
 .loader { position: fixed; inset: 0; z-index: 9800; pointer-events: none; overflow: hidden; }
 .loader__ceu { position: absolute; inset: 0; background: var(--ivory); display: grid; place-items: center; overflow: hidden; pointer-events: auto; }
 /* sem z-index no conteúdo: o vídeo da baleia (traço violeta no branco) se mistura direto com o marfim do fundo
    (multiply: o branco some, o traço fica). Com z-index, o branco do vídeo apareceria como um retângulo */
 .loader__content { position: relative; display: grid; justify-items: center; gap: 10px; text-align: center; }
-.loader__baleia { width: clamp(140px, 16vw, 220px); mix-blend-mode: multiply; opacity: 0; }
-.loader__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.loader__baleia { width: clamp(130px, 15vw, 230px); aspect-ratio: 1371 / 780; mix-blend-mode: multiply; opacity: 0; }
+.loader__video { display: block; width: 100%; height: 100%; object-fit: contain; }
+/* a baleia de corpo flexível (WebGL, baleia-gl.js) é desenhada nesta tela, por cima do marfim */
+.loader__tela { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .loader__count { font-family: var(--f-display); font-size: clamp(3.5rem, 9vw, 6rem); line-height: 1; color: var(--violeta); font-variant-numeric: tabular-nums; }
 .loader__line { font-size: var(--t-small); color: var(--ameixa); letter-spacing: .02em; }
 .loader__line em { font-family: var(--f-serif); font-style: italic; font-size: 1.35em; color: var(--pink); }
+/* no celular a frase quebra em duas linhas: o bloco fica estreito e a baleia dá a volta sem passar por cima dela */
+@media (max-width: 600px) { .loader__line { max-width: 10em; line-height: 1.25; } }
 .loader__spin { position: absolute; width: 38vmin; height: 38vmin; color: var(--lavanda); opacity: .35; animation: spin 14s linear infinite; }
 .loader__spin--a { left: -8vmin; top: -8vmin; }
 .loader__spin--b { right: -10vmin; bottom: -10vmin; animation-direction: reverse; }
