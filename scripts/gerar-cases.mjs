@@ -307,7 +307,7 @@ ${p.resumo ? `        <p class="case-hero__text" data-intro${enT(pe.resumo)}>${e
 ` : ''}${p.entregas ? `        <ul class="case-hero__entregas" data-intro aria-label="O que entreguei"${enA('aria', 'What I delivered')}>${p.entregas.map((e, k) => `<li class="chip"${enT(pe.entregas?.[k])}>${esc(e)}</li>`).join('')}</ul>
 ` : ''}${p.colaboracao ? `        <p class="case-hero__colab" data-intro${en(`In collaboration with <a href="${esc(p.colaboracao.site)}" target="_blank" rel="noopener">${esc(p.colaboracao.nome)} <svg aria-hidden="true"><use href="#i-seta-diag"/></svg></a>`)}>Em colaboração com <a href="${esc(p.colaboracao.site)}" target="_blank" rel="noopener">${esc(p.colaboracao.nome)} <svg aria-hidden="true"><use href="#i-seta-diag"/></svg></a></p>
 ` : ''}      </div>
-${p.capaNoCase === false ? '' : `      <figure class="case-hero__thumb" data-intro><img src="${capa(p.slug)}" alt="${t}: capa do projeto"${enA('alt', `${p.title}: project cover`)} width="1600" height="1000" fetchpriority="high"></figure>
+${p.capaNoCase === false ? '' : `      <figure class="case-hero__thumb" data-intro><img src="${capa(p.slug)}" alt="${t}: capa do projeto"${enA('alt', `${p.title}: project cover`)} width="1600" height="1000" fetchpriority="high">${p.objeto3d ? `<picture class="case-hero__obj3d" aria-hidden="true"><source srcset="%BASE_URL%img/objetos/${p.objeto3d}-parado.webp" media="(prefers-reduced-motion: reduce)"><img src="%BASE_URL%img/objetos/${p.objeto3d}.webp" alt="" width="160" height="160" decoding="async"></picture>` : ''}</figure>
 `}    </div>
   </section>
 

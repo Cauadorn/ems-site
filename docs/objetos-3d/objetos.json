@@ -1,0 +1,49 @@
+{
+ "copo-bruninha": {
+  "tipo": "copo",
+  "img": "copo-bruninha.webp",
+  "W": 432,
+  "H": 840,
+  "cx": 210,
+  "yTopo": 61,
+  "yBase": 666,
+  "rTopo": 208.5,
+  "rBase": 152,
+  "elev": 9,
+  "dentro": "#ada225",
+  "borda": "#c9bd3a",
+  "margem": 0.958,
+  "zoom": 1.2
+ },
+ "copo-carnaval": {
+  "tipo": "copo",
+  "img": "copo-carnaval.webp",
+  "W": 510,
+  "H": 870,
+  "cx": 220,
+  "yTopo": 77,
+  "yBase": 700,
+  "rTopo": 212,
+  "rBase": 153,
+  "elev": 6.8,
+  "dentro": "#862c25",
+  "borda": "#a3392f",
+  "margem": 0.958,
+  "zoom": 1.2
+ },
+ "vela-almah": {
+  "tipo": "vela",
+  "img": "vela-almah.webp",
+  "W": 400,
+  "H": 400,
+  "cx": 199,
+  "yTopo": 24,
+  "yBase": 312,
+  "rTopo": 162,
+  "rBase": 162,
+  "elev": 3,
+  "dentro": "#e8d3b4",
+  "zoom": 1.42,
+  "margem": 0.95
+ }
+}

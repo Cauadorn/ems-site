@@ -1,14 +1,28 @@
-// Crachá da EMS no topo da home (pedido da Emilly em 05/11, inspirado no crachá do kenjilambert.com): um cordão de
-// verdade (pontos ligados, física de Verlet) preso atrás do menu, com o cartão na ponta. Ele cai quando o site abre,
-// balança, dá para puxar e jogar com o mouse ou o dedo, e vira no clique (verso com WhatsApp e Instagram).
-// Com "reduzir movimento", fica parado pendurado e só vira.
+// Crachá da EMS no topo da home (pedido da Emilly em 05/11, inspirado no crachá do kenjilambert.com). Ele cai quando o
+// site abre, balança, dá para puxar e jogar com o mouse ou o dedo, e vira no clique (verso com WhatsApp e Instagram).
+// Normalmente é o crachá 3D (cracha3d.js: cartão de verdade, que gira no ar e reflete a luz; o three.js só carrega
+// depois da abertura). Sem WebGL, ou com "reduzir movimento", fica o crachá abaixo, em 2D: um cordão de pontos (física
+// de Verlet) com o cartão na ponta; com "reduzir movimento", ele fica parado pendurado e só vira.
 
 const N = 10; // pontos do cordão
 const G = 2200; // gravidade (px/s²)
 
+const temWebGL = () => { try { return !!document.createElement('canvas').getContext('webgl2'); } catch (e) { return false; } };
+
 export function initCracha(reduced) {
   const root = document.querySelector('[data-cracha]');
   if (!root) return () => {};
+  if (reduced || !temWebGL()) return iniciar2D(root, reduced);
+  // 3D: carrega o three.js e o crachá; se algo falhar, entra o 2D
+  let soltar = null, pedido = false;
+  import('./cracha3d.js')
+    .then((m) => m.initCracha3D(root))
+    .catch(() => { root.classList.remove('cracha--3d'); root.querySelector('.cracha__tela')?.remove(); return iniciar2D(root, false); })
+    .then((s) => { soltar = s; if (pedido) s(); });
+  return () => { pedido = true; soltar?.(); };
+}
+
+function iniciar2D(root, reduced) {
   const hero = root.parentElement;
   const peca = root.querySelector('[data-cracha-peca]');
   const cartao = root.querySelector('[data-cracha-cartao]');

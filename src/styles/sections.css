@@ -162,6 +162,15 @@ html.idioma-esperando body { visibility: hidden; }
 .cracha__link:hover { background: var(--ivory); color: var(--ameixa); }
 .cracha__link svg { width: 1.25em; height: 1.25em; }
 .cracha__voltar { border: 0; background: none; color: var(--lavanda); font: inherit; font-size: calc(var(--cracha-w) * .066); text-decoration: underline; cursor: pointer; }
+/* crachá 3D (cracha3d.js): a tela do three.js desenha a fita e o cartão; o HTML do crachá fica por cima, invisível, como
+   área de toque (acompanha o cartão), texto do cursor e teclado (Tab mostra o contorno manteiga em volta do cartão) */
+.cracha__tela { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.cracha--3d .cracha__cordao { display: none; }
+.cracha--3d .cracha__peca { width: auto; perspective: none; }
+.cracha--3d .cracha__presilha, .cracha--3d .cracha__cartao { opacity: 0; }
+.cracha--3d .cracha__cartao { position: absolute; inset: 0; margin: 0; aspect-ratio: auto; }
+.cracha--3d .cracha__peca * { pointer-events: none; }
+.cracha--3d .cracha__peca:has(:focus-visible) { outline: 3px solid var(--manteiga); outline-offset: 6px; border-radius: 12px; }
 /* tablet em pé: o EMS cresce, o cordão vai mais para a borda */
 @media (orientation: portrait) and (min-width: 600px) { .cracha { --cracha-x: .1; --cracha-corda: 260; --cracha-w: 130px; } }
 /* celular: o crachá pendura do menu, no meio, entre o menu e o EMS; no verso ficam só os ícones (o texto é o nome do link) */
@@ -385,6 +394,11 @@ html.idioma-esperando body { visibility: hidden; }
 .site-footer__top:active { box-shadow: 1px 1px 0 var(--pink); }
 .site-footer__top svg { rotate: -90deg; transition: translate .4s var(--ease-back); }
 .site-footer__top:hover svg { translate: 0 -3px; }
+/* na home o rodapé sobe para dentro da pintura do fundo do mar (pedido da Emilly em 05/11: sobrava muito espaço embaixo):
+   os botões ficam por cima das pedras e algas, com um escurecido suave atrás para continuar fácil de ler */
+main:has(> .mar:last-child) + .site-footer { --mar-rodape: min(11vw, 24vh); position: relative; z-index: 1; margin-top: calc(-1 * var(--mar-rodape));
+  background: linear-gradient(to bottom, transparent 0, color-mix(in srgb, var(--ink) 55%, transparent) calc(var(--mar-rodape) * .6), var(--ink) var(--mar-rodape)); }
+@media (orientation: portrait) { main:has(> .mar:last-child) + .site-footer { --mar-rodape: 46vw; } }
 
 /* ================= FUNDO DO MAR ================= */
 /* só na home, entre o contato e o rodapé (05/11): o fundo do mar pintado e animado de verdade (jubarte, cardume, algas,
@@ -396,8 +410,8 @@ html.idioma-esperando body { visibility: hidden; }
 .mar { position: relative; width: 100%; aspect-ratio: 1920 / 860; min-height: 340px; max-height: 100vh; overflow: hidden; background: linear-gradient(to bottom, var(--roxo-fundo) 0%, var(--ameixa) 48%, var(--ink) 100%); }
 /* o topo da pintura (água vazia, sobra de quando o e-mail gigante passava por cima) fica cortado: object-position embaixo */
 .mar__video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 88%;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%); }
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 90%, transparent 100%); }
 /* em pé o topo da pintura é mais claro, perto do próprio violeta: ali o contato fica violeta e o mar começa nele */
 @media (orientation: portrait) {
   .mar { aspect-ratio: 900 / 1380; max-height: 110vh; background: linear-gradient(to bottom, var(--violeta) 0%, var(--ameixa) 48%, var(--ink) 100%); }

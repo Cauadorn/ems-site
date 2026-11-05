@@ -450,6 +450,7 @@ export const projects = [
     area: 'identidade',
     destaque: true, // case especial, em capítulos, a partir do brand book publicado no Behance em 19/10 (pedido da Emilly em 21/10)
     title: 'Almah',
+    objeto3d: 'vela-almah', // o produto em 3D saindo da capa no topo do case (public/img/objetos/; docs/objetos-3d/)
     category: 'Identidade visual',
     detail: 'Minha marca de velas artesanais · coleção Gênesis',
     year: '2026',
@@ -658,6 +659,7 @@ export const projects = [
     area: 'produtos',
     destaque: false,
     title: '24 da Bruninha',
+    objeto3d: 'copo-bruninha', // o produto em 3D saindo da capa no topo do case (public/img/objetos/; docs/objetos-3d/)
     category: 'Copo personalizado',
     detail: 'Copo EcoLabel para aniversário',
     year: '2026',
@@ -670,6 +672,7 @@ export const projects = [
     area: 'produtos',
     destaque: false,
     title: 'Carnaval 2026',
+    objeto3d: 'copo-carnaval', // o produto em 3D saindo da capa no topo do case (public/img/objetos/; docs/objetos-3d/)
     category: 'Copo personalizado',
     detail: 'Copo EcoLabel para o Carnaval',
     year: '2026',
