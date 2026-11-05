@@ -49,7 +49,8 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
 
 ## Regras da marca que não podem falhar
 - **Selo** (`src/assets/illustrations/selo-ems.svg`): é a arte ORIGINAL da Emilly. Nunca redesenhar, recolorir,
-  deformar ou girar (só o hero inclina 12°). Um redesenho foi reprovado.
+  deformar ou girar (só a 404 inclina 12°). Um redesenho foi reprovado. Na home, a boneca aparece só no crachá
+  (pedido da Emilly em 05/11; o carimbo sobre o S saiu).
 - **Cores, fontes, tamanhos, raios, sombras, curvas:** só os tokens. Cor nova = token novo em `tokens.css`,
   `tokens.json` e `DESIGN-SYSTEM.md`.
 - **Títulos:** Anton em CAIXA ALTA + uma palavra em Instrument Serif itálico. Texto em Inter.
@@ -60,7 +61,7 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
   tem que achar os projetos e o contato em até 2 cliques.
 
 ## O que já foi aprovado ou pedido pelo Cauã (não desfazer sem perguntar)
-- Hero no estilo pixel.melbourne: logo "EMS" em caixas, selo carimbado, etiquetas arrastáveis. A frase da marca
+- Hero no estilo pixel.melbourne: logo "EMS" em caixas, etiquetas arrastáveis (o selo carimbado saiu em 05/11). A frase da marca
   ficou em 2 linhas corridas e menores, em itálico (pedido da Emilly em 01/10: a de 3 linhas era grande demais).
 - Carrossel 3D igual ao da pixel.melbourne: anel circular, mínimo de 8 posições, vagas "próximo projeto"
   (`docs/referencia-pixel.md` e `src/js/modules/carousel.js`). Em 01/10 a Emilly pediu para o anel NÃO girar com a
@@ -103,6 +104,9 @@ Mesmo com o site na raiz do domínio, continue usando a base da tabela acima (`%
 - ALMAH: o case agora é o brand book do Behance (publicado em 19/10), em capítulos como o da Babi, com o cartão do Cauã
   (ele desenhou o logo). Se ela mudar o Behance de novo, baixar de lá e atualizar `capitulos` em `projects.js`.
 - Página de brand book do site: o que entra?
-- Jubarte (abertura e fundo do mar): a 1ª versão do desenho é do Claude (`src/assets/illustrations/jubarte.svg`). Se a
-  Emilly mandar o desenho dela, trocar mantendo as partes separadas (corpo, nadadeira, cauda, borrifo).
+- Jubarte (abertura e fundo do mar): gerada no Nano Banana Pro pelo Higgsfield (05/11; no Freepik/Magnific a API estava
+  sem créditos) e vetorizada em `src/assets/illustrations/jubarte-defs.svg`. Se a Emilly quiser outra, gerar de novo,
+  vetorizar e manter o corte da cauda (ver DESIGN-SYSTEM §6).
+- Inglês: em 05/11 ela pediu "um pouco do inglês"; entrou só nos detalhes novos (abertura, crachá, fundo do mar). Se ela
+  quiser o site inteiro em inglês (botão EN/PT, como o do Kenji), é outro trabalho: perguntar antes.
 - Prancheta de revisão com os prints do site: https://claude.ai/artifact/W3FVwhEdbnUmFAh2U1niwW

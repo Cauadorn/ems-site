@@ -28,6 +28,7 @@
 </head>
 <body id="topo">
 <!-- @include partials/icons.html -->
+<!-- @include src/assets/illustrations/jubarte-defs.svg -->
 
 <div class="loader" data-loader aria-hidden="true">
   <div class="loader__ceu">
@@ -36,7 +37,7 @@
         <!-- @include src/assets/illustrations/jubarte.svg -->
       </div>
       <p class="loader__count"><span data-loader-count>0</span>%</p>
-      <p class="loader__line">carregando ideias com <em>personalidade</em></p>
+      <p class="loader__line" lang="en">loading ideas with <em>personality</em></p>
     </div>
     <svg class="loader__spin loader__spin--a"><use href="#i-espiral"/></svg>
     <svg class="loader__spin loader__spin--b"><use href="#i-espiral"/></svg>
@@ -65,33 +66,32 @@
         <path id="cracha-cordao" data-cracha-cordao d=""/>
         <text dominant-baseline="central"><textPath href="#cracha-cordao" startOffset="6">itsemsdesign · itsemsdesign · itsemsdesign · itsemsdesign · itsemsdesign · itsemsdesign · itsemsdesign</textPath></text>
       </svg>
-      <div class="cracha__peca" data-cracha-peca data-cursor-text="me puxa">
+      <div class="cracha__peca" data-cracha-peca data-cursor-text="pull me">
         <span class="cracha__presilha" aria-hidden="true"></span>
         <div class="cracha__cartao" data-cracha-cartao>
           <button class="cracha__face cracha__face--frente" type="button" data-cracha-virar aria-label="Crachá da Emilly Silva, designer gráfico e UX/UI. Virar para ver o contato">
             <span class="cracha__furo" aria-hidden="true"></span>
             <img class="cracha__selo" src="/src/assets/illustrations/selo-ems.svg" alt="" width="544" height="705" draggable="false">
+            <span class="cracha__ola" lang="en">hello, my name is</span>
             <span class="cracha__nome">Emilly Silva</span>
-            <span class="cracha__cargo">designer gráfico e UX/UI</span>
+            <span class="cracha__cargo" lang="en">graphic &amp; UX/UI designer</span>
             <span class="cracha__faixa">@itsemsdesign</span>
           </button>
           <div class="cracha__face cracha__face--verso" inert>
             <span class="cracha__furo" aria-hidden="true"></span>
-            <p class="cracha__titulo">Vamos criar <em>juntos?</em></p>
+            <p class="cracha__titulo" lang="en">Let's create <em>together</em></p>
             <a class="cracha__link" href="https://wa.me/5531920060754?text=Oi%2C%20Emilly!%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg> (31) 92006-0754</a>
             <a class="cracha__link" href="https://www.instagram.com/itsemsdesign/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-instagram"/></svg> @itsemsdesign</a>
-            <button class="cracha__voltar" type="button" data-cracha-virar>virar de volta</button>
+            <button class="cracha__voltar" type="button" data-cracha-virar lang="en" aria-label="Virar o crachá de volta">flip back</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- logo gigante em caixas (no lugar do vídeo-logo da Pixel) -->
+    <!-- logo gigante em caixas (no lugar do vídeo-logo da Pixel). O selo carimbado no S saiu em 05/11: a Emilly pediu
+         a boneca só no crachá (aparecia duas vezes no topo) -->
     <div class="hero__logo" aria-hidden="true">
       <span class="hero__box" data-hero-box><span>E</span></span><span class="hero__box" data-hero-box><span>M</span></span><span class="hero__box" data-hero-box><span>S</span></span>
-      <div class="hero__seal" data-hero-seal data-mascote>
-        <!-- @include src/assets/illustrations/selo-ems.svg -->
-      </div>
     </div>
 
     <div class="hero__title-wrap">
@@ -275,10 +275,10 @@
 <!-- FUNDO DO MAR (05/11, inspirado no fim do kenjilambert.com): o e-mail gigante passando e a jubarte nadando; no fim
      ela mergulha, o mar clareia até o violeta do topo e o site volta para o começo (src/js/modules/mar.js) -->
 <section class="mar" data-mar aria-label="Fim da página">
-  <a class="mar__email" href="mailto:contatoemillyss@gmail.com" data-cursor-text="me manda um oi">
+  <a class="mar__email" href="mailto:contatoemillyss@gmail.com" data-cursor-text="say hi!">
     <span class="sr-only">Mandar e-mail para contatoemillyss@gmail.com</span>
     <span class="mar__trilho" aria-hidden="true">
-      <span>contatoemillyss@gmail.com</span><svg><use href="#i-brilho"/></svg><span>contatoemillyss@gmail.com</span><svg><use href="#i-brilho"/></svg>
+      <span lang="en">say hi</span><svg><use href="#i-brilho"/></svg><span>contatoemillyss@gmail.com</span><svg><use href="#i-brilho"/></svg><span lang="en">say hi</span><svg><use href="#i-brilho"/></svg><span>contatoemillyss@gmail.com</span><svg><use href="#i-brilho"/></svg>
     </span>
   </a>
   <div class="mar__fundo" aria-hidden="true">
@@ -290,7 +290,7 @@
     </div>
   </div>
   <div class="mar__superficie" data-mar-superficie aria-hidden="true">
-    <p class="mar__volta">de volta ao começo <svg><use href="#i-seta"/></svg></p>
+    <p class="mar__volta" lang="en">back to the top <svg><use href="#i-seta"/></svg></p>
   </div>
 </section>
 </body>

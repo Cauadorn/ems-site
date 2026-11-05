@@ -4,11 +4,12 @@
 .loader { position: fixed; inset: 0; z-index: 9800; pointer-events: none; overflow: hidden; }
 .loader__ceu { position: absolute; inset: 0; background: var(--ivory); display: grid; place-items: center; overflow: hidden; pointer-events: auto; }
 .loader__content { position: relative; z-index: 2; display: grid; justify-items: center; gap: 10px; text-align: center; }
-.loader__baleia { width: clamp(240px, 38vw, 500px); color: var(--violeta); }
+.loader__baleia { width: clamp(230px, 34vw, 460px); color: var(--violeta); }
 .loader__baleia .jubarte { display: block; width: 100%; height: auto; overflow: visible; }
-/* antes do JS: o traço ainda não está desenhado (não pisca a baleia inteira) */
-.loader__baleia .jubarte path { stroke-dasharray: 1; stroke-dashoffset: 1; }
-.loader__baleia .jubarte__pontos { opacity: 0; }
+/* antes do JS: a baleia ainda não apareceu (ela se revela da cabeça para a cauda, como um traço passando) e o borrifo
+   ainda não foi desenhado */
+.loader__baleia .jubarte { --revela: 0%; -webkit-mask-image: linear-gradient(90deg, #000 calc(var(--revela) - 12%), transparent var(--revela)); mask-image: linear-gradient(90deg, #000 calc(var(--revela) - 12%), transparent var(--revela)); }
+.loader__baleia .jubarte__borrifo path { stroke-dasharray: 1; stroke-dashoffset: 1; }
 .loader__count { font-family: var(--f-display); font-size: clamp(3.5rem, 9vw, 6rem); line-height: 1; color: var(--violeta); font-variant-numeric: tabular-nums; }
 .loader__line { font-size: var(--t-small); color: var(--ameixa); letter-spacing: .02em; }
 .loader__line em { font-family: var(--f-serif); font-style: italic; font-size: 1.35em; color: var(--pink); }
@@ -88,6 +89,7 @@
 .hero__box { display: block; padding: .04em .08em .05em; background: var(--ameixa); overflow: hidden; }
 .hero__box:nth-child(2) { background: var(--pink); }
 .hero__box span { display: block; }
+/* selo carimbado no S: só na 404 desde 05/11 (na home, a boneca fica só no crachá) */
 .hero__seal { position: absolute; right: -.62em; top: -.22em; width: .62em; rotate: 12deg; cursor: pointer; filter: drop-shadow(0 18px 24px rgba(42, 20, 51, .45)); }
 .hero__seal svg { width: 100%; height: auto; overflow: visible; }
 
@@ -131,8 +133,9 @@
 .cracha__face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; padding: 16% 9% 0; border: 0; border-radius: calc(var(--cracha-w) * .08); background: var(--ivory); color: var(--ink); box-shadow: 4px 4px 0 var(--ink); backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; font: inherit; text-align: center; cursor: inherit; }
 .cracha__face--verso { justify-content: center; gap: 7%; padding: 14% 8% 8%; background: var(--ameixa); color: var(--ivory); transform: rotateY(180deg); }
 .cracha__furo { position: absolute; top: 5%; left: 50%; width: 30%; height: 4.4%; translate: -50% 0; border-radius: 99px; background: var(--violeta); }
-.cracha__selo { width: 56%; height: auto; pointer-events: none; }
-.cracha__nome { margin-top: 7%; font-family: var(--f-display); font-size: calc(var(--cracha-w) * .145); line-height: 1; text-transform: uppercase; }
+.cracha__selo { width: 48%; height: auto; pointer-events: none; }
+.cracha__ola { margin-top: 5%; font-family: var(--f-serif); font-style: italic; font-size: calc(var(--cracha-w) * .085); line-height: 1; color: var(--violeta); }
+.cracha__nome { margin-top: 2%; font-family: var(--f-display); font-size: calc(var(--cracha-w) * .145); line-height: 1; text-transform: uppercase; }
 .cracha__cargo { margin-top: 4%; font-size: calc(var(--cracha-w) * .074); line-height: 1.25; color: var(--ameixa); }
 .cracha__faixa { position: absolute; inset: auto 0 0; padding: 5% 0 6%; background: var(--violeta); color: var(--ivory); font-size: calc(var(--cracha-w) * .07); font-weight: 700; letter-spacing: .06em; }
 .cracha__titulo { font-family: var(--f-display); font-size: calc(var(--cracha-w) * .13); line-height: .95; text-transform: uppercase; }
@@ -371,10 +374,9 @@
 .mar__nado { width: clamp(220px, 30vw, 440px); color: var(--lavanda-2); animation: mar-nada 18s linear infinite; }
 .mar__nado .jubarte { display: block; width: 100%; height: auto; overflow: visible; }
 .mar__nado .jubarte__borrifo { display: none; }
-.mar__nado .jubarte__cauda { transform-box: view-box; transform-origin: 528px 149px; animation: mar-cauda 1.2s ease-in-out infinite alternate; }
-.mar__nado .jubarte__nadadeira { transform-box: view-box; transform-origin: 252px 222px; animation: mar-cauda 1.6s ease-in-out infinite alternate-reverse; }
+.mar__nado .jubarte__cauda { transform-box: view-box; transform-origin: 1410px 520px; animation: mar-cauda 1.2s ease-in-out infinite alternate; }
 @keyframes mar-nada { from { transform: translateX(100vw); } to { transform: translateX(-110%); } }
-@keyframes mar-cauda { from { rotate: -8deg; } to { rotate: 8deg; } }
+@keyframes mar-cauda { from { rotate: -6deg; } to { rotate: 6deg; } }
 .mar__bolhas { position: absolute; inset: 0; }
 .mar__bolha { position: absolute; bottom: -20px; border: 2px solid var(--lavanda-2); border-radius: 50%; opacity: 0; animation: mar-bolha linear infinite; }
 @keyframes mar-bolha { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: .6; } 100% { opacity: 0; transform: translate(var(--b-x, 12px), -120vh); } }
@@ -382,7 +384,7 @@
 .mar__volta { display: inline-flex; align-items: center; gap: 8px; font-size: var(--t-small); opacity: .85; }
 .mar__volta svg { width: 16px; height: 16px; rotate: 90deg; }
 /* menos movimento: o e-mail e a baleia ficam parados e não há volta automática para o começo */
-.mar.is-calmo .mar__trilho, .mar.is-calmo .mar__nado, .mar.is-calmo .jubarte__cauda, .mar.is-calmo .jubarte__nadadeira { animation: none; }
+.mar.is-calmo .mar__trilho, .mar.is-calmo .mar__nado, .mar.is-calmo .jubarte__cauda { animation: none; }
 .mar.is-calmo .mar__nado { margin-inline: auto; }
 .mar.is-calmo .mar__superficie { display: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

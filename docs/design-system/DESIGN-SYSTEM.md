@@ -32,6 +32,11 @@
 | "Marca boa é a que as pessoas reconhecem." | "Minimalismo virou desculpa…" em tamanho gigante (reprovado por ser emotivo demais) |
 | Botões com verbo + objeto: "Ver projetos", "Quero uma marca" | "Clique aqui", "Saiba mais" |
 
+**Um pouco de inglês (pedido da Emilly em 05/11, inspirada no kenjilambert.com):** só nos detalhes novos, com
+`lang="en"`: "loading ideas with *personality*" (abertura), "hello, my name is", "graphic & UX/UI designer",
+"Let's create *together*", "flip back" e "pull me" (crachá), "say hi" e "back to the top" (fundo do mar). O resto do
+site continua em português.
+
 ---
 
 ## 2. Selo (logo)
@@ -43,8 +48,9 @@
 - Já tem borda de adesivo (contorno branco + violeta): funciona sobre qualquer fundo da paleta.
 - **Tamanho mínimo:** 28 px de largura na tela (favicon/cabeçalho usam 30–34 px).
 - **Área de proteção:** 25% da largura do selo livre em volta.
-- **Uso inclinado:** só no hero, como carimbo sobre o "S" do logo, a 12°, com sombra
-  `drop-shadow(0 18px 24px rgba(42,20,51,.45))`. Em qualquer outro lugar, reto.
+- **Uso inclinado:** só na 404, como carimbo sobre o "S" do logo, a 12°, com sombra
+  `drop-shadow(0 18px 24px rgba(42,20,51,.45))`. Em qualquer outro lugar, reto. Na home o carimbo saiu em 05/11: a
+  Emilly pediu a boneca só no crachá (ela aparecia duas vezes no topo).
 - **Movimento permitido:** inclinar em 3D seguindo o cursor (até 9° em Y e 7° em X), pequeno "aceno" de −8° no
   clique, entrada com escala 0 → 1. Nunca girar continuamente nem deformar.
 - **Exceção aprovada (pedido da Emilly em 05/11):** o selo vai reto na frente do crachá do topo. O crachá balança no
@@ -167,7 +173,7 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 | Estrela da Emilly | estrela cheia de 5 pontas com uma auréola em forma de estrela maior, de pontos em grade que diminuem para fora (`src/assets/illustrations/estrela-ems.svg`, usada como máscara: `.estrela`) | fundo do hero, da 404 e do manifesto, na cor tinta; cor por `color` |
 | Espiral | espiral de Arquimedes, traço 6, pontas redondas | ícone de Identidade visual, abertura, menu, contato |
 | Cereja | par de cerejas com cabo e folha em `#3D1C46`, frutas na cor do `color` | adesivo do hero, Social & peças |
-| Jubarte | baleia jubarte em traço 6 (pregas em traço 4), pontas redondas, cor por `color`: corpo, nadadeira, cauda e borrifo separados para animar (`src/assets/illustrations/jubarte.svg`). 1ª versão feita pelo Claude em 05/11; a Emilly pode trocar pelo desenho dela | abertura, fundo do mar |
+| Jubarte | baleia jubarte em traço (contorno, pregas, calombos e nadadeiras compridas), cor por `color`. Gerada no Nano Banana Pro (Higgsfield) a pedido da Emilly em 05/11 e vetorizada: o desenho fica uma vez em `jubarte-defs.svg` e `jubarte.svg` usa em duas partes (corpo e cauda, cortados em x 1410, que bate em volta de 1410 520) + o borrifo em traço 22 | abertura, fundo do mar |
 | XOXO | X e O desenhados em traço 8 | adesivo do hero |
 | Brilho | estrela de 4 pontas | acento, pisca (2,4 s) |
 | Coração | coração cheio | faixa lavanda, easter egg |
@@ -360,7 +366,7 @@ texto e dois botões ("Ver projetos", "Ir pro início").
 | rápido / base / lento | 250 / 350 / 700 ms | hover / botão / cartão |
 
 **Abertura (toca ao abrir ou recarregar a home; pula ao voltar de outra página do site; clique pula):** a jubarte, em
-traço, se desenha no fundo marfim (1,1 s) e nada no lugar (cauda e nadadeira batendo) enquanto o contador vai de 0 a 100%
+traço, aparece da cabeça para a cauda no fundo marfim (máscara que passa, 1,3 s) e nada no lugar (cauda e nadadeira batendo) enquanto o contador vai de 0 a 100%
 (2,4 s) e o traço passa do violeta ao rosa → em 100% ela borrifa, salta (nariz para cima) e mergulha (nariz para baixo)
 → o mar violeta, com a crista em onda, sobe e cobre a tela (1 s) e vira o topo do site. Pedido da Emilly em 05/11,
 inspirado no peixe em neon do kenjilambert.com (antes: selo + contador + três cortinas).
@@ -374,7 +380,7 @@ em marfim-lavanda; o mar clareia do tinta ao violeta e, perto do fim, ela mergul
 o violeta do topo ("de volta ao começo"): quando ela cobre a tela, o site volta para o começo, o topo entra de novo e
 o crachá cai outra vez.
 
-**Hero:** letras do EMS sobem das caixas (intervalo .08 s) → selo carimba (escala 0, −40°) → as duas linhas entram
+**Hero:** letras do EMS sobem das caixas (intervalo .08 s) → as duas linhas entram
 pelos lados (+20%, −15%, +12%, com opacidade) → etiquetas e adesivos pulam (escala 0 → 1, `back.out(3)`) → rodapé
 do hero sobe. Depois: logo respira em loop; adesivos flutuam (±12 px, 2,2–3,1 s); brilhos piscam.
 
@@ -404,7 +410,7 @@ aparece no lugar. O crachá fica pendurado parado (ainda vira) e o fundo do mar 
 ## 10. Estrutura da home (ordem e fundos)
 
 1. **Abertura** (marfim + a jubarte; o mar violeta sobe e vira o topo)
-2. **Hero** — violeta; logo EMS + selo; frase em 2 linhas corridas, serif itálico marfim com destaque manteiga:
+2. **Hero** — violeta; logo EMS (o selo saiu em 05/11: ele fica no crachá); frase em 2 linhas corridas, serif itálico marfim com destaque manteiga:
    "Faço marca bonita *de perto* / e clara *de longe*."; etiquetas; CTA; o crachá pendurado à esquerda
 3. **Faixas** cruzadas (vinho sobre lavanda); em volta, violeta em cima e ameixa embaixo
 4. **Projetos** — ameixa; "(01) Trabalhos que têm *cara*"; carrossel 3D ou lista + botão "Ver todos os projetos"
@@ -470,7 +476,7 @@ Os botões "ver case" do carrossel e da lista abrem a página de case do projeto
 | Abertura, hero, reveals | `src/js/modules/loader.js`, `reveal.js` |
 | Crachá do topo | `src/js/modules/cracha.js` (estilo em `sections.css`, `.cracha`) |
 | Fundo do mar e volta ao começo | `src/js/modules/mar.js` (estilo em `sections.css`, `.mar`) |
-| Jubarte | `src/assets/illustrations/jubarte.svg` |
+| Jubarte | `src/assets/illustrations/jubarte.svg` (partes) + `jubarte-defs.svg` (o desenho, uma vez por página) |
 | Base de todas as páginas (rolagem, cabeçalho, menu, cursor) | `src/js/modules/site.js` (home: `main.js`; cases e 404: `page.js`) |
 | Referência técnica da Pixel | `docs/referencia-pixel.md` |
 

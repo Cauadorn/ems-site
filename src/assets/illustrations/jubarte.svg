@@ -1,26 +1,11 @@
-<svg class="jubarte" viewBox="0 0 640 320" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-  <!-- Jubarte em traço (1ª versão, feita pelo Claude a pedido da Emilly em 05/11; ela pode trocar pelo desenho dela).
-       Partes separadas para animar: corpo, nadadeira, cauda e borrifo. pathLength="1" deixa o traço se desenhar. -->
-  <g class="jubarte__corpo">
-    <path pathLength="1" d="M64 160 C78 130 120 100 180 92 C250 82 330 90 390 104 C400 106 406 98 414 92 C416 100 420 108 430 116 C466 126 500 138 528 146"/>
-    <path pathLength="1" d="M64 160 C70 190 110 216 175 222 C250 230 330 222 390 200 C450 180 500 160 528 152"/>
-    <path pathLength="1" d="M66 162 C96 172 136 178 180 178 C186 178 190 174 190 170"/>
-    <path pathLength="1" d="M98 187 C150 202 220 208 300 206" stroke-width="4"/>
-    <path pathLength="1" d="M124 201 C172 212 226 216 282 215" stroke-width="4"/>
-  </g>
-  <g class="jubarte__pontos" fill="currentColor" stroke="none">
-    <circle cx="198" cy="164" r="4.5"/>
-    <circle cx="90" cy="136" r="4.5"/><circle cx="110" cy="122" r="4.5"/><circle cx="132" cy="112" r="4.5"/><circle cx="156" cy="104" r="4.5"/>
-  </g>
-  <g class="jubarte__nadadeira">
-    <path pathLength="1" d="M248 222 Q256 234 266 238 Q274 250 288 254 Q298 266 314 270 Q330 280 356 288 C366 291 372 282 364 277 C336 258 306 238 284 222"/>
-  </g>
-  <g class="jubarte__cauda">
-    <path pathLength="1" d="M528 146 C550 132 566 108 598 94 C606 91 611 99 605 105 C592 119 582 133 574 147 Q570 149 574 153 C582 165 592 179 605 193 C611 199 606 207 598 204 C566 190 550 166 528 152"/>
-  </g>
-  <g class="jubarte__borrifo">
-    <path pathLength="1" d="M200 84 C196 68 188 56 176 48"/>
-    <path pathLength="1" d="M207 82 L209 50"/>
-    <path pathLength="1" d="M214 84 C220 68 228 58 240 50"/>
+<svg class="jubarte" viewBox="0 0 1982 1141" fill="currentColor" aria-hidden="true">
+  <!-- Jubarte (05/11, Nano Banana Pro + vetor): o desenho mora em jubarte-defs.svg (incluído uma vez na página).
+       Partes para animar: o corpo, a cauda (bate em volta da junta 1410 520) e o borrifo (traço que se desenha) -->
+  <g class="jubarte__corpo" clip-path="url(#jubarte-corte-corpo)"><use href="#jubarte-desenho" width="1982" height="1141"/></g>
+  <g class="jubarte__cauda"><g clip-path="url(#jubarte-corte-cauda)"><use href="#jubarte-desenho" width="1982" height="1141"/></g></g>
+  <g class="jubarte__borrifo" fill="none" stroke="currentColor" stroke-width="22" stroke-linecap="round">
+    <path pathLength="1" d="M628 214 C610 150 580 104 536 70"/>
+    <path pathLength="1" d="M652 208 L660 64"/>
+    <path pathLength="1" d="M676 214 C700 150 732 108 778 78"/>
   </g>
 </svg>

@@ -10,7 +10,6 @@ export function heroIntro(reduced, deNovo = false) {
   const main = 'expo.inOut'; // aproxima a curva "main" da Pixel (0.65, 0.01, 0.05, 0.99)
   gsap.timeline({ defaults: { ease: main, duration: .9 } })
     .from('[data-hero-box] > span', { yPercent: 105, stagger: .08 })
-    .from('[data-hero-seal]', { scale: 0, rotate: -40, duration: .8, ease: 'back.out(2)' }, '-=.3')
     .from('[data-hero-line]', { xPercent: (i, el) => Number(el.dataset.from), opacity: 0, stagger: .1 }, '<-.2')
     .from('[data-hero-pop], .hero .sparkle', { scale: 0, duration: .6, ease: 'back.out(3)', stagger: .08 }, '-=.4')
     .from('[data-hero-item]', { y: 24, opacity: 0, duration: .7 }, '<');
