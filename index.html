@@ -270,23 +270,14 @@
 
 <!-- @include partials/contact.html -->
 
-  <!-- FUNDO DO MAR (05/11, só na home): o e-mail gigante passando sobre o fundo do mar pintado e animado de verdade
-       (cena gerada no Higgsfield: jubarte, cardume, algas, raios de luz e bolhas, em loop; versão deitada e em pé,
-       escolhida em src/js/modules/mar.js). A página termina no rodapé, com o botão de voltar ao topo (a Emilly não quis a
-       volta automática para o começo) -->
-  <section class="mar" data-mar aria-label="Fundo do mar" data-en-aria="Deep sea">
-    <div class="mar__cena" aria-hidden="true">
-      <video class="mar__video" muted loop playsinline preload="none" aria-hidden="true" data-mar-video
-        data-largo="%BASE_URL%img/mar/cena-largo.mp4" data-largo-poster="%BASE_URL%img/mar/cena-largo.webp"
-        data-alto="%BASE_URL%img/mar/cena-alto.mp4" data-alto-poster="%BASE_URL%img/mar/cena-alto.webp"></video>
-    </div>
-    <a class="mar__email" href="mailto:contatoemillyss@gmail.com" data-cursor-text="say hi!">
-      <span class="sr-only" data-en="Email contatoemillyss@gmail.com">Mandar e-mail para contatoemillyss@gmail.com</span>
-      <span class="mar__trilho" aria-hidden="true">
-        <span lang="en">say hi</span><svg><use href="#i-brilho"/></svg><span>contatoemillyss@gmail.com</span><svg><use href="#i-brilho"/></svg><span lang="en">say hi</span><svg><use href="#i-brilho"/></svg><span>contatoemillyss@gmail.com</span><svg><use href="#i-brilho"/></svg>
-      </span>
-    </a>
-    <div class="mar__fundo" aria-hidden="true"></div>
+  <!-- FUNDO DO MAR (05/11, só na home): o fundo do mar pintado e animado de verdade (cena gerada no Higgsfield: jubarte,
+       cardume, algas, raios de luz e bolhas, em loop; versão deitada e em pé, escolhida em src/js/modules/mar.js).
+       Só decoração: o e-mail gigante que passava por cima saiu a pedido da Emilly (05/11); o contato continua logo acima
+       e no rodapé. A página termina no rodapé, com o botão de voltar ao topo (ela não quis a volta automática) -->
+  <section class="mar" data-mar aria-hidden="true">
+    <video class="mar__video" muted loop playsinline preload="none" aria-hidden="true" data-mar-video
+      data-largo="%BASE_URL%img/mar/cena-largo.mp4" data-largo-poster="%BASE_URL%img/mar/cena-largo.webp"
+      data-alto="%BASE_URL%img/mar/cena-alto.mp4" data-alto-poster="%BASE_URL%img/mar/cena-alto.webp"></video>
   </section>
 </main>
 

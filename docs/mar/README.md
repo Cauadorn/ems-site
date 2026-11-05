@@ -2,7 +2,7 @@
 
 Pedido da Emilly em 05/11: "o fundo do mar bonito não é só a baleia, é tudo. Não quero vetor, quero movimentos fluidos."
 Por isso a seção inteira é uma cena pintada e animada em vídeo (jubarte, cardume, peixinhos, algas, raios de luz, bolhas
-e partículas). Ali não há nada desenhado em vetor. O e-mail gigante passa por cima.
+e partículas). Ali não há nada desenhado em vetor. (O e-mail gigante que passava por cima ela também não quis.)
 
 No site:
 
@@ -11,8 +11,8 @@ No site:
   vídeo tocar e com "reduzir movimento", são `cena-largo.webp` e `cena-alto.webp`.
 - **Escolha da versão, carregamento e play/pausa:** `src/js/modules/mar.js`. O vídeo só baixa perto da tela e só toca
   enquanto aparece.
-- **Estilo:** `src/styles/sections.css`, em `.mar`. Em cima e embaixo o vídeo some (máscara em degradê) no violeta do
-  contato e no tinta do rodapé. Em pé, a seção fica na proporção do vídeo, para a baleia caber inteira.
+- **Estilo:** `src/styles/sections.css`, em `.mar`. A seção fica na proporção do vídeo (deitado ou em pé), para a
+  pintura aparecer inteira. Em cima e embaixo o vídeo some (máscara em degradê) no violeta do contato e no tinta do rodapé.
 
 ## Como foi feita (para refazer ou trocar)
 

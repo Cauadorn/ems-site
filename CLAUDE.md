@@ -73,8 +73,8 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
   Ela reprovou o desenho vetorizado parado ("duro"), o borrifo, o salto, a baleia grande e ela nadando reto.
 - Crachá no topo (05/11): o selo original vai no crachá, que cai preso no cordão "itsemsdesign", balança, dá para puxar
   e vira mostrando WhatsApp e Instagram (`src/js/modules/cracha.js`).
-- Fundo do mar no fim da home (05/11), entre o contato e o rodapé: e-mail gigante passando sobre uma cena pintada e animada
-  em vídeo (Higgsfield; nada em vetor, pedido dela: "quero movimentos fluidos"): a jubarte nadando, cardume, peixinhos,
+- Fundo do mar no fim da home (05/11), entre o contato e o rodapé: uma cena pintada e animada em vídeo (Higgsfield; nada
+  em vetor, pedido dela: "quero movimentos fluidos"; o e-mail gigante por cima ela tirou): a jubarte nadando, cardume, peixinhos,
   bolhas e algas (`src/js/modules/mar.js`). Ela NÃO quis a volta automática para o começo: a página termina no rodapé,
   com o botão de voltar ao topo.
 

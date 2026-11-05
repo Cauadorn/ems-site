@@ -6,7 +6,6 @@ export function initMar(reduced) {
   const mar = document.querySelector('[data-mar]');
   const video = mar?.querySelector('[data-mar-video]');
   if (!mar || !video) return;
-  if (reduced) mar.classList.add('is-calmo');
 
   const emPe = matchMedia('(orientation: portrait)');
   let visivel = false;

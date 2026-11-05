@@ -384,11 +384,11 @@ contador e não gostou da baleia grande, do borrifo, do salto nem dela nadando r
 (no celular, no meio, embaixo do menu). Dá para puxar e jogar (mouse e dedo); no clique vira e mostra "Vamos criar
 *together*", o WhatsApp e o Instagram. Física de cordão (Verlet), sem biblioteca.
 
-**Fundo do mar (05/11, só na home, entre o contato e o rodapé):** o e-mail gigante em Anton passando e, embaixo, o mar
+**Fundo do mar (05/11, só na home, entre o contato e o rodapé):** o mar
 pintado e animado de verdade (vídeo em loop: a jubarte nadando, o cardume girando, as algas balançando, os raios de luz e
 as bolhas), que some em cima no violeta do contato e embaixo no tinta do rodapé. A Emilly não quis nada em vetor ali:
 "quero movimentos fluidos". O vídeo só baixa perto da tela e só toca enquanto aparece; com "reduzir movimento" fica a
-imagem parada. Sem volta automática para o
+imagem parada. O e-mail gigante que passava por cima saiu (a Emilly não quis). Sem volta automática para o
 começo (a Emilly não quis): a página termina no rodapé, com o botão redondo de voltar ao topo.
 
 **Hero:** letras do EMS sobem das caixas (intervalo .08 s) → as duas linhas entram
@@ -436,7 +436,7 @@ aparece no lugar. O crachá fica pendurado parado (ainda vira) e o fundo do mar 
     (vazados) + botão redondo manteiga "voltar ao topo" (seta pra cima, sombra dura rosa); embaixo, separado por uma
     linha fina, © + "atendo todo o Brasil". No celular os botões ficam um embaixo do outro, na largura toda. Aparece em
     todas as páginas, então o contato está sempre a um clique. O "ems" gigante saiu em 01/10.
-11. **Fundo do mar** (só na home, entre o Contato e o Rodapé) — violeta → ameixa → tinta; e-mail gigante passando,
+11. **Fundo do mar** (só na home, entre o Contato e o Rodapé) — violeta → ameixa → tinta;
     cena pintada e animada: jubarte, cardume, algas, luz e bolhas (05/11)
 
 Os botões "ver case" do carrossel e da lista abrem a página de case do projeto, na mesma aba.
