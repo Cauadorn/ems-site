@@ -268,30 +268,37 @@
   </section>
 
 <!-- @include partials/contact.html -->
+
+  <!-- FUNDO DO MAR (05/11, só na home): o e-mail gigante passando e, embaixo, o mar escurecendo até o rodapé, com a jubarte
+       nadando, peixinhos, bolhas e algas (src/js/modules/mar.js). A página termina no rodapé, com o botão de voltar ao
+       topo (a Emilly não quis a volta automática para o começo) -->
+  <section class="mar" data-mar aria-label="Fundo do mar" data-en-aria="Deep sea">
+    <a class="mar__email" href="mailto:contatoemillyss@gmail.com" data-cursor-text="say hi!">
+      <span class="sr-only" data-en="Email contatoemillyss@gmail.com">Mandar e-mail para contatoemillyss@gmail.com</span>
+      <span class="mar__trilho" aria-hidden="true">
+        <span lang="en">say hi</span><svg><use href="#i-brilho"/></svg><span>contatoemillyss@gmail.com</span><svg><use href="#i-brilho"/></svg><span lang="en">say hi</span><svg><use href="#i-brilho"/></svg><span>contatoemillyss@gmail.com</span><svg><use href="#i-brilho"/></svg>
+      </span>
+    </a>
+    <div class="mar__fundo" aria-hidden="true">
+      <div class="mar__bolhas" data-mar-bolhas></div>
+      <div class="mar__peixes" data-mar-peixes></div>
+      <div class="mar__baleia">
+        <div class="mar__nado">
+          <!-- @include src/assets/illustrations/jubarte.svg -->
+        </div>
+      </div>
+      <svg class="mar__algas" viewBox="0 0 1440 220" preserveAspectRatio="xMidYMax slice">
+        <path d="M70 220 C55 170 92 130 74 80 C64 52 80 30 76 10"/><path d="M110 220 C126 180 96 140 112 104"/>
+        <path d="M300 220 C286 176 318 140 302 96 C292 70 308 50 302 30"/><path d="M336 220 C350 190 326 160 340 128"/>
+        <path d="M640 220 C628 186 654 156 642 120"/>
+        <path d="M980 220 C966 170 1000 132 984 86 C974 58 990 36 984 14"/><path d="M1018 220 C1032 188 1006 156 1020 120"/>
+        <path d="M1300 220 C1288 178 1318 146 1304 104 C1296 80 1310 60 1304 40"/><path d="M1340 220 C1354 192 1330 164 1342 136"/>
+      </svg>
+    </div>
+  </section>
 </main>
 
 <!-- @include partials/footer.html -->
 
-<!-- FUNDO DO MAR (05/11, inspirado no fim do kenjilambert.com): o e-mail gigante passando e a jubarte nadando; no fim
-     ela mergulha, o mar clareia até o violeta do topo e o site volta para o começo (src/js/modules/mar.js) -->
-<section class="mar" data-mar aria-label="Fim da página" data-en-aria="End of page">
-  <a class="mar__email" href="mailto:contatoemillyss@gmail.com" data-cursor-text="say hi!">
-    <span class="sr-only" data-en="Email contatoemillyss@gmail.com">Mandar e-mail para contatoemillyss@gmail.com</span>
-    <span class="mar__trilho" aria-hidden="true">
-      <span lang="en">say hi</span><svg><use href="#i-brilho"/></svg><span>contatoemillyss@gmail.com</span><svg><use href="#i-brilho"/></svg><span lang="en">say hi</span><svg><use href="#i-brilho"/></svg><span>contatoemillyss@gmail.com</span><svg><use href="#i-brilho"/></svg>
-    </span>
-  </a>
-  <div class="mar__fundo" aria-hidden="true">
-    <div class="mar__bolhas" data-mar-bolhas></div>
-    <div class="mar__baleia" data-mar-baleia>
-      <div class="mar__nado">
-        <!-- @include src/assets/illustrations/jubarte.svg -->
-      </div>
-    </div>
-  </div>
-  <div class="mar__superficie" data-mar-superficie aria-hidden="true">
-    <p class="mar__volta" lang="en">back to the top <svg><use href="#i-seta"/></svg></p>
-  </div>
-</section>
 </body>
 </html>

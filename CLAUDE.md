@@ -72,8 +72,9 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
   o fôlego dela, em 100% ela borrifa, salta e mergulha e o mar violeta sobe e vira o topo (inspirado no kenjilambert.com).
 - Crachá no topo (05/11): o selo original vai no crachá, que cai preso no cordão "itsemsdesign", balança, dá para puxar
   e vira mostrando WhatsApp e Instagram (`src/js/modules/cracha.js`).
-- Fundo do mar no fim da home (05/11): e-mail gigante passando e a jubarte nadando; na última tela o site volta para o
-  começo (`src/js/modules/mar.js`).
+- Fundo do mar no fim da home (05/11), entre o contato e o rodapé: e-mail gigante passando, a jubarte nadando, peixinhos,
+  bolhas e algas (`src/js/modules/mar.js`). Ela NÃO quis a volta automática para o começo: a página termina no rodapé,
+  com o botão de voltar ao topo.
 
 ## Onde mexer
 | Quero mudar | Arquivo |

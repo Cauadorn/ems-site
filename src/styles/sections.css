@@ -374,17 +374,18 @@ html.idioma-esperando body { visibility: hidden; }
 .site-footer__top:hover svg { translate: 0 -3px; }
 
 /* ================= FUNDO DO MAR ================= */
-/* depois do rodapé, só na home (05/11): o e-mail gigante passando, a jubarte nadando e as bolhas; o mar clareia do
-   tinta ao violeta e a última tela (a superfície) é o violeta do topo: ao chegar nela, o site volta para o começo */
-.mar { position: relative; overflow: hidden; color: var(--ivory); background: var(--ink); }
-.mar__email { display: block; padding: clamp(40px, 7vw, 96px) 0 0; overflow: hidden; color: var(--ivory); text-decoration: none; }
+/* só na home, entre o contato e o rodapé (05/11): o e-mail gigante passando e o mar escurecendo do violeta do contato
+   ao tinta do rodapé, com a jubarte nadando em onda, peixinhos, bolhas e algas. Sem volta automática para o começo:
+   a página termina no rodapé, com o botão de voltar ao topo */
+.mar { position: relative; overflow: hidden; color: var(--ivory); background: linear-gradient(to bottom, var(--violeta) 0%, var(--ameixa) 48%, var(--ink) 100%); }
+.mar__email { display: block; padding: clamp(24px, 4vw, 56px) 0 0; overflow: hidden; color: var(--ivory); text-decoration: none; }
 .mar__trilho { display: inline-flex; align-items: center; gap: .25em; white-space: nowrap; font-family: var(--f-display); font-size: clamp(4.5rem, 15vw, 15rem); line-height: 1; text-transform: uppercase; animation: mar-corre 26s linear infinite; }
 .mar__trilho svg { width: .32em; height: .32em; flex: none; color: var(--manteiga); }
 .mar__email:hover .mar__trilho { color: var(--manteiga); }
 @keyframes mar-corre { to { transform: translateX(-50%); } }
-.mar__fundo { position: relative; height: clamp(360px, 70vh, 680px); background: linear-gradient(to bottom, var(--ink) 0%, var(--ameixa) 45%, var(--violeta) 100%); }
-.mar__baleia { position: absolute; left: 0; top: 18%; width: 100%; }
-.mar__nado { width: clamp(140px, 17vw, 250px); color: var(--lavanda-2); animation: mar-nada 18s linear infinite; }
+.mar__fundo { position: relative; height: clamp(360px, 72vh, 680px); }
+.mar__baleia { position: absolute; left: 0; top: 26%; width: 100%; }
+.mar__nado { width: clamp(140px, 17vw, 250px); color: var(--lavanda-2); animation: mar-nada 22s linear infinite; }
 /* nadando em onda: sobe e desce, e o nariz acompanha (a inclinação vem um quarto de volta antes da altura) */
 .mar__nado .jubarte { display: block; width: 100%; height: auto; overflow: visible; animation: mar-onda-y 2s ease-in-out infinite alternate, mar-onda-r 2s ease-in-out -1s infinite alternate; }
 @keyframes mar-onda-y { from { translate: 0 -22px; } to { translate: 0 22px; } }
@@ -392,16 +393,26 @@ html.idioma-esperando body { visibility: hidden; }
 .mar__nado .jubarte__cauda { transform-box: view-box; transform-origin: 1410px 520px; animation: mar-cauda 1.2s ease-in-out infinite alternate; }
 @keyframes mar-nada { from { transform: translateX(100vw); } to { transform: translateX(-110%); } }
 @keyframes mar-cauda { from { rotate: -6deg; } to { rotate: 6deg; } }
-.mar__bolhas { position: absolute; inset: 0; }
+.mar__bolhas, .mar__peixes { position: absolute; inset: 0; }
 .mar__bolha { position: absolute; bottom: -20px; border: 2px solid var(--lavanda-2); border-radius: 50%; opacity: 0; animation: mar-bolha linear infinite; }
 @keyframes mar-bolha { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: .6; } 100% { opacity: 0; transform: translate(var(--b-x, 12px), -120vh); } }
-.mar__superficie { height: 100svh; display: grid; place-items: start center; padding-top: clamp(24px, 5vh, 48px); background: var(--violeta); }
-.mar__volta { display: inline-flex; align-items: center; gap: 8px; font-size: var(--t-small); opacity: .85; }
-.mar__volta svg { width: 16px; height: 16px; rotate: 90deg; }
-/* menos movimento: o e-mail e a baleia ficam parados e não há volta automática para o começo */
-.mar.is-calmo .mar__trilho, .mar.is-calmo .mar__nado, .mar.is-calmo .jubarte, .mar.is-calmo .jubarte__cauda { animation: none; }
+/* peixinhos (mar.js): cada um numa altura, tamanho, cor e velocidade; os que vão para a direita viram de lado */
+.mar__peixe { position: absolute; left: 0; aspect-ratio: 2; animation: peixe-esquerda linear infinite; }
+.mar__peixe svg { display: block; width: 100%; height: 100%; animation: peixe-onda 1.4s ease-in-out infinite alternate; }
+.mar__peixe--direita { animation-name: peixe-direita; }
+.mar__peixe--direita svg { scale: -1 1; }
+@keyframes peixe-esquerda { from { transform: translateX(105vw); } to { transform: translateX(-120px); } }
+@keyframes peixe-direita { from { transform: translateX(-120px); } to { transform: translateX(105vw); } }
+@keyframes peixe-onda { from { translate: 0 -6px; } to { translate: 0 6px; } }
+/* algas no fundo, balançando devagar */
+.mar__algas { position: absolute; left: 0; bottom: 0; width: 100%; height: clamp(120px, 22vh, 220px); max-width: none; fill: none; stroke: var(--lavanda); stroke-width: 7; stroke-linecap: round; opacity: .55; }
+.mar__algas path { transform-box: fill-box; transform-origin: 50% 100%; animation: alga 3.6s ease-in-out infinite alternate; }
+.mar__algas path:nth-child(2n) { stroke: var(--wine); animation-duration: 4.4s; animation-delay: -1.2s; }
+.mar__algas path:nth-child(3n) { animation-duration: 3s; animation-delay: -2s; }
+@keyframes alga { from { rotate: -5deg; } to { rotate: 5deg; } }
+/* menos movimento: tudo parado */
+.mar.is-calmo .mar__trilho, .mar.is-calmo .mar__nado, .mar.is-calmo .jubarte, .mar.is-calmo .jubarte__cauda, .mar.is-calmo .mar__algas path { animation: none; }
 .mar.is-calmo .mar__nado { margin-inline: auto; }
-.mar.is-calmo .mar__superficie { display: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* ================= RESPONSIVO ================= */

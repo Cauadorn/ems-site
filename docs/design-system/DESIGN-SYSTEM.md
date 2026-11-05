@@ -35,7 +35,7 @@
 **Inglês (pedido da Emilly em 05/11, inspirada no kenjilambert.com):**
 - Detalhes que ficam sempre em inglês, nos dois idiomas, por estilo (com `lang="en"`): "loading ideas with
   *personality*" (abertura), "hello, my name is", "graphic & UX/UI designer", "Let's create *together*", "flip back" e
-  "pull me" (crachá), "say hi" e "back to the top" (fundo do mar).
+  "pull me" (crachá), "say hi" (fundo do mar).
 - **Botão PT · EN** no menu (no celular, só o botão do outro idioma): o site inteiro troca para inglês e a escolha fica
   guardada no navegador. O português continua sendo o padrão.
 - Como funciona: o português fica no HTML e o inglês ao lado, no mesmo elemento: `data-en="..."` (conteúdo, pode ter
@@ -373,21 +373,20 @@ texto e dois botões ("Ver projetos", "Ir pro início").
 | rápido / base / lento | 250 / 350 / 700 ms | hover / botão / cartão |
 
 **Abertura (toca ao abrir ou recarregar a home; pula ao voltar de outra página do site; clique pula):** a jubarte, em
-traço e pequena (120–190 px), atravessa a tela da direita para a esquerda nadando em onda (sobe e desce; o nariz segue a
-inclinação; passa pela crista, reta, em cima do contador), rápida nas bordas e devagar no meio (4,6 s), com a cauda
-batendo, enquanto o contador vai de 0 a 100% (2,8 s) e o traço passa do violeta ao rosa → enquanto ela sai pela esquerda,
-o mar violeta, com a crista em onda, sobe e cobre a tela (1 s) e vira o topo do site. A Emilly não gostou da baleia
-grande, do borrifo, do salto nem dela nadando reto (05/11). Pedido da Emilly em 05/11,
-inspirado no peixe em neon do kenjilambert.com (antes: selo + contador + três cortinas).
+traço e pequena (120–190 px), entra pela direita nadando em onda (o nariz segue a inclinação), dá uma volta em torno do
+contador (desce pela esquerda, passa de cabeça para baixo por baixo da frase, sobe pela direita) e sai pela esquerda em
+onda, com a cauda batendo, enquanto o contador vai de 0 a 100% (2,9 s) e o traço passa do violeta ao rosa → enquanto ela
+sai, o mar violeta, com a crista em onda, sobe e cobre a tela (1 s) e vira o topo do site. A Emilly pediu a volta no
+contador e não gostou da baleia grande, do borrifo, do salto nem dela nadando reto (05/11).
 
 **Crachá do topo (05/11):** cai do alto preso no cordão ameixa escrito "itsemsdesign", balança e para à esquerda do EMS
 (no celular, no meio, embaixo do menu). Dá para puxar e jogar (mouse e dedo); no clique vira e mostra "Vamos criar
-*together*", o WhatsApp e o Instagram. Física de cordão (Verlet), sem biblioteca. Volta a cair quando o site recomeça.
+*together*", o WhatsApp e o Instagram. Física de cordão (Verlet), sem biblioteca.
 
-**Fundo do mar (05/11, só na home, depois do rodapé):** o e-mail gigante em Anton passando, bolhas e a jubarte nadando
-em marfim-lavanda, pequena e em onda (sobe e desce com o nariz acompanhando); o mar clareia do tinta ao violeta e, perto do fim, ela mergulha conforme a rolagem. A última tela é
-o violeta do topo ("de volta ao começo"): quando ela cobre a tela, o site volta para o começo, o topo entra de novo e
-o crachá cai outra vez.
+**Fundo do mar (05/11, só na home, entre o contato e o rodapé):** o e-mail gigante em Anton passando e, embaixo, o mar
+escurecendo do violeta do contato ao tinta do rodapé, com a jubarte nadando em onda (marfim-lavanda), peixinhos em traço
+(lavanda, manteiga e rosa, nos dois sentidos), bolhas subindo e algas balançando no fundo. Sem volta automática para o
+começo (a Emilly não quis): a página termina no rodapé, com o botão redondo de voltar ao topo.
 
 **Hero:** letras do EMS sobem das caixas (intervalo .08 s) → as duas linhas entram
 pelos lados (+20%, −15%, +12%, com opacidade) → etiquetas e adesivos pulam (escala 0 → 1, `back.out(3)`) → rodapé
@@ -401,7 +400,7 @@ chuva de cerejas, corações, brilhos e espirais; na 4ª vez vira o link "agora 
 Instagram @itsemsdesign.
 
 **Movimento reduzido (`prefers-reduced-motion`):** sem abertura, sem Lenis, sem reveals, faixas paradas; tudo já
-aparece no lugar. O crachá fica pendurado parado (ainda vira) e o fundo do mar fica parado, sem a volta para o começo.
+aparece no lugar. O crachá fica pendurado parado (ainda vira) e o fundo do mar fica parado.
 
 ---
 
@@ -434,8 +433,8 @@ aparece no lugar. O crachá fica pendurado parado (ainda vira) e o fundo do mar 
     (vazados) + botão redondo manteiga "voltar ao topo" (seta pra cima, sombra dura rosa); embaixo, separado por uma
     linha fina, © + "atendo todo o Brasil". No celular os botões ficam um embaixo do outro, na largura toda. Aparece em
     todas as páginas, então o contato está sempre a um clique. O "ems" gigante saiu em 01/10.
-11. **Fundo do mar** (só na home) — tinta → ameixa → violeta; e-mail gigante passando, jubarte e bolhas; a última tela é
-    o violeta do topo e leva de volta ao começo (05/11)
+11. **Fundo do mar** (só na home, entre o Contato e o Rodapé) — violeta → ameixa → tinta; e-mail gigante passando,
+    jubarte, peixinhos, bolhas e algas (05/11)
 
 Os botões "ver case" do carrossel e da lista abrem a página de case do projeto, na mesma aba.
 

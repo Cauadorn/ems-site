@@ -3,9 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { idioma } from './idioma.js';
 
 // Entrada do hero, depois da abertura
-// deNovo: quando a pessoa chega ao fim do site e volta para o começo (mar.js), a entrada toca outra vez, sem repetir o
-// "respirar" do logo (que já está rodando)
-export function heroIntro(reduced, deNovo = false) {
+export function heroIntro(reduced) {
   if (reduced) return;
   // mesma coreografia da Pixel: logo, frase entrando pelos lados, etiquetas pulando (scale 0 → 1)
   const main = 'expo.inOut'; // aproxima a curva "main" da Pixel (0.65, 0.01, 0.05, 0.99)
@@ -15,7 +13,6 @@ export function heroIntro(reduced, deNovo = false) {
     .from('[data-hero-pop], .hero .sparkle', { scale: 0, duration: .6, ease: 'back.out(3)', stagger: .08 }, '-=.4')
     .from('[data-hero-item]', { y: 24, opacity: 0, duration: .7 }, '<');
 
-  if (deNovo) return;
   // o logo "respira" em loop, como o vídeo-logo da Pixel
   gsap.to('[data-hero-box]', { yPercent: -6, rotate: (i) => [-2, 2, -1.5][i], duration: .9, ease: 'sine.inOut', yoyo: true, repeat: -1, stagger: { each: .18 }, delay: 1.8 });
 }

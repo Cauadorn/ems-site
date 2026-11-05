@@ -147,13 +147,11 @@ export function initCracha(reduced) {
 
   medir();
   posicionar(!reduced);
-  // solta o crachá (chamado depois da abertura): ele cai do alto e balança até parar. deNovo: cai outra vez (quando a
-  // pessoa chega ao fim do site e volta para o começo)
-  return function soltarCracha(deNovo = false) {
-    if (solto && !deNovo) return;
+  // solta o crachá (chamado depois da abertura): ele cai do alto e balança até parar
+  return function soltarCracha() {
+    if (solto) return;
     solto = true;
     if (reduced) posicionar(false);
-    else if (deNovo) { if (virado) virar(false); posicionar(true); }
     root.classList.add('is-solto');
     acordar();
   };
