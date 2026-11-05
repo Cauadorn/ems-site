@@ -49,7 +49,8 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
 
 ## Regras da marca que não podem falhar
 - **Selo** (`src/assets/illustrations/selo-ems.svg`): é a arte ORIGINAL da Emilly. Nunca redesenhar, recolorir,
-  deformar ou girar (só o hero inclina 12°). Um redesenho foi reprovado.
+  deformar ou girar (só a 404 inclina 12°). Um redesenho foi reprovado. Na home, a boneca aparece só no crachá
+  (pedido da Emilly em 05/11; o carimbo sobre o S saiu).
 - **Cores, fontes, tamanhos, raios, sombras, curvas:** só os tokens. Cor nova = token novo em `tokens.css`,
   `tokens.json` e `DESIGN-SYSTEM.md`.
 - **Títulos:** Anton em CAIXA ALTA + uma palavra em Instrument Serif itálico. Texto em Inter.
@@ -60,14 +61,22 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
   tem que achar os projetos e o contato em até 2 cliques.
 
 ## O que já foi aprovado ou pedido pelo Cauã (não desfazer sem perguntar)
-- Hero no estilo pixel.melbourne: logo "EMS" em caixas, selo carimbado, etiquetas arrastáveis. A frase da marca
+- Hero no estilo pixel.melbourne: logo "EMS" em caixas, etiquetas arrastáveis (o selo carimbado saiu em 05/11). A frase da marca
   ficou em 2 linhas corridas e menores, em itálico (pedido da Emilly em 01/10: a de 3 linhas era grande demais).
 - Carrossel 3D igual ao da pixel.melbourne: anel circular, mínimo de 8 posições, vagas "próximo projeto"
   (`docs/referencia-pixel.md` e `src/js/modules/carousel.js`). Em 01/10 a Emilly pediu para o anel NÃO girar com a
   rolagem (prendia a página): ele ocupa uma tela e gira pelas setas, arrastando para o lado ou pelas setas do teclado.
 - Seção "Como eu penso design": texto menor e objetivo.
-- Abertura (selo + contador 0 → 100 + cortinas): toca sempre que a home é aberta ou recarregada e pula quando a pessoa
-  volta de outra página do site (pedido da Emilly em 01/10; antes era só na 1ª visita da sessão e o "0%" piscava).
+- Abertura: toca sempre que a home é aberta ou recarregada e pula quando a pessoa volta de outra página do site (pedido
+  da Emilly em 01/10). Desde 05/11 é a jubarte (ela ama baleias): a baleia (vídeo dela nadando) entra pela direita, dá uma
+  volta em torno do contador 0 → 100, sai pela esquerda e o mar violeta sobe e vira o topo (inspirado no kenjilambert.com).
+  Ela reprovou o desenho vetorizado parado ("duro"), o borrifo, o salto, a baleia grande e ela nadando reto.
+- Crachá no topo (05/11): o selo original vai no crachá, que cai preso no cordão "itsemsdesign", balança, dá para puxar
+  e vira mostrando WhatsApp e Instagram (`src/js/modules/cracha.js`).
+- Fundo do mar no fim da home (05/11), entre o contato e o rodapé: e-mail gigante passando sobre uma cena pintada e animada
+  em vídeo (Higgsfield; nada em vetor, pedido dela: "quero movimentos fluidos"): a jubarte nadando, cardume, peixinhos,
+  bolhas e algas (`src/js/modules/mar.js`). Ela NÃO quis a volta automática para o começo: a página termina no rodapé,
+  com o botão de voltar ao topo.
 
 ## Onde mexer
 | Quero mudar | Arquivo |
@@ -75,7 +84,8 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
 | Projetos do carrossel e da lista | `src/data/projects.js` (capa: `python scripts/nova-capa.py <imagem> <slug>`) |
 | Página "Todos os projetos" (por área) | gerada sozinha em `projetos/index.html` a partir de `projects.js` (`area`, `destaque` e a lista `areas`); layout em `scripts/gerar-cases.mjs` e `src/styles/case.css` |
 | Páginas de case | geradas sozinhas de `projects.js` + `public/img/projetos/<slug>/slide-*.webp`; layout em `scripts/gerar-cases.mjs` e `src/styles/case.css`. Não editar `projetos/*.html` à mão |
-| Textos | `index.html` (contato: `partials/contact.html`; 404: `404.html`) |
+| Textos | `index.html` (contato: `partials/contact.html`; 404: `404.html`). Inglês: no mesmo lugar, em `data-en` |
+| Textos dos projetos em inglês | `src/data/projects-en.js` |
 | Cores, fontes, espaçamentos | `src/styles/tokens.css` |
 | Botões, etiquetas, chips | `src/styles/components.css` |
 | Layout das seções | `src/styles/sections.css` |
@@ -98,4 +108,11 @@ Mesmo com o site na raiz do domínio, continue usando a base da tabela acima (`%
 - ALMAH: o case agora é o brand book do Behance (publicado em 19/10), em capítulos como o da Babi, com o cartão do Cauã
   (ele desenhou o logo). Se ela mudar o Behance de novo, baixar de lá e atualizar `capitulos` em `projects.js`.
 - Página de brand book do site: o que entra?
+- Jubarte da abertura: desenho no Nano Banana Pro e animação no Kling 3.0, pelo Higgsfield, montada no Remotion (05/11;
+  no Freepik/Magnific a API estava sem créditos). Vídeo pronto em `public/img/baleia/`; para trocar, `docs/baleia/README.md`.
+- Fundo do mar: cena pintada e animada no Higgsfield (Nano Banana Pro + Kling 3.0), deitada e em pé, em `public/img/mar/`;
+  para trocar, `docs/mar/README.md`.
+- Inglês: botão PT · EN no menu desde 05/11 (pedido dela). O português fica no HTML e o inglês ao lado (`data-en`,
+  `data-en-alt`, `data-en-aria`…); projetos em `src/data/projects-en.js`. Texto novo ou mudado = escrever o inglês junto
+  (ver DESIGN-SYSTEM §1, "Inglês").
 - Prancheta de revisão com os prints do site: https://claude.ai/artifact/W3FVwhEdbnUmFAh2U1niwW

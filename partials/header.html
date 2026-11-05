@@ -1,16 +1,20 @@
-<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<a class="skip-link" href="#conteudo" data-en="Skip to content">Pular para o conteúdo</a>
 <header class="site-header" data-header>
-  <nav class="nav" aria-label="Principal">
-    <a class="nav__brand" href="%BASE_URL%" aria-label="EMS — Emilly Silva, página inicial">
+  <nav class="nav" aria-label="Principal" data-en-aria="Main">
+    <a class="nav__brand" href="%BASE_URL%" aria-label="EMS — Emilly Silva, página inicial" data-en-aria="EMS — Emilly Silva, home">
       <img src="/src/assets/illustrations/selo-ems.svg" alt="" width="34" height="41">
       <span class="nav__name">Emilly Silva <em>design</em></span>
     </a>
     <ul class="nav__links">
-      <li><a href="%BASE_URL%projetos/">Projetos</a></li>
-      <li><a href="%BASE_URL%#servicos">Serviços</a></li>
-      <li><a href="%BASE_URL%#sobre">Sobre</a></li>
+      <li><a href="%BASE_URL%projetos/" data-en="Projects">Projetos</a></li>
+      <li><a href="%BASE_URL%#servicos" data-en="Services">Serviços</a></li>
+      <li><a href="%BASE_URL%#sobre" data-en="About">Sobre</a></li>
     </ul>
-    <a class="btn btn--small btn--ink nav__cta" href="%BASE_URL%#contato">Vamos conversar</a>
+    <!-- português / inglês (src/js/modules/idioma.js, pedido da Emilly em 05/11) -->
+    <div class="idioma" role="group" aria-label="Idioma · Language">
+      <button type="button" data-idioma="pt" aria-pressed="true" aria-label="Português" lang="pt-BR">PT</button><span aria-hidden="true">/</span><button type="button" data-idioma="en" aria-pressed="false" aria-label="English" lang="en">EN</button>
+    </div>
+    <a class="btn btn--small btn--ink nav__cta" href="%BASE_URL%#contato" data-en="Let’s talk">Vamos conversar</a>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>
       <span class="nav__toggle-label">Menu</span><span class="nav__plus" aria-hidden="true">+</span>
     </button>
@@ -20,10 +24,10 @@
 <div class="menu" id="menu" data-menu hidden>
   <svg class="menu__spiral" aria-hidden="true"><use href="#i-espiral"/></svg>
   <ul class="menu__links">
-    <li><a href="%BASE_URL%projetos/" data-menu-link>Projetos</a></li>
-    <li><a href="%BASE_URL%#servicos" data-menu-link>Serviços</a></li>
-    <li><a href="%BASE_URL%#sobre" data-menu-link>Sobre</a></li>
-    <li><a href="%BASE_URL%#contato" data-menu-link>Contato</a></li>
+    <li><a href="%BASE_URL%projetos/" data-menu-link data-en="Projects">Projetos</a></li>
+    <li><a href="%BASE_URL%#servicos" data-menu-link data-en="Services">Serviços</a></li>
+    <li><a href="%BASE_URL%#sobre" data-menu-link data-en="About">Sobre</a></li>
+    <li><a href="%BASE_URL%#contato" data-menu-link data-en="Contact">Contato</a></li>
   </ul>
   <div class="menu__social">
     <a href="https://wa.me/5531920060754?text=Oi%2C%20Emilly!%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener">WhatsApp</a>

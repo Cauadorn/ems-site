@@ -32,6 +32,18 @@
 | "Marca boa é a que as pessoas reconhecem." | "Minimalismo virou desculpa…" em tamanho gigante (reprovado por ser emotivo demais) |
 | Botões com verbo + objeto: "Ver projetos", "Quero uma marca" | "Clique aqui", "Saiba mais" |
 
+**Inglês (pedido da Emilly em 05/11, inspirada no kenjilambert.com):**
+- Detalhes que ficam sempre em inglês, nos dois idiomas, por estilo (com `lang="en"`): "loading ideas with
+  *personality*" (abertura), "hello, my name is", "graphic & UX/UI designer", "Let's create *together*", "flip back" e
+  "pull me" (crachá), "say hi" (fundo do mar).
+- **Botão PT · EN** no menu (no celular, só o botão do outro idioma): o site inteiro troca para inglês e a escolha fica
+  guardada no navegador. O português continua sendo o padrão.
+- Como funciona: o português fica no HTML e o inglês ao lado, no mesmo elemento: `data-en="..."` (conteúdo, pode ter
+  `<em>`) e `data-en-aria` / `-alt` / `-title` / `-content` / `-cursor` (atributos). Os textos dos projetos em inglês ficam
+  em `src/data/projects-en.js` (mesmas chaves de `projects.js`). Texto novo no site = escrever também o inglês.
+- Tom em inglês: o mesmo do português (primeira pessoa, curto, direto). "Faço marca bonita de perto e clara de longe"
+  vira "I make brands beautiful *up close* and clear *from afar*".
+
 ---
 
 ## 2. Selo (logo)
@@ -43,10 +55,13 @@
 - Já tem borda de adesivo (contorno branco + violeta): funciona sobre qualquer fundo da paleta.
 - **Tamanho mínimo:** 28 px de largura na tela (favicon/cabeçalho usam 30–34 px).
 - **Área de proteção:** 25% da largura do selo livre em volta.
-- **Uso inclinado:** só no hero, como carimbo sobre o "S" do logo, a 12°, com sombra
-  `drop-shadow(0 18px 24px rgba(42,20,51,.45))`. Em qualquer outro lugar, reto.
+- **Uso inclinado:** só na 404, como carimbo sobre o "S" do logo, a 12°, com sombra
+  `drop-shadow(0 18px 24px rgba(42,20,51,.45))`. Em qualquer outro lugar, reto. Na home o carimbo saiu em 05/11: a
+  Emilly pediu a boneca só no crachá (ela aparecia duas vezes no topo).
 - **Movimento permitido:** inclinar em 3D seguindo o cursor (até 9° em Y e 7° em X), pequeno "aceno" de −8° no
   clique, entrada com escala 0 → 1. Nunca girar continuamente nem deformar.
+- **Exceção aprovada (pedido da Emilly em 05/11):** o selo vai reto na frente do crachá do topo. O crachá balança no
+  cordão (e o selo junto), mas a arte é a original, sem mudar nada.
 
 ### Logo tipográfico do hero
 - "EMS" em Anton, caixa alta, cada letra numa caixa: E e S em ameixa `#3D1C46`, M em rosa `#DD34A8`, texto marfim, sobre
@@ -165,6 +180,8 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 | Estrela da Emilly | estrela cheia de 5 pontas com uma auréola em forma de estrela maior, de pontos em grade que diminuem para fora (`src/assets/illustrations/estrela-ems.svg`, usada como máscara: `.estrela`) | fundo do hero, da 404 e do manifesto, na cor tinta; cor por `color` |
 | Espiral | espiral de Arquimedes, traço 6, pontas redondas | ícone de Identidade visual, abertura, menu, contato |
 | Cereja | par de cerejas com cabo e folha em `#3D1C46`, frutas na cor do `color` | adesivo do hero, Social & peças |
+| Jubarte | baleia jubarte em traço (contorno, pregas, calombos e nadadeiras compridas) que nada de verdade: vídeo curto em loop (corpo ondulando, cauda e nadadeiras). Desenho no Nano Banana Pro e animação no Kling 3.0 (Higgsfield), pintada de violeta no Remotion (sobre o marfim com `mix-blend-mode: multiply`). A Emilly reprovou o desenho vetorizado parado (05/11). Como refazer: `docs/baleia/README.md` | abertura |
+| Fundo do mar | cena pintada à mão (guache digital, luz suave) e animada em loop: a jubarte lavanda nadando, cardume manteiga, peixinhos rosa, algas vinho e lavanda, raios de luz, bolhas e partículas, do violeta da superfície ao tinta do fundo. Gerada no Higgsfield (Nano Banana Pro + Kling 3.0), deitada e em pé. Nada em vetor ali (pedido da Emilly em 05/11). Como refazer: `docs/mar/README.md` | fundo do mar |
 | XOXO | X e O desenhados em traço 8 | adesivo do hero |
 | Brilho | estrela de 4 pontas | acento, pisca (2,4 s) |
 | Coração | coração cheio | faixa lavanda, easter egg |
@@ -356,11 +373,25 @@ texto e dois botões ("Ver projetos", "Ir pro início").
 | Pixel "main" | cubic-bezier(.65, .01, .05, .99) ≈ GSAP `expo.inOut` | entrada do hero |
 | rápido / base / lento | 250 / 350 / 700 ms | hover / botão / cartão |
 
-**Abertura (toca ao abrir ou recarregar a home; pula ao voltar de outra página do site; clique pula):** selo entra girando (escala 0 → 1, `back.out(2)`, .8 s) →
-contador 0 → 100% (2 s) → selo pisca → conteúdo sobe e some → três cortinas sobem em sequência (marfim, violeta,
-vinho; `expo.inOut`, .9 s, intervalo .12 s).
+**Abertura (toca ao abrir ou recarregar a home; pula ao voltar de outra página do site; clique pula):** a jubarte (o vídeo
+dela nadando, pequena: 140–220 px) entra pela direita nadando em onda (o nariz segue a inclinação), dá uma volta em torno do
+contador (desce pela esquerda, passa de cabeça para baixo por baixo da frase, sobe pela direita) e sai pela esquerda em
+onda, com a cauda batendo, enquanto o contador vai de 0 a 100% (2,9 s) e o traço passa do violeta ao rosa → enquanto ela
+sai, o mar violeta, com a crista em onda, sobe e cobre a tela (1 s) e vira o topo do site. A Emilly pediu a volta no
+contador e não gostou da baleia grande, do borrifo, do salto nem dela nadando reto (05/11).
 
-**Hero:** letras do EMS sobem das caixas (intervalo .08 s) → selo carimba (escala 0, −40°) → as duas linhas entram
+**Crachá do topo (05/11):** cai do alto preso no cordão ameixa escrito "itsemsdesign", balança e para à esquerda do EMS
+(no celular, no meio, embaixo do menu). Dá para puxar e jogar (mouse e dedo); no clique vira e mostra "Vamos criar
+*together*", o WhatsApp e o Instagram. Física de cordão (Verlet), sem biblioteca.
+
+**Fundo do mar (05/11, só na home, entre o contato e o rodapé):** o e-mail gigante em Anton passando e, embaixo, o mar
+pintado e animado de verdade (vídeo em loop: a jubarte nadando, o cardume girando, as algas balançando, os raios de luz e
+as bolhas), que some em cima no violeta do contato e embaixo no tinta do rodapé. A Emilly não quis nada em vetor ali:
+"quero movimentos fluidos". O vídeo só baixa perto da tela e só toca enquanto aparece; com "reduzir movimento" fica a
+imagem parada. Sem volta automática para o
+começo (a Emilly não quis): a página termina no rodapé, com o botão redondo de voltar ao topo.
+
+**Hero:** letras do EMS sobem das caixas (intervalo .08 s) → as duas linhas entram
 pelos lados (+20%, −15%, +12%, com opacidade) → etiquetas e adesivos pulam (escala 0 → 1, `back.out(3)`) → rodapé
 do hero sobe. Depois: logo respira em loop; adesivos flutuam (±12 px, 2,2–3,1 s); brilhos piscam.
 
@@ -372,7 +403,7 @@ chuva de cerejas, corações, brilhos e espirais; na 4ª vez vira o link "agora 
 Instagram @itsemsdesign.
 
 **Movimento reduzido (`prefers-reduced-motion`):** sem abertura, sem Lenis, sem reveals, faixas paradas; tudo já
-aparece no lugar.
+aparece no lugar. O crachá fica pendurado parado (ainda vira) e o fundo do mar fica parado.
 
 ---
 
@@ -389,9 +420,9 @@ aparece no lugar.
 
 ## 10. Estrutura da home (ordem e fundos)
 
-1. **Abertura** (marfim + cortinas violeta/vinho)
-2. **Hero** — violeta; logo EMS + selo; frase em 2 linhas corridas, serif itálico marfim com destaque manteiga:
-   "Faço marca bonita *de perto* / e clara *de longe*."; etiquetas; CTA
+1. **Abertura** (marfim + a jubarte; o mar violeta sobe e vira o topo)
+2. **Hero** — violeta; logo EMS (o selo saiu em 05/11: ele fica no crachá); frase em 2 linhas corridas, serif itálico marfim com destaque manteiga:
+   "Faço marca bonita *de perto* / e clara *de longe*."; etiquetas; CTA; o crachá pendurado à esquerda
 3. **Faixas** cruzadas (vinho sobre lavanda); em volta, violeta em cima e ameixa embaixo
 4. **Projetos** — ameixa; "(01) Trabalhos que têm *cara*"; carrossel 3D ou lista + botão "Ver todos os projetos"
 5. **Como eu penso design** — lavanda-2; título igual aos outros ("Marca boa é a que as pessoas *reconhecem*", palavra em
@@ -405,6 +436,8 @@ aparece no lugar.
     (vazados) + botão redondo manteiga "voltar ao topo" (seta pra cima, sombra dura rosa); embaixo, separado por uma
     linha fina, © + "atendo todo o Brasil". No celular os botões ficam um embaixo do outro, na largura toda. Aparece em
     todas as páginas, então o contato está sempre a um clique. O "ems" gigante saiu em 01/10.
+11. **Fundo do mar** (só na home, entre o Contato e o Rodapé) — violeta → ameixa → tinta; e-mail gigante passando,
+    cena pintada e animada: jubarte, cardume, algas, luz e bolhas (05/11)
 
 Os botões "ver case" do carrossel e da lista abrem a página de case do projeto, na mesma aba.
 
@@ -452,6 +485,10 @@ Os botões "ver case" do carrossel e da lista abrem a página de case do projeto
 | Trechos repetidos (head, cabeçalho, contato, rodapé) | `partials/*.html` |
 | Carrossel 3D | `src/js/modules/carousel.js` |
 | Abertura, hero, reveals | `src/js/modules/loader.js`, `reveal.js` |
+| Crachá do topo | `src/js/modules/cracha.js` (estilo em `sections.css`, `.cracha`) |
+| Fundo do mar | `src/js/modules/mar.js` (estilo em `sections.css`, `.mar`) |
+| Jubarte da abertura (vídeo) | `public/img/baleia/` (pronto) + `docs/baleia/` (desenho, animação, Remotion e o passo a passo) |
+| Fundo do mar (vídeos) | `public/img/mar/` (prontos) + `docs/mar/` (as imagens, os prompts e o passo a passo) |
 | Base de todas as páginas (rolagem, cabeçalho, menu, cursor) | `src/js/modules/site.js` (home: `main.js`; cases e 404: `page.js`) |
 | Referência técnica da Pixel | `docs/referencia-pixel.md` |
 

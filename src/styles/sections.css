@@ -1,11 +1,14 @@
 /* ================= LOADER ================= */
-.loader { position: fixed; inset: 0; z-index: 9800; pointer-events: none; }
-.loader__layer { position: absolute; inset: 0; }
-.loader__layer--wine { background: var(--wine); }
-.loader__layer--violeta { background: var(--violeta); }
-.loader__layer--ivory { background: var(--ivory); display: grid; place-items: center; overflow: hidden; pointer-events: auto; }
-.loader__content { position: relative; z-index: 2; display: grid; justify-items: center; gap: 14px; text-align: center; }
-.loader__mascote { width: clamp(120px, 18vw, 170px); height: auto; }
+/* Abertura da jubarte (05/11, inspirada no peixe em neon do kenjilambert.com): a baleia nadando (vídeo do Higgsfield
+   montado no Remotion) entra em onda, dá uma volta no contador e sai; o traço vai do violeta ao rosa; o mar violeta sobe e
+   vira o topo do site (loader.js) */
+.loader { position: fixed; inset: 0; z-index: 9800; pointer-events: none; overflow: hidden; }
+.loader__ceu { position: absolute; inset: 0; background: var(--ivory); display: grid; place-items: center; overflow: hidden; pointer-events: auto; }
+/* sem z-index no conteúdo: o vídeo da baleia (traço violeta no branco) se mistura direto com o marfim do fundo
+   (multiply: o branco some, o traço fica). Com z-index, o branco do vídeo apareceria como um retângulo */
+.loader__content { position: relative; display: grid; justify-items: center; gap: 10px; text-align: center; }
+.loader__baleia { width: clamp(140px, 16vw, 220px); mix-blend-mode: multiply; opacity: 0; }
+.loader__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
 .loader__count { font-family: var(--f-display); font-size: clamp(3.5rem, 9vw, 6rem); line-height: 1; color: var(--violeta); font-variant-numeric: tabular-nums; }
 .loader__line { font-size: var(--t-small); color: var(--ameixa); letter-spacing: .02em; }
 .loader__line em { font-family: var(--f-serif); font-style: italic; font-size: 1.35em; color: var(--pink); }
@@ -13,6 +16,9 @@
 .loader__spin--a { left: -8vmin; top: -8vmin; }
 .loader__spin--b { right: -10vmin; bottom: -10vmin; animation-direction: reverse; }
 @keyframes spin { to { transform: rotate(360deg); } }
+.loader__mar { position: absolute; inset: 0; z-index: 3; background: var(--violeta); transform: translateY(calc(100% + 90px)); }
+.loader__crista { position: absolute; left: 0; bottom: calc(100% - 1px); width: 200%; max-width: none; height: clamp(36px, 7vh, 80px); fill: var(--violeta); animation: crista 1.6s linear infinite; }
+@keyframes crista { to { transform: translateX(-50%); } }
 .is-loaded .loader { display: none; }
 
 /* ================= HEADER ================= */
@@ -43,6 +49,21 @@
 .nav__links { display: flex; gap: 6px; }
 .nav__links a { display: block; padding: .5em .9em; border-radius: 999px; text-decoration: none; font-weight: 500; font-size: .95rem; transition: background .25s, padding .6s var(--ease), font-size .6s var(--ease); }
 .nav__links a:hover { background: var(--lavanda-2); }
+/* PT · EN (src/js/modules/idioma.js): o idioma da vez fica forte, o outro apagado */
+.idioma { display: flex; align-items: center; gap: 1px; font-size: .78rem; font-weight: 700; letter-spacing: .04em; }
+.idioma button { min-width: 32px; min-height: 32px; padding: 0 5px; border-radius: 999px; color: var(--ink); opacity: .45; transition: opacity .2s, background .2s; }
+.idioma button:hover { opacity: .8; }
+.idioma button[aria-pressed="true"] { opacity: 1; background: var(--lavanda-2); }
+.idioma span { opacity: .3; }
+html.idioma-esperando body { visibility: hidden; }
+/* celular: o nome não pode quebrar; fica só o botão do outro idioma (EN quando está em português, PT quando em inglês) */
+.nav__name { white-space: nowrap; }
+@media (max-width: 599px) {
+  .nav { gap: 8px; padding-left: 10px; }
+  .idioma span, .idioma button[aria-pressed="true"] { display: none; }
+  .idioma button { min-width: 44px; border: 1.5px solid rgba(42, 20, 51, .18); opacity: .85; }
+}
+@media (max-width: 380px) { .nav__name { font-size: .88rem; } }
 .nav__toggle { display: none; align-items: center; gap: 6px; min-height: 42px; padding: 0 16px; border-radius: 999px; background: var(--violeta); color: var(--ivory); font-weight: 600; }
 .nav__plus { font-size: 1.4rem; line-height: 1; transition: transform .4s var(--ease-back); }
 .menu-open .nav__plus { transform: rotate(45deg); }
@@ -82,6 +103,7 @@
 .hero__box { display: block; padding: .04em .08em .05em; background: var(--ameixa); overflow: hidden; }
 .hero__box:nth-child(2) { background: var(--pink); }
 .hero__box span { display: block; }
+/* selo carimbado no S: só na 404 desde 05/11 (na home, a boneca fica só no crachá) */
 .hero__seal { position: absolute; right: -.62em; top: -.22em; width: .62em; rotate: 12deg; cursor: pointer; filter: drop-shadow(0 18px 24px rgba(42, 20, 51, .45)); }
 .hero__seal svg { width: 100%; height: auto; overflow: visible; }
 
@@ -109,6 +131,43 @@
 .hero__who { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: var(--t-small); opacity: .92; }
 .hero__role { text-wrap: balance; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* crachá da EMS (src/js/modules/cracha.js, 05/11): o cordão ameixa com "itsemsdesign" nasce atrás do menu e o cartão
+   marfim com o selo fica na ponta. O JS põe a peça na ponta do cordão e gira conforme balança.
+   --cracha-x: onde o cordão nasce (fração da largura do topo) · --cracha-corda: comprimento (px) · --cracha-w: largura */
+.cracha { --cracha-x: .12; --cracha-corda: 290; --cracha-w: 160px; position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.cracha__cordao { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; overflow: visible; visibility: hidden; }
+.cracha__cordao path { fill: none; stroke: var(--ameixa); stroke-width: calc(var(--cracha-w) * .12); stroke-linecap: round; stroke-linejoin: round; }
+.cracha__cordao text { fill: var(--ivory); font-family: var(--f-sans); font-weight: 700; font-size: calc(var(--cracha-w) * .06); letter-spacing: .16em; text-transform: uppercase; }
+.cracha__peca { position: absolute; left: 0; top: 0; width: var(--cracha-w); pointer-events: auto; touch-action: none; cursor: grab; perspective: 900px; transform-origin: 50% 0; visibility: hidden; }
+.cracha.is-solto .cracha__peca, .cracha.is-solto .cracha__cordao { visibility: visible; }
+.cracha__peca.is-puxando { cursor: grabbing; }
+.cracha__presilha { position: absolute; left: 50%; top: 0; width: 22%; aspect-ratio: 1.2; translate: -50% -55%; border: calc(var(--cracha-w) * .028) solid var(--lavanda-2); border-radius: 30% 30% 18% 18%; }
+.cracha__cartao { position: relative; margin-top: calc(var(--cracha-w) * .06); aspect-ratio: 54 / 80; transform-style: preserve-3d; }
+.cracha__face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; padding: 16% 9% 0; border: 0; border-radius: calc(var(--cracha-w) * .08); background: var(--ivory); color: var(--ink); box-shadow: 4px 4px 0 var(--ink); backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; font: inherit; text-align: center; cursor: inherit; }
+.cracha__face--verso { justify-content: center; gap: 7%; padding: 14% 8% 8%; background: var(--ameixa); color: var(--ivory); transform: rotateY(180deg); }
+.cracha__furo { position: absolute; top: 5%; left: 50%; width: 30%; height: 4.4%; translate: -50% 0; border-radius: 99px; background: var(--violeta); }
+.cracha__selo { width: 48%; height: auto; pointer-events: none; }
+.cracha__ola { margin-top: 5%; font-family: var(--f-serif); font-style: italic; font-size: calc(var(--cracha-w) * .085); line-height: 1; color: var(--violeta); }
+.cracha__nome { margin-top: 2%; font-family: var(--f-display); font-size: calc(var(--cracha-w) * .145); line-height: 1; text-transform: uppercase; }
+.cracha__cargo { margin-top: 4%; font-size: calc(var(--cracha-w) * .074); line-height: 1.25; color: var(--ameixa); }
+.cracha__faixa { position: absolute; inset: auto 0 0; padding: 5% 0 6%; background: var(--violeta); color: var(--ivory); font-size: calc(var(--cracha-w) * .07); font-weight: 700; letter-spacing: .06em; }
+.cracha__titulo { font-family: var(--f-display); font-size: calc(var(--cracha-w) * .13); line-height: .95; text-transform: uppercase; }
+.cracha__titulo em { display: block; font-family: var(--f-serif); font-style: italic; font-size: 1.2em; text-transform: none; color: var(--manteiga); }
+.cracha__link { display: inline-flex; align-items: center; gap: .45em; padding: .45em .8em; border: 1.5px solid rgba(255, 251, 222, .35); border-radius: 99px; color: var(--ivory); font-size: calc(var(--cracha-w) * .075); font-weight: 700; white-space: nowrap; text-decoration: none; }
+.cracha__link:hover { background: var(--ivory); color: var(--ameixa); }
+.cracha__link svg { width: 1.25em; height: 1.25em; }
+.cracha__voltar { border: 0; background: none; color: var(--lavanda); font: inherit; font-size: calc(var(--cracha-w) * .066); text-decoration: underline; cursor: pointer; }
+/* tablet em pé: o EMS cresce, o cordão vai mais para a borda */
+@media (orientation: portrait) and (min-width: 600px) { .cracha { --cracha-x: .1; --cracha-corda: 260; --cracha-w: 130px; } }
+/* celular: o crachá pendura do menu, no meio, entre o menu e o EMS; no verso ficam só os ícones (o texto é o nome do link) */
+@media (max-width: 599px) {
+  .cracha { --cracha-x: .5; --cracha-corda: 118; --cracha-w: 80px; }
+  .cracha__face { box-shadow: 3px 3px 0 var(--ink); }
+  .cracha__link { padding: .55em; font-size: 0; }
+  .cracha__link svg { width: 16px; height: 16px; }
+  .cracha__face--verso { gap: 5%; }
+}
 
 /* ================= FAIXAS ================= */
 /* sem fundo claro em volta das faixas: em cima continua o violeta do topo, embaixo começa o ameixa dos projetos.
@@ -315,6 +374,32 @@
 .site-footer__top svg { rotate: -90deg; transition: translate .4s var(--ease-back); }
 .site-footer__top:hover svg { translate: 0 -3px; }
 
+/* ================= FUNDO DO MAR ================= */
+/* só na home, entre o contato e o rodapé (05/11): o e-mail gigante passando sobre o fundo do mar pintado e animado de
+   verdade (jubarte, cardume, algas, raios de luz e bolhas; a Emilly não quis nada em vetor). Sem volta automática para o
+   começo: a página termina no rodapé, com o botão de voltar ao topo */
+.mar { position: relative; overflow: hidden; color: var(--ivory); background: linear-gradient(to bottom, var(--violeta) 0%, var(--ameixa) 48%, var(--ink) 100%); }
+/* a cena animada (vídeo do Higgsfield) cobre a seção toda; em cima e embaixo ela some no violeta do contato e no tinta do
+   rodapé, para não ter emenda */
+.mar__cena { position: absolute; inset: 0; }
+.mar__video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 84%, transparent 100%); }
+.mar__email { position: relative; display: block; padding: clamp(24px, 4vw, 56px) 0 0; overflow: hidden; color: var(--ivory); text-decoration: none; }
+.mar__trilho { display: inline-flex; align-items: center; gap: .25em; white-space: nowrap; font-family: var(--f-display); font-size: clamp(4.5rem, 15vw, 15rem); line-height: 1; text-transform: uppercase; text-shadow: 0 4px 30px rgb(42 20 51 / .35); animation: mar-corre 26s linear infinite; }
+.mar__trilho svg { width: .32em; height: .32em; flex: none; color: var(--manteiga); }
+.mar__email:hover .mar__trilho { color: var(--manteiga); }
+@keyframes mar-corre { to { transform: translateX(-50%); } }
+.mar__fundo { position: relative; height: clamp(380px, 76vh, 720px); }
+/* em pé (celular, tablet em pé) entra a versão em pé da cena; a seção fica na proporção dela, para a baleia caber inteira */
+@media (orientation: portrait) {
+  .mar { width: 100%; aspect-ratio: 900 / 1612; max-height: 120vh; }
+  .mar__fundo { height: auto; }
+}
+/* menos movimento: o e-mail para e a cena fica na foto parada (mar.js não toca o vídeo) */
+.mar.is-calmo .mar__trilho { animation: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
 /* ================= RESPONSIVO ================= */
 @media (max-width: 1000px) {
   .process__list { grid-template-columns: 1fr 1fr; }
@@ -324,7 +409,6 @@
   .nav__links, .nav__cta { display: none; }
   .nav__toggle { display: inline-flex; }
   .hero { --logo: 30vw; }
-  .hero__logo { margin-right: 12vw; }
   .hero__title { font-size: 8.4vw; }
   .hero__title-wrap { margin-block: 44px 34px; }
   .hero__label--a { left: auto; right: 0; top: -34px; margin: 0; }
@@ -344,7 +428,7 @@
 }
 /* toque (celular e tablet): todo link ou botão com pelo menos 44 px de altura */
 @media (pointer: coarse) {
-  .nav__toggle, .view-toggle button, .nope { min-height: 44px; }
+  .nav__toggle, .view-toggle button, .nope, .idioma button { min-height: 44px; }
   .c3d__btn, .service__cta { display: inline-flex; align-items: center; min-height: 44px; }
 }
 @media (max-width: 560px) {

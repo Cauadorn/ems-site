@@ -1,5 +1,6 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { idioma } from './idioma.js';
 
 // Entrada do hero, depois da abertura
 export function heroIntro(reduced) {
@@ -8,7 +9,6 @@ export function heroIntro(reduced) {
   const main = 'expo.inOut'; // aproxima a curva "main" da Pixel (0.65, 0.01, 0.05, 0.99)
   gsap.timeline({ defaults: { ease: main, duration: .9 } })
     .from('[data-hero-box] > span', { yPercent: 105, stagger: .08 })
-    .from('[data-hero-seal]', { scale: 0, rotate: -40, duration: .8, ease: 'back.out(2)' }, '-=.3')
     .from('[data-hero-line]', { xPercent: (i, el) => Number(el.dataset.from), opacity: 0, stagger: .1 }, '<-.2')
     .from('[data-hero-pop], .hero .sparkle', { scale: 0, duration: .6, ease: 'back.out(3)', stagger: .08 }, '-=.4')
     .from('[data-hero-item]', { y: 24, opacity: 0, duration: .7 }, '<');
@@ -21,15 +21,20 @@ export function initReveals(reduced) {
   // manifesto: as palavras acendem conforme a rolagem
   const m = document.querySelector('[data-manifesto]');
   if (m) {
-    splitWords(m);
-    const words = m.querySelectorAll('.w');
-    if (reduced) words.forEach((w) => w.classList.add('is-on'));
-    else ScrollTrigger.create({
+    // em inglês (botão PT · EN) o texto vem de data-manifesto-en e as palavras são separadas de novo
+    const pt = m.textContent;
+    let progresso = reduced ? 1 : 0;
+    const acender = () => {
+      const words = m.querySelectorAll('.w');
+      const on = Math.round(progresso * words.length);
+      words.forEach((w, i) => w.classList.toggle('is-on', i < on));
+    };
+    const montar = () => { m.textContent = idioma === 'en' && m.dataset.manifestoEn ? m.dataset.manifestoEn : pt; splitWords(m); acender(); };
+    montar();
+    document.addEventListener('idioma', montar);
+    if (!reduced) ScrollTrigger.create({
       trigger: m, start: 'top 90%', end: 'top 45%', scrub: true,
-      onUpdate: (st) => {
-        const on = Math.round(st.progress * words.length);
-        words.forEach((w, i) => w.classList.toggle('is-on', i < on));
-      },
+      onUpdate: (st) => { progresso = st.progress; acender(); },
     });
   }
 

@@ -1,6 +1,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#6225D8">
+  <script>
+    // inglês escolhido antes (botão PT · EN, src/js/modules/idioma.js): esconde o texto até trocar, sem piscar português
+    try { if (localStorage.getItem('ems-idioma') === 'en') { document.documentElement.lang = 'en'; document.documentElement.classList.add('idioma-en', 'idioma-esperando'); setTimeout(function () { document.documentElement.classList.remove('idioma-esperando'); }, 2500); } } catch (e) {}
+  </script>
   <link rel="icon" href="%BASE_URL%favicon-32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="/src/assets/illustrations/selo-ems.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="%BASE_URL%apple-touch-icon.png">
