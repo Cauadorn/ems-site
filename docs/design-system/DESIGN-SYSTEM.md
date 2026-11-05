@@ -373,10 +373,11 @@ texto e dois botões ("Ver projetos", "Ir pro início").
 | rápido / base / lento | 250 / 350 / 700 ms | hover / botão / cartão |
 
 **Abertura (toca ao abrir ou recarregar a home; pula ao voltar de outra página do site; clique pula):** a jubarte, em
-traço, entra nadando pela direita no fundo marfim (1,8 s, `power3.out`) e nada no lugar (a cauda bate, o corpo sobe e
-desce) enquanto o contador vai de 0 a 100% (2,4 s) e o traço passa do violeta ao rosa → em 100% ela sai nadando pela
-esquerda, descendo de leve → o mar violeta, com a crista em onda, sobe e cobre a tela (1 s) e vira o topo do site. Sem
-borrifo e sem salto (a Emilly não gostou: a baleia só nada). Pedido da Emilly em 05/11,
+traço e pequena (120–190 px), atravessa a tela da direita para a esquerda nadando em onda (sobe e desce; o nariz segue a
+inclinação; passa pela crista, reta, em cima do contador), rápida nas bordas e devagar no meio (4,6 s), com a cauda
+batendo, enquanto o contador vai de 0 a 100% (2,8 s) e o traço passa do violeta ao rosa → enquanto ela sai pela esquerda,
+o mar violeta, com a crista em onda, sobe e cobre a tela (1 s) e vira o topo do site. A Emilly não gostou da baleia
+grande, do borrifo, do salto nem dela nadando reto (05/11). Pedido da Emilly em 05/11,
 inspirado no peixe em neon do kenjilambert.com (antes: selo + contador + três cortinas).
 
 **Crachá do topo (05/11):** cai do alto preso no cordão ameixa escrito "itsemsdesign", balança e para à esquerda do EMS
@@ -384,7 +385,7 @@ inspirado no peixe em neon do kenjilambert.com (antes: selo + contador + três c
 *together*", o WhatsApp e o Instagram. Física de cordão (Verlet), sem biblioteca. Volta a cair quando o site recomeça.
 
 **Fundo do mar (05/11, só na home, depois do rodapé):** o e-mail gigante em Anton passando, bolhas e a jubarte nadando
-em marfim-lavanda; o mar clareia do tinta ao violeta e, perto do fim, ela mergulha conforme a rolagem. A última tela é
+em marfim-lavanda, pequena e em onda (sobe e desce com o nariz acompanhando); o mar clareia do tinta ao violeta e, perto do fim, ela mergulha conforme a rolagem. A última tela é
 o violeta do topo ("de volta ao começo"): quando ela cobre a tela, o site volta para o começo, o topo entra de novo e
 o crachá cai outra vez.
 

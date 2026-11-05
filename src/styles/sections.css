@@ -4,7 +4,7 @@
 .loader { position: fixed; inset: 0; z-index: 9800; pointer-events: none; overflow: hidden; }
 .loader__ceu { position: absolute; inset: 0; background: var(--ivory); display: grid; place-items: center; overflow: hidden; pointer-events: auto; }
 .loader__content { position: relative; z-index: 2; display: grid; justify-items: center; gap: 10px; text-align: center; }
-.loader__baleia { width: clamp(230px, 34vw, 460px); color: var(--violeta); }
+.loader__baleia { width: clamp(120px, 14vw, 190px); color: var(--violeta); }
 .loader__baleia .jubarte { display: block; width: 100%; height: auto; overflow: visible; }
 /* antes do JS a baleia fica fora da tela (ela entra nadando pela direita) */
 .loader__baleia { opacity: 0; }
@@ -384,8 +384,11 @@ html.idioma-esperando body { visibility: hidden; }
 @keyframes mar-corre { to { transform: translateX(-50%); } }
 .mar__fundo { position: relative; height: clamp(360px, 70vh, 680px); background: linear-gradient(to bottom, var(--ink) 0%, var(--ameixa) 45%, var(--violeta) 100%); }
 .mar__baleia { position: absolute; left: 0; top: 18%; width: 100%; }
-.mar__nado { width: clamp(220px, 30vw, 440px); color: var(--lavanda-2); animation: mar-nada 18s linear infinite; }
-.mar__nado .jubarte { display: block; width: 100%; height: auto; overflow: visible; }
+.mar__nado { width: clamp(140px, 17vw, 250px); color: var(--lavanda-2); animation: mar-nada 18s linear infinite; }
+/* nadando em onda: sobe e desce, e o nariz acompanha (a inclinação vem um quarto de volta antes da altura) */
+.mar__nado .jubarte { display: block; width: 100%; height: auto; overflow: visible; animation: mar-onda-y 2s ease-in-out infinite alternate, mar-onda-r 2s ease-in-out -1s infinite alternate; }
+@keyframes mar-onda-y { from { translate: 0 -22px; } to { translate: 0 22px; } }
+@keyframes mar-onda-r { from { rotate: 7deg; } to { rotate: -7deg; } }
 .mar__nado .jubarte__cauda { transform-box: view-box; transform-origin: 1410px 520px; animation: mar-cauda 1.2s ease-in-out infinite alternate; }
 @keyframes mar-nada { from { transform: translateX(100vw); } to { transform: translateX(-110%); } }
 @keyframes mar-cauda { from { rotate: -6deg; } to { rotate: 6deg; } }
@@ -396,7 +399,7 @@ html.idioma-esperando body { visibility: hidden; }
 .mar__volta { display: inline-flex; align-items: center; gap: 8px; font-size: var(--t-small); opacity: .85; }
 .mar__volta svg { width: 16px; height: 16px; rotate: 90deg; }
 /* menos movimento: o e-mail e a baleia ficam parados e não há volta automática para o começo */
-.mar.is-calmo .mar__trilho, .mar.is-calmo .mar__nado, .mar.is-calmo .jubarte__cauda { animation: none; }
+.mar.is-calmo .mar__trilho, .mar.is-calmo .mar__nado, .mar.is-calmo .jubarte, .mar.is-calmo .jubarte__cauda { animation: none; }
 .mar.is-calmo .mar__nado { margin-inline: auto; }
 .mar.is-calmo .mar__superficie { display: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
