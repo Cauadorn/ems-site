@@ -362,6 +362,14 @@ html.idioma-esperando body { visibility: hidden; }
 .contact__lead { font-size: var(--t-lead); }
 .nope { margin-top: 30px; font-size: .85rem; text-decoration: underline; text-underline-offset: 4px; opacity: .75; }
 .nope:hover { opacity: 1; }
+/* na home o contato desce direto para o fundo do mar (pedidos da Emilly em 05/11): pouco espaço embaixo; a espiral menor,
+   inteira dentro do contato (cortada reta ela fazia uma "divisória" feia); e, no computador, o fundo escurecendo do
+   violeta até o roxo profundo do topo do mar, para a cor não mudar de uma vez na emenda */
+.contact:has(+ .mar) { padding-bottom: clamp(20px, 2.5vw, 36px); }
+.contact:has(+ .mar) .contact__spiral { width: auto; height: 86%; aspect-ratio: 1; }
+@media (orientation: landscape) {
+  .contact:has(+ .mar) { background: linear-gradient(to bottom, var(--violeta) 25%, var(--roxo-fundo)); }
+}
 .burst { position: fixed; z-index: 9600; pointer-events: none; width: 34px; height: 34px; }
 
 /* ================= RODAPÉ ================= */
@@ -382,15 +390,17 @@ html.idioma-esperando body { visibility: hidden; }
 /* só na home, entre o contato e o rodapé (05/11): o fundo do mar pintado e animado de verdade (jubarte, cardume, algas,
    raios de luz e bolhas; a Emilly não quis nada em vetor nem o e-mail gigante por cima). Sem volta automática para o
    começo: a página termina no rodapé, com o botão de voltar ao topo */
-/* a seção fica na proporção do vídeo, para a pintura aparecer inteira: deitada no computador, em pé no celular e no
-   tablet em pé (o vídeo certo é escolhido em mar.js). Em cima e embaixo a cena some no violeta do contato e no tinta do
-   rodapé, para não ter emenda */
-.mar { position: relative; width: 100%; aspect-ratio: 1920 / 1072; min-height: 360px; max-height: 100vh; overflow: hidden; background: linear-gradient(to bottom, var(--violeta) 0%, var(--ameixa) 48%, var(--ink) 100%); }
-.mar__video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 84%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 84%, transparent 100%); }
+/* a seção fica perto da proporção do vídeo (deitado no computador, em pé no celular e no tablet em pé; o vídeo certo é
+   escolhido em mar.js), só um pouco mais baixa, para cortar a água vazia do topo. Em cima e embaixo a cena some no
+   violeta do contato e no tinta do rodapé, para não ter emenda */
+.mar { position: relative; width: 100%; aspect-ratio: 1920 / 860; min-height: 340px; max-height: 100vh; overflow: hidden; background: linear-gradient(to bottom, var(--roxo-fundo) 0%, var(--ameixa) 48%, var(--ink) 100%); }
+/* o topo da pintura (água vazia, sobra de quando o e-mail gigante passava por cima) fica cortado: object-position embaixo */
+.mar__video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 88%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%); }
+/* em pé o topo da pintura é mais claro, perto do próprio violeta: ali o contato fica violeta e o mar começa nele */
 @media (orientation: portrait) {
-  .mar { aspect-ratio: 900 / 1612; max-height: 120vh; }
+  .mar { aspect-ratio: 900 / 1380; max-height: 110vh; background: linear-gradient(to bottom, var(--violeta) 0%, var(--ameixa) 48%, var(--ink) 100%); }
 }
 
 /* ================= RESPONSIVO ================= */

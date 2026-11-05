@@ -83,6 +83,7 @@
 | `--ameixa` | #3D1C46 | 61 28 70 | fundo de Projetos, Serviços, cases e "Todos os projetos"; caixas E e S do logo |
 | `--violeta` | #6225D8 | 98 37 216 | cor da marca: hero, contato, menu, links |
 | `--violeta-2` | #7B4DF2 | 123 77 242 | estrelas/espirais sobre o violeta |
+| `--roxo-fundo` | #6A3AAE | 106 58 174 | roxo profundo do topo do fundo do mar; na home o contato escurece do violeta até ele, para não ter emenda (05/11) |
 | `--lavanda` | #C0A5C4 | 192 165 196 | faixa secundária, "ems" do rodapé |
 | `--lavanda-2` | #E4D6E6 | 228 214 230 | fundo de "Como eu penso design", hovers |
 | `--wine` | #9E122C | 158 18 44 | faixa principal, cartão Identidade visual, cereja |
