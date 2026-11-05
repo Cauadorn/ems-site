@@ -182,6 +182,7 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 | Espiral | espiral de Arquimedes, traço 6, pontas redondas | ícone de Identidade visual, abertura, menu, contato |
 | Cereja | par de cerejas com cabo e folha em `#3D1C46`, frutas na cor do `color` | adesivo do hero, Social & peças |
 | Jubarte | baleia jubarte em traço (contorno, pregas, calombos e nadadeiras compridas) com o corpo flexível: o desenho (Nano Banana Pro, pelo Higgsfield) vira uma fita em WebGL que segue o caminho, curva nas voltas e bate a cauda (`src/js/modules/baleia-gl.js`); a cor vai do violeta ao rosa. Sem WebGL, entra o vídeo dela nadando (Kling 3.0 + Remotion). A Emilly reprovou o desenho vetorizado parado e o vídeo girando inteiro, "duro" (05/11). Como refazer: `docs/baleia/README.md` | abertura |
+| Objeto 3D do projeto | o produto do case em 3D (copos 24 da Bruninha e Carnaval 2026, vela Selene da ALMAH), montado com a foto original como textura (a arte não é redesenhada) e animado em loop (WebP transparente); sai do canto de baixo da capa no topo do case, flutuando, com a sombra dura tinta. A Emilly não quis esses objetos na home (nem entre parênteses na frase, que copiava o kenjilambert.com, nem como adesivos): só nas páginas deles. Como fazer: `docs/objetos-3d/README.md` | topo dos cases (`objeto3d` em `projects.js`) |
 | Fundo do mar | cena pintada à mão (guache digital, luz suave) e animada em loop: a jubarte lavanda nadando, cardume manteiga, peixinhos rosa, algas vinho e lavanda, raios de luz, bolhas e partículas, do violeta da superfície ao tinta do fundo. Gerada no Higgsfield (Nano Banana Pro + Kling 3.0), deitada e em pé. Nada em vetor ali (pedido da Emilly em 05/11). Como refazer: `docs/mar/README.md` | fundo do mar |
 | XOXO | X e O desenhados em traço 8 | adesivo do hero |
 | Brilho | estrela de 4 pontas | acento, pisca (2,4 s) |
@@ -426,9 +427,7 @@ aparece no lugar. O crachá fica pendurado parado (ainda vira) e o fundo do mar 
 
 1. **Abertura** (marfim + a jubarte; o mar violeta sobe e vira o topo)
 2. **Hero** — violeta; logo EMS (o selo saiu em 05/11: ele fica no crachá); frase em 2 linhas corridas, serif itálico marfim com destaque manteiga:
-   "Faço marca ( 🥤 ) bonita *de perto* / e clara ( 🕯 ) *de longe*.", com objetos 3D dos trabalhos dela entre parênteses,
-   trocando (copos e vela, como no kenjilambert.com; no celular só na 2ª linha; `docs/objetos-3d/`); etiquetas; CTA;
-   o crachá 3D pendurado à esquerda
+   "Faço marca bonita *de perto* / e clara *de longe*."; etiquetas; CTA; o crachá 3D pendurado à esquerda
 3. **Faixas** cruzadas (vinho sobre lavanda); em volta, violeta em cima e ameixa embaixo
 4. **Projetos** — ameixa; "(01) Trabalhos que têm *cara*"; carrossel 3D ou lista + botão "Ver todos os projetos"
 5. **Como eu penso design** — lavanda-2; título igual aos outros ("Marca boa é a que as pessoas *reconhecem*", palavra em

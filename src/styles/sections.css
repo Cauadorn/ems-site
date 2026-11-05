@@ -115,14 +115,6 @@ html.idioma-esperando body { visibility: hidden; }
 /* frase da marca em duas linhas corridas, menor que o logo: o EMS é o destaque */
 .hero__title { display: grid; font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: clamp(2rem, 4.2vw, 4rem); line-height: 1.02; letter-spacing: -.02em; }
 .hero__title em { color: var(--manteiga); }
-/* objetos 3D entre parênteses na frase (parenteses.js; como no kenjilambert.com): produtos dela girando e pulando */
-.parenteses { display: inline-flex; align-items: center; font-style: normal; white-space: nowrap; }
-.parenteses__obj { display: inline-block; width: 1.2em; height: 1.2em; margin: -.15em .04em; }
-.parenteses__obj img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.parenteses__obj.is-troca { animation: obj-pula .5s var(--ease-back); }
-@keyframes obj-pula { from { scale: .2; } to { scale: 1; } }
-/* no celular a primeira linha não cabe com o objeto (quebrava "de / perto"): lá fica só o da segunda linha */
-@media (max-width: 600px) { .hero__line:first-child .parenteses { display: none; } }
 .hero__line { display: block; }
 .hero__line--serif { font-family: var(--f-serif); font-style: italic; text-transform: none; color: var(--manteiga); font-size: 1.12em; line-height: .92; letter-spacing: -.02em; }
 .hero__label { position: absolute; padding: .35em .8em; border-radius: 6px; font-family: var(--f-sans); font-weight: 800; font-size: clamp(.7rem, 1vw, .95rem); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; box-shadow: 3px 3px 0 var(--ink); }

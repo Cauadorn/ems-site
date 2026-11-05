@@ -7,11 +7,20 @@
 .case-hero__thumb { width: 100%; rotate: 3deg; transition: rotate .5s var(--ease-back); }
 .case-hero__thumb img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border: 2px solid var(--ink); border-radius: var(--r-s); box-shadow: var(--shadow-hard); }
 @media (hover: hover) { .case-hero__thumb:hover { rotate: -1deg; } }
+/* o produto em 3D (copos, vela da ALMAH) sai da capa no canto de baixo à esquerda, flutuando (05/11: a Emilly quis os
+   objetos 3D nas páginas deles, não no topo da home). Vem de projects.js (objeto3d) e de public/img/objetos/ */
+.case-hero__thumb { position: relative; }
+.case-hero__obj3d { position: absolute; left: -15%; bottom: -24%; width: 46%; rotate: -4deg; pointer-events: none; animation: obj3d-flutua 3s ease-in-out infinite alternate; }
+.case-hero__obj3d img { display: block; width: 100%; height: auto; border: 0; box-shadow: none; aspect-ratio: 1; filter: drop-shadow(4px 4px 0 var(--ink)); }
+@keyframes obj3d-flutua { to { translate: 0 -10px; } }
+@media (prefers-reduced-motion: reduce) { .case-hero__obj3d { animation: none; } }
 /* no celular a miniatura fica pequena no canto, ao lado do "Todos os projetos" (grande, repetiria o 1º slide logo abaixo) */
 @media (max-width: 860px) {
   .case-hero--thumb .case-hero__inner { grid-template-columns: 1fr; position: relative; }
   .case-hero__thumb { position: absolute; top: 0; right: 0; width: 96px; rotate: 4deg; }
   .case-hero__thumb img { border-width: 1.5px; box-shadow: 3px 3px 0 var(--ink); }
+  .case-hero__obj3d { left: -42%; bottom: -46%; width: 72%; }
+  .case-hero__obj3d img { box-shadow: none; filter: drop-shadow(2px 2px 0 var(--ink)); }
 }
 .case-back { display: inline-flex; align-items: center; gap: .5em; min-height: 44px; padding: 0 1.1em; margin-bottom: 18px; border-radius: 999px; border: 1.5px solid rgba(255, 251, 222, .35); font-size: var(--t-small); font-weight: 600; text-decoration: none; transition: background .25s, color .25s, border-color .25s; }
 .case-back svg { width: 18px; height: 18px; transform: scaleX(-1); }

@@ -1,9 +1,9 @@
-# Objetos 3D entre parênteses (frase do topo)
+# Objetos 3D dos projetos (topo dos cases)
 
-Pedido da Emilly em 05/11, inspirado no kenjilambert.com. Lá, o título tem renders animados dos trabalhos 3D dele entre
-parênteses ("making ( 🎰 ) things"): são WebP animados com fundo transparente, trocando de tempos em tempos. Aqui a frase
-do topo ficou "Faço marca ( 🥤 ) bonita de perto / e clara ( 🕯 ) de longe.", com produtos de verdade do portfólio dela.
-No celular só a segunda linha tem o objeto (a primeira não cabia).
+Pedido da Emilly em 05/11, inspirado no kenjilambert.com, que mostra renders animados dos trabalhos 3D dele (WebP
+animados com fundo transparente). Aqui são produtos de verdade do portfólio dela, e cada um fica **só na página do
+próprio projeto**, saindo do canto da capa no topo do case. Ela não quis os objetos na home: entre parênteses na frase
+(como no site dele) era cópia, e como adesivos no topo ela também não gostou.
 
 | Objeto | Projeto | Foto de origem (recorte em `estudio/`) |
 |---|---|---|
@@ -32,9 +32,10 @@ letras saíram embaralhadas ("24 A OMIO"). Isso deturpa a arte dela. Não usar p
 
 ## No site
 
-- **Imagens:** `public/img/objetos/<nome>.webp` (animado) e `<nome>-parado.webp`. O HTML já vem com a versão parada,
-  e a animada entra depois da abertura. Com "reduzir movimento", fica a parada.
-- **Troca entre os objetos:** `src/js/modules/parenteses.js`. As vagas trocam uma de cada vez e nunca mostram o mesmo
-  objeto ao mesmo tempo.
-- **Estilo:** `sections.css`, em `.parenteses`.
-- **Objeto novo:** gerar o WebP do mesmo jeito e pôr o nome na lista `OBJETOS` de `parenteses.js`.
+- **Imagens:** `public/img/objetos/<nome>.webp` (animado) e `<nome>-parado.webp`. Com "reduzir movimento", o próprio
+  HTML (`<picture>`) mostra a parada.
+- **Em qual case:** o campo `objeto3d: '<nome>'` do projeto em `src/data/projects.js`. O gerador
+  (`scripts/gerar-cases.mjs`) põe o objeto dentro da capa.
+- **Estilo:** `src/styles/case.css`, em `.case-hero__obj3d`. Fica no canto de baixo à esquerda da capa, flutuando, com
+  a sombra dura tinta.
+- **Objeto novo:** gerar o WebP do mesmo jeito e pôr `objeto3d` no projeto.
