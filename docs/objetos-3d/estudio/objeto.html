@@ -1,0 +1,131 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>objeto</title>
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./addons/"}}</script>
+</head><body>
+<script type="module">
+// Monta o produto em 3D (copo ou vela) e "projeta" a foto original nele, como um projetor na mesma posição da câmera
+// da foto: a arte aparece exatamente como foi desenhada. Depois anima em loop e devolve cada quadro em PNG.
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const P = JSON.parse(decodeURIComponent(location.hash.slice(1)));
+const TAM = P.tam || 400;
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1); renderer.setSize(TAM, TAM); renderer.setClearColor(0, 0);
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const pm = new THREE.PMREMGenerator(renderer);
+scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+const luz = new THREE.DirectionalLight(0xffffff, 1.6); luz.position.set(-2, 3, 4); scene.add(luz);
+
+// medidas da foto (px): centro x, centro da boca (yTopo) e do fundo (yBase), raios da boca e do fundo, inclinação
+const { W, H, cx, yTopo, yBase, rTopo, rBase, elev } = P;
+const s = rTopo * (P.margem || 0.985); // px por unidade (a boca tem raio 1); a margem evita pegar o fundo da foto
+const e = THREE.MathUtils.degToRad(elev);
+const alt = (yBase - yTopo) / Math.cos(e) / rTopo; // altura em unidades
+const rb = rBase / rTopo;
+
+const tex = await new THREE.TextureLoader().loadAsync(P.img);
+tex.colorSpace = THREE.SRGBColorSpace;
+tex.anisotropy = 8;
+
+const objeto = new THREE.Group();
+// lado de fora: superfície de revolução com a foto projetada
+const N = 96, M = 48;
+const pos = [], uv = [], idx = [];
+for (let j = 0; j <= M; j++) {
+  const f = j / M, y = f * alt, r = rb + (1 - f) * 0 + f * (1 - rb);
+  for (let i = 0; i <= N; i++) {
+    const th = (i / N) * Math.PI * 2 - Math.PI;
+    const x = r * Math.sin(th), z = r * Math.cos(th);
+    pos.push(x, y, z);
+    const yc = yBase - f * (yBase - yTopo);
+    const X = cx + x * s, Y = yc + z * s * Math.sin(e);
+    uv.push(X / W, 1 - Y / H);
+  }
+}
+for (let j = 0; j < M; j++) for (let i = 0; i < N; i++) {
+  const a = j * (N + 1) + i, b = a + 1, c = a + N + 1, d = c + 1;
+  idx.push(a, b, c, b, d, c);
+}
+const geo = new THREE.BufferGeometry();
+geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+geo.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+geo.setIndex(idx); geo.computeVertexNormals();
+const fora = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: tex }));
+objeto.add(fora);
+
+const corDentro = new THREE.Color(P.dentro || '#cccccc');
+if (P.tipo === 'copo') {
+  // lado de dentro e fundo de dentro, na cor do interior do copo
+  const perfil = [new THREE.Vector2(rb * 0.97, alt * 0.04), new THREE.Vector2(0.97, alt)];
+  const dentro = new THREE.Mesh(new THREE.LatheGeometry([new THREE.Vector2(0, alt * 0.04), ...perfil], 96),
+    new THREE.MeshStandardMaterial({ color: corDentro, roughness: 0.45, side: THREE.BackSide }));
+  objeto.add(dentro);
+  // a borda (o friso de cima)
+  const borda = new THREE.Mesh(new THREE.TorusGeometry(0.985, 0.022, 12, 96), new THREE.MeshStandardMaterial({ color: new THREE.Color(P.borda || P.dentro), roughness: 0.35 }));
+  borda.rotation.x = Math.PI / 2; borda.position.y = alt; objeto.add(borda);
+  // fundo de baixo
+  const fundo = new THREE.Mesh(new THREE.CircleGeometry(rb, 64), new THREE.MeshStandardMaterial({ color: corDentro }));
+  fundo.rotation.x = Math.PI / 2; objeto.add(fundo);
+} else {
+  // vela: cera em cima (por dentro do vidro), borda de vidro, pavio e chama
+  const cera = new THREE.Mesh(new THREE.CircleGeometry(0.93, 64), new THREE.MeshStandardMaterial({ color: new THREE.Color(P.dentro), roughness: 0.6, emissive: new THREE.Color('#ffcf8a'), emissiveIntensity: 0.18 }));
+  cera.rotation.x = -Math.PI / 2; cera.position.y = alt * 0.86; objeto.add(cera);
+  const paredeDentro = new THREE.Mesh(new THREE.CylinderGeometry(0.95, 0.95, alt * 0.14, 64, 1, true), new THREE.MeshStandardMaterial({ color: '#d9cdbd', roughness: 0.2, transparent: true, opacity: 0.55, side: THREE.BackSide }));
+  paredeDentro.position.y = alt * 0.93; objeto.add(paredeDentro);
+  const aro = new THREE.Mesh(new THREE.TorusGeometry(0.985, 0.03, 12, 96), new THREE.MeshPhysicalMaterial({ color: '#f3efe8', roughness: 0.05, transmission: 0, clearcoat: 1 }));
+  aro.rotation.x = Math.PI / 2; aro.position.y = alt; objeto.add(aro);
+  const pavio = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.1, 8), new THREE.MeshBasicMaterial({ color: '#2a1a12' }));
+  pavio.position.y = alt * 0.86 + 0.05; objeto.add(pavio);
+  // chama: gota com degradê (branco no meio, laranja na ponta), mais um brilho em volta
+  const gota = new THREE.LatheGeometry(Array.from({ length: 24 }, (_, k) => { const t = k / 23; return new THREE.Vector2(Math.sin(Math.PI * Math.pow(t, 0.7)) * 0.12 * (1 - t * 0.35), t * 0.55); }), 32);
+  const cores = []; const pg = gota.attributes.position;
+  for (let k = 0; k < pg.count; k++) { const t = pg.getY(k) / 0.55; const c = new THREE.Color('#fff6d8').lerp(new THREE.Color('#ffa531'), Math.min(1, t * 1.25)); cores.push(c.r, c.g, c.b); }
+  gota.setAttribute('color', new THREE.Float32BufferAttribute(cores, 3));
+  window.chama = new THREE.Mesh(gota, new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.95 }));
+  window.chama.position.y = alt * 0.86 + 0.09; objeto.add(window.chama);
+  const brilhoTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const g = c.getContext('2d'); const r = g.createRadialGradient(64, 64, 0, 64, 64, 64); r.addColorStop(0, 'rgba(255,200,120,.75)'); r.addColorStop(1, 'rgba(255,170,80,0)'); g.fillStyle = r; g.fillRect(0, 0, 128, 128); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; })();
+  window.brilho = new THREE.Sprite(new THREE.SpriteMaterial({ map: brilhoTex, blending: THREE.AdditiveBlending, depthWrite: false }));
+  window.brilho.scale.setScalar(1.1); window.brilho.position.y = alt * 0.86 + 0.3; objeto.add(window.brilho);
+}
+
+// enquadra: o objeto (e a chama) cabe no quadro com folga para o pulo
+const pivo = new THREE.Group(); pivo.add(objeto); scene.add(pivo);
+const altura = alt + (P.tipo === 'vela' ? 0.75 : 0);
+const k = 1.0 / Math.max(altura, 2 * 1.05);
+pivo.scale.setScalar(k * (P.zoom || 1));
+pivo.position.y = -altura * k * 0.5 - (P.tipo === 'copo' ? 0.06 : 0);
+const base = pivo.position.y;
+const camera = new THREE.PerspectiveCamera(24, 1, 0.1, 100);
+camera.position.set(0, Math.tan(e) * 4, 4); camera.lookAt(0, 0, 0);
+
+window.quadro = (i, n) => {
+  const t = i / n, TAU = Math.PI * 2;
+  pivo.rotation.set(0, 0, 0); objeto.scale.set(1, 1, 1); pivo.position.y = base;
+  if (P.tipo === 'copo') {
+    // dança: balança de um lado para o outro e dá dois pulinhos, com amassadinho ao voltar ao chão
+    const pulo = Math.max(0, Math.sin(TAU * 2 * t));
+    pivo.position.y += 0.09 * pulo * k * 2;
+    pivo.rotation.y = 0.42 * Math.sin(TAU * t);
+    pivo.rotation.z = 0.08 * Math.sin(TAU * t + Math.PI / 2);
+    const am = 1 - 0.07 * Math.max(0, -Math.sin(TAU * 2 * t));
+    objeto.scale.set(1 / Math.sqrt(am), am, 1 / Math.sqrt(am));
+  } else {
+    // vela: gira devagar de um lado para o outro e flutua; a chama tremula
+    pivo.position.y += 0.03 * Math.sin(TAU * 2 * t);
+    pivo.rotation.y = 0.4 * Math.sin(TAU * t);
+    pivo.rotation.z = 0.04 * Math.sin(TAU * t + 1);
+    const tremor = 1 + 0.12 * Math.sin(TAU * 6 * t) + 0.06 * Math.sin(TAU * 11 * t + 1);
+    window.chama.scale.set(1 - 0.04 * Math.sin(TAU * 6 * t), tremor, 1 - 0.04 * Math.sin(TAU * 6 * t));
+    window.chama.rotation.z = 0.12 * Math.sin(TAU * 4 * t);
+    window.brilho.material.opacity = 0.85 + 0.15 * Math.sin(TAU * 6 * t);
+  }
+  renderer.render(scene, camera);
+  return renderer.domElement.toDataURL('image/png');
+};
+window.pronto = true;
+</script>
+</body></html>

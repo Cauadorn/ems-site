@@ -426,7 +426,9 @@ aparece no lugar. O crachá fica pendurado parado (ainda vira) e o fundo do mar 
 
 1. **Abertura** (marfim + a jubarte; o mar violeta sobe e vira o topo)
 2. **Hero** — violeta; logo EMS (o selo saiu em 05/11: ele fica no crachá); frase em 2 linhas corridas, serif itálico marfim com destaque manteiga:
-   "Faço marca bonita *de perto* / e clara *de longe*."; etiquetas; CTA; o crachá pendurado à esquerda
+   "Faço marca ( 🥤 ) bonita *de perto* / e clara ( 🕯 ) *de longe*.", com objetos 3D dos trabalhos dela entre parênteses,
+   trocando (copos e vela, como no kenjilambert.com; no celular só na 2ª linha; `docs/objetos-3d/`); etiquetas; CTA;
+   o crachá 3D pendurado à esquerda
 3. **Faixas** cruzadas (vinho sobre lavanda); em volta, violeta em cima e ameixa embaixo
 4. **Projetos** — ameixa; "(01) Trabalhos que têm *cara*"; carrossel 3D ou lista + botão "Ver todos os projetos"
 5. **Como eu penso design** — lavanda-2; título igual aos outros ("Marca boa é a que as pessoas *reconhecem*", palavra em

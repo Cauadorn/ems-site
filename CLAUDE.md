@@ -62,7 +62,9 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
 
 ## O que já foi aprovado ou pedido pelo Cauã (não desfazer sem perguntar)
 - Hero no estilo pixel.melbourne: logo "EMS" em caixas, etiquetas arrastáveis (o selo carimbado saiu em 05/11). A frase da marca
-  ficou em 2 linhas corridas e menores, em itálico (pedido da Emilly em 01/10: a de 3 linhas era grande demais).
+  ficou em 2 linhas corridas e menores, em itálico (pedido da Emilly em 01/10: a de 3 linhas era grande demais). Desde
+  05/11 a frase tem objetos 3D dos trabalhos dela entre parênteses, trocando, como no kenjilambert.com (copos e vela
+  feitos a partir das fotos, sem redesenhar a arte: `docs/objetos-3d/`, `src/js/modules/parenteses.js`).
 - Carrossel 3D igual ao da pixel.melbourne: anel circular, mínimo de 8 posições, vagas "próximo projeto"
   (`docs/referencia-pixel.md` e `src/js/modules/carousel.js`). Em 01/10 a Emilly pediu para o anel NÃO girar com a
   rolagem (prendia a página): ele ocupa uma tela e gira pelas setas, arrastando para o lado ou pelas setas do teclado.

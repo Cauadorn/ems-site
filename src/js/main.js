@@ -9,6 +9,7 @@ import { initAbout } from './modules/about.js';
 import { initNope } from './modules/nope.js';
 import { initTapes } from './modules/tapes.js';
 import { initCracha } from './modules/cracha.js';
+import { initParenteses } from './modules/parenteses.js';
 import { initMar } from './modules/mar.js';
 import { initIdioma } from './modules/idioma.js';
 
@@ -24,6 +25,7 @@ initIdioma(); // português / inglês: depois de montar o carrossel e a lista, q
 
 runLoader(reduced).then(() => {
   heroIntro(reduced);
+  initParenteses(reduced); // objetos 3D entre parênteses na frase do topo (a animação entra depois da abertura)
   initReveals(reduced);
   setTimeout(soltarCracha, reduced ? 0 : 900); // o crachá cai depois que o EMS aparece
   initMar(reduced); // fim do site no fundo do mar (cena animada em vídeo)
