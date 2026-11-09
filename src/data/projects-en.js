@@ -46,6 +46,16 @@ export const projectsEn = {
     detail: 'Brand identity for a credit company',
     resumo: 'I put together I3Cred’s basic brand guide: the symbol that joins the “i” and the “3”, the logo versions, the brand’s yellow and black and Gotham as the typeface. Then I took the brand to business cards, a notebook, a tablet, a mug, a tote bag, a book and a billboard.',
   },
+  'x3-promotora-site': {
+    category: 'Web design',
+    detail: 'Corporate website for a credit broker',
+    resumo: 'I designed the website for X3 Promotora, which connects banking agents to the biggest banks in Brazil. A dark background, electric blue and 3D icons present the credit solutions, the Full Consig 2.0 platform, the map of the states where it operates, its strengths, payroll credit (CLT) and support, always leading to “Become a partner”.',
+  },
+  'cf-promotora-site': {
+    category: 'Web design',
+    detail: 'Corporate website for a payroll credit broker',
+    resumo: 'I designed the website for CF Promotora, part of Grupo CREDFRANCO, which bridges banking agents and banks in payroll agreements. The page speaks to people who want to become partners: agreements by category, payroll credit (CLT) in the spotlight, the products, why to partner up and the sign-up form at the end, in the brand’s navy blue and yellow.',
+  },
   'idex-site': {
     category: 'Web design',
     detail: 'Corporate website for a credit fintech',
