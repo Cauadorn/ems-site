@@ -142,7 +142,7 @@ export const projects = [
   {
     slug: 'miau-lab',
     area: 'identidade',
-    destaque: false,
+    destaque: true, // no carrossel do início (pedido da Emilly em 26/11)
     title: 'MIAU lab',
     category: 'Identidade visual',
     detail: 'Marca conceitual de suplementos e petiscos para gatos',
