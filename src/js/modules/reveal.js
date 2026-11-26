@@ -2,19 +2,26 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { idioma } from './idioma.js';
 
-// Entrada do hero, depois da abertura
+// Entrada do hero, depois da abertura: o topo se monta peça por peça, como na abertura da Xulia Petit (26/11). O menu
+// desce, as caixas do EMS caem uma de cada vez e batem na mesa como post-its, a frase se escreve da esquerda para a
+// direita e as etiquetas e os adesivos chegam batendo, um de cada vez. Devolve quando o crachá pode cair (segundos).
 export function heroIntro(reduced) {
-  if (reduced) return;
-  // mesma coreografia da Pixel: logo, frase entrando pelos lados, etiquetas pulando (scale 0 → 1)
-  const main = 'expo.inOut'; // aproxima a curva "main" da Pixel (0.65, 0.01, 0.05, 0.99)
-  gsap.timeline({ defaults: { ease: main, duration: .9 } })
-    .from('[data-hero-box] > span', { yPercent: 105, stagger: .08 })
-    .from('[data-hero-line]', { xPercent: (i, el) => Number(el.dataset.from), opacity: 0, stagger: .1 }, '<-.2')
-    .from('[data-hero-pop], .hero .sparkle', { scale: 0, duration: .6, ease: 'back.out(3)', stagger: .08 }, '-=.4')
-    .from('[data-hero-item]', { y: 24, opacity: 0, duration: .7 }, '<');
+  if (reduced) return 0;
+  const tl = gsap.timeline();
+  tl.from('.site-header .nav', { yPercent: -160, opacity: 0, duration: .8, ease: 'expo.out', clearProps: 'transform,opacity' }, 0)
+    .from('[data-hero-box]', { scale: 1.45, rotate: (i) => [-9, 7, -6][i], opacity: 0, duration: .5, ease: 'back.out(1.7)', stagger: .15 }, .05)
+    .from('[data-hero-box] > span', { yPercent: 105, duration: .7, ease: 'expo.out', stagger: .15 }, .12)
+    // a frase "se escreve": cada linha aparece da esquerda para a direita (a folga em cima, embaixo e dos lados é para
+    // não cortar as letras inclinadas do itálico)
+    .fromTo('[data-hero-line]', { clipPath: 'inset(-25% 100% -25% -6%)' }, { clipPath: 'inset(-25% -6% -25% -6%)', duration: .85, ease: 'power2.inOut', stagger: .4, clearProps: 'clipPath' }, .6)
+    // etiquetas e adesivos chegam batendo, grandes, e assentam (como o adesivo "do not copy" dela)
+    .from('[data-hero-pop]', { scale: 2.3, opacity: 0, duration: .45, ease: 'back.out(2)', stagger: .18 }, 1.25)
+    .from('.hero .sparkle', { scale: 0, duration: .5, ease: 'back.out(3)', stagger: .1 }, 1.6)
+    .from('[data-hero-item]', { y: 24, opacity: 0, duration: .7, ease: 'expo.out' }, 1.7);
 
   // o logo "respira" em loop, como o vídeo-logo da Pixel
-  gsap.to('[data-hero-box]', { yPercent: -6, rotate: (i) => [-2, 2, -1.5][i], duration: .9, ease: 'sine.inOut', yoyo: true, repeat: -1, stagger: { each: .18 }, delay: 1.8 });
+  gsap.to('[data-hero-box]', { yPercent: -6, rotate: (i) => [-2, 2, -1.5][i], duration: .9, ease: 'sine.inOut', yoyo: true, repeat: -1, stagger: { each: .18 }, delay: 1.9 });
+  return 1.5;
 }
 
 export function initReveals(reduced) {

@@ -23,8 +23,8 @@ const soltarCracha = initCracha(reduced);
 initIdioma(); // português / inglês: depois de montar o carrossel e a lista, que já trazem o inglês ao lado
 
 runLoader(reduced).then(() => {
-  heroIntro(reduced);
+  const crachaEm = heroIntro(reduced);
   initReveals(reduced);
-  setTimeout(soltarCracha, reduced ? 0 : 900); // o crachá cai depois que o EMS aparece
+  setTimeout(soltarCracha, crachaEm * 1000); // o crachá cai depois que o EMS e a frase aparecem
   initMar(reduced); // fim do site no fundo do mar (cena animada em vídeo)
 });

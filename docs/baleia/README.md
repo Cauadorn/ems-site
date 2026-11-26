@@ -1,4 +1,9 @@
-# A jubarte da abertura
+# A jubarte da abertura (aposentada em 26/11)
+
+> **Não está mais no site.** Em 26/11 a Emilly trocou a abertura pela bonequinha piscando (`src/js/modules/loader.js`).
+> A jubarte ficou no histórico do Git: para trazer de volta, recuperar do commit `c3136fc` os arquivos
+> `src/js/modules/loader.js`, `src/js/modules/baleia-gl.js`, `public/img/baleia/` e o bloco LOADER de
+> `src/styles/sections.css` e do `index.html` (`git checkout c3136fc -- <arquivo>`). O fundo do mar do fim da home continua.
 
 Pedido da Emilly em 05/11: a baleia tinha que nadar de verdade. Primeiro o desenho vetorizado parado ficou duro; depois
 o vídeo dela nadando, girando inteiro pelo caminho, ainda ficou "duro". Agora ela tem o **corpo flexível**.

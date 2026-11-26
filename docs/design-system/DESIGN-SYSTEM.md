@@ -62,6 +62,9 @@
   clique, entrada com escala 0 → 1. Nunca girar continuamente nem deformar.
 - **Exceção aprovada (pedido da Emilly em 05/11):** o selo vai reto na frente do crachá do topo. O crachá balança no
   cordão (e o selo junto), mas a arte é a original, sem mudar nada.
+- **Exceção aprovada (pedido da Emilly em 26/11):** na abertura da home o selo ganha vida: os olhos piscam, olham para
+  os lados e ficam meio fechados ("desconfiada"). É uma camada por cima dos óculos feita das próprias formas do selo
+  (a íris e a lente são círculos medidos no SVG); parada, fica idêntica à arte. Nada mais no selo se mexe.
 
 ### Logo tipográfico do hero
 - "EMS" em Anton, caixa alta, cada letra numa caixa: E e S em ameixa `#3D1C46`, M em rosa `#DD34A8`, texto marfim, sobre
@@ -179,9 +182,8 @@ Arquivos: `@fontsource/anton`, `@fontsource/instrument-serif` (400 + 400-italic)
 |---|---|---|
 | Grão de papel | ruído fractal (feTurbulence .9, 2 oitavas) em tela cheia, opacidade 7% | todo o site (`body::after`) |
 | Estrela da Emilly | estrela cheia de 5 pontas com uma auréola em forma de estrela maior, de pontos em grade que diminuem para fora (`src/assets/illustrations/estrela-ems.svg`, usada como máscara: `.estrela`) | fundo do hero, da 404 e do manifesto, na cor tinta; cor por `color` |
-| Espiral | espiral de Arquimedes, traço 6, pontas redondas | ícone de Identidade visual, abertura, menu, contato |
+| Espiral | espiral de Arquimedes, traço 6, pontas redondas | ícone de Identidade visual, menu, contato |
 | Cereja | par de cerejas com cabo e folha em `#3D1C46`, frutas na cor do `color` | adesivo do hero, Social & peças |
-| Jubarte | baleia jubarte em traço (contorno, pregas, calombos e nadadeiras compridas) com o corpo flexível: o desenho (Nano Banana Pro, pelo Higgsfield) vira uma fita em WebGL que segue o caminho, curva nas voltas e bate a cauda (`src/js/modules/baleia-gl.js`); a cor vai do violeta ao rosa. Sem WebGL, entra o vídeo dela nadando (Kling 3.0 + Remotion). A Emilly reprovou o desenho vetorizado parado e o vídeo girando inteiro, "duro" (05/11). Como refazer: `docs/baleia/README.md` | abertura |
 | Objeto 3D do projeto | o produto do case em 3D (copos 24 da Bruninha e Carnaval 2026, vela Selene da ALMAH), montado com a foto original como textura (a arte não é redesenhada) e animado em loop (WebP transparente); sai do canto de baixo da capa no topo do case, flutuando, com a sombra dura tinta. A Emilly não quis esses objetos na home (nem entre parênteses na frase, que copiava o kenjilambert.com, nem como adesivos): só nas páginas deles. Como fazer: `docs/objetos-3d/README.md` | topo dos cases (`objeto3d` em `projects.js`) |
 | Fundo do mar | cena pintada à mão (guache digital, luz suave) e animada em loop: a jubarte lavanda nadando, cardume manteiga, peixinhos rosa, algas vinho e lavanda, raios de luz, bolhas e partículas, do violeta da superfície ao tinta do fundo. Gerada no Higgsfield (Nano Banana Pro + Kling 3.0), deitada e em pé. Nada em vetor ali (pedido da Emilly em 05/11). Como refazer: `docs/mar/README.md` | fundo do mar |
 | XOXO | X e O desenhados em traço 8 | adesivo do hero |
@@ -375,12 +377,15 @@ texto e dois botões ("Ver projetos", "Ir pro início").
 | Pixel "main" | cubic-bezier(.65, .01, .05, .99) ≈ GSAP `expo.inOut` | entrada do hero |
 | rápido / base / lento | 250 / 350 / 700 ms | hover / botão / cartão |
 
-**Abertura (toca ao abrir ou recarregar a home; pula ao voltar de outra página do site; clique pula):** a jubarte (pequena: 130–230 px,
-com o corpo flexível: o corpo passa por onde a cabeça passou e curva nas voltas, e a cauda bate) entra pela direita nadando em onda, dá uma volta em torno do
-contador (desce pela esquerda, passa de cabeça para baixo por baixo da frase, sobe pela direita) e sai pela esquerda em
-onda, com a cauda batendo, enquanto o contador vai de 0 a 100% (2,9 s) e o traço passa do violeta ao rosa → enquanto ela
-sai, o mar violeta, com a crista em onda, sobe e cobre a tela (1 s) e vira o topo do site. A Emilly pediu a volta no
-contador e não gostou da baleia grande, do borrifo, do salto nem dela nadando reto (05/11).
+**Abertura (toca ao abrir ou recarregar a home; pula ao voltar de outra página do site; clique pula):** inspirada na
+da Xulia Petit (pedido da Emilly em 26/11). O selo (até 360 px de largura, 38% da altura da tela) entra no marfim com um
+pulinho e flutua; os olhos olham para a direita, para a esquerda, piscam, ficam meio fechados ("hmm…") e piscam duas
+vezes (≈3,4 s). Embaixo, "loading ideas with *personality*". Depois as estrelas da EMS nascem do rosto dela, uma dentro
+da outra, girando um pouco (rosa → ameixa → violeta, 0,8 s cada, 0,2 s entre elas), e a violeta cobre a tela e vira o
+topo. O topo então se monta peça por peça (`heroIntro`): o menu desce; as caixas do EMS caem uma de cada vez e batem
+como post-its (escala 1,45 → 1, um pouco tortas); a frase se escreve da esquerda para a direita, linha por linha; as
+etiquetas e os adesivos chegam grandes e batem no lugar (escala 2,3 → 1); por fim, o rodapé do topo e o crachá. A
+abertura anterior (a jubarte nadando em volta do contador, 05/11) está em `docs/baleia/README.md`.
 
 **Crachá do topo (05/11):** cai do alto preso no cordão ameixa escrito "itsemsdesign", balança e para à esquerda do EMS
 (no celular, no meio, embaixo do menu). Dá para puxar e jogar (mouse e dedo); no clique vira e mostra "Vamos criar
@@ -425,7 +430,7 @@ aparece no lugar. O crachá fica pendurado parado (ainda vira) e o fundo do mar 
 
 ## 10. Estrutura da home (ordem e fundos)
 
-1. **Abertura** (marfim + a jubarte; o mar violeta sobe e vira o topo)
+1. **Abertura** (marfim + a bonequinha piscando; as estrelas rosa, ameixa e violeta nascem do rosto dela e a violeta vira o topo)
 2. **Hero** — violeta; logo EMS (o selo saiu em 05/11: ele fica no crachá); frase em 2 linhas corridas, serif itálico marfim com destaque manteiga:
    "Faço marca bonita *de perto* / e clara *de longe*."; etiquetas; CTA; o crachá 3D pendurado à esquerda
 3. **Faixas** cruzadas (vinho sobre lavanda); em volta, violeta em cima e ameixa embaixo
@@ -492,7 +497,6 @@ Os botões "ver case" do carrossel e da lista abrem a página de case do projeto
 | Abertura, hero, reveals | `src/js/modules/loader.js`, `reveal.js` |
 | Crachá do topo | `src/js/modules/cracha3d.js` (3D) e `cracha.js` (escolhe e tem o 2D de reserva); estilo em `sections.css`, `.cracha` |
 | Fundo do mar | `src/js/modules/mar.js` (estilo em `sections.css`, `.mar`) |
-| Jubarte da abertura (vídeo) | `public/img/baleia/` (pronto) + `docs/baleia/` (desenho, animação, Remotion e o passo a passo) |
 | Fundo do mar (vídeos) | `public/img/mar/` (prontos) + `docs/mar/` (as imagens, os prompts e o passo a passo) |
 | Base de todas as páginas (rolagem, cabeçalho, menu, cursor) | `src/js/modules/site.js` (home: `main.js`; cases e 404: `page.js`) |
 | Referência técnica da Pixel | `docs/referencia-pixel.md` |
