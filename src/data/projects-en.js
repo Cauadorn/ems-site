@@ -31,6 +31,20 @@ export const projectsEn = {
       { rotulo: 'The presentation', titulo: 'The proposal <em>as a website</em>', texto: 'Instead of a PDF, Babi got a website: the whole brand presented on a single page, with a crest made of particles that turn into gold dust when the mouse goes by.', alts: ['the proposal website on a computer', 'the proposal website on a phone'], botao: 'Open the proposal website' },
     ],
   },
+  'miau-lab': {
+    category: 'Brand identity',
+    detail: 'Concept brand of supplements and treats for cats',
+    resumo: 'MIAU.LAB is a concept brand of supplements and functional treats for cats. It was born from a simple question: why should cat supplements look like pharmacy medicine? I mixed lab rigor with the humor of anyone who shares a home with a cat: a cat peeking over the U, bold colors and each product named after the problem every cat owner already knows, with a formula number. Science that purrs.',
+    entregas: ['Logo and symbol', 'Color versions', 'Palette', 'Typography', 'Patterns', 'Packaging', 'Product photos', 'Launch carousel'],
+    capitulos: [
+      { rotulo: 'The concept', titulo: 'Science <em>that purrs</em>', texto: 'MIAU.LAB takes cat supplements off the pharmacy shelf and brings the veterinary formula into the cat’s real life: the couch, the bowl, the window.', alts: ['the MIAU logo building itself and the cat climbing onto the U', 'the concept: “Science that purrs” and the words curious, trustworthy, playful and made for cats'] },
+      { rotulo: 'The symbol', titulo: 'A cat <em>on top of the U</em>', texto: 'The symbol is the whole brand: a cat peeking over the U, claws out, scratch marks dug into the letter. Curious, confident and a little cheeky, like every cat. The name is set in a redrawn Archivo Condensed Black.', alts: ['the MIAU .lab logo changing color: cobalt, pink, butter and cream', 'a close-up of the cat in the symbol, with the ears, eyes, claws and scratches pointed out', 'the cat in the symbol blinking and looking around', 'the four color versions of the logo'] },
+      { rotulo: 'Colors and typography', titulo: 'High contrast, <em>no pastels</em>', texto: 'Cobalt, pink, butter, cream and ink, with no washed-out pastels. Archivo Condensed Black for names and headlines, Instrument Sans for text, Space Mono for technical labels and Mea Culpa as a single accent per piece.', alts: ['the palette: cobalt, pink, butter, cream and ink', 'the brand’s four typefaces in use'] },
+      { rotulo: 'The patterns', titulo: 'Cat eye <em>and little fish</em>', texto: 'Two patterns split the line: cat eye with little fish for the treats and cat eye with capsule for the supplements.', alts: ['the patterns moving: cat eye with little fish and cat eye with capsule'] },
+      { rotulo: 'The line', titulo: 'Each formula, <em>a number</em>', texto: 'Each product is named after the problem every cat owner knows by heart and carries a formula number, like a real lab: the treat pouches Nº01 Fur & Skin, Nº02 Hairball and Nº03 Bad Breath, the supplement jars and the Nº05 Mobility pill box.', alts: ['the packaging laid flat: the three pouches, the jar labels and the pill box', 'a hand holding the Fur & Skin pouch, with fish-shaped treats falling', 'the three pouches: Fur & Skin, Hairball and Bad Breath', 'a cat sniffing the supplement jars, next to the Mobility box', 'a black cat lying next to the Fur & Skin pouch'] },
+      { rotulo: 'The launch', titulo: 'Made <em>for cats</em>', texto: 'For the launch: a 9-slide Instagram carousel, a reel with the symbol being built as a vector and a presentation website.', alts: ['the 9 slides of the Instagram launch carousel', 'closing: “Science that purrs”, with the background changing color'] },
+    ],
+  },
   'maria-valentina': {
     category: 'Branding',
     detail: 'Brand identity for a psychologist',
