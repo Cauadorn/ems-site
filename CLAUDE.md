@@ -50,7 +50,7 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
 ## Regras da marca que não podem falhar
 - **Selo** (`src/assets/illustrations/selo-ems.svg`): é a arte ORIGINAL da Emilly. Nunca redesenhar, recolorir,
   deformar ou girar (só a 404 inclina 12°). Um redesenho foi reprovado. Na home, a boneca aparece só no crachá
-  (pedido da Emilly em 05/11; o carimbo sobre o S saiu).
+  (pedido da Emilly em 05/11; o carimbo sobre o S saiu) e na abertura, onde só os olhos dela se mexem (26/11).
 - **Cores, fontes, tamanhos, raios, sombras, curvas:** só os tokens. Cor nova = token novo em `tokens.css`,
   `tokens.json` e `DESIGN-SYSTEM.md`.
 - **Títulos:** Anton em CAIXA ALTA + uma palavra em Instrument Serif itálico. Texto em Inter.
@@ -71,10 +71,11 @@ Só quando ela (ou o Cauã) pedir: "publica", "sobe", "manda pro ar".
   rolagem (prendia a página): ele ocupa uma tela e gira pelas setas, arrastando para o lado ou pelas setas do teclado.
 - Seção "Como eu penso design": texto menor e objetivo.
 - Abertura: toca sempre que a home é aberta ou recarregada e pula quando a pessoa volta de outra página do site (pedido
-  da Emilly em 01/10). Desde 05/11 é a jubarte (ela ama baleias): a baleia (com o corpo flexível: curva no caminho e bate a
-  cauda, `src/js/modules/baleia-gl.js`) entra pela direita, dá uma volta em torno do contador 0 → 100, sai pela esquerda e o
-  mar violeta sobe e vira o topo (inspirado no kenjilambert.com). Ela reprovou o desenho vetorizado parado e o vídeo
-  girando inteiro ("duro"), o borrifo, o salto, a baleia grande e ela nadando reto.
+  da Emilly em 01/10). Desde 26/11 é a bonequinha, como a abertura da Xulia Petit (x.com/exugia), que ela pediu igual: o
+  selo da EMS no marfim pisca, olha para os lados e desconfia (só os olhos se mexem, numa camada feita das próprias
+  formas do selo); as estrelas da EMS nascem do rosto dela (rosa, ameixa, violeta) e a violeta vira o topo, que se monta
+  peça por peça: menu, caixas do EMS batendo, frase se escrevendo, etiquetas e adesivos chegando (`loader.js` e
+  `heroIntro` em `reveal.js`). A anterior era a jubarte nadando em volta do contador (05/11); ver `docs/baleia/README.md`.
 - Crachá no topo (05/11): o selo original vai no crachá, que cai preso no cordão "itsemsdesign", balança, dá para puxar
   e vira mostrando WhatsApp e Instagram. É 3D como o do kenjilambert.com (cartão com reflexo, prendedor de metal, gira
   quando jogado e volta de frente: `src/js/modules/cracha3d.js`); o 2D de `cracha.js` é a reserva sem WebGL.
@@ -113,9 +114,6 @@ Mesmo com o site na raiz do domínio, continue usando a base da tabela acima (`%
 - ALMAH: o case agora é o brand book do Behance (publicado em 19/10), em capítulos como o da Babi, com o cartão do Cauã
   (ele desenhou o logo). Se ela mudar o Behance de novo, baixar de lá e atualizar `capitulos` em `projects.js`.
 - Página de brand book do site: o que entra?
-- Jubarte da abertura: desenho no Nano Banana Pro (Higgsfield; no Freepik/Magnific a API estava sem créditos), com o corpo
-  flexível em WebGL (`baleia-gl.js`, textura `public/img/baleia/baleia-mascara.png`); o vídeo (Kling 3.0 + Remotion) é a
-  reserva sem WebGL. Para trocar, `docs/baleia/README.md`.
 - Fundo do mar: cena pintada e animada no Higgsfield (Nano Banana Pro + Kling 3.0), deitada e em pé, em `public/img/mar/`;
   para trocar, `docs/mar/README.md`.
 - Inglês: botão PT · EN no menu desde 05/11 (pedido dela). O português fica no HTML e o inglês ao lado (`data-en`,

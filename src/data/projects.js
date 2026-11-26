@@ -140,6 +140,80 @@ export const projects = [
     ],
   },
   {
+    slug: 'miau-lab',
+    area: 'identidade',
+    destaque: true, // no carrossel do início (pedido da Emilly em 26/11)
+    title: 'MIAU lab',
+    category: 'Identidade visual',
+    detail: 'Marca conceitual de suplementos e petiscos para gatos',
+    year: '2026',
+    color: '#2B40D1',
+    resumo: 'A MIAU.LAB é uma marca conceitual de suplementos e petiscos funcionais para gatos. Ela nasceu de uma pergunta simples: por que suplemento de gato precisa parecer remédio de farmácia? Juntei o rigor de laboratório com o humor de quem divide a casa com um gato: um gato espiando por cima do U, cores fortes e cada produto com o nome do problema que o tutor já conhece e um número de fórmula. Ciência que ronrona.',
+    entregas: ['Logo e símbolo', 'Versões de cor', 'Paleta', 'Tipografia', 'Padrões', 'Embalagens', 'Fotos de produto', 'Carrossel de lançamento'],
+    behance: 'https://www.behance.net/gallery/258535703/MIAU-lab-Identidade-Visual',
+    // textos a partir do Behance (publicado em 15/11), na voz da Emilly; os GIFs de lá viraram vídeos em loop (.mp4/.webm)
+    capitulos: [
+      {
+        rotulo: 'O conceito',
+        titulo: 'Ciência que <em>ronrona</em>',
+        texto: 'A MIAU.LAB tira o suplemento de gato da prateleira da farmácia e leva a fórmula veterinária para a vida real do gato: o sofá, o pote, a janela.',
+        midias: [
+          { a: 'abertura.mp4', l: 'estreita', alt: 'o logo MIAU se montando e o gato subindo no U' },
+          { a: 'conceito.webp', l: 'larga', alt: 'o conceito: "Ciência que ronrona" e as palavras curiosa, confiável, brincalhona e feita pra gatos' },
+        ],
+      },
+      {
+        rotulo: 'O símbolo',
+        titulo: 'Um gato <em>em cima do U</em>',
+        texto: 'O símbolo é a marca inteira: um gato espiando por cima do U, com as unhas de fora e os arranhões cravados na letra. Curioso, confiante e um pouco folgado, como todo gato. O nome é em Archivo Condensed Black redesenhada.',
+        midias: [
+          { a: 'logo.mp4', alt: 'o logo MIAU .lab trocando de cor: cobalto, rosa, manteiga e creme' },
+          { a: 'gato.webp', l: 'meia', alt: 'o gato do símbolo de perto, com as orelhas, os olhos, as unhas e os arranhões apontados' },
+          { a: 'simbolo.mp4', l: 'meia', alt: 'o gato do símbolo piscando e olhando para os lados' },
+          { a: 'versoes.webp', alt: 'as quatro versões de cor do logo' },
+        ],
+      },
+      {
+        rotulo: 'Cores e tipografia',
+        titulo: 'Contraste alto, <em>sem pastel</em>',
+        texto: 'Cobalto, rosa, manteiga, creme e nanquim, sem tom pastel apagado. Archivo Condensed Black nos nomes e títulos, Instrument Sans nos textos, Space Mono nos rótulos técnicos e Mea Culpa como um único acento por peça.',
+        midias: [
+          { a: 'cores.webp', alt: 'a paleta: cobalto, rosa, manteiga, creme e nanquim' },
+          { a: 'tipografia.webp', alt: 'as quatro fontes da marca aplicadas' },
+        ],
+      },
+      {
+        rotulo: 'Os padrões',
+        titulo: 'Olho de gato <em>e peixinho</em>',
+        texto: 'Dois padrões separam a linha: olho de gato com peixinho nos petiscos e olho de gato com cápsula nos suplementos.',
+        midias: [
+          { a: 'padroes.mp4', alt: 'os padrões andando: olho de gato com peixinho e olho de gato com cápsula' },
+        ],
+      },
+      {
+        rotulo: 'A linha',
+        titulo: 'Cada fórmula, <em>um número</em>',
+        texto: 'Cada produto ganha o nome do problema que o tutor já conhece de cor e um número de fórmula, como num laboratório de verdade: os pouches de petisco Nº01 Pelo & Pele, Nº02 Bola de Pelo e Nº03 Bafinho, os potes de suplemento e a caixa de comprimidos Nº05 Mobilidade.',
+        midias: [
+          { a: 'embalagens.webp', alt: 'as embalagens abertas: os três pouches, os rótulos dos potes e a caixa de comprimidos' },
+          { a: 'pouch-mao.webp', l: 'meia', alt: 'a mão segurando o pouch Pelo & Pele, com petiscos de peixinho caindo' },
+          { a: 'pouches.webp', l: 'meia', alt: 'os três pouches: Pelo & Pele, Bola de Pelo e Bafinho' },
+          { a: 'potes-gato.webp', alt: 'um gato cheirando os potes de suplemento, ao lado da caixa Mobilidade' },
+          { a: 'gato-pouch.webp', alt: 'um gato preto deitado ao lado do pouch Pelo & Pele' },
+        ],
+      },
+      {
+        rotulo: 'O lançamento',
+        titulo: 'Feita <em>pra gatos</em>',
+        texto: 'Para o lançamento: um carrossel de 9 lâminas no Instagram, um reel com o símbolo sendo construído em vetor e um site de apresentação.',
+        midias: [
+          { a: 'carrossel.webp', l: 'meia', alt: 'as 9 lâminas do carrossel de lançamento no Instagram' },
+          { a: 'ronrona.mp4', l: 'meia', alt: 'encerramento: "Ciência que ronrona", com o fundo trocando de cor' },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'maria-valentina',
     area: 'identidade',
     destaque: true,
